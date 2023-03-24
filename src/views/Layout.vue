@@ -6,7 +6,7 @@ import Footer from "@/views/layout/LayoutFooter.vue";
 </script>
 
 <template>
-  <a-layout>
+  <a-layout style="height:100% !important">
       <Aside/>
     <a-layout>
         <header>

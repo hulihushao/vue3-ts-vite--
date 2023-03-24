@@ -1,10 +1,9 @@
-<script setup lang="ts"> 
-import Layout from "./views/Layout.vue"
+<script setup lang="ts">
+import Layout from "./views/Layout.vue";
 </script>
 
 <template>
-  <Layout style="height: 100% !important">
-  </Layout>
+  <router-view />
 </template>
 
 <style scoped></style>
