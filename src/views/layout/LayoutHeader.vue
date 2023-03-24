@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { MenuUnfoldOutlined, MenuFoldOutlined } from "@ant-design/icons-vue";
-import useLayout from "../../store/layout";
+import useLayout from "@/store/layout";
 let collapsed = useLayout();
 </script>
 <template>
   <a-layout-header style="background: #fff; padding: 0">
     <menu-unfold-outlined
-      v-if="collapsed"
+      v-if="collapsed.collapsed"
       class="trigger"
       @click="() => (collapsed.collapsed = !collapsed.collapsed)"
     />

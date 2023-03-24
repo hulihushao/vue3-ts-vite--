@@ -1,16 +1,20 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import Aside from "@/views/layout/LayoutSider.vue";
+import Header from "@/views/layout/LayoutHeader.vue";
+import Content from "@/views/layout/LayoutContent.vue";
+import Footer from "@/views/layout/LayoutFooter.vue";
+</script>
 
 <template>
-  <a-layout>
-      <slot name="aside"></slot>
+  <a-layout style="height:100% !important">
+      <Aside/>
     <a-layout>
         <header>
-            <slot name="header"></slot>
+            <Header/>
         </header>
-            <slot name="main"></slot>
+            <Content/>
         <footer>
-            <slot name="footer">
-            </slot>
+            <Footer/>
         </footer>
     </a-layout>
   </a-layout>
