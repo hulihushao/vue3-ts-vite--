@@ -1,7 +1,11 @@
 <script setup lang="ts"></script>
 
 <template>
-<div>登录</div>
+<div id="login">
+    
+</div>
 </template>
 
-<style scoped></style>
+<style scoped lang="less">
+
+</style>
