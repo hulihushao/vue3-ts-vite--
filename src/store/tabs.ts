@@ -6,7 +6,13 @@ const useTabsData = defineStore("tabsdata", {
       tabs: [
         { title: "首页", icon: "HomeOutlined", key: "1", closable: false },
       ],
+      activeKey:"1",
     };
   },
+  actions:{
+    setActiveKey(value:string|number){
+      this.activeKey=value
+    }
+  }
 });
 export default useTabsData;

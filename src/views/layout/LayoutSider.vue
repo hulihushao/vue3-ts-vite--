@@ -3,34 +3,39 @@ import { ref } from "vue";
 import { useRouter } from "vue-router";
 import SubMenu from "@/components/menu/MenuItem.vue";
 import useLayout from "../../store/layout";
-import {
-  PieChartOutlined,
-} from "@ant-design/icons-vue";
-import {menuList} from "@/utils/config/menus";
-import useTabsData from "@/store/tabs"
+import { PieChartOutlined } from "@ant-design/icons-vue";
+import { menuList } from "@/utils/config/menus";
+import useTabsData from "@/store/tabs";
 
-const tabsData=useTabsData()
-const router=useRouter();
+const tabsData = useTabsData();
+const router = useRouter();
 let collapsed = useLayout();
 let selectedKeys = ref<string[]>(["1"]);
 const list = ref([...menuList]);
-console.log(list)
+console.log(list);
 
-//菜单点击
-const menuClick=(item)=>{
-  if(!tabsData.tabs.some(itm=>itm.key==item.key)){
-    tabsData.tabs.push({
-      title:item.title,
-      key:item.key,
-      icon:item.icon,
-      closable:true
-    })
-    
-  }
-  router.push({
-    path:item.path
-  })
+interface tabMenu{
+  title:string,
+  key:string|number,
+  icon?:string,
+  closable?:boolean
 }
+//菜单点击
+const menuClick = (item:tabMenu) => {
+  if (!tabsData.tabs.some((itm) => itm.key == item.key)) {
+    let data:tabMenu={
+      title: item.title,
+      key: item.key,
+      icon: item.icon,
+      closable: true,
+    }
+    tabsData.tabs.push(data);
+  }
+  tabsData.setActiveKey(item.key);
+  router.push({
+    path: item.path,
+  });
+};
 </script>
 
 <template>
@@ -52,7 +57,11 @@ const menuClick=(item)=>{
           </a-menu-item>
         </template>
         <template v-else>
-          <sub-menu @menuItemClick="menuClick" :menu-info="item" :key="item.key" />
+          <sub-menu
+            @menuItemClick="menuClick"
+            :menu-info="item"
+            :key="item.key"
+          />
         </template>
       </template>
     </a-menu>

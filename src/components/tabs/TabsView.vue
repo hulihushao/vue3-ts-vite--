@@ -3,14 +3,13 @@ import { ref } from "vue";
 import { Icon } from '@/utils/ICON'
 import useTabsData from "@/store/tabs"
 const tabsData=useTabsData()
-const activeKey = ref(tabsData.tabs[0].key);
 </script>
 
 <template>
   <div id="tabs">
     <a-tabs
       style="background: #fff"
-      v-model:activeKey="activeKey"
+      v-model:activeKey="tabsData.activeKey"
       hide-add
       type="editable-card"
     >
