@@ -1,4 +1,3 @@
-import { resolveComponentType } from "@vue/compiler-core"
 
 export function getRouters(menus){
     let router=[]

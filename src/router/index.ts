@@ -5,15 +5,15 @@ import {
 } from "vue-router";
 import type { RouteRecordRaw } from "vue-router";
 import { getRouters } from "@/utils/routers";
-import { menuList} from "@/utils/config/menus";
-let routerList=getRouters(menuList)
+import { menuList } from "@/utils/config/menus";
+let routerList = getRouters(menuList);
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
     name: "index",
-    redirect:"home",
+    redirect: "home",
     component: () => import("@/views/Layout.vue"),
-    children: routerList
+    children: routerList,
   },
   {
     path: "/login",
@@ -27,11 +27,28 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("../views/Login.vue"),
   },
 ];
-console.log(routes,111)
+console.log(routes, 111);
 const router = createRouter({
   history: createWebHistory(),
   //history:createWebHashHistory(),
   routes,
 });
 
+import useLoading from "@/store/loading";
+import { storeToRefs } from "pinia";
+
+router.beforeEach((to, from, next) => {
+  let load = useLoading();
+
+  let { loading } = storeToRefs(load);
+  loading.value = true;
+  next();
+});
+router.afterEach((to, from) => {
+  //设置跳转路由后页面的标题
+  //document.title = to.meta.title as string;
+  let load = useLoading();
+  let { loading } = storeToRefs(load);
+  loading.value = false;
+});
 export default router;

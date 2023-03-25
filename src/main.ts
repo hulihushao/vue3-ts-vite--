@@ -19,4 +19,5 @@ Object.keys(antIcons).forEach((key) => {
 // 添加到全局
 app.config.globalProperties.$antIcons = antIcons;
 
-app.use(router).use(Antd).use(createPinia()).mount("#app");
+app.use(createPinia())
+app.use(router).use(Antd).mount("#app");

@@ -1,11 +1,9 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { Icon } from '@/utils/ICON'
-const panes = ref([
-  { title: "Tab 1", icon:"HomeOutlined", key: "1", closable: false },
-  { title: "Tab 2",  key: "2", closable: true },
-]);
-const activeKey = ref(panes.value[0].key);
+import useTabsData from "@/store/tabs"
+const tabsData=useTabsData()
+const activeKey = ref(tabsData.tabs[0].key);
 </script>
 
 <template>
@@ -17,7 +15,7 @@ const activeKey = ref(panes.value[0].key);
       type="editable-card"
     >
       <a-tab-pane
-        v-for="pane in panes"
+        v-for="pane in tabsData.tabs"
         :key="pane.key"
 
         :closable="pane.closable"

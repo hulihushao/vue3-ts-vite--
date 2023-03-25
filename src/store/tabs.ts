@@ -1,0 +1,12 @@
+import { defineStore } from "pinia";
+
+const useTabsData = defineStore("tabsdata", {
+  state: () => {
+    return {
+      tabs: [
+        { title: "Tab 1", icon: "HomeOutlined", key: "1", closable: false },
+      ],
+    };
+  },
+});
+export default useTabsData;
