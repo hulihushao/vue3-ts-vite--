@@ -4,7 +4,7 @@ export let menuList=[
     key: "1",
     title: "首页",
     component: ()=>import(`@/views/Login.vue`),
-    path: "/home",
+    path: "home",
     name: "home",
   },
   {
@@ -19,7 +19,7 @@ export let menuList=[
             key: "2.1.1",
             title: "测试",
             component: ()=>import("@/views/Layout.vue"),
-            path: "/cs",
+            path: "cs",
             name: "cs",
           },
         ],

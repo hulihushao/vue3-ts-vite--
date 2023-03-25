@@ -9,9 +9,9 @@ import { menuList } from "@/utils/config/menus";
 let routerList = getRouters(menuList);
 const routes: Array<RouteRecordRaw> = [
   {
-    path: "/",
+    path: "/index",
     name: "index",
-    redirect: "home",
+    redirect: "index/home",
     component: () => import("@/views/Layout.vue"),
     children: routerList,
   },

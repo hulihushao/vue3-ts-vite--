@@ -17,17 +17,20 @@ console.log(list);
 interface tabMenu{
   title:string,
   key:string|number,
+  path:string,
   icon?:string,
   closable?:boolean
 }
 //菜单点击
 const menuClick = (item:tabMenu) => {
-  if (!tabsData.tabs.some((itm) => itm.key == item.key)) {
+  if (!tabsData.tabs.some((itm:tabMenu) => itm.key == item.key)) {
     let data:tabMenu={
       title: item.title,
       key: item.key,
       icon: item.icon,
       closable: true,
+      path:item.path
+      
     }
     tabsData.tabs.push(data);
   }

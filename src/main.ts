@@ -5,6 +5,7 @@ import Antd from "ant-design-vue";
 import "ant-design-vue/dist/antd.css";
 import router from "./router";
 import { createPinia } from "pinia";
+import "animate.css"
 //导入组件库
 import * as antIcons from "@ant-design/icons-vue";
 
