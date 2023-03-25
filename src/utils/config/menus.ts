@@ -17,10 +17,10 @@ export let menuList=[
         children: [
           {
             key: "2.1.1",
-            title: "Option 2.1.1",
-            component: "aa",
-            path: "/bb",
-            name: "aa",
+            title: "测试",
+            component: ()=>import("@/views/Layout.vue"),
+            path: "/cs",
+            name: "cs",
           },
         ],
       },

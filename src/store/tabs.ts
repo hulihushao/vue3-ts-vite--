@@ -4,7 +4,7 @@ const useTabsData = defineStore("tabsdata", {
   state: () => {
     return {
       tabs: [
-        { title: "Tab 1", icon: "HomeOutlined", key: "1", closable: false },
+        { title: "首页", icon: "HomeOutlined", key: "1", closable: false },
       ],
     };
   },

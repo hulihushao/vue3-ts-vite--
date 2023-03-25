@@ -7,7 +7,9 @@ import {
   PieChartOutlined,
 } from "@ant-design/icons-vue";
 import {menuList} from "@/utils/config/menus";
+import useTabsData from "@/store/tabs"
 
+const tabsData=useTabsData()
 const router=useRouter();
 let collapsed = useLayout();
 let selectedKeys = ref<string[]>(["1"]);
@@ -16,6 +18,15 @@ console.log(list)
 
 //菜单点击
 const menuClick=(item)=>{
+  if(!tabsData.tabs.some(itm=>itm.key==item.key)){
+    tabsData.tabs.push({
+      title:item.title,
+      key:item.key,
+      icon:item.icon,
+      closable:true
+    })
+    
+  }
   router.push({
     path:item.path
   })
@@ -41,7 +52,7 @@ const menuClick=(item)=>{
           </a-menu-item>
         </template>
         <template v-else>
-          <sub-menu :menu-info="item" :key="item.key" />
+          <sub-menu @menuItemClick="menuClick" :menu-info="item" :key="item.key" />
         </template>
       </template>
     </a-menu>
