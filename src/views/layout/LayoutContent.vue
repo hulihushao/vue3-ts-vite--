@@ -9,14 +9,18 @@ import Loading from "@/components/loading/index.vue";
       padding: '10px',
       background: '#fff',
       minHeight: '280px',
+      maxHeight: '100vh',
+      overflow: 'auto',
     }"
   >
     <router-view class="view" v-slot="{ Component }">
       <transition
+        mode="out-in"
+        appear
         enter-active-class="animate__animated animate__fadeInRight"
         leave-active-class="animate__animated animate__fadeOutLeft"
       >
-        <component style="position:absolute" :is="Component" />
+        <component style="" :is="Component" />
       </transition>
     </router-view>
   </a-layout-content>

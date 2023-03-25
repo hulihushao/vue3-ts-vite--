@@ -34,6 +34,7 @@ let login = () => {
 
 <style scoped lang="less">
 #login {
+  position:relative;
   height: 100%;
   width: 100%;
   background: #ccc;
