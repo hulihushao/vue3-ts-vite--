@@ -10,6 +10,7 @@
     }"
   >
     Content
+    <router-view/>
   </a-layout-content>
 </template>
 

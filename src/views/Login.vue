@@ -5,7 +5,7 @@ const router = useRouter();
 let loading=ref<boolean>(false)
 let login = () => {
     loading.value=true
-  router.push({ path: "/index" });
+  router.push({ path: "/" });
 };
 </script>
 

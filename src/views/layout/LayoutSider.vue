@@ -1,44 +1,56 @@
 <script setup lang="ts">
-import {ref} from "vue"
-import useLayout from "../../store/layout"
+import { ref } from "vue";
+import { useRouter } from "vue-router";
+import SubMenu from "@/components/menu/MenuItem.vue";
+import useLayout from "../../store/layout";
 import {
-  UserOutlined,
-  VideoCameraOutlined,
-  UploadOutlined,
+  PieChartOutlined,
 } from "@ant-design/icons-vue";
-let collapsed=useLayout()
-let selectedKeys= ref<string[]>(["1"])
+import {menuList} from "@/utils/menus";
+
+const router=useRouter();
+let collapsed = useLayout();
+let selectedKeys = ref<string[]>(["1"]);
+const list = ref([...menuList]);
+console.log(list)
+
+//菜单点击
+const menuClick=(item)=>{
+  router.push({
+    path:item.path
+  })
+}
 </script>
 
 <template>
   <a-layout-sider
     breakpoint="lg"
     :collapsed="collapsed.collapsed"
-        :trigger="null"
+    :trigger="null"
     collapsible
-
   >
-    <div class="logo" ></div>
+    <div class="logo"></div>
     <a-menu theme="dark" mode="inline" v-model:selectedKeys="selectedKeys">
-      <a-menu-item key="1">
-        <user-outlined />
-        <span>nav 1</span>
-      </a-menu-item>
-      <a-menu-item key="2">
-        <video-camera-outlined />
-        <span>nav 2</span>
-      </a-menu-item>
-      <a-menu-item key="3">
-        <upload-outlined />
-        <span>nav 3</span>
-      </a-menu-item>
+      <template v-for="item in list" :key="item.key">
+        <template v-if="!item.children">
+          <a-menu-item :key="item.key" @click="menuClick(item)">
+            <template #icon>
+              <PieChartOutlined />
+            </template>
+            {{ item.title }}
+          </a-menu-item>
+        </template>
+        <template v-else>
+          <sub-menu :menu-info="item" :key="item.key" />
+        </template>
+      </template>
     </a-menu>
   </a-layout-sider>
 </template>
 
 <style scoped>
-.logo{
-    height: 32px;
+.logo {
+  height: 32px;
 
   background: rgba(255, 255, 255, 0.3);
   margin: 16px;
