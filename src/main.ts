@@ -10,8 +10,9 @@ import * as antIcons from "@ant-design/icons-vue";
 
 const app = createApp(App);
 
+//动态使用antd图标，方式一
+//使用：<component :is="$antIcons[pane.icon]" />
 // 注册组件
-
 Object.keys(antIcons).forEach((key) => {
   app.component(key, antIcons[key]);
 });

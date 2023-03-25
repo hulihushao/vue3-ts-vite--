@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import { Icon } from '@/utils/ICON'
 const panes = ref([
-  { title: "Tab 1", icon:"AppleOutlined", key: "1", closable: false },
+  { title: "Tab 1", icon:"HomeOutlined", key: "1", closable: false },
   { title: "Tab 2",  key: "2", closable: true },
 ]);
 const activeKey = ref(panes.value[0].key);
@@ -24,8 +24,9 @@ const activeKey = ref(panes.value[0].key);
       >
         <template #tab>
           <span>
-            <Icon :icon="pane.icon" />
             {{pane.title}}
+            <Icon :icon="pane.icon" />
+
           </span>
         </template>
       </a-tab-pane>
