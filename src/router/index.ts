@@ -5,7 +5,7 @@ import {
 } from "vue-router";
 import type { RouteRecordRaw } from "vue-router";
 import { getRouters } from "@/utils/routers";
-import { menuList} from "@/utils/menus";
+import { menuList} from "@/utils/config/menus";
 let routerList=getRouters(menuList)
 const routes: Array<RouteRecordRaw> = [
   {

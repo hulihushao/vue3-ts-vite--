@@ -6,7 +6,7 @@ import useLayout from "../../store/layout";
 import {
   PieChartOutlined,
 } from "@ant-design/icons-vue";
-import {menuList} from "@/utils/menus";
+import {menuList} from "@/utils/config/menus";
 
 const router=useRouter();
 let collapsed = useLayout();

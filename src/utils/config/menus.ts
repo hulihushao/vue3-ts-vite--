@@ -1,3 +1,4 @@
+//导航菜单配置
 export let menuList=[
   {
     key: "1",
