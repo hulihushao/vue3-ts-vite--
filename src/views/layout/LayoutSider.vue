@@ -83,11 +83,11 @@ const menuClick = (item: menus) => {
   .iconfont {
     color: #409eff;
     font-size: 32px;
-    transition: all 0.2s;
+    transition: all 0.3s;
   }
   .iconsj {
     font-size: 35px;
-    transition: all 0.2s;
+    transition: all 0.3s;
   }
   span {
     display: inline-block;
