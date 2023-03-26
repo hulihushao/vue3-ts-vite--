@@ -6,25 +6,21 @@ import useLayout from "../../store/layout";
 import { PieChartOutlined } from "@ant-design/icons-vue";
 import { menuList } from "@/utils/config/menus";
 import useTabsData from "@/store/tabs";
+import { storeToRefs } from "pinia";
+import{menus}  from "@/types/menus"
 
-const tabsData = useTabsData();
+const tabsData= useTabsData();
 const router = useRouter();
 let collapsed = useLayout();
-let selectedKeys = ref<string[]>(["1"]);
+
+let {selectKeys} = storeToRefs(collapsed)
 const list = ref([...menuList]);
 console.log(list);
 
-interface tabMenu{
-  title:string,
-  key:string|number,
-  path:string,
-  icon?:string,
-  closable?:boolean
-}
 //菜单点击
-const menuClick = (item:tabMenu) => {
-  if (!tabsData.tabs.some((itm:tabMenu) => itm.key == item.key)) {
-    let data:tabMenu={
+const menuClick = (item:menus) => {
+  if (!tabsData.tabs.some((itm:menus) => itm.key == item.key)) {
+    let data:menus={
       title: item.title,
       key: item.key,
       icon: item.icon,
@@ -49,7 +45,7 @@ const menuClick = (item:tabMenu) => {
     collapsible
   >
     <div class="logo"></div>
-    <a-menu theme="dark" mode="inline" v-model:selectedKeys="selectedKeys">
+    <a-menu theme="dark" mode="inline" v-model:selectedKeys="selectKeys">
       <template v-for="item in list" :key="item.key">
         <template v-if="!item.children">
           <a-menu-item :key="item.key" @click="menuClick(item)">

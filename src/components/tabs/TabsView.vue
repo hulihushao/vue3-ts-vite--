@@ -3,12 +3,15 @@ import { ref } from "vue";
 import { Icon } from "@/utils/ICON";
 import useTabsData from "@/store/tabs";
 import { useRouter } from "vue-router";
+import useLayout from "@/store/layout";
 
 const router = useRouter();
 const tabsData = useTabsData();
+let layout = useLayout();
 
 let paneClick = (pane) => {
-  let one=tabsData.tabs.filter(item=>item.key==pane)
+  let one = tabsData.tabs.filter((item) => item.key == pane);
+  layout.selectKeys = [pane];
   router.push({ path: one[0].path });
 };
 </script>

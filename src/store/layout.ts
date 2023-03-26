@@ -5,7 +5,8 @@ const useLayout = defineStore("storeId", {
   state: () => {
     return {
       // 所有这些属性都将自动推断其类型
-      collapsed:false
+      collapsed:false,
+      selectKeys:["1"],
     };
   },
 });
