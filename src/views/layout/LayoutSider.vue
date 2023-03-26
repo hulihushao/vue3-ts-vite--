@@ -96,12 +96,14 @@ const menuClick = (item: menus) => {
     line-height: 32px;
     transition: all .2s;
     overflow:hidden;
+    opacity:1;
   }
   .sj {
 overflow:hidden;
     width: 0;
     transition: all .2s;
-    margin-left:0
+    margin-left:0;
+    opacity:0;
   }
 }
 </style>
