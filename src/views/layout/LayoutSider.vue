@@ -7,27 +7,26 @@ import { PieChartOutlined } from "@ant-design/icons-vue";
 import { menuList } from "@/utils/config/menus";
 import useTabsData from "@/store/tabs";
 import { storeToRefs } from "pinia";
-import{menus}  from "@/types/menus"
+import { menus } from "@/types/menus";
 
-const tabsData= useTabsData();
+const tabsData = useTabsData();
 const router = useRouter();
 let collapsed = useLayout();
 
-let {selectKeys} = storeToRefs(collapsed)
+let { selectKeys } = storeToRefs(collapsed);
 const list = ref([...menuList]);
 console.log(list);
 
 //菜单点击
-const menuClick = (item:menus) => {
-  if (!tabsData.tabs.some((itm:menus) => itm.key == item.key)) {
-    let data:menus={
+const menuClick = (item: menus) => {
+  if (!tabsData.tabs.some((itm: menus) => itm.key == item.key)) {
+    let data: menus = {
       title: item.title,
       key: item.key,
       icon: item.icon,
       closable: true,
-      path:item.path
-      
-    }
+      path: item.path,
+    };
     tabsData.tabs.push(data);
   }
   tabsData.setActiveKey(item.key);
@@ -45,8 +44,8 @@ const menuClick = (item:menus) => {
     collapsible
   >
     <div class="logo">
-      <i class="iconfont icon-dingzhikaifa-zhihuiguanlixitong"></i>
-      <span>诺依管理系统</span>
+      <i class="iconfont icon-dingzhikaifa-zhihuiguanlixitong" :class="{iconsj:collapsed.collapsed}"></i>
+      <span :class="{sj:collapsed.collapsed}">诺依管理系统</span>
     </div>
     <a-menu theme="dark" mode="inline" v-model:selectedKeys="selectKeys">
       <template v-for="item in list" :key="item.key">
@@ -73,21 +72,36 @@ const menuClick = (item:menus) => {
 <style scoped lang="less">
 .logo {
   height: 32px;
-display:flex;
-justify-content:center;
-align-items:center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: rgba(255, 255, 255, 0);
   margin: 16px;
-  .iconfont{
-    color:#409EFF;
-    font-size:32px;
+  .iconfont {
+    color: #409eff;
+    font-size: 32px;
+    transition:all .2s;
   }
-  span{
-    font-size:16px;
-    color:#fff;
-    margin:0 10px;
-    line-height:32px;
+  .iconsj{
+    font-size:35px;
+    transition:all .2s;
+  }
+  span {
+    display:inline-block;
+    width:100%;
+    height:100%;
+    font-size: 16px;
+    color: #fff;
+    margin-left:10px;
+    line-height: 32px;
+    transition: all .2s;
+    overflow:hidden;
+  }
+  .sj {
+overflow:hidden;
+    width: 0;
+    transition: all .2s;
+    margin-left:0
   }
 }
-
 </style>
