@@ -44,8 +44,11 @@ const menuClick = (item: menus) => {
     collapsible
   >
     <div class="logo">
-      <i class="iconfont icon-dingzhikaifa-zhihuiguanlixitong" :class="{iconsj:collapsed.collapsed}"></i>
-      <span :class="{sj:collapsed.collapsed}">诺依管理系统</span>
+      <i
+        class="iconfont icon-dingzhikaifa-zhihuiguanlixitong"
+        :class="{ iconsj: collapsed.collapsed }"
+      ></i>
+      <span :class="{ sj: collapsed.collapsed }">诺依管理系统</span>
     </div>
     <a-menu theme="dark" mode="inline" v-model:selectedKeys="selectKeys">
       <template v-for="item in list" :key="item.key">
@@ -80,30 +83,30 @@ const menuClick = (item: menus) => {
   .iconfont {
     color: #409eff;
     font-size: 32px;
-    transition:all .2s;
+    transition: all 0.2s;
   }
-  .iconsj{
-    font-size:35px;
-    transition:all .2s;
+  .iconsj {
+    font-size: 35px;
+    transition: all 0.2s;
   }
   span {
-    display:inline-block;
-    width:100%;
-    height:100%;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
     font-size: 16px;
     color: #fff;
-    margin-left:10px;
+    margin-left: 10px;
     line-height: 32px;
-    transition: all .2s;
-    overflow:hidden;
-    opacity:1;
+    transition: all 0.3s;
+    overflow: hidden;
+    opacity: 1;
   }
   .sj {
-overflow:hidden;
+    overflow: hidden;
     width: 0;
-    transition: all .2s;
-    margin-left:0;
-    opacity:0;
+    transition: all 0.3s;
+    margin-left: 0;
+    opacity: 0;
   }
 }
 </style>
