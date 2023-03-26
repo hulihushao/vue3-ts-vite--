@@ -6,6 +6,9 @@ import {
 import type { RouteRecordRaw } from "vue-router";
 import { getRouters } from "@/utils/routers";
 import { menuList } from "@/utils/config/menus";
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'   //引入样式
+
 let routerList = getRouters(menuList);
 const routes: Array<RouteRecordRaw> = [
   {
@@ -43,6 +46,8 @@ router.beforeEach((to, from, next) => {
 
     let { loading } = storeToRefs(load);
     loading.value = true;
+  }else{
+    NProgress.start()
   }
   next();
 });
@@ -52,5 +57,6 @@ router.afterEach((to, from) => {
   let load = useLoading();
   let { loading } = storeToRefs(load);
   loading.value = false;
+  NProgress.done()
 });
 export default router;
