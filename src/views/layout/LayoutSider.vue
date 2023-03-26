@@ -44,7 +44,10 @@ const menuClick = (item:menus) => {
     :trigger="null"
     collapsible
   >
-    <div class="logo"></div>
+    <div class="logo">
+      <i class="iconfont icon-dingzhikaifa-zhihuiguanlixitong"></i>
+      <span>诺依管理系统</span>
+    </div>
     <a-menu theme="dark" mode="inline" v-model:selectedKeys="selectKeys">
       <template v-for="item in list" :key="item.key">
         <template v-if="!item.children">
@@ -67,11 +70,24 @@ const menuClick = (item:menus) => {
   </a-layout-sider>
 </template>
 
-<style scoped>
+<style scoped lang="less">
 .logo {
   height: 32px;
-
-  background: rgba(255, 255, 255, 0.3);
+display:flex;
+justify-content:center;
+align-items:center;
+  background: rgba(255, 255, 255, 0);
   margin: 16px;
+  .iconfont{
+    color:#409EFF;
+    font-size:32px;
+  }
+  span{
+    font-size:16px;
+    color:#fff;
+    margin:0 10px;
+    line-height:32px;
+  }
 }
+
 </style>
