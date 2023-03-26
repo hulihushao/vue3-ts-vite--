@@ -1,8 +1,16 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { Icon } from '@/utils/ICON'
-import useTabsData from "@/store/tabs"
-const tabsData=useTabsData()
+import { Icon } from "@/utils/ICON";
+import useTabsData from "@/store/tabs";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+const tabsData = useTabsData();
+
+let paneClick = (pane) => {
+  let one=tabsData.tabs.filter(item=>item.key==pane)
+  router.push({ path: one[0].path });
+};
 </script>
 
 <template>
@@ -12,18 +20,17 @@ const tabsData=useTabsData()
       v-model:activeKey="tabsData.activeKey"
       hide-add
       type="editable-card"
+      @tabClick="paneClick"
     >
       <a-tab-pane
         v-for="pane in tabsData.tabs"
         :key="pane.key"
-
         :closable="pane.closable"
       >
         <template #tab>
           <span>
-            {{pane.title}}
+            {{ pane.title }}
             <Icon :icon="pane.icon" />
-
           </span>
         </template>
       </a-tab-pane>
