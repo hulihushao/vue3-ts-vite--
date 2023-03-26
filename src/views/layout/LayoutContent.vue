@@ -9,7 +9,6 @@ import Loading from "@/components/loading/index.vue";
       padding: '10px',
       background: '#fff',
       minHeight: '280px',
-      maxHeight: '100vh',
       overflow: 'auto',
     }"
   >

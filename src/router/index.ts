@@ -38,10 +38,12 @@ import useLoading from "@/store/loading";
 import { storeToRefs } from "pinia";
 
 router.beforeEach((to, from, next) => {
-  let load = useLoading();
+  if (!to.fullPath.includes("/index")) {
+    let load = useLoading();
 
-  let { loading } = storeToRefs(load);
-  loading.value = true;
+    let { loading } = storeToRefs(load);
+    loading.value = true;
+  }
   next();
 });
 router.afterEach((to, from) => {

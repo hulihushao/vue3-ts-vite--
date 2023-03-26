@@ -6,6 +6,7 @@ const loading = useLoading();
 
 <template>
   <router-view />
+  <Loading :spinning="loading.loading"/>
 </template>
 
 <style scoped></style>
