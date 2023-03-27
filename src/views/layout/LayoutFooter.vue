@@ -2,7 +2,7 @@
 
 <template>
   <a-layout-footer style="text-align: center">
-    Ant Design ©2018 Created by Ant UED
+    诺依管理系统 ©2023 Created by TJP
   </a-layout-footer>
 </template>
 
