@@ -14,6 +14,25 @@ let paneClick = (pane) => {
   layout.selectKeys = [pane];
   router.push({ path: one[0].path });
 };
+const remove = (targetKey: string) => {
+  let index = tabsData.tabs.findIndex((item) => item.key == targetKey);
+  tabsData.tabs.splice(index, 1);
+  if (index <= 0) {
+    index = 0;
+  } else {
+    index = index - 1;
+  }
+  let pre = tabsData.tabs[index];
+  router.push({path:pre.path})
+  tabsData.setActiveKey(pre.key);
+  layout.selectKeys = [pre.key];
+};
+const onEdit = (targetKey: string | MouseEvent, action: string) => {
+  if (action === "add") {
+  } else {
+    remove(targetKey as string);
+  }
+};
 </script>
 
 <template>
@@ -24,6 +43,7 @@ let paneClick = (pane) => {
       hide-add
       type="editable-card"
       @tabClick="paneClick"
+      @edit="onEdit"
     >
       <a-tab-pane
         v-for="pane in tabsData.tabs"
