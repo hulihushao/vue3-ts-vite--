@@ -8,11 +8,13 @@ import { menuList } from "@/utils/config/menus";
 import useTabsData from "@/store/tabs";
 import { storeToRefs } from "pinia";
 import { menus } from "@/types/menus";
+import {useGetRoute,useAllMenus} from"@/hooks/useGetRoute"
 
 const tabsData = useTabsData();
 const router = useRouter();
 let collapsed = useLayout();
 
+//保持响应性获取数据
 let { selectKeys } = storeToRefs(collapsed);
 const list = ref([...menuList]);
 console.log(list);
@@ -29,11 +31,19 @@ const menuClick = (item: menus) => {
     };
     tabsData.tabs.push(data);
   }
+  //设置tab的选中状态
   tabsData.setActiveKey(item.key);
   router.push({
     path: item.path,
   });
 };
+
+//根据url设置菜单选中
+let path:string=useGetRoute()
+let allMenus=useAllMenus()
+let currentMenu=allMenus.filter(item=>path.includes(item.path))
+selectKeys=[currentMenu[0].key]
+let openKeys=ref<string|number[]>(currentMenu[0].openKeys)
 </script>
 
 <template>
@@ -50,7 +60,7 @@ const menuClick = (item: menus) => {
       ></i>
       <span :class="{ sj: collapsed.collapsed }">诺依管理系统</span>
     </div>
-    <a-menu theme="dark" mode="inline" v-model:selectedKeys="selectKeys">
+    <a-menu theme="dark" mode="inline" v-model:selectedKeys="selectKeys" :openKeys="openKeys">
       <template v-for="item in list" :key="item.key">
         <template v-if="!item.children">
           <a-menu-item :key="item.key" @click="menuClick(item)">

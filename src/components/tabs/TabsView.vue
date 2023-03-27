@@ -4,18 +4,18 @@ import { Icon } from "@/utils/ICON";
 import useTabsData from "@/store/tabs";
 import { useRouter } from "vue-router";
 import useLayout from "@/store/layout";
-
+import {menus} from "@/types/menus"
 const router = useRouter();
 const tabsData = useTabsData();
 let layout = useLayout();
 
 let paneClick = (pane:string|number) => {
-  let one = tabsData.tabs.filter((item) => item.key == pane);
+  let one = tabsData.tabs.filter((item:menus) => item.key == pane);
   layout.selectKeys = [pane];
   router.push({ path: one[0].path });
 };
 const remove = (targetKey: string) => {
-  let index = tabsData.tabs.findIndex((item) => item.key == targetKey);
+  let index = tabsData.tabs.findIndex((item:menus) => item.key == targetKey);
   tabsData.tabs.splice(index, 1);
   if (index <= 0) {
     index = 0;
