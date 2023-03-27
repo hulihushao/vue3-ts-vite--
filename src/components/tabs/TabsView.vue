@@ -9,7 +9,7 @@ const router = useRouter();
 const tabsData = useTabsData();
 let layout = useLayout();
 
-let paneClick = (pane) => {
+let paneClick = (pane:string|number) => {
   let one = tabsData.tabs.filter((item) => item.key == pane);
   layout.selectKeys = [pane];
   router.push({ path: one[0].path });
@@ -23,7 +23,7 @@ const remove = (targetKey: string) => {
     index = index - 1;
   }
   let pre = tabsData.tabs[index];
-  router.push({path:pre.path})
+  router.push({ path: pre.path });
   tabsData.setActiveKey(pre.key);
   layout.selectKeys = [pre.key];
 };
@@ -32,6 +32,9 @@ const onEdit = (targetKey: string | MouseEvent, action: string) => {
   } else {
     remove(targetKey as string);
   }
+};
+const callback = (val: string) => {
+  console.log(val);
 };
 </script>
 
@@ -44,6 +47,8 @@ const onEdit = (targetKey: string | MouseEvent, action: string) => {
       type="editable-card"
       @tabClick="paneClick"
       @edit="onEdit"
+      @prevClick="callback"
+      @nextClick="callback"
     >
       <a-tab-pane
         v-for="pane in tabsData.tabs"
