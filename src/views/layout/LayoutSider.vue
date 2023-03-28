@@ -42,7 +42,7 @@ const menuClick = (item: menus) => {
 let path: string = useGetRoute();
 let allMenus = useAllMenus();
 let currentMenu = allMenus.filter((item) => path.includes(item.path));
-selectKeys =ref<string|number[]>([currentMenu[0].key])
+selectKeys.value=[currentMenu[0].key]
 let openKeys = ref<string | number[]>(currentMenu[0].openKeys);
 </script>
 
