@@ -5,6 +5,7 @@ import useTabsData from "@/store/tabs";
 import { useRouter } from "vue-router";
 import useLayout from "@/store/layout";
 import { menus } from "@/types/menus";
+import {actions as tabActions} from "@/utils/config/tabActions"
 const router = useRouter();
 const tabsData = useTabsData();
 let layout = useLayout();
@@ -43,6 +44,11 @@ let closeAll=()=>{
   tabsData.$reset()
   layout.resetSelectKeys()
 }
+let clickBtn=(item)=>{
+  item.click(()=>{
+    closeAll()()
+  })
+}
 </script>
 
 <template>
@@ -73,7 +79,7 @@ let closeAll=()=>{
       <template #rightExtra>
         <a-popover :overlayStyle="{width:'130px',overflow:'hidden',marginTop:'-40px'}" title="更多操作" trigger="hover" placement="bottomRight">
           <template #content>
-            <a-button danger size="small" type="text" @click="closeAll">关闭全部</a-button>
+            <a-button v-for="item in tabActions" danger size="small" type="text" @click="clickBtn(item)">{{item.title}}</a-button>
           </template>
           <a-button type="dashed">┋</a-button>
         </a-popover>
