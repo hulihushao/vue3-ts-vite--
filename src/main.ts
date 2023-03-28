@@ -4,8 +4,7 @@ import App from "./App.vue";
 import Antd from "ant-design-vue";
 import "ant-design-vue/dist/antd.css";
 import router from "./router";
-import { createPinia } from "pinia";
-import piniaPluginPersist from 'pinia-plugin-persist'
+import store from "@/store"
 import "animate.css";
 //导入组件库
 import * as antIcons from "@ant-design/icons-vue";
@@ -21,8 +20,5 @@ Object.keys(antIcons).forEach((key) => {
 // 添加到全局
 app.config.globalProperties.$antIcons = antIcons;
 
-const store = createPinia();
-// 状态持久化-插件配置
-store.use(piniaPluginPersist);
 app.use(store);
 app.use(router).use(Antd).mount("#app");
