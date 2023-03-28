@@ -3,7 +3,7 @@ export let menuList = [
   {
     key: "1",
     title: "首页",
-    component: () => import(`@/views/Login.vue`),
+    component: () => import(`@/views/home/Welcome.vue`),
     path: "home",
     name: "home",
     icon: "HomeOutlined",

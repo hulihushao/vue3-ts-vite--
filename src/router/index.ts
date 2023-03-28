@@ -21,6 +21,10 @@ NProgress.configure({
 let routerList = getRouters(menuList);
 const routes: Array<RouteRecordRaw> = [
   {
+    path:"/",
+    redirect:"/index"
+  },
+  {
     path: "/index",
     name: "index",
     redirect: "index/home",
