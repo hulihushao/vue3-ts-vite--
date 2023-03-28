@@ -9,11 +9,13 @@ const router = useRouter();
 const tabsData = useTabsData();
 let layout = useLayout();
 
+//点击tab页
 let paneClick = (pane: string | number) => {
   let one = tabsData.tabs.filter((item: menus) => item.key == pane);
   layout.selectKeys = [pane];
   router.push({ path: one[0].path });
 };
+//关闭tab的方法
 const remove = (targetKey: string) => {
   let index = tabsData.tabs.findIndex((item: menus) => item.key == targetKey);
   tabsData.tabs.splice(index, 1);
@@ -27,6 +29,7 @@ const remove = (targetKey: string) => {
   tabsData.setActiveKey(pre.key);
   layout.selectKeys = [pre.key];
 };
+//关闭单个tab页
 const onEdit = (targetKey: string | MouseEvent, action: string) => {
   if (action === "add") {
   } else {
