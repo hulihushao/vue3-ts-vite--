@@ -120,6 +120,7 @@ let openKeys =ref<string|number[]>(currentMenu[0].openKeys)
     transition: all 0.3s;
     overflow: hidden;
     opacity: 1;
+    font-family:"仓耳渔阳体 W05"
   }
   .sj {
     overflow: hidden;

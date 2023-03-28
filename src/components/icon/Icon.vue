@@ -1,18 +1,16 @@
 <script setup lang="ts">
 import { Icon } from "@/utils/ICON";
-let icon=defineProps<{
-    icon:{
-        type:string,
+let icons=defineProps<{
+    icon?:{
+        type: String,
     },
-    iconfont:{
-        type:string
-    }
+    iconfont?:string
 }>()
 </script>
 
 <template>
- <Icon v-if=icon.icon :icon="icon.icon" />
- <i v-else :class="'iconfont icon-'+icon.iconfont"></i>
+ <Icon v-if=icons.icon :icon="icons.icon" />
+ <i v-else :class="'iconfont icon-'+icons.iconfont"></i>
 </template>
 
 <style scoped></style>
