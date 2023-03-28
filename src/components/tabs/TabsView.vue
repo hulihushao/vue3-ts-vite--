@@ -54,6 +54,7 @@ let closeAll=()=>{
       @tabClick="paneClick"
       @edit="onEdit"
     >
+    <!--tab标签页-->
       <a-tab-pane
         v-for="pane in tabsData.tabs"
         :key="pane.key"
@@ -66,7 +67,7 @@ let closeAll=()=>{
           </span>
         </template>
       </a-tab-pane>
-
+<!--右侧按钮-->
       <template #rightExtra>
         <a-popover :overlayStyle="{width:'130px',overflow:'hidden',marginTop:'-20px'}" title="更多操作" trigger="hover" placement="bottomRight">
           <template #content>
