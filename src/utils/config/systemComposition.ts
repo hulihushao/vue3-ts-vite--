@@ -1,0 +1,22 @@
+export let systemComposition=[
+    {
+        title:"vue3",
+        url:"https://cn.vuejs.org/"
+    },
+    {
+        title:"vite",
+        url:"https://vitejs.cn/vite3-cn/"
+    },
+    {
+        title:"ts",
+        url:"https://www.tslang.cn/docs/home.html"
+    },
+    {
+        title:"pinia",
+        url:"https://pinia.web3doc.top/"
+    },
+    {
+        title:"Antd",
+        url:"https://www.antdv.com/components/overview-cn"
+    }
+]

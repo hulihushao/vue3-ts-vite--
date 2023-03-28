@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import Icon from "@/components/icon/Icon.vue";
+import { systemComposition } from "@/utils/config/systemComposition";
 </script>
 
 <template>
@@ -12,12 +13,11 @@ import Icon from "@/components/icon/Icon.vue";
     <p class="tip">系统完善中...</p>
     <br />
     <p>
-      系统采用<br /><a-button type="link">vue3</a-button>+<a-button type="link"
-        >vite</a-button
-      >+<a-button type="link">ts</a-button> +<a-button type="link"
-        >pinia</a-button
+      系统采用<br />
+      <span v-for="(item, index) in systemComposition"
+        ><a-button :href="item.url" type="link">{{ item.title }}</a-button
+        ><span v-if="index < systemComposition.length - 1">+</span></span
       >
-      +<a-button type="link">Antd</a-button> <br />构建
     </p>
     <p class="version">version:0.1.0</p>
   </div>
