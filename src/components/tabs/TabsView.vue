@@ -68,11 +68,11 @@ let closeAll=()=>{
       </a-tab-pane>
 
       <template #rightExtra>
-        <a-popover :overlayStyle="{width:'100px',overflow:'hidden',marginTop:'-10px'}" title="更多操作" trigger="hover" placement="bottomRight">
+        <a-popover :overlayStyle="{width:'130px',overflow:'hidden',marginTop:'-20px'}" title="更多操作" trigger="hover" placement="bottomRight">
           <template #content>
-            <a-button type="text" @click="closeAll">关闭全部</a-button>
+            <a-button danger size="small" type="text" @click="closeAll">关闭全部</a-button>
           </template>
-          <a-button type="link">┋</a-button>
+          <a-button type="dashed">┋</a-button>
         </a-popover>
       </template>
     </a-tabs>
