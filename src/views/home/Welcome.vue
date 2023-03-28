@@ -18,6 +18,8 @@ import { systemComposition } from "@/utils/config/systemComposition";
         <a-button :href="item.url" type="link">{{ item.title }}</a-button>
         <span v-if="index < systemComposition.length - 1">+</span>
       </span>
+      <br/>
+      构建
     </p>
     <p class="version">version:0.1.0</p>
   </div>
