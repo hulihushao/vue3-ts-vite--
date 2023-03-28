@@ -14,10 +14,10 @@ import { systemComposition } from "@/utils/config/systemComposition";
     <br />
     <p>
       系统采用<br />
-      <span v-for="(item, index) in systemComposition"
-        ><a-button :href="item.url" type="link">{{ item.title }}</a-button
-        ><span v-if="index < systemComposition.length - 1">+</span></span
-      >
+      <span v-for="(item, index) in systemComposition">
+        <a-button :href="item.url" type="link">{{ item.title }}</a-button>
+        <span v-if="index < systemComposition.length - 1">+</span>
+      </span>
     </p>
     <p class="version">version:0.1.0</p>
   </div>
