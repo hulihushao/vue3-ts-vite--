@@ -13,6 +13,7 @@ let layout = useLayout();
 let paneClick = (pane: string | number) => {
   let one = tabsData.tabs.filter((item: menus) => item.key == pane);
   layout.selectKeys = [pane];
+  console.log(one,111111)
   router.push({ path: one[0].path });
 };
 //关闭tab的方法
@@ -67,9 +68,10 @@ let closeAll=()=>{
           </span>
         </template>
       </a-tab-pane>
+      
 <!--右侧按钮-->
       <template #rightExtra>
-        <a-popover :overlayStyle="{width:'130px',overflow:'hidden',marginTop:'-20px'}" title="更多操作" trigger="hover" placement="bottomRight">
+        <a-popover :overlayStyle="{width:'130px',overflow:'hidden',marginTop:'-40px'}" title="更多操作" trigger="hover" placement="bottomRight">
           <template #content>
             <a-button danger size="small" type="text" @click="closeAll">关闭全部</a-button>
           </template>
@@ -85,8 +87,7 @@ let closeAll=()=>{
 <style lang="less">
 #tabs {
   .ant-tabs {
-    padding-top: 2px;
-    padding-left: 2px;
+    padding:2px;
     height: 45px;
     border-bottom: 1px solid #eee;
   }

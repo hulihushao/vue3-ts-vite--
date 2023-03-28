@@ -4,5 +4,6 @@ export interface menus{
   path:string,
   icon?:string,
   closable?:boolean,
-  component?
+  component?,
+  openKeys:string|number[]
 }

@@ -11,6 +11,7 @@ const useTabsData = defineStore("tabsdata",{
           key: "1",
           closable: false,
           path: "home",
+          openKeys:[]
         },
       ],
       activeKey: "1",

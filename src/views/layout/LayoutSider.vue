@@ -19,15 +19,20 @@ let { selectKeys } = storeToRefs(collapsed);
 const list = ref([...menuList]);
 console.log(list);
 
+let allMenus = useAllMenus();
 //菜单点击
 const menuClick = (item: menus) => {
+  //console.log(openKeys.value)
   if (!tabsData.tabs.some((itm: menus) => itm.key == item.key)) {
+    let cur=allMenus.filter(itm=>itm.key==item.key)
+    let opens=cur[0].openKeys
     let data: menus = {
       title: item.title,
       key: item.key,
       icon: item.icon,
       closable: true,
       path: item.path,
+      openKeys:opens
     };
     tabsData.tabs.push(data);
   }
@@ -40,10 +45,10 @@ const menuClick = (item: menus) => {
 
 //根据url设置菜单选中
 let path: string = useGetRoute();
-let allMenus = useAllMenus();
 let currentMenu = allMenus.filter((item) => path.includes(item.path));
 selectKeys.value=[currentMenu[0].key]
-let openKeys = ref<string | number[]>(currentMenu[0].openKeys);
+let openKeys =ref<string|number[]>(currentMenu[0].openKeys)
+
 </script>
 
 <template>
