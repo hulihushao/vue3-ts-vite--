@@ -3,7 +3,7 @@ import { ref } from "vue";
 import { useRouter } from "vue-router";
 import SubMenu from "@/components/menu/MenuItem.vue";
 import useLayout from "../../store/layout";
-import { Icon } from "@/utils/ICON";
+import Icon  from "@/components/icon/Icon.vue";
 import { menuList } from "@/utils/config/menus";
 import useTabsData from "@/store/tabs";
 import { storeToRefs } from "pinia";
@@ -75,7 +75,7 @@ let openKeys =ref<string|number[]>(currentMenu[0].openKeys)
         <template v-if="!item.children">
           <a-menu-item :key="item.key" @click="menuClick(item)">
             <template #icon>
-               <Icon :icon="item.icon" />
+               <Icon :iconfont="item.iconfont" :icon="item.icon" ></Icon>
             </template>
             {{ item.title }}
           </a-menu-item>

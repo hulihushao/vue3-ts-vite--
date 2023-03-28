@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { Icon } from "@/utils/ICON";
+import Icon  from "@/components/icon/Icon.vue";
 import useTabsData from "@/store/tabs";
 import { useRouter } from "vue-router";
 import useLayout from "@/store/layout";
@@ -64,7 +64,7 @@ let closeAll=()=>{
         <template #tab>
           <span>
             {{ pane.title }}
-            <Icon :icon="pane.icon" />
+            <Icon :iconfont="pane.iconfont" :icon="pane.icon" />
           </span>
         </template>
       </a-tab-pane>
