@@ -9,5 +9,10 @@ const useLayout = defineStore("storeId", {
       selectKeys:["1"],
     };
   },
+  actions:{
+    resetSelectKeys(){
+      this.selectKeys=["1"]
+    }
+  }
 });
 export default useLayout

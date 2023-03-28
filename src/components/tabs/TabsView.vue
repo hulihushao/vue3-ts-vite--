@@ -4,18 +4,18 @@ import { Icon } from "@/utils/ICON";
 import useTabsData from "@/store/tabs";
 import { useRouter } from "vue-router";
 import useLayout from "@/store/layout";
-import {menus} from "@/types/menus"
+import { menus } from "@/types/menus";
 const router = useRouter();
 const tabsData = useTabsData();
 let layout = useLayout();
 
-let paneClick = (pane:string|number) => {
-  let one = tabsData.tabs.filter((item:menus) => item.key == pane);
+let paneClick = (pane: string | number) => {
+  let one = tabsData.tabs.filter((item: menus) => item.key == pane);
   layout.selectKeys = [pane];
   router.push({ path: one[0].path });
 };
 const remove = (targetKey: string) => {
-  let index = tabsData.tabs.findIndex((item:menus) => item.key == targetKey);
+  let index = tabsData.tabs.findIndex((item: menus) => item.key == targetKey);
   tabsData.tabs.splice(index, 1);
   if (index <= 0) {
     index = 0;
@@ -33,9 +33,12 @@ const onEdit = (targetKey: string | MouseEvent, action: string) => {
     remove(targetKey as string);
   }
 };
-const callback = (val: string) => {
-  console.log(val);
-};
+//关闭所有tab页
+let closeAll=()=>{
+  router.push({path:"home"})
+  tabsData.$reset()
+  layout.resetSelectKeys()
+}
 </script>
 
 <template>
@@ -47,8 +50,6 @@ const callback = (val: string) => {
       type="editable-card"
       @tabClick="paneClick"
       @edit="onEdit"
-      @prevClick="callback"
-      @nextClick="callback"
     >
       <a-tab-pane
         v-for="pane in tabsData.tabs"
@@ -62,6 +63,15 @@ const callback = (val: string) => {
           </span>
         </template>
       </a-tab-pane>
+
+      <template #rightExtra>
+        <a-popover :overlayStyle="{width:'100px',overflow:'hidden',marginTop:'-10px'}" title="更多操作" trigger="hover" placement="bottomRight">
+          <template #content>
+            <a-button type="text" @click="closeAll">关闭全部</a-button>
+          </template>
+          <a-button type="link">┋</a-button>
+        </a-popover>
+      </template>
     </a-tabs>
   </div>
 </template>
