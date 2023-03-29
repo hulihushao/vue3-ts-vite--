@@ -77,7 +77,7 @@ let clickBtn=(item)=>{
       
 <!--右侧按钮-->
       <template #rightExtra>
-        <a-popover :overlayStyle="{width:'130px',overflow:'hidden',marginTop:'-40px'}" title="更多操作" trigger="hover" placement="bottomRight">
+        <a-popover :overlayStyle="{width:'120px',overflow:'hidden',marginTop:'-40px'}" title="更多操作" trigger="hover" placement="bottomRight">
           <template #content>
             <a-button v-for="item in tabActions" danger size="small" type="text" @click="clickBtn(item)">{{item.title}}</a-button>
           </template>
@@ -94,7 +94,7 @@ let clickBtn=(item)=>{
 #tabs {
   .ant-tabs {
     padding:2px 5px 2px 2px;
-    height: 48px;
+    height: 46px;
     border-bottom: 1px solid #eee;
   }
 }
