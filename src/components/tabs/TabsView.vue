@@ -93,8 +93,8 @@ let clickBtn=(item)=>{
 <style lang="less">
 #tabs {
   .ant-tabs {
-    padding:2px;
-    height: 45px;
+    padding:2px 5px 2px 2px;
+    height: 48px;
     border-bottom: 1px solid #eee;
   }
 }

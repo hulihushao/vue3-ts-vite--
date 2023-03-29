@@ -39,7 +39,7 @@ import { systemComposition } from "@/utils/config/systemComposition";
   }
   p .iconfont {
     color: #409eff;
-    font-size: 40px;
+    font-size: 50px;
   }
   .tip {
     font-size: 16px;
