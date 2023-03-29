@@ -8,7 +8,7 @@ import { menuList } from "@/utils/config/menus";
 import useTabsData from "@/store/tabs";
 import { storeToRefs } from "pinia";
 import { menus } from "@/types/menus";
-import { useGetRoute, useAllMenus } from "@/hooks/useGetRoute";
+import { useGetRoute, useAllMenus } from "@/composables/useGetRoute";
 
 const tabsData = useTabsData();
 const router = useRouter();
