@@ -3,12 +3,11 @@ import { ref } from "vue";
 import TabsView from "@/components/tabs/TabsView.vue";
 import { MenuUnfoldOutlined, MenuFoldOutlined } from "@ant-design/icons-vue";
 import useLayout from "@/store/layout";
+import * as Headers from "@/components/headers/index";
 let collapsed = useLayout();
 </script>
 <template>
-  <a-layout-header
-    style="background: #fff; padding: 0; border-bottom: 1px solid #ccc"
-  >
+  <a-layout-header class="header-con">
     <menu-unfold-outlined
       v-if="collapsed.collapsed"
       class="trigger"
@@ -20,11 +19,30 @@ let collapsed = useLayout();
       class="trigger"
       @click="() => (collapsed.collapsed = !collapsed.collapsed)"
     />
+    <span class="tool-con">
+      <Headers.Github/>
+      <Headers.User />
+    </span>
   </a-layout-header>
   <tabs-view />
 </template>
 
-<style scoped>
+<style scoped lang="less">
+.header-con {
+  overflow:hidden;
+  background: #fff;
+  padding: 0;
+  border-bottom: 1px solid #ccc;
+  display:flex;
+  align-items:center;
+  height:50px;
+  justify-content:space-between;
+  .tool-con{
+    padding:20px;
+    display:flex;
+    align-items:center;
+  }
+}
 .trigger {
   font-size: 18px;
   line-height: 0px;

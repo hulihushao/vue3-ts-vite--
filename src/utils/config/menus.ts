@@ -39,7 +39,6 @@ export let menuList = [
     ],
   },
   {
-
     key: "3",
     title: "页面demo",
     icon: "HomeOutlined",
@@ -56,14 +55,6 @@ export let menuList = [
             component: () => import("@/views/Layout.vue"),
             path: "cs",
             name: "cs",
-          },
-          {
-            key: "3.1.2",
-            title: "WebSocket",
-            icon: "HomeOutlined",
-            component: () => import("@/views/Layout.vue"),
-            path: "webSocket",
-            name: "webSocket",
           },
         ],
       },
