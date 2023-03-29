@@ -81,7 +81,7 @@ let clickBtn=(item)=>{
           <template #content>
             <a-button v-for="item in tabActions" danger size="small" type="text" @click="clickBtn(item)">{{item.title}}</a-button>
           </template>
-          <a-button type="dashed">┋</a-button>
+          <a-button style="margin-left:5px;" type="dashed">┋</a-button>
         </a-popover>
       </template>
     </a-tabs>
