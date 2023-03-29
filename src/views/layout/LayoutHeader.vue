@@ -38,6 +38,7 @@ let collapsed = useLayout();
   height:50px;
   justify-content:space-between;
   .tool-con{
+    height:100%;
     padding:20px;
     display:flex;
     align-items:center;

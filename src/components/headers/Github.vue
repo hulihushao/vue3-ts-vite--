@@ -3,8 +3,18 @@ import Icon from "@/components/icon/Icon.vue";
 </script>
 
 <template>
-  <a-button type="link" size="large" ghost href="https://github.com/hulihushao/vue3-ts-vite--">
-    <template #icon><Icon style="font-size:20px" icon="GithubOutlined" /> </template
+  <a-button style="display:flex;justify-content:center;align-items:center"
+    href="https://github.com/hulihushao/vue3-ts-vite--"
+    target="_blank"
+    type="link"
+    size="large"
+    ghost
+  >
+    <template #icon
+      ><Icon
+        style="font-size: 25px; margin-top: 7px"
+        icon="GithubOutlined"
+      /> </template
   ></a-button>
 </template>
 
