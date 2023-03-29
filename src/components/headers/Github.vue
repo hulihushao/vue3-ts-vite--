@@ -3,7 +3,7 @@ import Icon from "@/components/icon/Icon.vue";
 </script>
 
 <template>
-  <a-button style="display:flex;justify-content:center;align-items:center"
+  <a-button style="margin:0 5px;display:flex;justify-content:center;align-items:center"
     href="https://github.com/hulihushao/vue3-ts-vite--"
     target="_blank"
     type="link"
