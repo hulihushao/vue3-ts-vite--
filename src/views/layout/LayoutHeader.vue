@@ -20,6 +20,7 @@ let collapsed = useLayout();
       @click="() => (collapsed.collapsed = !collapsed.collapsed)"
     />
     <span class="tool-con">
+      <Headers.Search/>
       <Headers.Github/>
       <Headers.User />
     </span>

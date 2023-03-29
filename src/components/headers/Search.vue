@@ -1,9 +1,11 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import Icon from "@/components/icon/Icon.vue";
+</script>
 
 <template>
-  <a-layout-footer style="text-align: center">
-    诺依管理系统 ©2023 Created by TJP
-  </a-layout-footer>
+  <a-button type="text" shape="circle">
+    <template #icon><Icon icon="SearchOutlined" /></template>
+  </a-button>
 </template>
 
 <style scoped></style>
