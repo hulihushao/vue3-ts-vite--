@@ -1,5 +1,5 @@
 import { menuList } from "@/utils/config/menus";
-import {menus} from "@/types/menusm"
+import {menus} from "@/types/menus"
 export function useGetRoute() {
   let path = location.pathname;
   return path;
