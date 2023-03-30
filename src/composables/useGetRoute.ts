@@ -1,4 +1,5 @@
 import { menuList } from "@/utils/config/menus";
+import {menus} from "@/types/menusm"
 export function useGetRoute() {
   let path = location.pathname;
   return path;
@@ -6,7 +7,7 @@ export function useGetRoute() {
 export function useAllMenus() {
   let allMenus = [];
   //获取指定子菜单的所有父级
-  function getParentMenus(menuArray, menuName, parents = [], openKeys = []) {
+  function getParentMenus(menuArray:menus, menuName:string, parents = [], openKeys = []) {
     for (let i = 0; i < menuArray.length; i++) {
       const menu = menuArray[i];
       if (menu.key === menuName) {
@@ -26,8 +27,8 @@ export function useAllMenus() {
     return null;
   }
 //获取所有子菜单
-  let get = (list) => {
-    list.forEach((item) => {
+  let get = (list:menus) => {
+    list.forEach((item:menus) => {
       if (!item.children) {
         let pre = getParentMenus(menuList, item.key);
         allMenus.push({
