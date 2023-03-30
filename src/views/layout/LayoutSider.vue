@@ -3,7 +3,6 @@ import { ref } from "vue";
 import { useRouter } from "vue-router";
 import SubMenu from "@/components/menu/MenuItem.vue";
 import useLayout from "../../store/layout";
-import Icon  from "@/components/icon/Icon.vue";
 import { menuList } from "@/utils/config/menus";
 import useTabsData from "@/store/tabs";
 import { storeToRefs } from "pinia";

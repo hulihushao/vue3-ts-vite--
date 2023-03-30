@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import Icon  from "@/components/icon/Icon.vue";
 import SubMenu from "@/components/menu/MenuItem.vue"
 const{ menuInfo} = defineProps({
   menuInfo: {

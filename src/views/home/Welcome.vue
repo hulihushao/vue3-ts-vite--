@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import Icon from "@/components/icon/Icon.vue";
 import { systemComposition } from "@/utils/config/systemComposition";
 </script>
 

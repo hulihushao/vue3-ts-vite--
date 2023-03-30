@@ -6,11 +6,13 @@ import "ant-design-vue/dist/antd.css";
 import router from "./router";
 import store from "@/store"
 import "animate.css";
+import Icon  from "@/components/icon/Icon.vue";
 //导入组件库
 import * as antIcons from "@ant-design/icons-vue";
 
 const app = createApp(App);
-
+//注册全局图标组件
+app.component("Icon",Icon)
 //动态使用antd图标，方式一
 //使用：<component :is="$antIcons[pane.icon]" />
 // 注册组件

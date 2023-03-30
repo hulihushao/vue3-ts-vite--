@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import Icon from "@/components/icon/Icon.vue";
 import useTabsData from "@/store/tabs";
 import { useRouter } from "vue-router";
 import useLayout from "@/store/layout";
