@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { toRefs } from "vue";
-import {menus} from "@/types/menus"
+import { menus } from "@/types/menus";
 let List = defineProps<{
   list: menus;
 }>();
@@ -12,12 +12,12 @@ const { list } = toRefs(List);
   <div id="breadcrumb-con">
     <a-breadcrumb>
       /
-      <a-breadcrumb-item v-if="!list.preList || !list.preList.length">{{
-        list.title
-      }}</a-breadcrumb-item>
-      <a-breadcrumb-item v-else v-for="item in list.preList">{{
-        item
-      }}</a-breadcrumb-item>
+      <a-breadcrumb-item
+        v-if="list.preList && list.preList.length"
+        v-for="item in list.preList"
+        >{{ item }}</a-breadcrumb-item
+      >
+      <a-breadcrumb-item>{{ list.title }}</a-breadcrumb-item>
     </a-breadcrumb>
   </div>
 </template>
