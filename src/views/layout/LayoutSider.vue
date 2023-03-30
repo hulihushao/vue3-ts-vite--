@@ -97,10 +97,10 @@ let openKeys =ref<string|number[]>(currentMenu[0].openKeys)
 .logo {
   height: 32px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   background: rgba(255, 255, 255, 0);
-  margin: 16px;
+  margin: 16px 20px;
   .iconfont {
     color: #409eff;
     font-size: 32px;
@@ -116,7 +116,7 @@ let openKeys =ref<string|number[]>(currentMenu[0].openKeys)
     height: 100%;
     font-size: 16px;
     color: #fff;
-    margin-left: 10px;
+text-align:center;
     line-height: 32px;
     transition: all 0.3s;
     overflow: hidden;
