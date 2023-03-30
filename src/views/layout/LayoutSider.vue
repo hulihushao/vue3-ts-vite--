@@ -99,7 +99,7 @@ let openKeys =ref<string|number[]>(currentMenu[0].openKeys)
   justify-content: space-between;
   align-items: center;
   background: rgba(255, 255, 255, 0);
-  margin: 16px 20px;
+  margin: 16px 25px;
   .iconfont {
     color: #409eff;
     font-size: 32px;
