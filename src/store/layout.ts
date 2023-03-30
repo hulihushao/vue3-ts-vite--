@@ -13,6 +13,16 @@ const useLayout = defineStore("storeId", {
     resetSelectKeys(){
       this.selectKeys=["1"]
     }
+  },
+  persist: {
+
+    enabled: true,
+    strategies: [
+      {
+        storage: localStorage,
+        paths: ["collapsed"], //指定要长久化的字段
+      },
+    ],
   }
 });
 export default useLayout
