@@ -6,13 +6,16 @@ export function useGetRoute(){
 export function useAllMenus(){
     let allMenus=[]
     let openKeys=[]
+    let preList=[]
     let get=(list)=>{
         list.forEach(item=>{
             if(!item.children){
-                allMenus.push({...item,openKeys})
+                allMenus.push({...item,openKeys,preList})
                 openKeys=[]
+                preList=[]
             }else{
                 openKeys.push(item.key)
+                preList.push(item.title)
                 get(item.children)
             }
         })

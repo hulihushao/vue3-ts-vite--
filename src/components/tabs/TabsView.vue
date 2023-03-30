@@ -74,7 +74,7 @@ let clickBtn = (item) => {
             <Icon :iconfont="pane.iconfont" :icon="pane.icon" />
           </span>
         </template>
-        <Breadcrumb />
+        <Breadcrumb :list="pane"/>
       </a-tab-pane>
 
       <!--右侧按钮-->

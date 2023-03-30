@@ -32,7 +32,8 @@ const menuClick = (item: menus) => {
       icon: item.icon,
       closable: true,
       path: item.path,
-      openKeys:opens
+      openKeys:opens,
+      preList:cur[0].preList
     };
     tabsData.tabs.push(data);
   }

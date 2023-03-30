@@ -5,5 +5,6 @@ export interface menus{
   icon?:string,
   closable?:boolean,
   component?,
-  openKeys:string|number[]
+  openKeys?:string|number[],
+  preList?:string[]
 }
