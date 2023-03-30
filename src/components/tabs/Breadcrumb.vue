@@ -11,7 +11,7 @@ const { list } = toRefs(List);
 <template>
   <div id="breadcrumb-con">
     <a-breadcrumb>
-      /
+      <a-breadcrumb-separator />
       <a-breadcrumb-item
         v-if="list.preList && list.preList.length"
         v-for="item in list.preList"
