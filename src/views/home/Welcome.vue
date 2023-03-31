@@ -5,7 +5,7 @@ import { systemComposition } from "@/utils/config/systemComposition";
 <template>
   <div id="welcome">
     <p>
-      <Icon iconfont="dingzhikaifa-zhihuiguanlixitong" />
+      <Icon iconfont="icon-dingzhikaifa-zhihuiguanlixitong" />
     </p>
     <h1>欢迎使用</h1>
     <h2>诺依中后台管理系统</h2>
