@@ -70,7 +70,7 @@ let clickBtn = (item) => {
         <template #tab>
           <span>
             {{ pane.title }}
-            <Icon :iconfont="pane.iconfont" :icon="pane.icon" />
+            <Icon v-if="pane.key==tabsData.activeKey" :iconfont="pane.iconfont" :icon="pane.icon" />
           </span>
         </template>
         <Breadcrumb :list="pane"/>
