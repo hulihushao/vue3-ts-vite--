@@ -6,6 +6,6 @@ export interface menus{
   iconfont?:string,
   closable?:boolean,
   component?,
-  openKeys?:string|number[],
+  openKeys?:string[],
   preList?:string[]
 }

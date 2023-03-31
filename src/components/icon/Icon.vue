@@ -10,7 +10,7 @@ let icons=defineProps<{
 
 <template>
  <Icon v-if=icons.icon :icon="icons.icon" />
- <i v-else :class="'iconfont icon-'+icons.iconfont"></i>
+ <i v-else :class="'iconfont '+icons.iconfont"></i>
 </template>
 
 <style scoped></style>

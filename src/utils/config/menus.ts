@@ -11,7 +11,8 @@ export let menuList = [
   {
     key: "2",
     title: "组件demo",
-    icon: "HomeOutlined",
+    //icon: "HomeOutlined",
+    iconfont:"icon-zujian",
     children: [
       {
         key: "2.1",
@@ -41,7 +42,8 @@ export let menuList = [
   {
     key: "3",
     title: "各系统集成",
-    icon: "HomeOutlined",
+    //icon: "HomeOutlined",
+    iconfont:"icon-xitong",
     children: [
       {
         key: "3.1",
