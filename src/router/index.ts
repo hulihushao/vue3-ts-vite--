@@ -40,7 +40,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/:pathMatch(.*)*",
     name: "NotFound",
-    component: () => import("../views/Login.vue"),
+    component: () => import("../views/404.vue"),
   },
 ];
 console.log(routes, 111);

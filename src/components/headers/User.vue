@@ -16,7 +16,7 @@ const router =useRouter()
 const clicks={
   //用户中心
   personCenter(){
-    
+    router.push({path:"/personCenter"})
   },
   //系统设置
   setting(){},
