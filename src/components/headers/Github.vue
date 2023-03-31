@@ -8,7 +8,6 @@
     target="_blank"
     type="link"
     size="large"
-    ghost
   >
     <template #icon
       ><Icon
