@@ -5,8 +5,12 @@ const loading = useLoading();
 </script>
 
 <template>
-  <router-view />
+  <router-view class="app"/>
   <Loading :spinning="loading.loading"/>
 </template>
 
-<style scoped></style>
+<style scoped>
+.app{
+
+}
+</style>

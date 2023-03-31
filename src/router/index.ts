@@ -21,15 +21,22 @@ NProgress.configure({
 let routerList = getRouters(menuList);
 const routes: Array<RouteRecordRaw> = [
   {
-    path:"/",
-    redirect:"/index"
+    path: "/",
+    redirect: "/index",
   },
   {
     path: "/index",
     name: "index",
     redirect: "index/home",
     component: () => import("@/views/Layout.vue"),
-    children: routerList,
+    children: [
+      ...routerList,
+      {
+        path: "personCenter",
+        name: "personCenter",
+        component: () => import("@/views/404.vue"),
+      },
+    ],
   },
   {
     path: "/login",

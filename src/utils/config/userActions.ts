@@ -1,18 +1,18 @@
 export default [
     {
-        id:1,
+        id:"20",
         title:"个人中心",
         disabled:false,
         click:"personCenter"
     },
     {
-        id:2,
+        id:"21",
         title:"设置",
         disabled:false,
         click:"setting"
     },
     {
-        id:3,
+        id:"22",
         divider:true,
         title:"退出登录",
         disabled:false,

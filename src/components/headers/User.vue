@@ -2,7 +2,8 @@
 import actions from "@/utils/config/userActions";
 import {useRouter} from "vue-router"
 import type { MenuProps } from 'ant-design-vue';
-
+import useTabsData from "@/store/tabs";
+import useLayout from "@/store/layout";
 interface action{
   id:number|string,
   title:string,
@@ -12,11 +13,25 @@ interface action{
 }
 
 const router =useRouter()
+let tabsData=useTabsData()
+let layout =useLayout()
 //事件集合
 const clicks={
   //用户中心
-  personCenter(){
-    router.push({path:"/personCenter"})
+  personCenter(user){
+    tabsData.tabs.push({
+      title: user.title,
+      key: user.id,
+      icon: "",
+      closable: true,
+      path: "personCenter",
+      openKeys:[],
+      preList:[],
+      iconfont:"",
+    })
+    tabsData.setActiveKey(user.id)
+    layout.selectKeys=[]
+    router.push({path:"personCenter"})
   },
   //系统设置
   setting(){},
@@ -27,7 +42,7 @@ const clicks={
 }
 
 let onMenuClick:MenuProps['onClick']=(item:action)=>{
-clicks[item.click]()
+clicks[item.click](item)
 }
 </script>
 
