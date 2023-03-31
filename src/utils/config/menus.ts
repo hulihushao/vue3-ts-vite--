@@ -17,7 +17,8 @@ export let menuList = [
       {
         key: "2.1",
         title: "vue3",
-        icon: "HomeOutlined",
+        //icon: "HomeOutlined",
+        iconfont:"icon-vuejs-alt",        
         children: [
           {
             key: "2.1.1",
@@ -30,7 +31,8 @@ export let menuList = [
           {
             key: "2.1.2",
             title: "WebSocket",
-            icon: "HomeOutlined",
+            //icon: "HomeOutlined",
+            iconfont:"icon-Websocketjiaohujiedian",
             component: () => import("@/views/404.vue"),
             path: "webSocket",
             name: "webSocket",
