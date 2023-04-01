@@ -47,10 +47,12 @@ const menuClick = (item: menus) => {
 //根据url设置菜单选中
 let path: string = useGetRoute();
 let currentMenu = allMenus.filter((item) => path.includes(item.path));
-let openKeys=ref([])
+let openKeys=ref([""])
 if(currentMenu.length){
 selectKeys.value=[currentMenu[0].key]
  openKeys.value =currentMenu[0].openKeys
+}else{
+  selectKeys=[]
 }
 
 </script>
