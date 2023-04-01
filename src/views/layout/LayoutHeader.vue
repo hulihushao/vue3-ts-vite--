@@ -19,7 +19,9 @@ let collapsed = useLayout();
       class="trigger"
       @click="() => (collapsed.collapsed = !collapsed.collapsed)"
     />
+
     <span class="tool-con">
+          <Headers.Time/>
       <Headers.Search/>
       <Headers.Github/>
       <Headers.User />
