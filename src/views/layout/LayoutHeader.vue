@@ -4,6 +4,7 @@ import TabsView from "@/components/tabs/TabsView.vue";
 import { MenuUnfoldOutlined, MenuFoldOutlined } from "@ant-design/icons-vue";
 import useLayout from "@/store/layout";
 import * as Headers from "@/components/headers/index";
+import isMobile from "@/utils/deviceType"
 let collapsed = useLayout();
 </script>
 <template>
@@ -21,9 +22,10 @@ let collapsed = useLayout();
     />
 
     <span class="tool-con">
-          <Headers.Time/>
-      <Headers.Search/>
-      <Headers.Github/>
+      <Headers.Time v-if="!isMobile()"/>
+      <Headers.Search />
+      <Headers.Fullscreen />
+      <Headers.Github />
       <Headers.User />
     </span>
   </a-layout-header>
@@ -32,19 +34,19 @@ let collapsed = useLayout();
 
 <style scoped lang="less">
 .header-con {
-  overflow:hidden;
+  overflow: hidden;
   background: #fff;
   padding: 0;
   border-bottom: 1px solid #ccc;
-  display:flex;
-  align-items:center;
-  height:50px;
-  justify-content:space-between;
-  .tool-con{
-    height:100%;
-    padding:20px;
-    display:flex;
-    align-items:center;
+  display: flex;
+  align-items: center;
+  height: 50px;
+  justify-content: space-between;
+  .tool-con {
+    height: 100%;
+    padding: 20px;
+    display: flex;
+    align-items: center;
   }
 }
 .trigger {
