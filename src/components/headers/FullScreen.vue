@@ -1,9 +1,19 @@
 <script setup lang="ts">
-import useFullScreen from "@/store/fullScreen"
-let isFull=useFullScreen()
-let setFull=()=>{
-    isFull.fullScreen=!isFull.fullScreen
-}
+import useFullScreen from "@/store/fullScreen";
+import fullscreen from "@/composables/useFullScreen";
+let isFull = useFullScreen();
+//设置全屏显示
+let setFull = () => {
+  if (!isFull.fullScreen) {
+    //全屏
+    fullscreen.requestFullScreen(document.documentElement);
+  } else {
+    //退出全屏
+    fullscreen.exitFullScreen();
+  }
+
+  isFull.fullScreen = !isFull.fullScreen;
+};
 </script>
 
 <template>
