@@ -1,10 +1,33 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, reactive, computed } from "vue";
 import { useRouter } from "vue-router";
 const router = useRouter();
-let loading=ref<boolean>(false)
+let loading = ref<boolean>(false);
+
+interface FormState {
+  username: string;
+  password: string;
+  remember: boolean;
+}
+
+const formState = reactive<FormState>({
+  username: "",
+  password: "",
+  remember: true,
+});
+const onFinish = (values: any) => {
+  console.log("Success:", values);
+};
+
+const onFinishFailed = (errorInfo: any) => {
+  console.log("Failed:", errorInfo);
+};
+const disabled = computed(() => {
+  return !(formState.username && formState.password);
+});
+
 let login = () => {
-    loading.value=true
+  loading.value = true;
   router.push({ path: "/index" });
 };
 </script>
@@ -22,9 +45,55 @@ let login = () => {
           padding: 0;
         "
       />
-      biaodan
+      <div class="form-con">
+      <a-form
+        :model="formState"
+        name="normal_login"
+        class="login-form"
+        @finish="onFinish"
+        @finishFailed="onFinishFailed"
+      >
+        <a-form-item
+          label="Username"
+          name="username"
+          :rules="[{ required: true, message: 'Please input your username!' }]"
+        >
+          <a-input v-model:value="formState.username">
+            <template #prefix>
+              <Icon icon="UserOutlined" class="site-form-item-icon" />
+            </template>
+          </a-input>
+        </a-form-item>
+
+        <a-form-item
+          label="Password"
+          name="password"
+          :rules="[{ required: true, message: 'Please input your password!' }]"
+        >
+          <a-input-password v-model:value="formState.password">
+            <template #prefix>
+              <Icon icon="LockOutlined" class="site-form-item-icon" />
+            </template>
+          </a-input-password>
+        </a-form-item>
+
+        <a-form-item>
+          <a-form-item name="remember" no-style>
+            <a-checkbox v-model:checked="formState.remember"
+              >Remember me</a-checkbox
+            >
+          </a-form-item>
+          <a class="login-form-forgot" href="">Forgot password</a>
+        </a-form-item>
+      </a-form>
+      </div>
       <div class="login-btn">
-        <a-button :loading="loading" shape="round" block type="primary" @click="login"
+        <a-button
+          :loading="loading"
+          shape="round"
+          block
+          type="primary"
+          @click="login"
           >登录</a-button
         >
       </div>
@@ -34,7 +103,7 @@ let login = () => {
 
 <style scoped lang="less">
 #login {
-  position:relative;
+  position: relative;
   height: 100%;
   width: 100%;
   background: #ccc;
@@ -50,6 +119,9 @@ let login = () => {
       text-align: center;
       line-height: 50px;
       margin: 0;
+    }
+    .form-con{
+      padding: 15px 10px;
     }
     .login-btn {
       width: 50%;
