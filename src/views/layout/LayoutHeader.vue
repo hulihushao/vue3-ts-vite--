@@ -40,7 +40,7 @@ let collapsed = useLayout();
   border-bottom: 1px solid #ccc;
   display: flex;
   align-items: center;
-  height: 50px;
+
   justify-content: space-between;
   .tool-con {
     height: 100%;

@@ -47,35 +47,35 @@ let onMenuClick: MenuProps["onClick"] = (item: action) => {
 </script>
 
 <template>
-  <a-dropdown placement="bottom" overlayClassName="dropDownmenus">
-    <span>
-      <a-avatar
-        @click.prevent
-        src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
-        style="background-color: #87d068"
-      >
-        <template #icon>
-          <Icon :icon="'UserOutlined'" />
-        </template>
-      </a-avatar>
-      <span style="margin: 0 5px">admin</span>
-      <span style="display:inline-block;height:100%;font-size:12px;border:1px solid red;">
-        <Icon
-          icon="DownOutlined"
-        />
-      </span>
-    </span>
-    <template #overlay>
-      <a-menu>
-        <span v-for="item in actions" :key="item.id">
-          <a-menu-divider v-if="item.divider" />
-          <a-menu-item @click="onMenuClick(item)" :key="item.id">
-            {{ item.title }}
-          </a-menu-item>
+  <div>
+    <a-dropdown placement="bottom" overlayClassName="dropDownmenus">
+      <span style="border:1px solid red;height:50px;display:flex;align-items:center;">
+        <a-avatar
+          @click.prevent
+          src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
+          style="background-color: #87d068"
+        >
+          <template #icon>
+            <Icon :icon="'UserOutlined'" />
+          </template>
+        </a-avatar>
+        <span style="margin: 0 5px">admin</span>
+        <span style="font-size: 10px;">
+          <Icon icon="DownOutlined" />
         </span>
-      </a-menu>
-    </template>
-  </a-dropdown>
+      </span>
+      <template #overlay>
+        <a-menu>
+          <span v-for="item in actions" :key="item.id">
+            <a-menu-divider v-if="item.divider" />
+            <a-menu-item @click="onMenuClick(item)" :key="item.id">
+              {{ item.title }}
+            </a-menu-item>
+          </span>
+        </a-menu>
+      </template>
+    </a-dropdown>
+  </div>
 </template>
 
 <style lang="less">
