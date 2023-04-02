@@ -10,7 +10,7 @@ import { systemComposition } from "@/utils/config/systemComposition";
     <h1>欢迎使用</h1>
     <h2>诺依中后台管理系统</h2>
     <p class="tip">系统完善中...</p>
-    <br />
+
     <p>
       系统采用<br />
       <span v-for="(item, index) in systemComposition">

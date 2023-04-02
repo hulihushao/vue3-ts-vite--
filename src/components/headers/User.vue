@@ -1,61 +1,70 @@
 <script setup lang="ts">
 import actions from "@/utils/config/userActions";
-import {useRouter} from "vue-router"
-import type { MenuProps } from 'ant-design-vue';
+import { useRouter } from "vue-router";
+import type { MenuProps } from "ant-design-vue";
 import useTabsData from "@/store/tabs";
 import useLayout from "@/store/layout";
-interface action{
-  id:number|string,
-  title:string,
-  disabled?:boolean,
-  divider?:boolean,
-  click:string,
+interface action {
+  id: number | string;
+  title: string;
+  disabled?: boolean;
+  divider?: boolean;
+  click: string;
 }
 
-const router =useRouter()
-let tabsData=useTabsData()
-let layout =useLayout()
+const router = useRouter();
+let tabsData = useTabsData();
+let layout = useLayout();
 //事件集合
-const clicks={
+const clicks = {
   //用户中心
-  personCenter(user){
+  personCenter(user: action) {
     tabsData.tabs.push({
       title: user.title,
       key: user.id,
       icon: "",
       closable: true,
       path: "personCenter",
-      openKeys:[],
-      preList:[],
-      iconfont:"",
-    })
-    tabsData.setActiveKey(user.id)
-    layout.selectKeys=[]
-    router.push({path:"personCenter"})
+      openKeys: [],
+      preList: [],
+      iconfont: "",
+    });
+    tabsData.setActiveKey(user.id);
+    layout.selectKeys = [];
+    router.push({ path: "personCenter" });
   },
   //系统设置
-  setting(){},
+  setting() {},
   //退出
-  logOut(){
-    router.push({path:"/login"})
-  }
-}
+  logOut() {
+    router.push({ path: "/login" });
+  },
+};
 
-let onMenuClick:MenuProps['onClick']=(item:action)=>{
-clicks[item.click](item)
-}
+let onMenuClick: MenuProps["onClick"] = (item: action) => {
+  clicks[item.click](item);
+};
 </script>
 
 <template>
   <a-dropdown placement="bottom" overlayClassName="dropDownmenus">
-    <a-avatar @click.prevent
-      src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
-      style="background-color: #87d068"
-    >
-      <template #icon>
-        <Icon :icon="'UserOutlined'" />
-      </template>
-    </a-avatar>
+    <span>
+      <a-avatar
+        @click.prevent
+        src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
+        style="background-color: #87d068"
+      >
+        <template #icon>
+          <Icon :icon="'UserOutlined'" />
+        </template>
+      </a-avatar>
+      <span style="margin: 0 5px">admin</span>
+      <span style="display:inline-block;height:100%;font-size:12px;border:1px solid red;">
+        <Icon
+          icon="DownOutlined"
+        />
+      </span>
+    </span>
     <template #overlay>
       <a-menu>
         <span v-for="item in actions" :key="item.id">
