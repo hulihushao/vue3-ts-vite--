@@ -56,6 +56,7 @@ function zeroPadding(num, digit) {
     margin:0;
     padding:0;
     text-align:center;
+    white-space: nowrap;
   }
 }
 </style>
