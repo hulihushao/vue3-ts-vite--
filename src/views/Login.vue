@@ -114,7 +114,7 @@ let login = async () => {
         </a-form>
       </div>
       <div class="login-btn">
-        <a-button
+        <a-button ghost
           :disabled="disabled"
           :loading="loading"
           shape="round"
