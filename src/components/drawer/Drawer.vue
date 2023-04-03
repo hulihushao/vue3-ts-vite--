@@ -1,9 +1,16 @@
 <script setup lang="ts">
 import { ref ,toRefs} from "vue";
+//接受props
 let visibleObj=defineProps<{
     visible:{required:true,type:Boolean}
 }>()
+//结构保持响应性
 let {visible}=toRefs(visibleObj)
+//定义派发的事件
+let emits=defineEmits<{
+    (e:"setVisible"):void
+}>()
+
 const afterVisibleChange = (bool: boolean) => {
   console.log("visible", bool);
 };
@@ -18,6 +25,7 @@ const afterVisibleChange = (bool: boolean) => {
       style="color: red"
       title="Basic Drawer"
       placement="right"
+      @close="emits('setVisible')"
       @after-visible-change="afterVisibleChange"
     >
       <p>Some contents...</p>
