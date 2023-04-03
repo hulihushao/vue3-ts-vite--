@@ -1,9 +1,11 @@
 <script setup lang="ts">
+import {ref} from "vue"
 import actions from "@/utils/config/userActions";
 import { useRouter } from "vue-router";
 import type { MenuProps } from "ant-design-vue";
 import useTabsData from "@/store/tabs";
 import useLayout from "@/store/layout";
+import Drawer from "../drawer/Drawer.vue"
 interface action {
   id: number | string;
   title: string;
@@ -15,6 +17,7 @@ interface action {
 const router = useRouter();
 let tabsData = useTabsData();
 let layout = useLayout();
+let drawerVisible=ref<boolean>(false)
 //事件集合
 const clicks = {
   //用户中心
@@ -22,7 +25,7 @@ const clicks = {
     tabsData.tabs.push({
       title: user.title,
       key: user.id,
-      icon: "",
+      icon: "UserOutlined",
       closable: true,
       path: "personCenter",
       openKeys: [],
@@ -34,7 +37,9 @@ const clicks = {
     router.push({ path: "personCenter" });
   },
   //系统设置
-  setting() {},
+  setting() {
+    drawerVisible.value=true
+  },
   //退出
   logOut() {
     router.push({ path: "/login" });
@@ -75,6 +80,7 @@ let onMenuClick: MenuProps["onClick"] = (item: action) => {
         </a-menu>
       </template>
     </a-dropdown>
+    <Drawer :visible='drawerVisible'/>
   </div>
 </template>
 
