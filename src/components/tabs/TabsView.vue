@@ -124,6 +124,7 @@ let clickBtn = (item) => {
   }
   .ant-tabs-tab-btn {
     height: 22px;
+    line-height:22px;
   }
 }
 </style>
