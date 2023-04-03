@@ -54,7 +54,7 @@ let clickBtn = (item) => {
 <template>
   <div id="tabs">
     <a-tabs
-      style="background: #fff"
+      style="background: #fff; "
       v-model:activeKey="tabsData.activeKey"
       hide-add
       type="editable-card"
@@ -70,10 +70,14 @@ let clickBtn = (item) => {
         <template #tab>
           <span>
             {{ pane.title }}
-            <Icon v-if="pane.key==tabsData.activeKey" :iconfont="pane.iconfont" :icon="pane.icon" />
+            <Icon
+              v-if="pane.key == tabsData.activeKey"
+              :iconfont="pane.iconfont"
+              :icon="pane.icon"
+            />
           </span>
         </template>
-        <Breadcrumb :list="pane"/>
+        <Breadcrumb :list="pane" />
       </a-tab-pane>
 
       <!--右侧按钮-->
@@ -117,6 +121,9 @@ let clickBtn = (item) => {
   .ant-tabs-card .ant-tabs-content {
     height: 120px;
     margin-top: -16px;
+  }
+  .ant-tabs-tab-btn{
+height:22px;
   }
 }
 </style>
