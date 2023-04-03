@@ -54,7 +54,7 @@ let clickBtn = (item) => {
 <template>
   <div id="tabs">
     <a-tabs
-      style="background: #fff; "
+      style="background: #fff"
       v-model:activeKey="tabsData.activeKey"
       hide-add
       type="editable-card"
@@ -122,8 +122,8 @@ let clickBtn = (item) => {
     height: 120px;
     margin-top: -16px;
   }
-  .ant-tabs-tab-btn{
-height:22px;
+  .ant-tabs-tab-btn {
+    height: 22px;
   }
 }
 </style>
