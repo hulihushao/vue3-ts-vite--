@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ref, reactive, computed } from "vue";
 import { useRouter } from "vue-router";
+import type { FormInstance } from "ant-design-vue";
+
 const router = useRouter();
 let loading = ref<boolean>(false);
 
@@ -11,9 +13,25 @@ interface FormState {
 }
 
 const formState = reactive<FormState>({
-  username: "",
-  password: "",
+  username: "admin",
+  password: "admin",
   remember: true,
+});
+const formRef = ref<FormInstance>();
+
+const rules = reactive({
+  username: [
+    {
+      required: true,
+      message: "请输入用户名",
+    },
+  ],
+  password: [
+    {
+      required: true,
+      message: "请输入密码",
+    },
+  ],
 });
 const onFinish = (values: any) => {
   console.log("Success:", values);
@@ -25,10 +43,15 @@ const onFinishFailed = (errorInfo: any) => {
 const disabled = computed(() => {
   return !(formState.username && formState.password);
 });
-
-let login = () => {
-  loading.value = true;
-  router.push({ path: "/index" });
+let login = async () => {
+  try {
+    const values = await formRef.value.validateFields();
+    console.log("Success:", values);
+    loading.value = true;
+    router.push({ path: "/index" });
+  } catch (errorInfo) {
+    console.log("Failed:", errorInfo);
+  }
 };
 </script>
 
@@ -46,49 +69,46 @@ let login = () => {
         "
       />
       <div class="form-con">
-      <a-form
-        :model="formState"
-        name="normal_login"
-        class="login-form"
-        @finish="onFinish"
-        @finishFailed="onFinishFailed"
-      >
-        <a-form-item
-          label="Username"
-          name="username"
-          :rules="[{ required: true, message: 'Please input your username!' }]"
+        <a-form
+          hideRequiredMark
+          layout="vertical"
+          ref="formRef"
+          :model="formState"
+          :rules="rules"
+          name="normal_login"
+          class="login-form"
+          @finish="onFinish"
+          @finishFailed="onFinishFailed"
         >
-          <a-input v-model:value="formState.username">
-            <template #prefix>
-              <Icon icon="UserOutlined" class="site-form-item-icon" />
-            </template>
-          </a-input>
-        </a-form-item>
-
-        <a-form-item
-          label="Password"
-          name="password"
-          :rules="[{ required: true, message: 'Please input your password!' }]"
-        >
-          <a-input-password v-model:value="formState.password">
-            <template #prefix>
-              <Icon icon="LockOutlined" class="site-form-item-icon" />
-            </template>
-          </a-input-password>
-        </a-form-item>
-
-        <a-form-item>
-          <a-form-item name="remember" no-style>
-            <a-checkbox v-model:checked="formState.remember"
-              >Remember me</a-checkbox
-            >
+          <a-form-item label="用户名" name="username">
+            <a-input v-model:value="formState.username">
+              <template #prefix>
+                <Icon icon="UserOutlined" class="site-form-item-icon" />
+              </template>
+            </a-input>
           </a-form-item>
-          <a class="login-form-forgot" href="">Forgot password</a>
-        </a-form-item>
-      </a-form>
+
+          <a-form-item label="密码" name="password">
+            <a-input-password v-model:value="formState.password">
+              <template #prefix>
+                <Icon icon="LockOutlined" class="site-form-item-icon" />
+              </template>
+            </a-input-password>
+          </a-form-item>
+
+          <a-form-item>
+            <a-form-item name="remember" no-style>
+              <a-checkbox v-model:checked="formState.remember"
+                >Remember me</a-checkbox
+              >
+            </a-form-item>
+            <a class="login-form-forgot" href="">Forgot password</a>
+          </a-form-item>
+        </a-form>
       </div>
       <div class="login-btn">
         <a-button
+          :disabled="disabled"
           :loading="loading"
           shape="round"
           block
@@ -106,7 +126,8 @@ let login = () => {
   position: relative;
   height: 100%;
   width: 100%;
-  background: #ccc;
+  background: url("http://pic1.win4000.com/wallpaper/2/51397470cbba5.jpg")
+    center/cover no-repeat;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -115,18 +136,27 @@ let login = () => {
     background: #fff;
     border-radius: 10px;
     box-shadow: 2px 2px 10px #06c;
+    backdrop-filter: blur(15px);
+    background: rgba(255, 255, 255, 0.5);
     .title {
       text-align: center;
       line-height: 50px;
       margin: 0;
     }
-    .form-con{
-      padding: 15px 10px;
+    .form-con {
+      padding: 20px;
+      padding-bottom: 0;
     }
     .login-btn {
       width: 50%;
       margin: 15px auto;
     }
   }
+}
+</style>
+<style>
+#login .ant-input-affix-wrapper,
+.ant-input {
+  background-color: rgba(255, 255, 255, 0) !important;
 }
 </style>
