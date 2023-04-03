@@ -2,7 +2,7 @@
 import { ref, reactive, computed } from "vue";
 import { useRouter } from "vue-router";
 import type { FormInstance } from "ant-design-vue";
-
+import { message } from "ant-design-vue";
 const router = useRouter();
 let loading = ref<boolean>(false);
 
@@ -46,8 +46,15 @@ const disabled = computed(() => {
 let login = async () => {
   try {
     const values = await formRef.value.validateFields();
-    console.log("Success:", values);
     loading.value = true;
+
+    message.loading({
+      content: "登录成功，正在初始化...",
+      key: "chushihua",
+      duration: 0,
+    });
+    console.log("Success:", values);
+
     router.push({ path: "/index" });
   } catch (errorInfo) {
     console.log("Failed:", errorInfo);

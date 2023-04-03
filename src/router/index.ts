@@ -3,6 +3,7 @@ import {
   createWebHistory,
   createWebHashHistory,
 } from "vue-router";
+import { message } from "ant-design-vue";
 import type { RouteRecordRaw } from "vue-router";
 import { getRouters } from "@/utils/routers";
 import { menuList } from "@/utils/config/menus";
@@ -72,6 +73,8 @@ router.beforeEach((to, from, next) => {
   next();
 });
 router.afterEach((to, from) => {
+  //设置message提示
+  if (from.fullPath.includes("login")) message.success({content:"初始化完成！",key:"chushihua"});
   //设置跳转路由后页面的标题
   //document.title = to.meta.title as string;
   let load = useLoading();
