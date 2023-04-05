@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { message } from 'ant-design-vue';
+import { message } from "ant-design-vue";
 
 import { defineComponent, ref } from "vue";
 import type { UploadChangeParam, UploadProps } from "ant-design-vue";
@@ -15,6 +15,10 @@ const imageUrl = ref<string>("");
 const handleChange = (info: UploadChangeParam) => {
   if (info.file.status === "uploading") {
     loading.value = true;
+    getBase64(info.file.originFileObj, (base64Url: string) => {
+      imageUrl.value = base64Url;
+      loading.value = false;
+    });
     return;
   }
   if (info.file.status === "done") {
@@ -63,4 +67,18 @@ const beforeUpload = (file: UploadProps["fileList"][number]) => {
   </a-upload>
 </template>
 
-<style scoped></style>
+<style scoped>
+.avatar-uploader > .ant-upload {
+  width: 128px;
+  height: 128px;
+}
+.ant-upload-select-picture-card i {
+  font-size: 32px;
+  color: #999;
+}
+
+.ant-upload-select-picture-card .ant-upload-text {
+  margin-top: 8px;
+  color: #666;
+}
+</style>
