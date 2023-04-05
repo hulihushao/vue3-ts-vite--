@@ -4,9 +4,14 @@ import { ColorPicker } from "vue3-colorpicker";
 import "vue3-colorpicker/style.css";
 
 import { Sketch } from "@ans1998/vue3-color";
-let colors = ref("");
+let colors = ref("red");
 let bgColor = ref("#000");
+
 let showSketch = ref(false);
+let updateColor = (e) => {
+  console.log(e);
+  bgColor.value=`rgba(${e.rgba.r},${e.rgba.g},${e.rgba.b},${e.rgba.a})`
+};
 function changSketchButton(item) {
   showSketch.value = false;
   console.log(item);
@@ -32,14 +37,10 @@ let { visible } = toRefs(visibleObj);
 let emits = defineEmits<{
   (e: "setVisible"): void;
 }>();
-
-const afterVisibleChange = (bool: boolean) => {
-  console.log("visible", bool);
-};
 </script>
 
 <template>
-  <div id="drawer-con" @click="showSketch=false">
+  <div id="drawer-con" @click="showSketch = false">
     <a-drawer
       :destroyOnClose="true"
       v-model:visible="visible"
@@ -48,7 +49,6 @@ const afterVisibleChange = (bool: boolean) => {
       :bodyStyle="{ padding: '30px' }"
       placement="right"
       @close="emits('setVisible')"
-      @after-visible-change="afterVisibleChange"
     >
       <template #title>
         <h2>布局设置</h2>
@@ -58,9 +58,14 @@ const afterVisibleChange = (bool: boolean) => {
         <div :class="$style.color_select">
           <span>主题颜色</span>
           <div style="position: relative">
-            <div @click.prevent="showSketch = true" :class="$style.color_con"></div>
-            <div style="position: absolute; left:-200%;top:30px">
+            <div
+              @click.prevent="showSketch = true"
+              :class="$style.color_con"
+              :style="{ background: bgColor }"
+            ></div>
+            <div style="position: absolute; left: -200%; top: 30px">
               <Sketch
+                @update:modelValue="updateColor"
                 v-model="colors"
                 :show="showSketch"
                 @changButton="changSketchButton"
@@ -96,6 +101,5 @@ const afterVisibleChange = (bool: boolean) => {
 .color_con {
   width: 40px;
   height: 20px;
-  background: v-bind(bgColor);
 }
 </style>
