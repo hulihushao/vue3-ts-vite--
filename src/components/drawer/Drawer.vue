@@ -96,7 +96,7 @@ onUnmounted(() => {});
             :style="{ background: bgColor }"
           ></div>
           <div style="position: absolute; left: -200%; top: 30px">
-            <Sketch
+            <Sketch style="position:relative;z-index:99999"
               ref="colorSelect"
               @update:modelValue="updateColor"
               v-model="colors"
@@ -115,6 +115,9 @@ onUnmounted(() => {});
             v-model:gradientColor="gradientColor"
           />
         </span>
+      </div>
+      <div :class="$style.bgImg_con">
+        <span>背景图片设置</span>
       </div>
     </div>
     <a-divider />
@@ -146,6 +149,9 @@ onUnmounted(() => {});
 .color_con {
   width: 40px;
   height: 20px;
+}
+.bgImg_con{
+  border:1px solid red;
 }
 .buju_con {
   margin: 10px 0;
