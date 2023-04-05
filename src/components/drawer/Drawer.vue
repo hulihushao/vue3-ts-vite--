@@ -8,10 +8,12 @@ let colors = ref("red");
 let bgColor = ref("#000");
 
 let showSketch = ref(false);
+//实时更新颜色
 let updateColor = (e) => {
   console.log(e);
   bgColor.value=`rgba(${e.rgba.r},${e.rgba.g},${e.rgba.b},${e.rgba.a})`
 };
+//确定按钮更新颜色
 function changSketchButton(item) {
   showSketch.value = false;
   console.log(item);
