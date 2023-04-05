@@ -76,7 +76,7 @@ onUnmounted(() => {});
     forceRender
     v-model:visible="visible"
     class="custom-class"
-    style="border: 1px solid red"
+    style=""
     :bodyStyle="{ padding: '30px' }"
     placement="right"
     @close="closeDrawer"

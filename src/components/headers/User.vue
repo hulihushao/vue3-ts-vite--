@@ -18,9 +18,13 @@ const router = useRouter();
 let tabsData = useTabsData();
 let layout = useLayout();
 let drawerVisible=ref<boolean>(false)
+let drawerVisibleIf=ref(false)
 //设置抽屉隐藏
 let setVisible=()=>{
   drawerVisible.value=false
+  setTimeout(()=>{
+    drawerVisibleIf.value=drawerVisible.value
+  },300)
 }
 //事件集合
 const clicks = {
@@ -42,6 +46,7 @@ const clicks = {
   },
   //系统设置
   setting() {
+    drawerVisibleIf.value=true
     drawerVisible.value=true
   },
   //退出
@@ -84,7 +89,7 @@ let onMenuClick: MenuProps["onClick"] = (item: action) => {
         </a-menu>
       </template>
     </a-dropdown>
-    <Drawer :visible='drawerVisible' @setVisible="setVisible"/>
+    <Drawer v-if="drawerVisibleIf" :visible='drawerVisible' @setVisible="setVisible"/>
   </div>
 </template>
 
