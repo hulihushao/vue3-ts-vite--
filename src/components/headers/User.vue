@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import {ref} from "vue"
+import { ref } from "vue";
 import actions from "@/utils/config/userActions";
 import { useRouter } from "vue-router";
 import type { MenuProps } from "ant-design-vue";
 import useTabsData from "@/store/tabs";
 import useLayout from "@/store/layout";
-import Drawer from "../drawer/Drawer.vue"
+import Drawer from "../drawer/Drawer.vue";
 interface action {
   id: number | string;
   title: string;
@@ -17,37 +17,40 @@ interface action {
 const router = useRouter();
 let tabsData = useTabsData();
 let layout = useLayout();
-let drawerVisible=ref<boolean>(false)
-let drawerVisibleIf=ref(false)
+let drawerVisible = ref<boolean>(false);
+let drawerVisibleIf = ref(false);
 //设置抽屉隐藏
-let setVisible=()=>{
-  drawerVisible.value=false
-  setTimeout(()=>{
-    drawerVisibleIf.value=drawerVisible.value
-  },300)
-}
+let setVisible = () => {
+  drawerVisible.value = false;
+  setTimeout(() => {
+    drawerVisibleIf.value = drawerVisible.value;
+  }, 300);
+};
 //事件集合
 const clicks = {
   //用户中心
   personCenter(user: action) {
-    tabsData.tabs.push({
-      title: user.title,
-      key: user.id,
-      icon: "UserOutlined",
-      closable: true,
-      path: "personCenter",
-      openKeys: [],
-      preList: [],
-      iconfont: "",
-    });
+    let find = tabsData.tabs.filter((item) => item.key == user.id);
+    if (!find.length) {
+      tabsData.tabs.push({
+        title: user.title,
+        key: user.id,
+        icon: "UserOutlined",
+        closable: true,
+        path: "personCenter",
+        openKeys: [],
+        preList: [],
+        iconfont: "",
+      });
+    }
+    router.push({ path: "personCenter" });
     tabsData.setActiveKey(user.id);
     layout.selectKeys = [];
-    router.push({ path: "personCenter" });
   },
   //系统设置
   setting() {
-    drawerVisibleIf.value=true
-    drawerVisible.value=true
+    drawerVisibleIf.value = true;
+    drawerVisible.value = true;
   },
   //退出
   logOut() {
@@ -63,7 +66,7 @@ let onMenuClick: MenuProps["onClick"] = (item: action) => {
 <template>
   <div>
     <a-dropdown placement="bottom" overlayClassName="dropDownmenus">
-      <span style="height:50px;display:flex;align-items:center;">
+      <span style="height: 50px; display: flex; align-items: center">
         <a-avatar
           @click.prevent
           src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
@@ -74,7 +77,7 @@ let onMenuClick: MenuProps["onClick"] = (item: action) => {
           </template>
         </a-avatar>
         <span style="margin: 0 5px">admin</span>
-        <span style="font-size: 10px;">
+        <span style="font-size: 10px">
           <Icon icon="DownOutlined" />
         </span>
       </span>
@@ -89,7 +92,11 @@ let onMenuClick: MenuProps["onClick"] = (item: action) => {
         </a-menu>
       </template>
     </a-dropdown>
-    <Drawer v-if="drawerVisibleIf" :visible='drawerVisible' @setVisible="setVisible"/>
+    <Drawer
+      v-if="drawerVisibleIf"
+      :visible="drawerVisible"
+      @setVisible="setVisible"
+    />
   </div>
 </template>
 

@@ -117,10 +117,11 @@ onUnmounted(() => {});
         </span>
       </div>
     </div>
+    <a-divider />
     <div :class="$style.buju_con">
       <h3>系统布局设置</h3>
     </div>
-
+    <a-divider />
     <div :class="$style.btn_con">
       <a-button>
         <template #icon><Icon icon="SaveOutlined" /></template>
@@ -152,7 +153,6 @@ onUnmounted(() => {});
 }
 .btn_con {
   display: flex;
-  border: 1px solid red;
-  justify-content:space-around;
+  justify-content: space-around;
 }
 </style>
