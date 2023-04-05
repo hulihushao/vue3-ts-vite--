@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, toRefs } from "vue";
+import { ref, toRefs, onMounted, onUnmounted, nextTick } from "vue";
 import { ColorPicker } from "vue3-colorpicker";
 import "vue3-colorpicker/style.css";
 
@@ -11,7 +11,7 @@ let showSketch = ref(false);
 //实时更新颜色
 let updateColor = (e) => {
   console.log(e);
-  bgColor.value=`rgba(${e.rgba.r},${e.rgba.g},${e.rgba.b},${e.rgba.a})`
+  bgColor.value = `rgba(${e.rgba.r},${e.rgba.g},${e.rgba.b},${e.rgba.a})`;
 };
 //确定按钮更新颜色
 function changSketchButton(item) {
@@ -31,7 +31,7 @@ const gradientColor = ref(
 
 //接受props
 let visibleObj = defineProps<{
-  visible: { required: true; type: Boolean };
+  visible: boolean;
 }>();
 //结构保持响应性
 let { visible } = toRefs(visibleObj);
@@ -39,57 +39,88 @@ let { visible } = toRefs(visibleObj);
 let emits = defineEmits<{
   (e: "setVisible"): void;
 }>();
+let closeDrawer = () => {
+  showSketch.value = false;
+  emits("setVisible");
+};
+let colorPreview = ref(null);
+let colorSelect = ref(null);
+let onClickCbk = (event) => {
+  const targetElement = event.target; // 获取当前被点击的元素
+  const myDiv = colorSelect.value.$el;
+  let colorPreviewDiv = colorPreview.value;
+  console.log(colorPreviewDiv);
+  //如果当前被点击的元素不是 myDiv 或 myDiv 的子元素，则隐藏 myDiv 和 mask
+  if (
+    targetElement !== myDiv &&
+    !myDiv.contains(targetElement) &&
+    targetElement !== colorPreviewDiv
+  ) {
+    showSketch.value = false;
+  }
+};
+onMounted(() => {
+  document
+    .querySelector(".custom-class")
+    .removeEventListener("click", onClickCbk);
+  document
+    .querySelector(".custom-class")
+    .addEventListener("click", onClickCbk, false);
+});
+onUnmounted(() => {});
 </script>
 
 <template>
-  <div id="drawer-con" @click="showSketch = false">
-    <a-drawer
-      :destroyOnClose="true"
-      v-model:visible="visible"
-      class="custom-class"
-      style=""
-      :bodyStyle="{ padding: '30px' }"
-      placement="right"
-      @close="emits('setVisible')"
-    >
-      <template #title>
-        <h2>布局设置</h2>
-      </template>
-      <div class="theme-con">
-        <h3>主题风格设置</h3>
-        <div :class="$style.color_select">
-          <span>主题颜色</span>
-          <div style="position: relative">
-            <div
-              @click.prevent="showSketch = true"
-              :class="$style.color_con"
-              :style="{ background: bgColor }"
-            ></div>
-            <div style="position: absolute; left: -200%; top: 30px">
-              <Sketch
-                @update:modelValue="updateColor"
-                v-model="colors"
-                :show="showSketch"
-                @changButton="changSketchButton"
-              ></Sketch>
-            </div>
+  <a-drawer
+    destroyOnClose
+    forceRender
+    v-model:visible="visible"
+    class="custom-class"
+    style="border: 1px solid red"
+    :bodyStyle="{ padding: '30px' }"
+    placement="right"
+    @close="closeDrawer"
+  >
+    <template #title>
+      <h2>布局设置</h2>
+    </template>
+    <div class="theme-con">
+      <h3>主题风格设置</h3>
+      <div :class="$style.color_select">
+        <span>主题颜色</span>
+        <div style="position: relative">
+          <div
+            ref="colorPreview"
+            @click.prevent="showSketch = true"
+            :class="$style.color_con"
+            :style="{ background: bgColor }"
+          ></div>
+          <div style="position: absolute; left: -200%; top: 30px">
+            <Sketch
+              ref="colorSelect"
+              @update:modelValue="updateColor"
+              v-model="colors"
+              :show="showSketch"
+              @changButton="changSketchButton"
+            ></Sketch>
           </div>
-          <div></div>
-          <span v-if="false" style="border: 1px solid red; position: relative">
-            <color-picker
-              v-model:pureColor="pureColor"
-              format="rgb"
-              useType="both"
-              pickerType="chrome"
-              v-model:gradientColor="gradientColor"
-            />
-          </span>
         </div>
+        <div></div>
+        <span v-if="false" style="border: 1px solid red; position: relative">
+          <color-picker
+            v-model:pureColor="pureColor"
+            format="rgb"
+            useType="both"
+            pickerType="chrome"
+            v-model:gradientColor="gradientColor"
+          />
+        </span>
       </div>
-      <p>Some contents...</p>
-      <p>Some contents...</p>
-    </a-drawer>
-  </div>
+    </div>
+
+    <p>Some contents...</p>
+    <p>Some contents...</p>
+  </a-drawer>
 </template>
 
 <style lang="less" module scoped>

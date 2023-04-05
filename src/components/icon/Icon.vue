@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { Icon } from "@/utils/ICON";
-let icons=defineProps<{
-    icon?:{
+let icons=defineProps({
+    icon:{
         type: String,
     },
-    iconfont?:string
-}>()
+    iconfont:String
+})
 </script>
 
 <template>
