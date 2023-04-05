@@ -117,9 +117,20 @@ onUnmounted(() => {});
         </span>
       </div>
     </div>
+    <div :class="$style.buju_con">
+      <h3>系统布局设置</h3>
+    </div>
 
-    <p>Some contents...</p>
-    <p>Some contents...</p>
+    <div :class="$style.btn_con">
+      <a-button>
+        <template #icon><Icon icon="SaveOutlined" /></template>
+        保存设置
+      </a-button>
+      <a-button>
+        <template #icon><Icon icon="SyncOutlined" /></template>
+        重置设置
+      </a-button>
+    </div>
   </a-drawer>
 </template>
 
@@ -134,5 +145,14 @@ onUnmounted(() => {});
 .color_con {
   width: 40px;
   height: 20px;
+}
+.buju_con {
+  margin: 10px 0;
+  border: 1px solid red;
+}
+.btn_con {
+  display: flex;
+  border: 1px solid red;
+  justify-content:space-around;
 }
 </style>
