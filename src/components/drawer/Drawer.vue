@@ -1,9 +1,17 @@
 <script setup lang="ts">
-import { ref, toRefs, onMounted, onUnmounted, nextTick } from "vue";
+import {
+  ref,
+  toRefs,
+  onMounted,
+  onBeforeUnmount,
+  onUnmounted,
+  nextTick,
+} from "vue";
 import { ColorPicker } from "vue3-colorpicker";
 import "vue3-colorpicker/style.css";
-
+import type { SelectProps } from "ant-design-vue";
 import { Sketch } from "@ans1998/vue3-color";
+import Upload from "@/components/upLoad/Upload.vue"
 let colors = ref("red");
 let bgColor = ref("#000");
 
@@ -59,6 +67,27 @@ let onClickCbk = (event) => {
     showSketch.value = false;
   }
 };
+let urlValue = ref("");
+
+let defaultSelect = ref("URL");
+const selectObj = ref<SelectProps["options"]>([
+  {
+    value: "0",
+    label: "URL",
+  },
+  {
+    value: "1",
+    label: "上传",
+  },
+]);
+let showWhich = ref(true);
+let selectChange = (value: string) => {
+  if (value == "0") {
+    showWhich.value = true;
+  } else {
+    showWhich.value = false;
+  }
+};
 onMounted(() => {
   document
     .querySelector(".custom-class")
@@ -67,7 +96,11 @@ onMounted(() => {
     .querySelector(".custom-class")
     .addEventListener("click", onClickCbk, false);
 });
-onUnmounted(() => {});
+onBeforeUnmount(() => {
+  document
+    .querySelector(".custom-class")
+    .removeEventListener("click", onClickCbk);
+});
 </script>
 
 <template>
@@ -95,8 +128,8 @@ onUnmounted(() => {});
             :class="$style.color_con"
             :style="{ background: bgColor }"
           ></div>
-          <div style="position: absolute; z-index:999;left: -200%; top: 30px">
-            <Sketch 
+          <div style="position: absolute; z-index: 999; left: -200%; top: 30px">
+            <Sketch
               ref="colorSelect"
               @update:modelValue="updateColor"
               v-model="colors"
@@ -117,7 +150,27 @@ onUnmounted(() => {});
         </span>
       </div>
       <div :class="$style.bgImg_con">
-        <span>背景图片设置</span>
+        <div>
+          <span>背景图片</span>
+          <a-select
+            size="small"
+            ref="select"
+            v-model:value="defaultSelect"
+            style="width: 80px; margin-left: 10px"
+            :options="selectObj"
+            @change="selectChange"
+          ></a-select>
+        </div>
+
+        <div :class="$style.img_select_con">
+          <a-input
+            v-if="showWhich"
+            v-model:value="urlValue"
+            placeholder="请输入图片URL"
+            allow-clear
+          />
+          <Upload v-else/>
+        </div>
       </div>
     </div>
     <a-divider />
@@ -150,8 +203,12 @@ onUnmounted(() => {});
   width: 40px;
   height: 20px;
 }
-.bgImg_con{
-  border:1px solid red;
+.bgImg_con {
+  border: 1px solid red;
+  padding: 5px 10px;
+  .img_select_con {
+    margin-top: 5px;
+  }
 }
 .buju_con {
   margin: 10px 0;
