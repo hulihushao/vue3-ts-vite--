@@ -95,8 +95,8 @@ onUnmounted(() => {});
             :class="$style.color_con"
             :style="{ background: bgColor }"
           ></div>
-          <div style="position: absolute; left: -200%; top: 30px">
-            <Sketch style="position:relative;z-index:99999"
+          <div style="position: absolute; z-index:999;left: -200%; top: 30px">
+            <Sketch 
               ref="colorSelect"
               @update:modelValue="updateColor"
               v-model="colors"
