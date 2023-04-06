@@ -18,7 +18,7 @@ let updateColor = (e) => {
   bgColor.value = `rgba(${e.rgba.r},${e.rgba.g},${e.rgba.b},${e.rgba.a})`;
   themeObj.color = bgColor.value;
   //设置主题色
-  useSetTheme(bgColor.value)
+  useSetTheme(bgColor.value);
 };
 //确定按钮更新颜色
 function changSketchButton(item) {
@@ -57,7 +57,6 @@ let onClickCbk = (event) => {
   const targetElement = event.target; // 获取当前被点击的元素
   const myDiv = colorSelect.value.$el;
   let colorPreviewDiv = colorPreview.value;
-  console.log(colorPreviewDiv);
   //如果当前被点击的元素不是 myDiv 或 myDiv 的子元素，则隐藏 myDiv 和 mask
   if (
     targetElement !== myDiv &&
@@ -88,18 +87,27 @@ let selectChange = (value: string) => {
     showWhich.value = false;
   }
 };
-
+//暂存上传的图片
+let imgBase64 = ref("");
+let saveImgBase64 = (base64Url: string) => {
+  console.log(base64Url);
+  imgBase64.value = base64Url;
+};
 //保存设置
 let saveSetting = () => {
-  themeObj.bgImg = urlValue.value;
+  if (showWhich.value) {
+    if (urlValue.value) themeObj.bgImg = urlValue.value;
+  } else {
+    themeObj.bgImg = imgBase64.value;
+  }
 };
 //重置设置
 let resetSetting = () => {
   themeObj.$reset();
   bgColor.value = themeObj.color;
-  colors.value=themeObj.color
+  colors.value = themeObj.color;
   //设置主题色
-  useSetTheme(bgColor.value)
+  useSetTheme(bgColor.value);
 };
 onMounted(() => {
   //监听点击位置以关闭颜色选择器
@@ -183,7 +191,7 @@ onBeforeUnmount(() => {
             placeholder="请输入图片URL"
             allow-clear
           />
-          <Upload v-else />
+          <Upload @saveImg="saveImgBase64" v-else />
         </div>
       </div>
     </div>

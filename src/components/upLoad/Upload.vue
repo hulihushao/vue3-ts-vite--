@@ -1,14 +1,23 @@
 <script setup lang="ts">
 import { message } from "ant-design-vue";
-import { ConfigProvider } from 'ant-design-vue';
-import { defineComponent, ref } from "vue";
+import { ref } from "vue";
 import type { UploadChangeParam, UploadProps } from "ant-design-vue";
+function getBase64(img: File|Blob, callback: (base64Url: string) => void) {
+    const reader = new FileReader();
+      reader.addEventListener('load', () => callback(reader.result as string));
+        reader.readAsDataURL(img);
+        
+}
 
+let emits=defineEmits<{
+  (e:"saveImg",base64Url:string):void
+}>()
 const fileList = ref([]);
 const loading = ref<boolean>(false);
 const imageUrl = ref<string>("");
 
 const handleChange = (info: UploadChangeParam) => {
+  return
   if (info.file.status === "uploading") {
     loading.value = true;
     getBase64(info.file.originFileObj, (base64Url: string) => {
@@ -33,14 +42,25 @@ const handleChange = (info: UploadChangeParam) => {
 const beforeUpload = (file: UploadProps["fileList"][number]) => {
   const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
   if (!isJpgOrPng) {
-    message.error("You can only upload JPG file!");
+    message.error("仅支持上传静态图片!");
   }
   const isLt2M = file.size / 1024 / 1024 < 12;
   if (!isLt2M) {
-    message.error("Image must smaller than 2MB!");
+    message.error("上传图片不能大于12M");
+  }
+  if(isJpgOrPng && isLt2M){
+    console.log(file)
+    getBase64(file, (base64Url: string) => {
+      imageUrl.value = base64Url;
+      loading.value = false;
+
+      emits("saveImg",base64Url)
+    });
+    
   }
   return isJpgOrPng && isLt2M;
 };
+
 </script>
 
 <template>
@@ -51,7 +71,7 @@ const beforeUpload = (file: UploadProps["fileList"][number]) => {
     accept="image/apng,image/bmp,image/gif,image/jpeg,image/pjpeg,image/png"
     class="avatar-uploader"
     :show-upload-list="false"
-    action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+    action=""
     :before-upload="beforeUpload"
     @change="handleChange"
   >
