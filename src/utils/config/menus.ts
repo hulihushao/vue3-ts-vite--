@@ -54,7 +54,7 @@ export let menuList = [
         children: [
           {
             key: "3.1.1",
-            title: "测试",
+            title: "测试1",
             icon: "HomeOutlined",
             component: () => import("@/views/404.vue"),
             path: "cs1",
