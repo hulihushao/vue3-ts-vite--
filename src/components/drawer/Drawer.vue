@@ -80,7 +80,10 @@ const selectObj = ref<SelectProps["options"]>([
   },
 ]);
 let showWhich = ref(true);
+
 let selectChange = (value: string) => {
+  imgBase64.value=""
+  urlValue.value=""
   if (value == "0") {
     showWhich.value = true;
   } else {
@@ -100,6 +103,7 @@ let saveSetting = () => {
   } else {
     if(imgBase64.value)themeObj.bgImg = imgBase64.value;
   }
+  
 };
 //重置设置
 let resetSetting = () => {
