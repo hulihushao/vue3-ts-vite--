@@ -44,9 +44,9 @@ const beforeUpload = (file: UploadProps["fileList"][number]) => {
   if (!isJpgOrPng) {
     message.error("仅支持上传静态图片!");
   }
-  const isLt2M = file.size / 1024 / 1024 < 12;
+  const isLt2M = file.size / 1024 / 1024 < 5;
   if (!isLt2M) {
-    message.error("上传图片不能大于12M");
+    message.error("上传图片不能大于5M");
   }
   if(isJpgOrPng && isLt2M){
     console.log(file)
