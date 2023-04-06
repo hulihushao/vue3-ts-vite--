@@ -234,7 +234,6 @@ onBeforeUnmount(() => {
 }
 .buju_con {
   margin: 10px 0;
-  border: 1px solid red;
 }
 .btn_con {
   display: flex;
