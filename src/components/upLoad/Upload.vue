@@ -1,13 +1,9 @@
 <script setup lang="ts">
 import { message } from "ant-design-vue";
-
+import { ConfigProvider } from 'ant-design-vue';
 import { defineComponent, ref } from "vue";
 import type { UploadChangeParam, UploadProps } from "ant-design-vue";
-function getBase64(img: Blob, callback: (base64Url: string) => void) {
-  const reader = new FileReader();
-  reader.addEventListener("load", () => callback(reader.result as string));
-  reader.readAsDataURL(img);
-}
+
 const fileList = ref([]);
 const loading = ref<boolean>(false);
 const imageUrl = ref<string>("");
@@ -39,7 +35,7 @@ const beforeUpload = (file: UploadProps["fileList"][number]) => {
   if (!isJpgOrPng) {
     message.error("You can only upload JPG file!");
   }
-  const isLt2M = file.size / 1024 / 1024 < 2;
+  const isLt2M = file.size / 1024 / 1024 < 12;
   if (!isLt2M) {
     message.error("Image must smaller than 2MB!");
   }
@@ -52,13 +48,14 @@ const beforeUpload = (file: UploadProps["fileList"][number]) => {
     v-model:file-list="fileList"
     name="avatar"
     list-type="picture-card"
+    accept="image/apng,image/bmp,image/gif,image/jpeg,image/pjpeg,image/png"
     class="avatar-uploader"
     :show-upload-list="false"
     action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
     :before-upload="beforeUpload"
     @change="handleChange"
   >
-    <img v-if="imageUrl" :src="imageUrl" alt="avatar" />
+    <img class="imgPreview" v-if="imageUrl" :src="imageUrl" alt="avatar" />
     <div v-else>
       <Icon icon="LoadingOutlined" v-if="loading" />
       <Icon icon="PlusOutlined" v-else />
@@ -67,7 +64,13 @@ const beforeUpload = (file: UploadProps["fileList"][number]) => {
   </a-upload>
 </template>
 
-<style scoped>
+<style scoped lang="less">
+.avatar-uploader {
+  .imgPreview {
+    width: 100%;
+    max-height:100%;
+  }
+}
 .avatar-uploader > .ant-upload {
   width: 128px;
   height: 128px;

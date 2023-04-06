@@ -7,19 +7,30 @@ import {
   onUnmounted,
   nextTick,
 } from "vue";
-import { ColorPicker } from "vue3-colorpicker";
+import { ConfigProvider } from "ant-design-vue";
 import "vue3-colorpicker/style.css";
 import type { SelectProps } from "ant-design-vue";
 import { Sketch } from "@ans1998/vue3-color";
 import Upload from "@/components/upLoad/Upload.vue"
-let colors = ref("red");
-let bgColor = ref("#000");
+import useTheme from "@/store/theme"
+
+let themeObj=useTheme()
+
+let colors = ref(themeObj.color);
+let bgColor = ref(themeObj.color);
 
 let showSketch = ref(false);
 //实时更新颜色
 let updateColor = (e) => {
   console.log(e);
   bgColor.value = `rgba(${e.rgba.r},${e.rgba.g},${e.rgba.b},${e.rgba.a})`;
+  themeObj.color=bgColor.value
+  ConfigProvider.config({
+  theme: {
+    primaryColor: bgColor.value,
+  },
+});
+
 };
 //确定按钮更新颜色
 function changSketchButton(item) {

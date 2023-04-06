@@ -2,7 +2,9 @@ import { createApp } from "vue";
 import "./style.css";
 import App from "./App.vue";
 import Antd from "ant-design-vue";
-import "ant-design-vue/dist/antd.css";
+//import "ant-design-vue/dist/antd.css";
+//全局化主题配置样式
+import 'ant-design-vue/dist/antd.variable.min.css';
 import router from "./router";
 import store from "@/store"
 import "animate.css";

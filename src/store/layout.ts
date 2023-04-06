@@ -15,7 +15,6 @@ const useLayout = defineStore("storeId", {
     }
   },
   persist: {
-
     enabled: true,
     strategies: [
       {
