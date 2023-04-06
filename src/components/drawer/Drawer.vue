@@ -1,21 +1,13 @@
 <script setup lang="ts">
-import {
-  ref,
-  toRefs,
-  onMounted,
-  onBeforeUnmount,
-  onUnmounted,
-  nextTick,
-} from "vue";
-import { ConfigProvider } from "ant-design-vue";
+import { ref, toRefs, onMounted, onBeforeUnmount } from "vue";
+import { useSetTheme } from "@/composables/useSetTheme";
 import "vue3-colorpicker/style.css";
 import type { SelectProps } from "ant-design-vue";
 import { Sketch } from "@ans1998/vue3-color";
-import Upload from "@/components/upLoad/Upload.vue"
-import useTheme from "@/store/theme"
+import Upload from "@/components/upLoad/Upload.vue";
+import useTheme from "@/store/theme";
 
-let themeObj=useTheme()
-
+let themeObj = useTheme();
 let colors = ref(themeObj.color);
 let bgColor = ref(themeObj.color);
 
@@ -24,13 +16,9 @@ let showSketch = ref(false);
 let updateColor = (e) => {
   console.log(e);
   bgColor.value = `rgba(${e.rgba.r},${e.rgba.g},${e.rgba.b},${e.rgba.a})`;
-  themeObj.color=bgColor.value
-  ConfigProvider.config({
-  theme: {
-    primaryColor: bgColor.value,
-  },
-});
-
+  themeObj.color = bgColor.value;
+  //设置主题色
+  useSetTheme(bgColor.value)
 };
 //确定按钮更新颜色
 function changSketchButton(item) {
@@ -43,6 +31,7 @@ function changSketchButton(item) {
     console.log("取消");
   }
 }
+//暂时无用
 const pureColor = ref("#71afe5");
 const gradientColor = ref(
   "linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 100%)"
@@ -99,7 +88,21 @@ let selectChange = (value: string) => {
     showWhich.value = false;
   }
 };
+
+//保存设置
+let saveSetting = () => {
+  themeObj.bgImg = urlValue.value;
+};
+//重置设置
+let resetSetting = () => {
+  themeObj.$reset();
+  bgColor.value = themeObj.color;
+  colors.value=themeObj.color
+  //设置主题色
+  useSetTheme(bgColor.value)
+};
 onMounted(() => {
+  //监听点击位置以关闭颜色选择器
   document
     .querySelector(".custom-class")
     .removeEventListener("click", onClickCbk);
@@ -180,7 +183,7 @@ onBeforeUnmount(() => {
             placeholder="请输入图片URL"
             allow-clear
           />
-          <Upload v-else/>
+          <Upload v-else />
         </div>
       </div>
     </div>
@@ -190,11 +193,11 @@ onBeforeUnmount(() => {
     </div>
     <a-divider />
     <div :class="$style.btn_con">
-      <a-button>
+      <a-button @click="saveSetting">
         <template #icon><Icon icon="SaveOutlined" /></template>
         保存设置
       </a-button>
-      <a-button>
+      <a-button @click="resetSetting">
         <template #icon><Icon icon="SyncOutlined" /></template>
         重置设置
       </a-button>
