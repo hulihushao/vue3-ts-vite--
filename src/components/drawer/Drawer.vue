@@ -98,7 +98,7 @@ let saveSetting = () => {
   if (showWhich.value) {
     if (urlValue.value) themeObj.bgImg = urlValue.value;
   } else {
-    themeObj.bgImg = imgBase64.value;
+    if(imgBase64.value)themeObj.bgImg = imgBase64.value;
   }
 };
 //重置设置
