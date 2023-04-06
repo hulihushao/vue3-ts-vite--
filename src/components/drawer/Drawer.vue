@@ -226,7 +226,6 @@ onBeforeUnmount(() => {
   height: 20px;
 }
 .bgImg_con {
-  border: 1px solid red;
   padding: 5px 10px;
   .img_select_con {
     margin-top: 5px;
@@ -234,6 +233,7 @@ onBeforeUnmount(() => {
 }
 .buju_con {
   margin: 10px 0;
+  border:1px solidlreded;
 }
 .btn_con {
   display: flex;
