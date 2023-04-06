@@ -3,10 +3,12 @@ import Aside from "@/views/layout/LayoutSider.vue";
 import Header from "@/views/layout/LayoutHeader.vue";
 import Content from "@/views/layout/LayoutContent.vue";
 import Footer from "@/views/layout/LayoutFooter.vue";
+import useTheme from "@/store/theme";
+let themeObj = useTheme();
 </script>
 
 <template>
-  <a-layout class="layout" style="height: 100% !important">
+  <a-layout class="layout" :style="{backgroundImage:`url(${themeObj.bgImg}) !important`}" style="height: 100% !important">
     <Aside />
     <a-layout>
       <header>
@@ -22,8 +24,7 @@ import Footer from "@/views/layout/LayoutFooter.vue";
 
 <style scoped>
 .layout {
-  background: url("https://img.mp.itc.cn/upload/20161119/1a99a2d9eab34a588f05aaad00ad9883_th.jpg")
-    center/cover no-repeat !important;
+  background: url() center/cover no-repeat !important;
 }
 :deep(.ant-layout),
 :deep(#tabs .ant-tabs),
