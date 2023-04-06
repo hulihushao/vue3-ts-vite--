@@ -46,8 +46,9 @@ const menuClick = (item: menus) => {
 
 //根据url设置菜单选中
 let path: string = useGetRoute();
-let currentMenu = allMenus.filter((item) => path.includes(item.path));
+let currentMenu = allMenus.filter((item) => path.split("/").indexOf(item.path)>-1);
 let openKeys=ref([""])
+
 if(currentMenu.length){
 selectKeys.value=[currentMenu[0].key]
  openKeys.value =currentMenu[0].openKeys
