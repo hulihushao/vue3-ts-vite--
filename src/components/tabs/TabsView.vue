@@ -14,7 +14,7 @@ let layout = useLayout();
 let paneClick = (pane: string | number) => {
   let one = tabsData.tabs.filter((item: menus) => item.key == pane);
   layout.selectKeys = [pane];
-  console.log(one, 111111);
+  console.log(one,pane, 111111);
   router.push({ path: one[0].path });
 };
 //关闭tab的方法
@@ -46,7 +46,7 @@ let closeAll = () => {
 };
 let clickBtn = (item) => {
   item.click(() => {
-    closeAll()();
+    closeAll();
   });
 };
 </script>
