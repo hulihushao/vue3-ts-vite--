@@ -57,6 +57,6 @@ let collapsed = useLayout();
   transition: color 0.3s;
 }
 .trigger:hover {
-  color: #1890ff;
+  color:var(--ant-primary-color);
 }
 </style>

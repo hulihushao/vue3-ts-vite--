@@ -182,10 +182,11 @@ onBeforeUnmount(() => {
             size="small"
             ref="select"
             v-model:value="defaultSelect"
-            style="width: 80px; margin-left: 10px"
+            style="width: 75px; margin-left: 10px"
             :options="selectObj"
             @change="selectChange"
           ></a-select>
+          <span style="color:#ccc;font-size:12px;margin-left:10px">注:URL和上传只会生效一个</span>
         </div>
 
         <div :class="$style.img_select_con">
