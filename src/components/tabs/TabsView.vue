@@ -102,7 +102,7 @@ let clickBtn = (item) => {
               >{{ item.title }}</a-button
             >
           </template>
-          <a-button ghost style="margin-left: 5px" type="dashed">┋</a-button>
+          <a-button ghost style="color:var(--ant-primary-color);margin-left: 5px" type="dashed">┋</a-button>
         </a-popover>
       </template>
     </a-tabs>

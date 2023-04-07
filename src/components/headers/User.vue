@@ -77,7 +77,7 @@ let onMenuClick: MenuProps["onClick"] = (item: action) => {
           </template>
         </a-avatar>
         <span style="margin: 0 5px">admin</span>
-        <span style="font-size: 10px">
+        <span style="font-size: 10px;color:var(--ant-primary-color)">
           <Icon icon="DownOutlined" />
         </span>
       </span>
