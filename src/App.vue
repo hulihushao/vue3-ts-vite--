@@ -19,6 +19,7 @@ useSetTheme(theme.color);
 }
 </style>
 <style>
+/**顶部进度条样式 */
 #nprogress .bar {
   background: var(--ant-primary-color) !important;
 }
