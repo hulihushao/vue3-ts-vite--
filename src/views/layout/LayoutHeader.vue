@@ -6,13 +6,14 @@ import useLayout from "@/store/layout";
 import * as Headers from "@/components/headers/index";
 import isMobile from "@/utils/deviceType"
 import useTheme from "@/store/theme";
-
+import TopMenu from "@/components/menu/TopMenu.vue"
 let themeObj=useTheme()
 let collapsed = useLayout();
 
 </script>
 <template>
   <a-layout-header class="header-con">
+    <span class="header-menu">
     <menu-unfold-outlined
       v-if="collapsed.collapsed"
       class="trigger"
@@ -24,7 +25,8 @@ let collapsed = useLayout();
       class="trigger"
       @click="() => (collapsed.collapsed = !collapsed.collapsed)"
     />
-
+    <TopMenu v-if="themeObj.isTopMenu"/>
+</span>
     <span class="tool-con">
       <Headers.Time v-if="themeObj.isShowTime"/>
       <Headers.Search />
@@ -52,6 +54,10 @@ let collapsed = useLayout();
     display: flex;
     align-items: center;
   }
+}
+.header-menu{
+  display:flex;
+  align-items:center;
 }
 .trigger {
   font-size: 18px;
