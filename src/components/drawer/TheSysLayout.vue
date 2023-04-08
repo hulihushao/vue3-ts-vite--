@@ -47,7 +47,6 @@ let themeObj = useTheme();
 
 <style scoped lang="less">
 #buju {
-  border: 1px solid red;
   padding: 5px 10px;
   .buju-item {
       width:80%;
