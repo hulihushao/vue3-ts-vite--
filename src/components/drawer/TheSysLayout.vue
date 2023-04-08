@@ -14,7 +14,6 @@ let themeObj = useTheme();
           checked-children="开"
           un-checked-children="关"
       /></span>
-      <span></span>
     </div>
     <div class="buju-item">
       <span>系统时间</span
@@ -24,7 +23,6 @@ let themeObj = useTheme();
           checked-children="开"
           un-checked-children="关"
       /></span>
-      <span></span>
     </div>
     <div class="buju-item">
       <span>菜单栏默认状态</span
@@ -34,7 +32,6 @@ let themeObj = useTheme();
           checked-children="开"
           un-checked-children="关"
       /></span>
-      <span></span>
     </div>
   </div>
 </template>
@@ -44,6 +41,7 @@ let themeObj = useTheme();
   border: 1px solid red;
   padding: 5px 10px;
   .buju-item {
+      width:80%;
       padding:5px 0;
     display: flex;
     justify-content: space-between;
