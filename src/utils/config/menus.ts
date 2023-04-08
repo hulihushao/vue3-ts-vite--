@@ -68,8 +68,8 @@ export let menuList = [
     key: "0",
     title: "关于",
     component: () => import(`@/views/home/Welcome.vue`),
-    path: "home",
-    name: "home",
+    path: "about",
+    name: "about",
     icon: "InfoCircleOutlined",
   },
 ];
