@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import isMobile from "@/utils/deviceType"
+
 const useLayout = defineStore("storeId", {
   // 推荐使用 完整类型推断的箭头函数
   state: () => {
@@ -14,6 +15,7 @@ const useLayout = defineStore("storeId", {
       this.selectKeys=["1"]
     }
   },
+  /**
   persist: {
     enabled: true,
     strategies: [
@@ -22,6 +24,6 @@ const useLayout = defineStore("storeId", {
         paths: ["collapsed"], //指定要长久化的字段
       },
     ],
-  }
+  }  */
 });
 export default useLayout

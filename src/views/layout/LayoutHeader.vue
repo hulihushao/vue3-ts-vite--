@@ -9,6 +9,9 @@ import useTheme from "@/store/theme";
 
 let themeObj=useTheme()
 let collapsed = useLayout();
+//设置菜单栏展开状态
+collapsed.collapsed =!themeObj.isUnfoldMenusSider
+
 </script>
 <template>
   <a-layout-header class="header-con">

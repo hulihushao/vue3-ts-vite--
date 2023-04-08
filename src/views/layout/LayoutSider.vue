@@ -23,17 +23,17 @@ let allMenus = useAllMenus();
 const menuClick = (item: menus) => {
   //console.log(openKeys.value)
   if (!tabsData.tabs.some((itm: menus) => itm.key == item.key)) {
-    let cur=allMenus.filter(itm=>itm.key==item.key)
-    let opens=cur[0].openKeys
+    let cur = allMenus.filter((itm) => itm.key == item.key);
+    let opens = cur[0].openKeys;
     let data: menus = {
       title: item.title,
       key: item.key,
       icon: item.icon,
       closable: true,
       path: item.path,
-      openKeys:opens,
-      preList:cur[0].preList,
-      iconfont:item.iconfont,
+      openKeys: opens,
+      preList: cur[0].preList,
+      iconfont: item.iconfont,
     };
     tabsData.tabs.push(data);
   }
@@ -46,16 +46,17 @@ const menuClick = (item: menus) => {
 
 //根据url设置菜单选中
 let path: string = useGetRoute();
-let currentMenu = allMenus.filter((item) => path.split("/").indexOf(item.path)>-1);
-let openKeys=ref([""])
+let currentMenu = allMenus.filter(
+  (item) => path.split("/").indexOf(item.path) > -1
+);
+let openKeys = ref([""]);
 
-if(currentMenu.length){
-selectKeys.value=[currentMenu[0].key]
- openKeys.value =currentMenu[0].openKeys
-}else{
-  selectKeys=[]
+if (currentMenu.length) {
+  selectKeys.value = [currentMenu[0].key];
+  openKeys.value = currentMenu[0].openKeys;
+} else {
+  selectKeys = [];
 }
-
 </script>
 
 <template>
@@ -82,7 +83,7 @@ selectKeys.value=[currentMenu[0].key]
         <template v-if="!item.children">
           <a-menu-item :key="item.key" @click="menuClick(item)">
             <template #icon>
-               <Icon :iconfont="item.iconfont" :icon="item.icon" ></Icon>
+              <Icon :iconfont="item.iconfont" :icon="item.icon"></Icon>
             </template>
             {{ item.title }}
           </a-menu-item>
@@ -122,7 +123,7 @@ selectKeys.value=[currentMenu[0].key]
     height: 100%;
     font-size: 16px;
     color: #fff;
-text-align:center;
+    text-align: center;
     line-height: 32px;
     transition: all 0.3s;
     overflow: hidden;
