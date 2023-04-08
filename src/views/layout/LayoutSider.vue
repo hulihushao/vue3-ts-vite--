@@ -8,11 +8,14 @@ import useTabsData from "@/store/tabs";
 import { storeToRefs } from "pinia";
 import { menus } from "@/types/menus";
 import { useGetRoute, useAllMenus } from "@/composables/useGetRoute";
+import useTheme from "@/store/theme";
 
+let themeObj= useTheme();
 const tabsData = useTabsData();
 const router = useRouter();
 let collapsed = useLayout();
-
+//设置菜单栏展开状态
+collapsed.collapsed=!themeObj.isUnfoldMenusSider
 //保持响应性获取数据
 let { selectKeys } = storeToRefs(collapsed);
 const list = ref([...menuList]);
@@ -57,6 +60,16 @@ if (currentMenu.length) {
 } else {
   selectKeys = [];
 }
+
+//设置子菜单全部展开
+if(themeObj.isMenuOpen){
+  openKeys.value=[]
+  allMenus.forEach(item=>{
+    openKeys.value.push(...item.openKeys)
+  })
+}
+
+
 </script>
 
 <template>
