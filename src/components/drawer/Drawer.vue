@@ -5,6 +5,7 @@ import "vue3-colorpicker/style.css";
 import type { SelectProps } from "ant-design-vue";
 import { Sketch } from "@ans1998/vue3-color";
 import Upload from "@/components/upLoad/Upload.vue";
+import TheSysLayout from "@/components/drawer/TheSysLayout.vue"
 import useTheme from "@/store/theme";
 
 let themeObj = useTheme();
@@ -203,6 +204,7 @@ onBeforeUnmount(() => {
     <a-divider />
     <div :class="$style.buju_con">
       <h3>系统布局设置</h3>
+     <TheSysLayout/>
     </div>
     <a-divider />
     <div :class="$style.btn_con">
@@ -238,7 +240,7 @@ onBeforeUnmount(() => {
 }
 .buju_con {
   margin: 10px 0;
-  border:1px solidlreded;
+  border:1px solid red;
 }
 .btn_con {
   display: flex;
