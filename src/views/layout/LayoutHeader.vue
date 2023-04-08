@@ -5,6 +5,9 @@ import { MenuUnfoldOutlined, MenuFoldOutlined } from "@ant-design/icons-vue";
 import useLayout from "@/store/layout";
 import * as Headers from "@/components/headers/index";
 import isMobile from "@/utils/deviceType"
+import useTheme from "@/store/theme";
+
+let themeObj=useTheme()
 let collapsed = useLayout();
 </script>
 <template>
@@ -22,7 +25,7 @@ let collapsed = useLayout();
     />
 
     <span class="tool-con">
-      <Headers.Time v-if="!isMobile()"/>
+      <Headers.Time v-if="themeObj.isShowTime"/>
       <Headers.Search />
       <Headers.Fullscreen />
       <Headers.Github />
