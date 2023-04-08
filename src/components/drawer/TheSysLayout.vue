@@ -25,10 +25,19 @@ let themeObj = useTheme();
       /></span>
     </div>
     <div class="buju-item">
-      <span>菜单栏默认状态</span
+      <span>菜单栏默认展开</span
       ><span
         ><a-switch
           v-model:checked="themeObj.isUnfoldMenusSider"
+          checked-children="展开"
+          un-checked-children="缩起"
+      /></span>
+    </div>
+    <div class="buju-item">
+      <span>子菜单默认展开</span
+      ><span
+        ><a-switch
+          v-model:checked="themeObj.isMenuOpen"
           checked-children="开"
           un-checked-children="关"
       /></span>

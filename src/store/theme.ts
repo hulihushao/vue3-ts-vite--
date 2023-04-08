@@ -9,6 +9,7 @@ const useTheme = defineStore("theme", {
       isTopMenu:false,
       isShowTime:true,
       isUnfoldMenusSider:true,
+      isMenuOpen:false,
     };
   },
   persist: {
