@@ -8,7 +8,7 @@ import useTheme from "@/store/theme";
 </script>
 
 <template>
-  <Menu />
+  <Menu theme="light" mode="horizontal" :style="{border:'1px solid red',width:'40vw'}"/>
 </template>
 
 <style scoped></style>

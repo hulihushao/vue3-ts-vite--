@@ -9,13 +9,29 @@ import { storeToRefs } from "pinia";
 import { menus } from "@/types/menus";
 import { useGetRoute, useAllMenus } from "@/composables/useGetRoute";
 import useTheme from "@/store/theme";
+
+let menuOption=defineProps({
+    theme:{
+        type:String,
+        default:()=>"dark"
+    },
+    mode:{
+        type:String,
+        default:()=>"inline"
+    },
+    style:{
+        type:Object
+    }
+    
+})
+
 const list = ref([...menuList]);
 </script>
 
 <template>
-  <a-menu style="border:1px solid red;width:40vw;"
-    theme="light"
-    mode="horizontal"
+  <a-menu :style="menuOption.style"
+    :theme="menuOption"
+    :mode="menuOption.mode"
     v-model:selectedKeys="selectKeys"
     :openKeys="openKeys"
   >
