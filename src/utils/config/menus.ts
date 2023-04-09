@@ -12,13 +12,13 @@ export let menuList = [
     key: "2",
     title: "组件demo",
     //icon: "HomeOutlined",
-    iconfont:"icon-zujian",
+    iconfont: "icon-zujian",
     children: [
       {
         key: "2.1",
         title: "vue3",
         //icon: "HomeOutlined",
-        iconfont:"icon-vuejs-alt",        
+        iconfont: "icon-vuejs-alt",
         children: [
           {
             key: "2.1.1",
@@ -32,7 +32,7 @@ export let menuList = [
             key: "2.1.2",
             title: "WebSocket",
             //icon: "HomeOutlined",
-            iconfont:"icon-Websocketjiaohujiedian",
+            iconfont: "icon-Websocketjiaohujiedian",
             component: () => import("@/views/404.vue"),
             path: "webSocket",
             name: "webSocket",
@@ -45,7 +45,7 @@ export let menuList = [
     key: "3",
     title: "各系统集成",
     //icon: "HomeOutlined",
-    iconfont:"icon-xitong",
+    iconfont: "icon-xitong",
     children: [
       {
         key: "3.1",
@@ -61,6 +61,25 @@ export let menuList = [
             name: "cs1-1",
           },
         ],
+      },
+    ],
+  },
+
+  {
+    key: "4",
+    title: "学习资料",
+
+    path: "study",
+    name: "study",
+    icon: "ReadOutlined",
+    children: [
+      {
+        key: "4.1",
+        title: "有道云笔记",
+        component: () => import(`@/views/study/YouDaoYun.vue`),
+        path: "youdaoyun",
+        name: "youdaoyun",
+        iconfont: "icon-youdaoyunbiji",
       },
     ],
   },
