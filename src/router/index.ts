@@ -74,9 +74,10 @@ router.beforeEach((to, from, next) => {
 });
 router.afterEach((to, from) => {
   //设置message提示
-  if (from.fullPath.includes("login")) message.success({content:"初始化完成！",key:"chushihua"});
+  if (from.fullPath.includes("login"))
+    message.success({ content: "初始化完成！", key: "chushihua" });
   //设置跳转路由后页面的标题
-  //document.title = to.meta.title as string;
+  if (to.meta.title) document.title = to.meta.title as string;
   let load = useLoading();
   let { loading } = storeToRefs(load);
   loading.value = false;
