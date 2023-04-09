@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Iframe from "@/components/Iframe.vue"
+import Iframe from "@/components/common/Iframe.vue"
 </script>
 
 <template>

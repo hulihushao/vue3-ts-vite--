@@ -1,11 +1,18 @@
 <script setup lang="ts">
-
+import SearchIcon from "./search/SearchIcon.vue"
+import TheSearch from "./search/TheSearch.vue"
 </script>
 
 <template>
-  <a-button type="text" shape="circle">
-    <template #icon><Icon icon="SearchOutlined" /></template>
-  </a-button>
+<div id="search-con">
+  <TheSearch/>
+  <SearchIcon/>
+</div>
 </template>
 
-<style scoped></style>
+<style scoped lang="less">
+#search-con{
+  display:flex;
+  align-items:center;
+}
+</style>

@@ -8,7 +8,7 @@ import 'ant-design-vue/dist/antd.variable.min.css';
 import router from "./router";
 import store from "@/store"
 import "animate.css";
-import Icon  from "@/components/icon/Icon.vue";
+import Icon  from "@/components/common/Icon.vue";
 //导入组件库
 import * as antIcons from "@ant-design/icons-vue";
 
