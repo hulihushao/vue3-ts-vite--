@@ -23,7 +23,7 @@ export let menuList = [
           {
             key: "2.1.1",
             title: "测试",
-            icon: "HomeOutlined",
+            iconfont: "icon-ceshiliucheng",
             component: () => import("@/views/404.vue"),
             path: "cs",
             name: "cs",
