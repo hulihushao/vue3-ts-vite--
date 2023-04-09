@@ -1,13 +1,11 @@
-import { useRouter } from "vue-router";
 import useTabsData from "@/store/tabs";
 import { menus } from "@/types/menus";
 import {useAllMenus } from "@/composables/useGetRoute";
 
 let tabsData = useTabsData();
 let allMenus = useAllMenus();
-const router = useRouter();
 //菜单点击
-export const useMenuClick = (item: menus) => {
+export const useMenuClick = (item: menus,router) => {
   //console.log(openKeys.value)
   if (!tabsData.tabs.some((itm: menus) => itm.key == item.key)) {
     let cur = allMenus.filter((itm) => itm.key == item.key);
@@ -26,6 +24,7 @@ export const useMenuClick = (item: menus) => {
   }
   //设置tab的选中状态
   tabsData.setActiveKey(item.key);
+  console.log(router)
   router.push({
     path: item.path,
   });

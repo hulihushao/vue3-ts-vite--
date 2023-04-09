@@ -1,21 +1,24 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
+import { useRouter } from "vue-router";
 import { useAllMenus } from "@/composables/useGetRoute";
 import {menus} from "@/types/menus"
 import {useMenuClick} from "@/composables/useMenuClick"
 let searchValue = ref("");
 let allMenus = useAllMenus();
+const router=useRouter()
 let searchResult = ref(null);
 let onSearch = () => {
   searchResult = computed(() =>
-    allMenus.filter((item:menus) => item.title.includes(searchValue.value))
+    allMenus.filter((item:menus) => item.title.includes(searchValue.value)&& searchValue.value)
   );
   console.log(searchResult.value);
 };
 
 let menuClick = (menu:menus) => {
-  useMenuClick(menu)
-  searchResult.value = [];
+  useMenuClick(menu,router)
+  searchValue.value=""
+  searchResult.value=[]
 };
 </script>
 
