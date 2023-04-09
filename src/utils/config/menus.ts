@@ -50,12 +50,12 @@ export let menuList = [
       {
         key: "3.1",
         title: "vue2",
-        icon: "HomeOutlined",
+        iconfont: "icon-vuejs-line",
         children: [
           {
             key: "3.1.1",
             title: "测试1",
-            icon: "HomeOutlined",
+            iconfont: "icon-ceshiliucheng",
             component: () => import("@/views/404.vue"),
             path: "cs-1",
             name: "cs1-1",
@@ -63,7 +63,7 @@ export let menuList = [
           {
             key: "3.1.2",
             title: "旅位管理平台",
-            icon: "HomeOutlined",
+            iconfont: "icon-ditu",
             component: () => import("@/views/system/MapMarker.vue"),
             path: "mapmarker",
             name: "mapmarker",
