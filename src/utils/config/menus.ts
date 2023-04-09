@@ -49,7 +49,7 @@ export let menuList = [
     children: [
       {
         key: "3.1",
-        title: "vue3",
+        title: "vue2",
         icon: "HomeOutlined",
         children: [
           {
@@ -59,6 +59,14 @@ export let menuList = [
             component: () => import("@/views/404.vue"),
             path: "cs-1",
             name: "cs1-1",
+          },
+          {
+            key: "3.1.2",
+            title: "旅位管理平台",
+            icon: "HomeOutlined",
+            component: () => import("@/views/MapMarker.vue"),
+            path: "mapmarker",
+            name: "mapmarker",
           },
         ],
       },
