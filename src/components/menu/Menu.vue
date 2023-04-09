@@ -13,7 +13,9 @@ import useTheme from "@/store/theme";
 let menuOption = defineProps({
   theme: {
     type: String,
-    default: () => "dark",
+    default(){
+      return "dark"
+    },
   },
   mode: {
     type: String,
@@ -21,9 +23,10 @@ let menuOption = defineProps({
   },
   style: {
     type: Object,
+    default:()=>{}
   },
 });
-
+console.log(menuOption)
 const list = ref([...menuList]);
 let tabsData = useTabsData();
 let allMenus = useAllMenus();
@@ -75,7 +78,7 @@ if (currentMenu.length) {
 <template>
   <a-menu
     :style="menuOption.style"
-    :theme="menuOption"
+    :theme="menuOption.theme"
     :mode="menuOption.mode"
     v-model:selectedKeys="selectKeys"
     :openKeys="openKeys"

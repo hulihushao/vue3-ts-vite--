@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { useRouter } from "vue-router";
+import Menu from "@/components/menu/Menu.vue"
 import SubMenu from "@/components/menu/MenuItem.vue";
 import useLayout from "../../store/layout";
 import { menuList } from "@/utils/config/menus";
@@ -86,7 +87,7 @@ if(themeObj.isMenuOpen){
       ></i>
       <span :class="{ sj: collapsed.collapsed }">诺依管理系统</span>
     </div>
-    <a-menu
+    <!--<a-menu
       theme="dark"
       mode="inline"
       v-model:selectedKeys="selectKeys"
@@ -109,7 +110,8 @@ if(themeObj.isMenuOpen){
           />
         </template>
       </template>
-    </a-menu>
+    </a-menu>-->
+    <Menu/>
   </a-layout-sider>
 </template>
 
