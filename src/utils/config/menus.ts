@@ -64,7 +64,7 @@ export let menuList = [
             key: "3.1.2",
             title: "旅位管理平台",
             icon: "HomeOutlined",
-            component: () => import("@/views/MapMarker.vue"),
+            component: () => import("@/views/system/MapMarker.vue"),
             path: "mapmarker",
             name: "mapmarker",
           },
