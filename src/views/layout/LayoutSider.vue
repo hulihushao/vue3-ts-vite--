@@ -74,7 +74,7 @@ if(themeObj.isMenuOpen){
 </script>
 
 <template>
-  <a-layout-sider
+  <a-layout-sider v-show="!themeObj.isTopMenu"
     breakpoint="lg"
     :collapsed="collapsed.collapsed"
     :trigger="null"

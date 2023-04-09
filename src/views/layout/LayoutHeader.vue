@@ -15,13 +15,13 @@ let collapsed = useLayout();
   <a-layout-header class="header-con">
     <span class="header-menu">
     <menu-unfold-outlined
-      v-if="collapsed.collapsed"
+      v-if="collapsed.collapsed&&!themeObj.isTopMenu"
       class="trigger"
       @click="() => (collapsed.collapsed = !collapsed.collapsed)"
     />
 
     <menu-fold-outlined
-      v-else
+      v-if="!collapsed.collapsed&&!themeObj.isTopMenu"
       class="trigger"
       @click="() => (collapsed.collapsed = !collapsed.collapsed)"
     />
