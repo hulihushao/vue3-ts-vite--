@@ -1,9 +1,9 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import Iframe from "@/components/Iframe.vue"
+</script>
 
 <template>
-  <a-layout-footer style="text-align: center">
-    诺依管理系统 ©2023 Created by TJP
-  </a-layout-footer>
+<Iframe src="https://note.youdao.com/web/#/file/recent/note/671D5B5B42AA4051AF7E6BB0615E168F/"/>
 </template>
 
 <style scoped></style>

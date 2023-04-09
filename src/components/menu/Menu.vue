@@ -10,26 +10,71 @@ import { menus } from "@/types/menus";
 import { useGetRoute, useAllMenus } from "@/composables/useGetRoute";
 import useTheme from "@/store/theme";
 
-let menuOption=defineProps({
-    theme:{
-        type:String,
-        default:()=>"dark"
-    },
-    mode:{
-        type:String,
-        default:()=>"inline"
-    },
-    style:{
-        type:Object
-    }
-    
-})
+let menuOption = defineProps({
+  theme: {
+    type: String,
+    default: () => "dark",
+  },
+  mode: {
+    type: String,
+    default: () => "inline",
+  },
+  style: {
+    type: Object,
+  },
+});
 
 const list = ref([...menuList]);
+let tabsData = useTabsData();
+let allMenus = useAllMenus();
+const router = useRouter();
+let collapsed = useLayout();
+//保持响应性获取数据
+
+const { selectKeys } = storeToRefs(collapsed);
+//菜单点击
+const menuClick = (item: menus) => {
+  //console.log(openKeys.value)
+  if (!tabsData.tabs.some((itm: menus) => itm.key == item.key)) {
+    let cur = allMenus.filter((itm) => itm.key == item.key);
+    let opens = cur[0].openKeys;
+    let data: menus = {
+      title: item.title,
+      key: item.key,
+      icon: item.icon,
+      closable: true,
+      path: item.path,
+      openKeys: opens,
+      preList: cur[0].preList,
+      iconfont: item.iconfont,
+    };
+    tabsData.tabs.push(data);
+  }
+  //设置tab的选中状态
+  tabsData.setActiveKey(item.key);
+  router.push({
+    path: item.path,
+  });
+};
+
+//根据url设置菜单选中
+let path: string = useGetRoute();
+let currentMenu = allMenus.filter(
+  (item) => path.split("/").indexOf(item.path) > -1
+);
+let openKeys = ref([""]);
+
+if (currentMenu.length) {
+  selectKeys.value = [currentMenu[0].key];
+  openKeys.value = currentMenu[0].openKeys;
+} else {
+  selectKeys.value = [];
+}
 </script>
 
 <template>
-  <a-menu :style="menuOption.style"
+  <a-menu
+    :style="menuOption.style"
     :theme="menuOption"
     :mode="menuOption.mode"
     v-model:selectedKeys="selectKeys"
