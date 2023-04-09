@@ -1,0 +1,32 @@
+import { useRouter } from "vue-router";
+import useTabsData from "@/store/tabs";
+import { menus } from "@/types/menus";
+import {useAllMenus } from "@/composables/useGetRoute";
+
+let tabsData = useTabsData();
+let allMenus = useAllMenus();
+const router = useRouter();
+//菜单点击
+export const useMenuClick = (item: menus) => {
+  //console.log(openKeys.value)
+  if (!tabsData.tabs.some((itm: menus) => itm.key == item.key)) {
+    let cur = allMenus.filter((itm) => itm.key == item.key);
+    let opens = cur[0].openKeys;
+    let data: menus = {
+      title: item.title,
+      key: item.key,
+      icon: item.icon,
+      closable: true,
+      path: item.path,
+      openKeys: opens,
+      preList: cur[0].preList,
+      iconfont: item.iconfont,
+    };
+    tabsData.tabs.push(data);
+  }
+  //设置tab的选中状态
+  tabsData.setActiveKey(item.key);
+  router.push({
+    path: item.path,
+  });
+};

@@ -8,7 +8,6 @@ import useTabsData from "@/store/tabs";
 import { storeToRefs } from "pinia";
 import { menus } from "@/types/menus";
 import { useGetRoute, useAllMenus } from "@/composables/useGetRoute";
-import useTheme from "@/store/theme";
 
 let menuOption = defineProps({
   theme: {

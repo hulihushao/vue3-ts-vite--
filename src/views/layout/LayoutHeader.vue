@@ -27,10 +27,10 @@ let collapsed = useLayout();
       <TopMenu v-if="themeObj.isTopMenu" />
     </span>
     <span class="tool-con">
-      <Headers.Time v-if="themeObj.isShowTime" />
       <Headers.Search />
       <Headers.Fullscreen />
       <Headers.Github />
+      <Headers.Time v-if="themeObj.isShowTime" />
       <Headers.User />
     </span>
   </a-layout-header>

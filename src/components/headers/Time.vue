@@ -47,7 +47,7 @@ function zeroPadding(num, digit) {
   height: 50px;
   display: flex;
   flex-direction: column;
-  
+
   p {
     width:100%;
     height:50%;
