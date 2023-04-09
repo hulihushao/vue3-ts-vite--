@@ -4,31 +4,30 @@ import TabsView from "@/components/tabs/TabsView.vue";
 import { MenuUnfoldOutlined, MenuFoldOutlined } from "@ant-design/icons-vue";
 import useLayout from "@/store/layout";
 import * as Headers from "@/components/headers/index";
-import isMobile from "@/utils/deviceType"
+import isMobile from "@/utils/deviceType";
 import useTheme from "@/store/theme";
-import TopMenu from "@/components/menu/TopMenu.vue"
-let themeObj=useTheme()
+import TopMenu from "@/components/menu/TopMenu.vue";
+let themeObj = useTheme();
 let collapsed = useLayout();
-
 </script>
 <template>
   <a-layout-header class="header-con">
     <span class="header-menu">
-    <menu-unfold-outlined
-      v-if="collapsed.collapsed&&!themeObj.isTopMenu"
-      class="trigger"
-      @click="() => (collapsed.collapsed = !collapsed.collapsed)"
-    />
+      <menu-unfold-outlined
+        v-if="collapsed.collapsed && !themeObj.isTopMenu"
+        class="trigger"
+        @click="() => (collapsed.collapsed = !collapsed.collapsed)"
+      />
 
-    <menu-fold-outlined
-      v-if="!collapsed.collapsed&&!themeObj.isTopMenu"
-      class="trigger"
-      @click="() => (collapsed.collapsed = !collapsed.collapsed)"
-    />
-    <TopMenu v-if="themeObj.isTopMenu"/>
-</span>
+      <menu-fold-outlined
+        v-if="!collapsed.collapsed && !themeObj.isTopMenu"
+        class="trigger"
+        @click="() => (collapsed.collapsed = !collapsed.collapsed)"
+      />
+      <TopMenu v-if="themeObj.isTopMenu" />
+    </span>
     <span class="tool-con">
-      <Headers.Time v-if="themeObj.isShowTime"/>
+      <Headers.Time v-if="themeObj.isShowTime" />
       <Headers.Search />
       <Headers.Fullscreen />
       <Headers.Github />
@@ -53,11 +52,13 @@ let collapsed = useLayout();
     padding: 20px;
     display: flex;
     align-items: center;
+    overflow-x:auto;
+    overflow-y:hidden;;
   }
 }
-.header-menu{
-  display:flex;
-  align-items:center;
+.header-menu {
+  display: flex;
+  align-items: center;
 }
 .trigger {
   font-size: 18px;
@@ -67,6 +68,6 @@ let collapsed = useLayout();
   transition: color 0.3s;
 }
 .trigger:hover {
-  color:var(--ant-primary-color);
+  color: var(--ant-primary-color);
 }
 </style>

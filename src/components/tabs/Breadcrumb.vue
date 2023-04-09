@@ -26,6 +26,7 @@ const { list } = toRefs(List);
 #breadcrumb-con {
   width: 100%;
   overflow-x: auto;
+  overflow-y:hidden;
   white-space: nowrap;
 }
 </style>
