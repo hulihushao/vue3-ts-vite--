@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { useRouter } from "vue-router";
-import Menu from "@/components/menu/Menu.vue"
+import Menu from "@/components/menu/Menu.vue";
 import SubMenu from "@/components/menu/MenuItem.vue";
 import useLayout from "../../store/layout";
 import { menuList } from "@/utils/config/menus";
@@ -11,12 +11,12 @@ import { menus } from "@/types/menus";
 import { useGetRoute, useAllMenus } from "@/composables/useGetRoute";
 import useTheme from "@/store/theme";
 
-let themeObj= useTheme();
+let themeObj = useTheme();
 const tabsData = useTabsData();
 const router = useRouter();
 let collapsed = useLayout();
 //设置菜单栏展开状态
-collapsed.collapsed=!themeObj.isUnfoldMenusSider
+collapsed.collapsed = !themeObj.isUnfoldMenusSider;
 //保持响应性获取数据
 let { selectKeys } = storeToRefs(collapsed);
 const list = ref([...menuList]);
@@ -63,18 +63,16 @@ if (currentMenu.length) {
 }
 
 //设置子菜单全部展开
-if(themeObj.isMenuOpen){
-  openKeys.value=[]
-  allMenus.forEach(item=>{
-    openKeys.value.push(...item.openKeys)
-  })
+if (themeObj.isMenuOpen) {
+  openKeys.value = [];
+  allMenus.forEach((item) => {
+    openKeys.value.push(...item.openKeys);
+  });
 }
-
-
 </script>
-
 <template>
-  <a-layout-sider v-show="!themeObj.isTopMenu"
+  <a-layout-sider
+    v-show="!themeObj.isTopMenu"
     breakpoint="lg"
     :collapsed="collapsed.collapsed"
     :trigger="null"
@@ -87,31 +85,7 @@ if(themeObj.isMenuOpen){
       ></i>
       <span :class="{ sj: collapsed.collapsed }">诺依管理系统</span>
     </div>
-    <!--<a-menu
-      theme="dark"
-      mode="inline"
-      v-model:selectedKeys="selectKeys"
-      :openKeys="openKeys"
-    >
-      <template v-for="item in list" :key="item.key">
-        <template v-if="!item.children">
-          <a-menu-item :key="item.key" @click="menuClick(item)">
-            <template #icon>
-              <Icon :iconfont="item.iconfont" :icon="item.icon"></Icon>
-            </template>
-            {{ item.title }}
-          </a-menu-item>
-        </template>
-        <template v-else>
-          <sub-menu
-            @menuItemClick="menuClick"
-            :menu-info="item"
-            :key="item.key"
-          />
-        </template>
-      </template>
-    </a-menu>-->
-    <Menu/>
+    <Menu />
   </a-layout-sider>
 </template>
 

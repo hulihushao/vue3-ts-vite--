@@ -8,7 +8,11 @@ let themeObj = useTheme();
 </script>
 
 <template>
-  <a-layout class="layout" :style="{backgroundImage:`url(${themeObj.bgImg}) !important`}" style="height: 100% !important">
+  <a-layout
+    class="layout"
+    :style="{ backgroundImage: `url(${themeObj.bgImg}) !important` }"
+    style="height: 100% !important"
+  >
     <Aside />
     <a-layout>
       <header>
