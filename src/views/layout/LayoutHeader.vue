@@ -34,7 +34,7 @@ let collapsed = useLayout();
       <Headers.User />
     </span>
   </a-layout-header>
-  <tabs-view />
+  <tabs-view  v-show="themeObj.isShowTabs"/>
 </template>
 
 <style scoped lang="less">

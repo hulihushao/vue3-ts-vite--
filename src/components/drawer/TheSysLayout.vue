@@ -16,6 +16,15 @@ let themeObj = useTheme();
       /></span>
     </div>
     <div class="buju-item">
+      <span>标签页</span
+      ><span
+        ><a-switch
+          v-model:checked="themeObj.isShowTabs"
+          checked-children="开"
+          un-checked-children="关"
+      /></span>
+    </div>
+    <div class="buju-item">
       <span>系统时间</span
       ><span
         ><a-switch
