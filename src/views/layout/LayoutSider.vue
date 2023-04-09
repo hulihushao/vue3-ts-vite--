@@ -77,6 +77,7 @@ if (themeObj.isMenuOpen) {
     :collapsed="collapsed.collapsed"
     :trigger="null"
     collapsible
+    theme="dark"
   >
     <div class="logo">
       <i
@@ -85,7 +86,7 @@ if (themeObj.isMenuOpen) {
       ></i>
       <span :class="{ sj: collapsed.collapsed }">诺依管理系统</span>
     </div>
-    <Menu />
+    <Menu  />
   </a-layout-sider>
 </template>
 
