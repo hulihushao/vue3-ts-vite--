@@ -20,7 +20,7 @@ import { systemComposition } from "@/utils/config/systemComposition";
       <br/>
       构建
     </p>
-    <p class="version">version:0.1.0</p>
+    <p class="version">version:1.0.0</p>
   </div>
 </template>
 
