@@ -4,10 +4,10 @@ import { useRouter } from "vue-router";
 import SubMenu from "@/components/menu/MenuItem.vue";
 import useLayout from "../../store/layout";
 import { menuList } from "@/utils/config/menus";
-import useTabsData from "@/store/tabs";
 import { storeToRefs } from "pinia";
 import { menus } from "@/types/menus";
 import { useGetRoute, useAllMenus } from "@/composables/useGetRoute";
+import {useMenuClick} from "@/composables/useMenuClick"
 
 let menuOption = defineProps({
   theme: {
@@ -27,7 +27,6 @@ let menuOption = defineProps({
 });
 console.log(menuOption)
 const list = ref([...menuList]);
-let tabsData = useTabsData();
 let allMenus = useAllMenus();
 const router = useRouter();
 let collapsed = useLayout();
@@ -36,27 +35,7 @@ let collapsed = useLayout();
 const { selectKeys } = storeToRefs(collapsed);
 //菜单点击
 const menuClick = (item: menus) => {
-  //console.log(openKeys.value)
-  if (!tabsData.tabs.some((itm: menus) => itm.key == item.key)) {
-    let cur = allMenus.filter((itm) => itm.key == item.key);
-    let opens = cur[0].openKeys;
-    let data: menus = {
-      title: item.title,
-      key: item.key,
-      icon: item.icon,
-      closable: true,
-      path: item.path,
-      openKeys: opens,
-      preList: cur[0].preList,
-      iconfont: item.iconfont,
-    };
-    tabsData.tabs.push(data);
-  }
-  //设置tab的选中状态
-  tabsData.setActiveKey(item.key);
-  router.push({
-    path: item.path,
-  });
+  useMenuClick(item,router)
 };
 
 //根据url设置菜单选中
