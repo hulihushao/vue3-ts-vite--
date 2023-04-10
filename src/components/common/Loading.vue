@@ -1,10 +1,5 @@
 <template>
-  <a-spin
-
-    size="large"
-wrapperClassName="spin"
-    :spinning="spinning"
-  >
+  <a-spin size="large" wrapperClassName="spin" :spinning="spinning">
     <template #tip>
       <slot name="tip"></slot>
     </template>
@@ -16,7 +11,7 @@ wrapperClassName="spin"
 </template>
 
 <script lang="ts" setup>
-import { toRefs, h } from "vue";
+import { toRefs } from "vue";
 const props = defineProps<{
   spinning: boolean;
   tip?: string;
@@ -26,6 +21,7 @@ const { spinning } = toRefs(props);
 </script>
 
 <style lang="less" scoped>
+/**
 .postion {
   width: 100%;
   height: 100%;
@@ -38,12 +34,13 @@ const { spinning } = toRefs(props);
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.spin{
-    width:100%;
-    height:100%;
+ */
+.spin {
+  width: 100%;
+  height: 100%;
 }
-:deep(.ant-spin-container){
-  height:100%;
-  width:100%;
+:deep(.ant-spin-container) {
+  height: 100%;
+  width: 100%;
 }
 </style>
