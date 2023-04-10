@@ -70,13 +70,24 @@ export let menuList = [
           },
         ],
       },
+      {
+        key: "3.2",
+        title: "vue3",
+        iconfont: "icon-vuejs-alt",
+        children:[{
+            key: "3.2.1",
+            title: "聊天室",
+            icon: "CommentOutlined",
+            component: () => import("@/views/system/ChatRoom.vue"),
+            path: "chatroom",
+            name: "chatroom",
+          },]
+        }
     ],
   },
-
   {
     key: "4",
     title: "学习资料",
-
     path: "study",
     name: "study",
     icon: "ReadOutlined",
