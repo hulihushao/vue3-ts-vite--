@@ -5,7 +5,8 @@ import type { FormInstance } from "ant-design-vue";
 import { message } from "ant-design-vue";
 const router = useRouter();
 let loading = ref<boolean>(false);
-
+let doc_title=ref("")
+doc_title.value=import.meta.env.VITE_DOC_TITLE
 interface FormState {
   username: string;
   password: string;
@@ -65,7 +66,7 @@ let login = async () => {
 <template>
   <div id="login">
     <main class="main-body">
-      <h2 class="title">中后台管理系统</h2>
+      <h2 class="title">{{doc_title}}</h2>
       <div
         style="
           margin: 0px;
