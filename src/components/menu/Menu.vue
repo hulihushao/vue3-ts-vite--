@@ -26,7 +26,7 @@ let menuOption = defineProps({
     default:()=>{}
   },
 });
-console.log(menuOption)
+//console.log(menuOption)
 const list = ref([...menuList]);
 let allMenus = useAllMenus();
 const router = useRouter();
@@ -42,7 +42,7 @@ const menuClick = (item: menus) => {
 //根据url设置菜单选中
 let path: string = useGetRoute();
 let currentMenu = allMenus.filter(
-  (item) => path.split("/").indexOf(item.path) > -1
+  (item:menus) => path.split("/").indexOf(item.path) > -1
 );
 let openKeys = ref([""]);
 

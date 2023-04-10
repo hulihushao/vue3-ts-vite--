@@ -1,22 +1,28 @@
 <template>
   <a-spin
-    v-if="spinning"
+
     size="large"
-    class="postion"
+wrapperClassName="spin"
     :spinning="spinning"
   >
+    <template #tip>
+      <slot name="tip"></slot>
+    </template>
+    <template #indicator>
+      <slot name="indicator"></slot>
+    </template>
     <slot></slot>
   </a-spin>
 </template>
 
 <script lang="ts" setup>
-import{ref,toRefs,watch} from "vue"
-const data = ref<boolean>(true);
+import { toRefs, h } from "vue";
 const props = defineProps<{
   spinning: boolean;
+  tip?: string;
+  indicator?: HTMLHtmlElement;
 }>();
 const { spinning } = toRefs(props);
-
 </script>
 
 <style lang="less" scoped>
@@ -31,5 +37,13 @@ const { spinning } = toRefs(props);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+.spin{
+    width:100%;
+    height:100%;
+}
+:deep(.ant-spin-container){
+  height:100%;
+  width:100%;
 }
 </style>

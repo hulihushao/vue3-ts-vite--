@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Loading from "@/components/loading/index.vue";
+
 </script>
 
 <template>

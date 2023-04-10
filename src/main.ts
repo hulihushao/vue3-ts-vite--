@@ -9,12 +9,15 @@ import router from "./router";
 import store from "@/store"
 import "animate.css";
 import Icon  from "@/components/common/Icon.vue";
+import Loading from "@/components/common/Loading.vue";
 //导入组件库
 import * as antIcons from "@ant-design/icons-vue";
 
 const app = createApp(App);
 //注册全局图标组件
 app.component("Icon",Icon)
+//注册全局加载组件
+app.component("Loading",Loading)
 //动态使用antd图标，方式一
 //使用：<component :is="$antIcons[pane.icon]" />
 // 注册组件

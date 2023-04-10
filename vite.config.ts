@@ -9,21 +9,23 @@ const getViteEnv = (mode, target) => {
 };
 
 // https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [
-    vue(),
-    createHtmlPlugin({
-      inject: {
-        data: {
-          //将环境变量 VITE_APP_TITLE 赋值给 title 方便 html页面使用 title 获取系统标题
-          title: getViteEnv("development", "VITE_DOC_TITLE"),
+export default defineConfig(({ mode }) => {
+  return {
+    plugins: [
+      vue(),
+      createHtmlPlugin({
+        inject: {
+          data: {
+            //将环境变量 VITE_APP_TITLE 赋值给 title 方便 html页面使用 title 获取系统标题
+            title: getViteEnv(mode, "VITE_DOC_TITLE"),
+          },
         },
+      }),
+    ],
+    resolve: {
+      alias: {
+        "@": path.resolve(__dirname, "src"),
       },
-    }),
-  ],
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "src"),
     },
-  },
+  };
 });
