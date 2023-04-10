@@ -8,6 +8,7 @@ import { storeToRefs } from "pinia";
 import { menus } from "@/types/menus";
 import { useGetRoute, useAllMenus } from "@/composables/useGetRoute";
 import {useMenuClick} from "@/composables/useMenuClick"
+import useTheme from "@/store/theme";
 
 let menuOption = defineProps({
   theme: {
@@ -30,8 +31,8 @@ const list = ref([...menuList]);
 let allMenus = useAllMenus();
 const router = useRouter();
 let collapsed = useLayout();
+let themeObj = useTheme();
 //保持响应性获取数据
-
 const { selectKeys } = storeToRefs(collapsed);
 //菜单点击
 const menuClick = (item: menus) => {
@@ -50,6 +51,14 @@ if (currentMenu.length) {
   openKeys.value = currentMenu[0].openKeys;
 } else {
   selectKeys.value = [];
+}
+
+//设置子菜单全部展开
+if (themeObj.isMenuOpen) {
+  openKeys.value = [];
+  allMenus.forEach((item:menus) => {
+    openKeys.value.push(...item.openKeys);
+  });
 }
 </script>
 

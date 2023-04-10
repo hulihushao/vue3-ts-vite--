@@ -1,8 +1,12 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import{ref}from "vue"
+let doc_title=ref("")
+doc_title.value=import.meta.env.VITE_DOC_TITLE
+</script>
 
 <template>
   <a-layout-footer style="text-align: center">
-    诺依中后台管理系统 ©2023 Created by TJP
+    {{doc_title}} ©2023 Created by TJP
   </a-layout-footer>
 </template>
 
