@@ -28,6 +28,7 @@ let loaded=()=>{
       width="100%"
       height="100%"
       @load="loaded"
+      allow="geolocation"
     ></iframe>
 </Loading>
 </template>
