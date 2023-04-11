@@ -23,7 +23,7 @@ collapsed.collapsed = !themeObj.isUnfoldMenusSider;
         :class="{ iconsj: collapsed.collapsed }"
       ></i>
       <span
-        style="color:themeObj.themeChecked?'#fff':'#000'"
+        :style="{color:themeObj.themeChecked?'#fff':'#000'}"
         :class="{ sj: collapsed.collapsed }"
         >灵明管理系统</span
       >
