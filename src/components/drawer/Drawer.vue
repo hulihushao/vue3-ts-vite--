@@ -5,12 +5,17 @@ import "vue3-colorpicker/style.css";
 import type { SelectProps } from "ant-design-vue";
 import { Sketch } from "@ans1998/vue3-color";
 import Upload from "@/components/upLoad/Upload.vue";
-import TheSysLayout from "@/components/drawer/TheSysLayout.vue"
+import TheSysLayout from "@/components/drawer/TheSysLayout.vue";
 import useTheme from "@/store/theme";
 
 let themeObj = useTheme();
 let colors = ref(themeObj.color);
 let bgColor = ref(themeObj.color);
+
+//主题风格设置
+let setThemeStyle=(value:boolean)=>{
+  themeObj.themeChecked=value
+}
 
 let showSketch = ref(false);
 //实时更新颜色
@@ -83,8 +88,8 @@ const selectObj = ref<SelectProps["options"]>([
 let showWhich = ref(true);
 
 let selectChange = (value: string) => {
-  imgBase64.value=""
-  urlValue.value=""
+  imgBase64.value = "";
+  urlValue.value = "";
   if (value == "0") {
     showWhich.value = true;
   } else {
@@ -102,9 +107,8 @@ let saveSetting = () => {
   if (showWhich.value) {
     if (urlValue.value) themeObj.bgImg = urlValue.value;
   } else {
-    if(imgBase64.value)themeObj.bgImg = imgBase64.value;
+    if (imgBase64.value) themeObj.bgImg = imgBase64.value;
   }
-  
 };
 //重置设置
 let resetSetting = () => {
@@ -146,6 +150,20 @@ onBeforeUnmount(() => {
     </template>
     <div class="theme-con">
       <h3>主题风格设置</h3>
+      <div :class="$style.theme_style">
+        <div :class="$style.theme_style_item" @click="setThemeStyle(true)">
+          <Icon v-if="themeChecked" :class="$style.icon_" icon="CheckOutlined" />
+          <img
+            src="http://static.yudao.iocoder.cn/static/img/dark.16937467.svg"
+          />
+        </div>
+        <div :class="$style.theme_style_item" @click="setThemeStyle(false)">
+          <Icon v-if="!themeChecked" :class="$style.icon_" icon="CheckOutlined" />
+          <img
+            src="http://static.yudao.iocoder.cn/static/img/light.c2aad012.svg"
+          />
+        </div>
+      </div>
       <div :class="$style.color_select">
         <span>主题颜色</span>
         <div style="position: relative">
@@ -187,7 +205,9 @@ onBeforeUnmount(() => {
             :options="selectObj"
             @change="selectChange"
           ></a-select>
-          <span style="color:#ccc;font-size:12px;margin-left:10px">注:URL和上传只会生效一个</span>
+          <span style="color: #ccc; font-size: 12px; margin-left: 10px"
+            >注:URL和上传只会生效一个</span
+          >
         </div>
 
         <div :class="$style.img_select_con">
@@ -204,7 +224,7 @@ onBeforeUnmount(() => {
     <a-divider />
     <div :class="$style.buju_con">
       <h3>系统布局设置</h3>
-     <TheSysLayout/>
+      <TheSysLayout />
     </div>
     <a-divider />
     <div :class="$style.btn_con">
@@ -221,6 +241,22 @@ onBeforeUnmount(() => {
 </template>
 
 <style lang="less" module scoped>
+.theme_style {
+  display: flex;
+  align-items: center;
+  padding:10px 10px 10px 0;
+  .theme_style_item {
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:0 10px;
+    .icon_ {
+      position:absolute;
+      color: var(--ant-primary-color);
+    }
+  }
+}
 .color_select {
   width: 100%;
   padding: 5px 10px;

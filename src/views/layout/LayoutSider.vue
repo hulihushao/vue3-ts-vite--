@@ -15,7 +15,7 @@ collapsed.collapsed = !themeObj.isUnfoldMenusSider;
     :collapsed="collapsed.collapsed"
     :trigger="null"
     collapsible
-    theme="dark"
+    :theme="themeObj.themeChecked?'dark':'light'"
   >
     <div class="logo">
       <i
@@ -24,7 +24,7 @@ collapsed.collapsed = !themeObj.isUnfoldMenusSider;
       ></i>
       <span :class="{ sj: collapsed.collapsed }">灵明管理系统</span>
     </div>
-    <Menu  />
+    <Menu :theme="themeObj.themeChecked?'dark':'light'" />
   </a-layout-sider>
 </template>
 
