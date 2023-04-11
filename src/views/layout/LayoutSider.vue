@@ -15,16 +15,20 @@ collapsed.collapsed = !themeObj.isUnfoldMenusSider;
     :collapsed="collapsed.collapsed"
     :trigger="null"
     collapsible
-    :theme="themeObj.themeChecked?'dark':'light'"
+    :theme="themeObj.themeChecked ? 'dark' : 'light'"
   >
     <div class="logo">
       <i
         class="iconfont icon-dingzhikaifa-zhihuiguanlixitong"
         :class="{ iconsj: collapsed.collapsed }"
       ></i>
-      <span :class="{ sj: collapsed.collapsed }">灵明管理系统</span>
+      <span
+        style="color:themeObj.themeChecked?'#fff':'#000'"
+        :class="{ sj: collapsed.collapsed }"
+        >灵明管理系统</span
+      >
     </div>
-    <Menu :theme="themeObj.themeChecked?'dark':'light'" />
+    <Menu :theme="themeObj.themeChecked ? 'dark' : 'light'" />
   </a-layout-sider>
 </template>
 
@@ -50,7 +54,6 @@ collapsed.collapsed = !themeObj.isUnfoldMenusSider;
     width: 100%;
     height: 100%;
     font-size: 16px;
-    color: #fff;
     text-align: center;
     line-height: 32px;
     transition: all 0.3s;
