@@ -152,13 +152,13 @@ onBeforeUnmount(() => {
       <h3>主题风格设置</h3>
       <div :class="$style.theme_style">
         <div :class="$style.theme_style_item" @click="setThemeStyle(true)">
-          <Icon v-if="themeChecked" :class="$style.icon_" icon="CheckOutlined" />
+          <Icon v-if="themeObj.themeChecked" :class="$style.icon_" icon="CheckOutlined" />
           <img
             src="http://static.yudao.iocoder.cn/static/img/dark.16937467.svg"
           />
         </div>
         <div :class="$style.theme_style_item" @click="setThemeStyle(false)">
-          <Icon v-if="!themeChecked" :class="$style.icon_" icon="CheckOutlined" />
+          <Icon v-if="!themeObj.themeChecked" :class="$style.icon_" icon="CheckOutlined" />
           <img
             src="http://static.yudao.iocoder.cn/static/img/light.c2aad012.svg"
           />
