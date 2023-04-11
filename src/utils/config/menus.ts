@@ -7,6 +7,9 @@ export let menuList = [
     path: "home",
     name: "home",
     icon: "HomeOutlined",
+    meta:{
+      isAuth:true
+    }
   },
   {
     key: "2",

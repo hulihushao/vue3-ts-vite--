@@ -44,17 +44,18 @@ const onFinishFailed = (errorInfo: any) => {
 const disabled = computed(() => {
   return !(formState.username && formState.password);
 });
+//登录
 let login = async () => {
   try {
     const values = await formRef.value.validateFields();
     loading.value = true;
-
+    localStorage.setItem("userInfo",JSON.stringify(values))
     message.loading({
       content: "登录成功，正在初始化...",
       key: "chushihua",
       duration: 0,
     });
-    console.log("Success:", values);
+    console.log("Success111:", values);
 
     router.push({ path: "/index" });
   } catch (errorInfo) {
@@ -143,13 +144,14 @@ let login = async () => {
     width: 400px;
     background: #fff;
     border-radius: 10px;
-    box-shadow: 2px 2px 10px #06c;
+    box-shadow: 2px 2px 10px var(--ant-primary-color);
     backdrop-filter: blur(15px);
     background: rgba(255, 255, 255, 0.5);
     .title {
       text-align: center;
       line-height: 50px;
       margin: 0;
+      font-family: NSimSun;
     }
     .form-con {
       padding: 20px;

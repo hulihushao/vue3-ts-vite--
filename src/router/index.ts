@@ -70,7 +70,17 @@ router.beforeEach((to, from, next) => {
   } else {
     NProgress.start();
   }
-  next();
+  
+  if (to.meta.isAuth) {
+    let user = localStorage.getItem("userInfo");
+    if (!user) {
+      next("/login");
+    } else {
+      next();
+    }
+  } else {
+    next();
+  }
 });
 router.afterEach((to, from) => {
   //设置message提示

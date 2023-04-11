@@ -1,15 +1,16 @@
+import {menus} from "@/types/menus"
 const allModules=import.meta.glob('@/views/*/*.vue')
 const allPages=import.meta.glob('@/views/*.vue')
-console.log(allModules)
-export function getRouters(menus){
-    let router=[]
+
+export function getRouters(menus:menus[]){
+    let router:object[]=[]
     getList(menus,router)
     return router
 }
-function getList(menus,router){
-    menus.forEach(item=>{
+function getList(menus:menus[],router:object[]){
+    menus.forEach((item:menus)=>{
         if(item.children&&item.children.length){
-            getList(item.children,router)
+            getList(item.children as menus[],router)
         }else{
             let componentUrl=item.component.replace("@","/src")
             let component=allModules[componentUrl]
@@ -20,7 +21,7 @@ function getList(menus,router){
                 path:item.path,
                 name:item.name,
                 meta:item.meta||{},
-                component:component
+                component:component,
             })
         }
     })

@@ -1,5 +1,6 @@
 export interface menus{
   title:string,
+  name?:string,
   key:string|number,
   path:string,
   icon?:string,
@@ -7,5 +8,7 @@ export interface menus{
   closable?:boolean,
   component?,
   openKeys?:string[],
-  preList?:string[]
+  preList?:string[],
+  meta?:object,
+  children?:object[]
 }
