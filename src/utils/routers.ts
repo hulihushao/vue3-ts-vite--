@@ -1,4 +1,6 @@
-
+const allModules=import.meta.glob('@/views/*/*.vue')
+const allPages=import.meta.glob('@/views/*.vue')
+console.log(allModules)
 export function getRouters(menus){
     let router=[]
     getList(menus,router)
@@ -9,7 +11,11 @@ function getList(menus,router){
         if(item.children&&item.children.length){
             getList(item.children,router)
         }else{
-            let component=item.component
+            let componentUrl=item.component.replace("@","/src")
+            let component=allModules[componentUrl]
+            if(!component){
+                component=allPages[componentUrl]
+            }
             router.push({
                 path:item.path,
                 name:item.name,
