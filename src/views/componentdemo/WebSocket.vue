@@ -14,7 +14,7 @@ let resetLink = () => {
   } else {
     link.value = "正在连接...";
   }
-  socket = new WebSocket("ws://192.168.241.2:8080");
+  socket = new WebSocket("ws://121.40.165.18:8800");
   socket.addEventListener("open", function () {
     link.value = "连接服务器成功";
   });
@@ -36,7 +36,7 @@ let send = () => {
 <template>
   <div class="webSocket">
     <h1>WebSocket测试demo</h1>
-    <a-input class="Input" v-model="inputValue" />
+    <a-input class="Input" v-model:value="inputValue" />
     <div>
       <a-button class="btn" type="primary" @click="send">发送</a-button>
       <a-button class="btn" type="primary" @click="resetLink"
