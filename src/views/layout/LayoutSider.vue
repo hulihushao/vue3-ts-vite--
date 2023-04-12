@@ -10,7 +10,7 @@ collapsed.collapsed = !themeObj.isUnfoldMenusSider;
 </script>
 <template>
   <a-layout-sider
-    v-show="!themeObj.isTopMenu"
+    v-if="!themeObj.isTopMenu"
     breakpoint="lg"
     :collapsed="collapsed.collapsed"
     :trigger="null"
