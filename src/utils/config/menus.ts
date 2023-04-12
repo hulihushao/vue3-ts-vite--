@@ -36,7 +36,7 @@ export let menuList = [
             title: "WebSocket",
             //icon: "HomeOutlined",
             iconfont: "icon-Websocketjiaohujiedian",
-            component: "@/views/404.vue",
+            component: "@/views/componentdemo/WebSocket.vue",
             path: "webSocket",
             name: "webSocket",
           },
