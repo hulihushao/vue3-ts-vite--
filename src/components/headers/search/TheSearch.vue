@@ -20,6 +20,13 @@ let menuClick = (menu:menus) => {
   searchValue.value=""
   searchResult.value=[]
 };
+
+defineExpose({
+  searchClear:()=>{
+    searchValue.value=""
+    onSearch()
+  }
+})
 </script>
 
 <template>
