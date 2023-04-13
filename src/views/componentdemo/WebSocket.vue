@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
-
+import CodeMirror from "@/components/common/CodeMirror.vue";
 let textarea = ref<string>("");
 let inputValue = ref("Q");
 let link = ref("");
@@ -45,6 +45,7 @@ let send = () => {
     </div>
     <div>{{ link }}</div>
     <span v-html="textarea"></span>
+    <code-mirror />
   </div>
 </template>
 
@@ -53,7 +54,7 @@ let send = () => {
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items:center;
+  align-items: center;
   h1 {
     text-align: center;
   }
