@@ -32,7 +32,7 @@ const handleReady = (payload) => {
 <template>
   <codemirror
     v-model="code"
-    placeholder="Code gose here..."
+    placeholder="loading..."
     :style="{ height: '400px', width: '100%' }"
     :autofocus="true"
     :indent-with-tab="true"
