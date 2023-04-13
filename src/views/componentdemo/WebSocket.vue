@@ -11,7 +11,7 @@ import WebSocket from "@/views/componentdemo/webSocket/index.vue";
         <WebSocket />
       </template>
       <template #code>
-        <code-mirror />
+        <code-mirror src="@/views/componentdemo/webSocket/index.vue"/>
       </template>
     </demo-tab>
   </div>

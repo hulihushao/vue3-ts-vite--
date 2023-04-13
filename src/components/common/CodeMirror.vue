@@ -4,15 +4,22 @@ import { vue } from "@codemirror/lang-vue";
 import { oneDark } from "@codemirror/theme-one-dark";
 import { basicSetup } from "codemirror";
 import { ref, shallowRef } from "vue";
-const code = ref(`console.log('Hello, world!')
-<template>
-  <div class="sass">I'm a {{mustache-like}} template</div>
-  </template>
-  <style lang="sass">
-        .sass
-          font-size: 18px
-  </style>
-`);
+import axios from "axios";
+let props = defineProps<{
+  src: string;
+}>();
+
+const code = ref("");
+//获取vue文件内容
+//先用Url+"?raw"将其内容转为字符串
+//再去掉export default后使用JSON.parse转化
+let loadData = async () => {
+  let src = props.src.replace("@", "/src");
+  let res = await axios.get(src+"?raw");
+  code.value = res.data.replace("export default ","");
+  code.value=JSON.parse(code.value)
+};
+loadData();
 const extensions = [vue(), basicSetup, oneDark];
 let log = console.log;
 const view = shallowRef();
