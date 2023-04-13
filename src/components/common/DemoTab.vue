@@ -16,8 +16,11 @@ let activeKey = ref("1");
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="less">
 .card-container {
   width: 100%;
+  :deep(.ant-tabs-card){
+    height:100% !important;
+  }
 }
 </style>
