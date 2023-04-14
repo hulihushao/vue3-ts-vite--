@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import CodeMirror from "@/components/common/CodeMirror.vue";
+import CodeMirror from "@/components/sandbox/CodeMirror.vue";
 import DemoTab from "@/components/common/DemoTab.vue";
 import WebSocket from "@/views/componentdemo/webSocket/index.vue";
 </script>
