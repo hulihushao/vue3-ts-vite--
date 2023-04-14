@@ -2,6 +2,7 @@
 import CodeMirror from "@/components/sandbox/CodeMirror.vue";
 import DemoTab from "@/components/common/DemoTab.vue";
 import WebSocket from "@/views/componentdemo/webSocket/index.vue";
+import CodeSandbox from "@/components/sandbox/CodeSandbox.vue";
 </script>
 <template>
   <div class="demo-con">
@@ -11,6 +12,7 @@ import WebSocket from "@/views/componentdemo/webSocket/index.vue";
         <WebSocket />
       </template>
       <template #code>
+        <code-sandbox/>
         <code-mirror src="@/views/componentdemo/webSocket/index.vue"/>
       </template>
     </demo-tab>
