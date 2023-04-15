@@ -9,7 +9,7 @@ const instance: AxiosInstance = axios.create({
   baseURL: import.meta.env.VITE_BASE_URL as string,
   timeout: 10000,
 });
-console.log(import.meta.env)
+//console.log(import.meta.env)
 // http request 拦截器
 instance.interceptors.request.use(
   (config:AxiosRequestConfig) => {
@@ -51,7 +51,7 @@ instance.interceptors.response.use(
 );
 
 // 封装 get post 请求
-export function request(url: string, params:object = {}, type = "POST") {
+export default function request(url: string, params:object = {}, type = "POST") {
   return new Promise((resolve, reject) => {
     let promise:any
     if (type.toUpperCase() === "GET") {

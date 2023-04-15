@@ -4,12 +4,10 @@ import { vue } from "@codemirror/lang-vue";
 import { oneDark } from "@codemirror/theme-one-dark";
 import { basicSetup } from "codemirror";
 import { ref, shallowRef } from "vue";
-import axios from "axios";
+import {Component} from "@/api/api";
 import CodePreview from "@/components/sandbox/CodePreview.vue";
 import {useModules} from "@/composables/useModules"
 
-import {request}from"@/utils/axios/axios"
-request.get()
 let props = defineProps<{
   src: string;
 }>();
@@ -24,7 +22,7 @@ const component=ref(null)
 let loadData = async () => {
   let src = props.src.replace("@", "/src");
   component.value=allModules[src]
-  let res = await axios.get(src + "?raw");
+  let res = await Component.getComponent(src + "?raw");
   code.value = res.data.replace("export default ", "");
   code.value = JSON.parse(code.value);
 };
