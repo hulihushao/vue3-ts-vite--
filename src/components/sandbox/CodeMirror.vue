@@ -7,6 +7,9 @@ import { ref, shallowRef } from "vue";
 import axios from "axios";
 import CodePreview from "@/components/sandbox/CodePreview.vue";
 import {useModules} from "@/composables/useModules"
+
+import {request}from"@/utils/axios/axios"
+request.get()
 let props = defineProps<{
   src: string;
 }>();
@@ -48,7 +51,7 @@ const handleReady = (payload) => {
     @ready="handleReady"
     @change="log('change', $event)"
     @focus="log('focus', $event)"
-    @blur="log('blur', code)"
+    @blur="log('blur', $event)"
   />
 </template>
 

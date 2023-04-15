@@ -6,7 +6,7 @@ import Layout from "./Layout.vue";
 let layout = Layout;
 let props = defineProps({
   code: String,
-  component:Object,
+  component:Function,
 });
 </script>
 
