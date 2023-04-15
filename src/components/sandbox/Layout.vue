@@ -22,5 +22,6 @@
 
 .my-vuelive-preview {
   margin: 8px;
+  width:100%;
 }
 </style>

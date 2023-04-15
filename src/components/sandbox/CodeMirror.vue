@@ -6,16 +6,21 @@ import { basicSetup } from "codemirror";
 import { ref, shallowRef } from "vue";
 import axios from "axios";
 import CodePreview from "@/components/sandbox/CodePreview.vue";
+import {useModules} from "@/composables/useModules"
 let props = defineProps<{
   src: string;
 }>();
+//所有demo组件
+let allModules=useModules()
 
 const code = ref("");
+const component=ref(null)
 //获取vue文件内容
 //先用Url+"?raw"将其内容转为字符串
 //再去掉export default后使用JSON.parse转化
 let loadData = async () => {
   let src = props.src.replace("@", "/src");
+  component.value=allModules[src]
   let res = await axios.get(src + "?raw");
   code.value = res.data.replace("export default ", "");
   code.value = JSON.parse(code.value);
@@ -31,7 +36,7 @@ const handleReady = (payload) => {
 </script>
 
 <template>
-  <code-preview :code="code" />
+  <code-preview :code="code" :component="component"/>
   <codemirror
     v-model="code"
     placeholder="loading..."
