@@ -6,12 +6,15 @@ import Layout from "./Layout.vue";
 let layout = Layout;
 let props = defineProps({
   code: String,
-  component:Function,
+  component:{
+    required:false,
+    type:Function
+  },
 });
 </script>
 
 <template>
-  <VueLive :layout="layout" :code="props.code" :components="{ component:props.component }" />
+  <VueLive :layout="layout" :code="props.code" />
 </template>
 
 <style scoped></style>

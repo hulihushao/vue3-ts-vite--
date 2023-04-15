@@ -32,7 +32,7 @@ let log = console.log;
 const view = shallowRef();
 const handleReady = (payload) => {
   view.value = payload.view;
-  log(view.value);
+
 };
 </script>
 
