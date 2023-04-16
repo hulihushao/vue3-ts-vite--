@@ -13,7 +13,14 @@ let resetLink = () => {
   } else {
     link.value = "正在连接...";
   }
-  socket = new WebSocket("ws://121.40.165.18:8800");
+
+  if (typeof WebSocket === "undefined") {
+    link.value="您的浏览器不支持WebSocket";
+    return
+  }
+
+  socket = new WebSocket("wss://localhost:5173/ws");
+
   socket.addEventListener("open", function () {
     link.value = "连接服务器成功";
   });
@@ -49,11 +56,11 @@ let send = () => {
 <style scoped lang="less">
 .webSocket {
   width: 100%;
-  height:100% !important;
+  height: 100% !important;
   display: flex;
   flex-direction: column;
   align-items: center;
-  
+
   .btn {
     margin: 10px;
   }
