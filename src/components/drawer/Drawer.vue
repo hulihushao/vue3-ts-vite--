@@ -19,7 +19,7 @@ let setThemeStyle = (value: boolean) => {
 
 let showSketch = ref(false);
 //实时更新颜色
-let updateColor = (e) => {
+let updateColor = (e: object) => {
   console.log(e);
   bgColor.value = `rgba(${e.rgba.r},${e.rgba.g},${e.rgba.b},${e.rgba.a})`;
   themeObj.color = bgColor.value;
@@ -118,18 +118,17 @@ let resetSetting = () => {
   //设置主题色
   useSetTheme(bgColor.value);
 };
+
 onMounted(() => {
   //监听点击位置以关闭颜色选择器
   document
-    .querySelector(".custom-class")
+    .querySelector(".custom_class")
     .removeEventListener("click", onClickCbk);
-  document
-    .querySelector(".custom-class")
-    .addEventListener("click", onClickCbk, false);
+  document.querySelector(".custom_class").addEventListener("click", onClickCbk);
 });
 onBeforeUnmount(() => {
   document
-    .querySelector(".custom-class")
+    .querySelector(".custom_class")
     .removeEventListener("click", onClickCbk);
 });
 </script>
@@ -139,8 +138,9 @@ onBeforeUnmount(() => {
     destroyOnClose
     forceRender
     v-model:visible="visible"
-    class="custom-class"
-    style=""
+    :class="$style.custom_class"
+    class="custom_class"
+    :style="{ color: themeObj.setColor, transition: 'var(--transition)' }"
     :bodyStyle="{ padding: '30px' }"
     placement="right"
     @close="closeDrawer"
@@ -258,6 +258,13 @@ onBeforeUnmount(() => {
 </template>
 
 <style lang="less" module scoped>
+.custom_class {
+  h2,
+  h3 {
+    transition: var(--transition);
+    color: v-bind("themeObj.setColor") !important;
+  }
+}
 .theme_style {
   display: flex;
   align-items: center;
@@ -275,7 +282,7 @@ onBeforeUnmount(() => {
   }
 }
 .buju_item {
-  margin:5px 10px;
+  margin: 5px 10px;
   width: 80%;
   padding: 5px 0;
   display: flex;

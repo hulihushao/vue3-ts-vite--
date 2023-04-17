@@ -51,6 +51,7 @@ let themeObj = useTheme();
 #layout-light .ant-layout :deep(.ant-layout-content),
 #layout-light .custom-dark-layout :deep(.custom-dark-layout-content),
 :deep(.ant-layout-footer) ,:deep(.custom-dark-layout-footer) {
+  transition:var(--transition);
   background: var(--bgColor) !important;
 }
 </style>

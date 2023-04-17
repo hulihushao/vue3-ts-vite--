@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { systemComposition } from "@/utils/config/systemComposition";
+import useTheme from "@/store/theme"
+
+let themeObj=useTheme()
 </script>
 
 <template>
@@ -35,6 +38,8 @@ import { systemComposition } from "@/utils/config/systemComposition";
   h1,
   h2 {
     text-align: center;
+    transition:var(--transition);
+    color:v-bind('themeObj.setColor');
   }
   p .iconfont {
     color: #409eff;
