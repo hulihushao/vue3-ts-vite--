@@ -6,7 +6,7 @@ import Antd from "ant-design-vue";
 //全局化主题配置样式
 
 import "ant-design-vue/dist/antd.variable.min.css";
-import "ant-design-vue/dist/antd.dark.css"; // 引入官方提供的暗色 less 样式入口文件
+import "./dark.css"
 
 import router from "./router";
 import store from "@/store";

@@ -9,7 +9,7 @@ useSetTheme(theme.color);
 </script>
 
 <template>
-  <a-config-provider  prefix-cls="ant">
+  <a-config-provider  :prefix-cls="theme.isDark?'custom-dark':'ant'">
     <Loading :spinning="loading.loading">
       <router-view class="app" />
     </Loading>
