@@ -4,6 +4,7 @@ import App from "./App.vue";
 import Antd from "ant-design-vue";
 //import "ant-design-vue/dist/antd.css";
 //全局化主题配置样式
+
 import "ant-design-vue/dist/antd.variable.min.css";
 import "ant-design-vue/dist/antd.dark.css"; // 引入官方提供的暗色 less 样式入口文件
 
@@ -29,5 +30,5 @@ Object.keys(antIcons).forEach((key) => {
 // 添加到全局
 app.config.globalProperties.$antIcons = antIcons;
 
-app.use(store);
+app.use(store)
 app.use(router).use(Antd).mount("#app");

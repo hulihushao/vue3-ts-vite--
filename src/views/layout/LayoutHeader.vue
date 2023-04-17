@@ -11,7 +11,7 @@ let themeObj = useTheme();
 let collapsed = useLayout();
 </script>
 <template>
-  <a-layout-header class="header-con">
+  <a-layout-header class="header-con" :style="{background:themeObj.isDark?'':'#fff'}">
     <span class="header-menu">
       <menu-unfold-outlined
         v-if="collapsed.collapsed && !themeObj.isTopMenu"

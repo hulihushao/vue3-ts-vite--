@@ -16,7 +16,7 @@ useSetTheme(theme.color);
   </a-config-provider>
 </template>
 
-<style scoped>
+<style scoped lang="less">
 .app {
 }
 </style>

@@ -33,7 +33,7 @@ let themeObj = useTheme();
   background: url() center/cover no-repeat !important;
 }
 #layout-dark {
-  --bgColor: rgba(0, 0, 0, 0.5);
+  --bgColor: rgba(31, 31, 31, 0.5);
 }
 #layout-light {
   --bgColor: rgba(255, 255, 255, 0.5);
