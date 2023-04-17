@@ -40,7 +40,6 @@ let collapsed = useLayout();
 <style scoped lang="less">
 .header-con {
   overflow: hidden;
-  background: #fff;
   padding: 0;
   border-bottom: 1px solid #ccc;
   display: flex;

@@ -13,9 +13,9 @@ let colors = ref(themeObj.color);
 let bgColor = ref(themeObj.color);
 
 //主题风格设置
-let setThemeStyle=(value:boolean)=>{
-  themeObj.themeChecked=value
-}
+let setThemeStyle = (value: boolean) => {
+  themeObj.themeChecked = value;
+};
 
 let showSketch = ref(false);
 //实时更新颜色
@@ -152,17 +152,34 @@ onBeforeUnmount(() => {
       <h3>主题风格设置</h3>
       <div :class="$style.theme_style">
         <div :class="$style.theme_style_item" @click="setThemeStyle(true)">
-          <Icon v-if="themeObj.themeChecked" :class="$style.icon_" icon="CheckOutlined" />
+          <Icon
+            v-if="themeObj.themeChecked"
+            :class="$style.icon_"
+            icon="CheckOutlined"
+          />
           <img
             src="http://static.yudao.iocoder.cn/static/img/dark.16937467.svg"
           />
         </div>
         <div :class="$style.theme_style_item" @click="setThemeStyle(false)">
-          <Icon v-if="!themeObj.themeChecked" :class="$style.icon_" icon="CheckOutlined" />
+          <Icon
+            v-if="!themeObj.themeChecked"
+            :class="$style.icon_"
+            icon="CheckOutlined"
+          />
           <img
             src="http://static.yudao.iocoder.cn/static/img/light.c2aad012.svg"
           />
         </div>
+      </div>
+      <div :class="$style.buju_item">
+        <span>暗黑主题</span
+        ><span
+          ><a-switch
+            v-model:checked="themeObj.isDark"
+            checked-children="开"
+            un-checked-children="关"
+        /></span>
       </div>
       <div :class="$style.color_select">
         <span>主题颜色</span>
@@ -244,18 +261,25 @@ onBeforeUnmount(() => {
 .theme_style {
   display: flex;
   align-items: center;
-  padding:10px 10px 10px 0;
+  padding: 10px 10px 10px 0;
   .theme_style_item {
-    position:relative;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    margin:0 10px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 10px;
     .icon_ {
-      position:absolute;
+      position: absolute;
       color: var(--ant-primary-color);
     }
   }
+}
+.buju_item {
+  margin:5px 10px;
+  width: 80%;
+  padding: 5px 0;
+  display: flex;
+  justify-content: space-between;
 }
 .color_select {
   width: 100%;

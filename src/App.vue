@@ -9,9 +9,11 @@ useSetTheme(theme.color);
 </script>
 
 <template>
-<Loading :spinning="loading.loading" >
-  <router-view class="app" />
-  </Loading>
+  <a-config-provider  prefix-cls="ant">
+    <Loading :spinning="loading.loading">
+      <router-view class="app" />
+    </Loading>
+  </a-config-provider>
 </template>
 
 <style scoped>
