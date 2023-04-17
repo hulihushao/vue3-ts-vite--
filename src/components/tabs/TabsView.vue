@@ -113,16 +113,16 @@ let clickBtn = (item) => {
 
 <style lang="less">
 #tabs {
-  .ant-tabs {
+  .ant-tabs,.custom-dark-tabs {
     padding: 2px 5px 2px 2px;
     height: 65px;
     border-bottom: 1px solid #eee;
   }
-  .ant-tabs-card .ant-tabs-content {
+  .ant-tabs-card .ant-tabs-content,  .custom-dark-tabs-card .custom-dark-tabs-content {
     height: 120px;
     margin-top: -16px;
   }
-  .ant-tabs-tab-btn {
+  .ant-tabs-tab-btn,  .custom-dark-tabs-tab-btn {
     height: 22px;
     line-height:22px;
   }

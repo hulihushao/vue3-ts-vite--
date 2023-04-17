@@ -5,8 +5,8 @@ import type { FormInstance } from "ant-design-vue";
 import { message } from "ant-design-vue";
 const router = useRouter();
 let loading = ref<boolean>(false);
-let doc_title=ref("")
-doc_title.value=import.meta.env.VITE_DOC_TITLE
+let doc_title = ref("");
+doc_title.value = import.meta.env.VITE_DOC_TITLE;
 interface FormState {
   username: string;
   password: string;
@@ -49,7 +49,7 @@ let login = async () => {
   try {
     const values = await formRef.value.validateFields();
     loading.value = true;
-    localStorage.setItem("userInfo",JSON.stringify(values))
+    localStorage.setItem("userInfo", JSON.stringify(values));
     message.loading({
       content: "登录成功，正在初始化...",
       key: "chushihua",
@@ -67,7 +67,7 @@ let login = async () => {
 <template>
   <div id="login">
     <main class="main-body">
-      <h2 class="title">{{doc_title}}</h2>
+      <h2 class="title">{{ doc_title }}</h2>
       <div
         style="
           margin: 0px;
@@ -116,7 +116,8 @@ let login = async () => {
         </a-form>
       </div>
       <div class="login-btn">
-        <a-button ghost
+        <a-button
+          ghost
           :disabled="disabled"
           :loading="loading"
           shape="round"
@@ -166,7 +167,9 @@ let login = async () => {
 </style>
 <style>
 #login .ant-input-affix-wrapper,
-.ant-input {
+.ant-input,
+#login .custom-dark-input-affix-wrapper,
+.custom-dark-input {
   background-color: rgba(255, 255, 255, 0) !important;
 }
 </style>

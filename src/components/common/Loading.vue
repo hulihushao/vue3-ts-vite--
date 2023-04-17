@@ -39,7 +39,7 @@ const { spinning } = toRefs(props);
   width: 100%;
   height: 100%;
 }
-:deep(.ant-spin-container) {
+:deep(.ant-spin-container),:deep(.custom-dark-spin-container) {
   height: 100%;
   width: 100%;
 }

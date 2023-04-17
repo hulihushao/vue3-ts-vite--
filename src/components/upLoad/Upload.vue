@@ -91,16 +91,16 @@ const beforeUpload = (file: UploadProps["fileList"][number]) => {
     max-height:100%;
   }
 }
-.avatar-uploader > .ant-upload {
+.avatar-uploader > .ant-upload,.avatar-uploader > .custom-dark-upload {
   width: 128px;
   height: 128px;
 }
-.ant-upload-select-picture-card i {
+.ant-upload-select-picture-card i ,.custom-dark-upload-select-picture-card i {
   font-size: 32px;
   color: #999;
 }
 
-.ant-upload-select-picture-card .ant-upload-text {
+.ant-upload-select-picture-card .ant-upload-text,.custom-dark-upload-select-picture-card .custom-dark-upload-text {
   margin-top: 8px;
   color: #666;
 }

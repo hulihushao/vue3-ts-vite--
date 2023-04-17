@@ -19,7 +19,7 @@ let activeKey = ref("1");
 <style scoped lang="less">
 .card-container {
   width: 100%;
-  :deep(.ant-tabs-card){
+  :deep(.ant-tabs-card), :deep(.custom-dark-tabs-card){
     height:100% !important;
   }
 }

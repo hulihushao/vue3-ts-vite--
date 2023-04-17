@@ -13,7 +13,7 @@ let themeObj = useTheme();
     class="layout"
     :id="themeObj.isDark?'layout-dark':'layout-light'"
     :style="{ backgroundImage: `url(${themeObj.bgImg}) !important` }"
-    style="height: 100vh !important"
+    style="height: 100% !important"
   >
     <Aside />
     <a-layout>
