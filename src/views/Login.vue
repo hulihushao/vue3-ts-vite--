@@ -3,6 +3,9 @@ import { ref, reactive, computed } from "vue";
 import { useRouter } from "vue-router";
 import type { FormInstance } from "ant-design-vue";
 import { message } from "ant-design-vue";
+import useTheme from "@/store/theme";
+
+let themeObj = useTheme();
 const router = useRouter();
 let loading = ref<boolean>(false);
 let doc_title = ref("");
@@ -65,7 +68,7 @@ let login = async () => {
 </script>
 
 <template>
-  <div id="login">
+  <div id="login" :class="themeObj.isDark ? 'login-dark' : 'login-light'">
     <main class="main-body">
       <h2 class="title">{{ doc_title }}</h2>
       <div
@@ -147,12 +150,13 @@ let login = async () => {
     border-radius: 10px;
     box-shadow: 2px 2px 10px var(--ant-primary-color);
     backdrop-filter: blur(15px);
-    background: rgba(255, 255, 255, 0.5);
+    background: var(--bgColor) !important;
     .title {
       text-align: center;
       line-height: 50px;
       margin: 0;
       font-family: NSimSun;
+      color:v-bind('themeObj.setColor');
     }
     .form-con {
       padding: 20px;
@@ -166,6 +170,12 @@ let login = async () => {
 }
 </style>
 <style>
+.login-dark{
+  --bgColor: rgba(31, 31, 31, 0.5);
+}
+.login-light{
+    --bgColor: rgba(255, 255, 255, 0.5);
+}
 #login .ant-input-affix-wrapper,
 .ant-input,
 #login .custom-dark-input-affix-wrapper,

@@ -3,6 +3,7 @@ export default {
     doc_title: "L-M System",
   },
   menu:{
-      home:"Home"
+      home:"Home",
+      about:"About",
   },
 };
