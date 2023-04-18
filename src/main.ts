@@ -15,6 +15,9 @@ import Loading from "@/components/common/Loading.vue";
 //导入组件库
 import * as antIcons from "@ant-design/icons-vue";
 
+//国际化配置
+import i18n from "./language/index";
+
 const app = createApp(App);
 //注册全局图标组件
 app.component("Icon", Icon);
@@ -29,5 +32,5 @@ Object.keys(antIcons).forEach((key) => {
 // 添加到全局
 app.config.globalProperties.$antIcons = antIcons;
 
-app.use(store)
+app.use(store).use(i18n)
 app.use(router).use(Antd).mount("#app");

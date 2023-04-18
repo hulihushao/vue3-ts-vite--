@@ -7,6 +7,7 @@ import { Sketch } from "@ans1998/vue3-color";
 import Upload from "@/components/upLoad/Upload.vue";
 import TheSysLayout from "@/components/drawer/TheSysLayout.vue";
 import useTheme from "@/store/theme";
+import { useI18n } from "vue-i18n";
 
 let themeObj = useTheme();
 let colors = ref(themeObj.color);
@@ -120,9 +121,15 @@ let resetSetting = () => {
 };
 
 //主题改变时事件
-let themeChange=()=>{
-  useSetTheme(bgColor.value)
-}
+let themeChange = () => {
+  useSetTheme(bgColor.value);
+};
+//语言选择
+
+let languageChange = (value: boolean) => {
+  const { locale } = useI18n();
+  locale.value = value ? "zh" : "en";
+};
 onMounted(() => {
   //监听点击位置以关闭颜色选择器
   document
@@ -179,10 +186,22 @@ onBeforeUnmount(() => {
       <div :class="$style.buju_item">
         <span>暗黑主题</span
         ><span
-          ><a-switch @change="themeChange"
+          ><a-switch
+            @change="themeChange"
             v-model:checked="themeObj.isDark"
             checked-children="开"
             un-checked-children="关"
+        /></span>
+        <span></span>
+      </div>
+      <div :class="$style.buju_item">
+        <span>语言选择</span
+        ><span
+          ><a-switch
+            @change="languageChange"
+            v-model:checked="themeObj.isZHCN"
+            checked-children="中"
+            un-checked-children="英"
         /></span>
         <span></span>
       </div>
@@ -286,7 +305,8 @@ onBeforeUnmount(() => {
     }
   }
 }
-.color_select,.buju_item {
+.color_select,
+.buju_item {
   width: 100%;
   padding: 5px 10px;
   display: flex;

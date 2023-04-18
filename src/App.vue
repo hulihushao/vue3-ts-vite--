@@ -2,6 +2,13 @@
 import useLoading from "@/store/loading";
 import { useSetTheme } from "@/composables/useSetTheme";
 import useTheme from "@/store/theme";
+//国际化
+import enUS from 'ant-design-vue/es/locale/en_US';
+import zhCN from 'ant-design-vue/es/locale/zh_CN';
+import dayjs from 'dayjs';
+import 'dayjs/locale/zh-cn';
+dayjs.locale(zhCN.locale);
+
 const loading = useLoading();
 const theme = useTheme();
 //设置全局主题色
@@ -9,7 +16,7 @@ useSetTheme(theme.color);
 </script>
 
 <template>
-  <a-config-provider  :prefix-cls="theme.isDark?'custom-dark':'ant'">
+  <a-config-provider :locale="zhCN" :prefix-cls="theme.isDark?'custom-dark':'ant'">
     <Loading :spinning="loading.loading">
       <router-view class="app" />
     </Loading>

@@ -5,6 +5,7 @@ const useTheme = defineStore("theme", {
     return {
       themeChecked: true,
       isDark: false,
+      isZHCN:true,
       color: "#1890ff",
       bgImg:
         "https://img.mp.itc.cn/upload/20161119/1a99a2d9eab34a588f05aaad00ad9883_th.jpg",

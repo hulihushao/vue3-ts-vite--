@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { systemComposition } from "@/utils/config/systemComposition";
-import useTheme from "@/store/theme"
+import useTheme from "@/store/theme";
 
-let themeObj=useTheme()
+let themeObj = useTheme();
 </script>
 
 <template>
   <div id="welcome">
+    <a-time-picker />
     <p>
       <Icon iconfont="icon-dingzhikaifa-zhihuiguanlixitong" />
     </p>
@@ -20,7 +21,7 @@ let themeObj=useTheme()
         <a-button :href="item.url" type="link">{{ item.title }}</a-button>
         <span v-if="index < systemComposition.length - 1">+</span>
       </span>
-      <br/>
+      <br />
       构建
     </p>
     <p class="version">version:1.0.0</p>
@@ -38,8 +39,8 @@ let themeObj=useTheme()
   h1,
   h2 {
     text-align: center;
-    transition:var(--transition);
-    color:v-bind('themeObj.setColor');
+    transition: var(--transition);
+    color: v-bind("themeObj.setColor");
   }
   p .iconfont {
     color: #409eff;
