@@ -76,7 +76,7 @@ if (themeObj.isMenuOpen) {
           <template #icon>
             <Icon :iconfont="item.iconfont" :icon="item.icon"></Icon>
           </template>
-          {{ item.title }}
+          {{$te(`menu.${item.enKey}`)? $t(`menu.${item.enKey}`):item.title }}
         </a-menu-item>
       </template>
       <template v-else>

@@ -21,7 +21,7 @@ let menuItemClick=(item)=>{
           <template #icon>
              <Icon :iconfont="item.iconfont" :icon="item.icon" />
           </template>
-          {{ item.title }}
+          {{$te(`menu.${item.enKey}`)? $t(`menu.${item.enKey}`):item.title }}
         </a-menu-item>
       </template>
       <template v-else>

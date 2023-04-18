@@ -1,5 +1,6 @@
 export interface menus{
   title:string,
+  enKey:string,
   name?:string,
   key:string|number,
   path:string,
