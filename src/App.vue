@@ -16,7 +16,7 @@ useSetTheme(theme.color);
 </script>
 
 <template>
-  <a-config-provider :locale="zhCN" :prefix-cls="theme.isDark?'custom-dark':'ant'">
+  <a-config-provider :locale="theme.isZHCN?zhCN:enUS" :prefix-cls="theme.isDark?'custom-dark':'ant'">
     <Loading :spinning="loading.loading">
       <router-view class="app" />
     </Loading>

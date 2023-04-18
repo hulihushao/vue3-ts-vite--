@@ -25,7 +25,7 @@ collapsed.collapsed = !themeObj.isUnfoldMenusSider;
       <span
         :style="{color:themeObj.themeChecked?'#fff':'#000'}"
         :class="{ sj: collapsed.collapsed }"
-        >灵明管理系统</span
+        >{{$t('title.doc_title')}}</span
       >
     </div>
     <Menu :theme="themeObj.themeChecked ? 'dark' : 'light'" />
@@ -59,6 +59,7 @@ collapsed.collapsed = !themeObj.isUnfoldMenusSider;
     transition: all 0.3s;
     overflow: hidden;
     opacity: 1;
+    word-break:break-all;
   }
   .sj {
     overflow: hidden;

@@ -125,9 +125,8 @@ let themeChange = () => {
   useSetTheme(bgColor.value);
 };
 //语言选择
-
+const { locale } = useI18n();
 let languageChange = (value: boolean) => {
-  const { locale } = useI18n();
   locale.value = value ? "zh" : "en";
 };
 onMounted(() => {

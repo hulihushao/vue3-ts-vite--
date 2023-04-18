@@ -1,5 +1,5 @@
 export default {
-  menus: {
-    doc_title: "Ling Ming",
+  title: {
+    doc_title: "LingMingSystem",
   },
 };
