@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import useLoading from "@/store/loading";
-import { useSetTheme } from "@/composables/useSetTheme";
+import { useSetTheme,useSetLanguage } from "@/composables/useSetTheme";
 import useTheme from "@/store/theme";
 //国际化
 import enUS from 'ant-design-vue/es/locale/en_US';
@@ -13,6 +13,7 @@ const loading = useLoading();
 const theme = useTheme();
 //设置全局主题色
 useSetTheme(theme.color);
+useSetLanguage(theme.isZHCN)
 </script>
 
 <template>
