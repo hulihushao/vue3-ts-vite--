@@ -184,6 +184,7 @@ onBeforeUnmount(() => {
             checked-children="开"
             un-checked-children="关"
         /></span>
+        <span></span>
       </div>
       <div :class="$style.color_select">
         <span>主题颜色</span>
@@ -285,14 +286,7 @@ onBeforeUnmount(() => {
     }
   }
 }
-.buju_item {
-  margin: 5px 10px;
-  width: 80%;
-  padding: 5px 0;
-  display: flex;
-  justify-content: space-between;
-}
-.color_select {
+.color_select,.buju_item {
   width: 100%;
   padding: 5px 10px;
   display: flex;
