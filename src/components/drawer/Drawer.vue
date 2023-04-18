@@ -119,6 +119,10 @@ let resetSetting = () => {
   useSetTheme(bgColor.value);
 };
 
+//主题改变时事件
+let themeChange=()=>{
+  useSetTheme(bgColor.value)
+}
 onMounted(() => {
   //监听点击位置以关闭颜色选择器
   document
@@ -175,7 +179,7 @@ onBeforeUnmount(() => {
       <div :class="$style.buju_item">
         <span>暗黑主题</span
         ><span
-          ><a-switch
+          ><a-switch @change="themeChange"
             v-model:checked="themeObj.isDark"
             checked-children="开"
             un-checked-children="关"
