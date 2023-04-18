@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, toRefs, onMounted, onBeforeUnmount } from "vue";
-import { useSetTheme,useSetLanguage } from "@/composables/useSetTheme";
+import { useSetTheme, useSetLanguage } from "@/composables/useSetTheme";
 import "vue3-colorpicker/style.css";
 import type { SelectProps } from "ant-design-vue";
 import { Sketch } from "@ans1998/vue3-color";
@@ -125,9 +125,9 @@ let themeChange = () => {
   useSetTheme(bgColor.value);
 };
 //语言选择
-const { locale } = useI18n();
+  const { locale } = useI18n();
 let languageChange = (value: boolean) => {
-  useSetLanguage(value)
+  useSetLanguage(value,locale);
 };
 onMounted(() => {
   //监听点击位置以关闭颜色选择器
