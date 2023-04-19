@@ -7,6 +7,13 @@ export default {
       home:"Home",
       about:"About",
   },
+  welcome:{
+    wel:"Welcome to use the",
+    sysTitle:enTitle,
+    tip:"System is being improved...",
+    use:"The system uses",
+    structure:"to structure"
+  },
   footer:{
     content:enTitle+" ©2023 Created by TJP"
   }

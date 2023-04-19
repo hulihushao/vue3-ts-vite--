@@ -11,18 +11,18 @@ let themeObj = useTheme();
     <p>
       <Icon iconfont="icon-dingzhikaifa-zhihuiguanlixitong" />
     </p>
-    <h1>欢迎使用</h1>
-    <h2>诺依中后台管理系统</h2>
-    <p class="tip">系统完善中...</p>
+    <h1>{{$t('welcome.wel')}}</h1>
+    <h2>{{$t('welcome.sysTitle')}}</h2>
+    <p class="tip">{{$t('welcome.tip')}}</p>
 
     <p>
-      系统采用<br />
+      {{$t('welcome.use')}}<br />
       <span v-for="(item, index) in systemComposition">
         <a-button :href="item.url" type="link">{{ item.title }}</a-button>
         <span v-if="index < systemComposition.length - 1">+</span>
       </span>
       <br />
-      构建
+      {{$t('welcome.structure')}}
     </p>
     <p class="version">version:1.0.0</p>
   </div>
