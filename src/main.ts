@@ -4,12 +4,16 @@ import App from "./App.vue";
 import Antd from "ant-design-vue";
 //import "ant-design-vue/dist/antd.css";
 //全局化主题配置样式
-import "ant-design-vue/dist/antd.variable.min.css";
+import 'ant-design-vue/dist/antd.variable.min.css';
 import "./dark.css"
 
 import router from "./router";
 import store from "@/store";
 import "animate.css";
+
+//自定义拖拽
+import Directives from "@/directives/dragable";
+
 import Icon from "@/components/common/Icon.vue";
 import Loading from "@/components/common/Loading.vue";
 //导入组件库
@@ -32,5 +36,5 @@ Object.keys(antIcons).forEach((key) => {
 // 添加到全局
 app.config.globalProperties.$antIcons = antIcons;
 
-app.use(store).use(i18n)
+app.use(store).use(i18n).use(Directives)
 app.use(router).use(Antd).mount("#app");
