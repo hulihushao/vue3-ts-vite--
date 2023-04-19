@@ -4,6 +4,9 @@ export default {
   },
   menu:{
       home:"首页",
-      
+      about:"关于"
+  },
+  footer:{
+    content:"{doc_title} ©2023 Created by TJP"
   }
 };

@@ -6,7 +6,7 @@ doc_title.value=import.meta.env.VITE_DOC_TITLE
 
 <template>
   <a-layout-footer style="text-align: center">
-    {{doc_title}} ©2023 Created by TJP
+    {{$t('footer.content',{doc_title})}}
   </a-layout-footer>
 </template>
 
