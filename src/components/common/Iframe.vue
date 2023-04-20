@@ -8,18 +8,23 @@ let iframeOption = defineProps({
   },
 });
 let iframe = ref(null);
-let spinning=ref(true)
+let spinning = ref(true);
 onMounted(() => {
   //console.log(iframe.value.contentWindow, 222);
 });
-let loaded=()=>{
-  spinning.value=false
-}
+let loaded = () => {
+  spinning.value = false;
+};
 </script>
 
 <template>
-<Loading :spinning="spinning">
-  <template #tip><span>加载中...</span></template>
+  <Loading :spinning="spinning">
+    <template #tip><span>加载中...</span></template>
+    <span
+      >Tip:部分浏览器不支持嵌套登录，请<a :href="iframeOption.src" target="_blank"
+        >跳转链接打开</a
+      ></span
+    >
     <iframe
       ref="iframe"
       id="iframe-con"
@@ -28,9 +33,9 @@ let loaded=()=>{
       height="100%"
       @load="loaded"
       allow="geolocation"
-      sandbox="allow-forms allow-same-origin allow-scripts" 
+       sandbox="allow-forms allow-same-origin allow-scripts" 
     ></iframe>
-</Loading>
+  </Loading>
 </template>
 
 <style scoped lang="less">
