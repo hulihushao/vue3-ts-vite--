@@ -9,6 +9,7 @@ import { menus } from "@/types/menus";
 import { useGetRoute, useAllMenus } from "@/composables/useGetRoute";
 import {useMenuClick} from "@/composables/useMenuClick"
 import useTheme from "@/store/theme";
+import useTabsData from"@/store/tabs"
 
 let menuOption = defineProps({
   theme: {
@@ -41,6 +42,7 @@ const menuClick = (item: menus) => {
 
 //根据url设置菜单选中
 let path: string = useGetRoute();
+let tabsData=useTabsData()
 let currentMenu = allMenus.filter(
   (item:menus) => path.split("/").indexOf(item.path) > -1
 );
@@ -49,6 +51,7 @@ let openKeys = ref([""]);
 if (currentMenu.length) {
   selectKeys.value = [currentMenu[0].key];
   openKeys.value = currentMenu[0].openKeys;
+  tabsData.setActiveKey(selectKeys.value[0])
 } else {
   selectKeys.value = [];
 }
