@@ -20,7 +20,6 @@ let loaded=()=>{
 <template>
 <Loading :spinning="spinning">
   <template #tip><span>加载中...</span></template>
-  
     <iframe
       ref="iframe"
       id="iframe-con"
@@ -29,6 +28,7 @@ let loaded=()=>{
       height="100%"
       @load="loaded"
       allow="geolocation"
+      sandbox="allow-forms allow-same-origin allow-scripts" 
     ></iframe>
 </Loading>
 </template>
