@@ -50,6 +50,7 @@ let openDrawer = () => {
 .setting {
   font-size: 25px;
   position: absolute;
+  z-index:999;
   right: 10px;
   top: 300px;
 }
