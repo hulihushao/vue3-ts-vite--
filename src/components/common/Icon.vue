@@ -28,7 +28,7 @@ let icons = defineProps({
 <style scoped>
 .icon {
   width: 1.2em;
-  padding:1px;
+  padding: 1px;
   height: 1.2em;
   vertical-align: -0.15em;
   fill: currentColor;
