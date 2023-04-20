@@ -15,6 +15,7 @@ let icons = defineProps({
     v-else-if="icons.iconfont && !icons.color"
     :class="'iconfont ' + icons.iconfont"
   ></i>
+  <!--多色图标-->
   <svg
     v-else-if="icons.iconfont && icons.color"
     class="icon"
