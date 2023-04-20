@@ -9,6 +9,11 @@ import useTheme from "@/store/theme";
 import TopMenu from "@/components/menu/TopMenu.vue";
 let themeObj = useTheme();
 let collapsed = useLayout();
+let users=ref(null)
+
+defineExpose({
+  users
+})
 </script>
 <template>
   <a-layout-header class="header-con" :style="{background:themeObj.isDark?'':'#fff'}">
@@ -31,7 +36,7 @@ let collapsed = useLayout();
       <Headers.Fullscreen />
       <Headers.Github />
       <Headers.Time v-if="themeObj.isShowTime" />
-      <Headers.User />
+      <Headers.User ref="users" />
     </span>
   </a-layout-header>
   <tabs-view  v-show="themeObj.isShowTabs"/>

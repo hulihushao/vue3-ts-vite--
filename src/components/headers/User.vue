@@ -61,6 +61,10 @@ const clicks = {
 let onMenuClick: MenuProps["onClick"] = (item: action) => {
   clicks[item.click](item);
 };
+
+defineExpose({
+  setting:clicks.setting
+})
 </script>
 
 <template>

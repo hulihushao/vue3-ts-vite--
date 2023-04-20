@@ -74,7 +74,7 @@ const drag = {
 // 挂载，注册
 const directives = {
   install: function (app) {
-    app.directive("dialogDrag", drag);
+    app.directive("drag", drag);
   },
 };
 export default directives;

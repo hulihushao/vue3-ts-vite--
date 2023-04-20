@@ -9,7 +9,8 @@
       padding: '10px',
       background: '#fff',
       minHeight: '280px',
-      overflow: 'auto',
+      'overflow-y': 'auto',
+      'overflow-x':'hidden'
     }"
   >
     <router-view class="view" v-slot="{ Component }">
