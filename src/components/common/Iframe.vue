@@ -21,7 +21,9 @@ let loaded = () => {
   <Loading :spinning="spinning">
     <template #tip><span>加载中...</span></template>
     <span
-      >Tip:部分浏览器不支持嵌套登录，请<a :href="iframeOption.src" target="_blank"
+      >Tip:部分浏览器不支持嵌套登录，请<a
+        :href="iframeOption.src"
+        target="_blank"
         >跳转链接打开</a
       ></span
     >
@@ -32,8 +34,8 @@ let loaded = () => {
       width="100%"
       height="100%"
       @load="loaded"
-      allow="geolocation"
-       sandbox="allow-forms allow-same-origin allow-scripts" 
+      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
     ></iframe>
   </Loading>
 </template>
