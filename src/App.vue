@@ -1,23 +1,26 @@
 <script setup lang="ts">
 import useLoading from "@/store/loading";
-import { useSetTheme,useSetLanguage } from "@/composables/useSetTheme";
+import { useSetTheme, useSetLanguage } from "@/composables/useSetTheme";
 import useTheme from "@/store/theme";
 //国际化
-import enUS from 'ant-design-vue/es/locale/en_US';
-import zhCN from 'ant-design-vue/es/locale/zh_CN';
-import dayjs from 'dayjs';
-import 'dayjs/locale/zh-cn';
+import enUS from "ant-design-vue/es/locale/en_US";
+import zhCN from "ant-design-vue/es/locale/zh_CN";
+import dayjs from "dayjs";
+import "dayjs/locale/zh-cn";
 dayjs.locale(zhCN.locale);
 
 const loading = useLoading();
 const theme = useTheme();
 //设置全局主题色
 useSetTheme(theme.color);
-useSetLanguage(theme.isZHCN)
+useSetLanguage(theme.isZHCN);
 </script>
 
 <template>
-  <a-config-provider :locale="theme.isZHCN?zhCN:enUS" :prefix-cls="theme.isDark?'custom-dark':'ant'">
+  <a-config-provider
+    :locale="theme.isZHCN ? zhCN : enUS"
+    :prefix-cls="theme.isDark ? 'custom-dark' : 'ant'"
+  >
     <Loading :spinning="loading.loading">
       <router-view class="app" />
     </Loading>
@@ -29,6 +32,10 @@ useSetLanguage(theme.isZHCN)
 }
 </style>
 <style>
+h1 {
+  text-align: center;
+  color: v-bind("theme.setColor") !important;
+}
 /**顶部进度条样式 */
 #nprogress .bar {
   background: var(--ant-primary-color) !important;

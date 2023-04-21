@@ -33,8 +33,8 @@ scene.add(mesh);
  */
 
 // 定义相机输出画布的尺寸(单位:像素px)
-const width =window.innerWidth; //宽度
-const height = window.innerHeight //高度
+const width = window.innerWidth; //宽度
+const height = window.innerHeight; //高度
 // 30:视场角度, width / height:Canvas画布宽高比, 1:近裁截面, 3000：远裁截面
 
 // 实例化一个透视投影相机对象
@@ -61,20 +61,29 @@ const renderer = new THREE.WebGLRenderer();
 renderer.setSize(width, height); //设置three.js渲染区域的尺寸(像素px)
 renderer.render(scene, camera); //执行渲染操作
 function animate() {
+  requestAnimationFrame(animate);
 
-    requestAnimationFrame(animate);
+  cube.rotation.x += 0.01;
+  cube.rotation.y += 0.01;
 
-    cube.rotation.x += 0.01;
-    cube.rotation.y += 0.01;
+  renderer.render(scene, camera);
+}
 
-    renderer.render(scene, camera);
-  }
-
-  animate();
+animate();
 onMounted(() => {
   // 把渲染结果canvas画布，也就是照片提案加到网页中
   document.getElementById("webgl").appendChild(renderer.domElement);
-  
+  // onresize 事件会在窗口被调整大小时发生
+  window.onresize = function () {
+    // 重置渲染器输出画布canvas尺寸
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    // 全屏情况下：设置观察范围长宽比aspect为窗口宽高比
+    camera.aspect = window.innerWidth / window.innerHeight;
+    // 渲染器执行render方法的时候会读取相机对象的投影矩阵属性projectionMatrix
+    // 但是不会每渲染一帧，就通过相机的属性计算投影矩阵(节约计算资源)
+    // 如果相机的一些属性发生了变化，需要执行updateProjectionMatrix ()方法更新相机的投影矩阵
+    camera.updateProjectionMatrix();
+  };
 });
 </script>
 
@@ -82,4 +91,11 @@ onMounted(() => {
   <div id="webgl"></div>
 </template>
 
-<style scoped></style>
+<style scoped lang="less">
+#webgl {
+  width: 100%;
+  height: 100%;
+  border: 1px solid red;
+  overflow:auto;
+}
+</style>
