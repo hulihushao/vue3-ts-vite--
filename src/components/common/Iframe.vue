@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
+import useTheme from "@/store/theme"
 
+let themeObj=useTheme()
 let iframeOption = defineProps({
   src: {
     required: true,
@@ -21,7 +23,7 @@ let loaded = () => {
   <Loading :spinning="spinning">
     <template #tip><span>加载中...</span></template>
     <span
-      >Tip:部分浏览器不支持嵌套登录，请<a
+      ><span :style="{color:themeObj.setColor}">Tip:部分浏览器不支持嵌套登录，请</span><a
         :href="iframeOption.src"
         target="_blank"
         >跳转链接打开</a

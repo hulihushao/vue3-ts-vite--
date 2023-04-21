@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref ,onMounted} from "vue";
+import { ref, onMounted ,onUnmounted} from "vue";
 import { useRouter } from "vue-router";
 import SubMenu from "@/components/menu/MenuItem.vue";
 import useLayout from "../../store/layout";
@@ -46,7 +46,7 @@ let tabsData = useTabsData();
 let openKeys = ref([""]);
 
 let popStateHandle = () => {
-  path=useGetRoute()
+  path = useGetRoute();
   let currentMenu = allMenus.filter(
     (item: menus) => path.split("/").indexOf(item.path) > -1
   );
@@ -59,11 +59,15 @@ let popStateHandle = () => {
     selectKeys.value = [];
   }
 };
-popStateHandle()
+popStateHandle();
 
-onMounted(()=>{
+onMounted(() => {
   window.addEventListener("popstate", popStateHandle, false);
-})
+});
+onUnmounted(() => {
+  //销毁
+  window.removeEventListener("popstate", popStateHandle);
+});
 //设置子菜单全部展开
 if (themeObj.isMenuOpen) {
   openKeys.value = [];
