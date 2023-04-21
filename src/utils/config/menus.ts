@@ -28,14 +28,25 @@ export let menuList = [
         children: [
           {
             key: "2.1.1",
-            title: "测试",
-            enKey:"test",
+            title: "Threejs",
+            enKey:"threejs",
             iconfont: "icon-ceshiliucheng",
-            component: "@/views/404.vue",
-            path: "cs",
-            name: "cs",
+            component: "@/views/componentdemo/Threejs.vue",
+            path: "threejs",
+            name: "threejs",
           },
           {
+            key: "2.1.2",
+            title: "WebSocket",
+            enKey:"webSocket",
+            //icon: "HomeOutlined",
+            iconfont: "icon-Websocketjiaohujiedian",
+            component: "@/views/componentdemo/WebSocket.vue",
+            path: "webSocket",
+            name: "webSocket",
+          },
+          {
+
             key: "2.1.2",
             title: "WebSocket",
             enKey:"webSocket",
