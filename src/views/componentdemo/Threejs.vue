@@ -1,20 +1,12 @@
 <script setup lang="ts">
 import Three from "@/views/componentdemo/threejs/index.vue";
-import DemoTab from "@/components/common/DemoTab.vue";
+import DemoContainer from "@/views/componentdemo/index.vue";
 </script>
 
 <template>
-  <div class="demo-con">
-    <h1>Threejs demo</h1>
-    <demo-tab>
-      <template #demo>
-        <Three />
-      </template>
-      <template #code>
-        <code-mirror src="@/views/componentdemo/threejs/index.vue" />
-      </template>
-    </demo-tab>
-  </div>
+  <demo-container title="Threejs Demo" src="@/views/componentdemo/threejs/index.vue">
+    <Three />
+  </demo-container>
 </template>
 
 <style scoped></style>

@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 // 引入three.js
-import * as THREE from "three";
-
+//import * as THREE from "three";//已在index.html引入cdn
 // 创建一个3维度场景
 const scene = new THREE.Scene();
 // 给3维度场景添加物体
@@ -33,8 +32,8 @@ scene.add(mesh);
  */
 
 // 定义相机输出画布的尺寸(单位:像素px)
-const width = window.innerWidth; //宽度
-const height = window.innerHeight; //高度
+const width = window.innerWidth/1.3; //宽度
+const height = window.innerHeight/2; //高度
 // 30:视场角度, width / height:Canvas画布宽高比, 1:近裁截面, 3000：远裁截面
 
 // 实例化一个透视投影相机对象
@@ -95,7 +94,6 @@ onMounted(() => {
 #webgl {
   width: 100%;
   height: 100%;
-  border: 1px solid red;
   overflow:auto;
 }
 </style>

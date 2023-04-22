@@ -16,12 +16,14 @@ let allModules=useModules()
 
 const code = ref("");
 const component=ref(null)
+
 //获取vue文件内容
 //先用Url+"?raw"将其内容转为字符串
 //再去掉export default后使用JSON.parse转化
 let loadData = async () => {
   let src = props.src.replace("@", "/src");
   component.value=allModules[src]
+  //console.log(component)
   let res = await Component.getComponent(src + "?raw");
   code.value = res.data.replace("export default ", "");
   code.value = JSON.parse(code.value);
