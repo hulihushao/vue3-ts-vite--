@@ -4,8 +4,12 @@ import { ref, onMounted } from "vue";
 //import * as THREE from "three";//已在index.html引入cdn
 // 引入gltf模型加载库GLTFLoader.js
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+import { DRACOLoader } from "three/addons/loaders/DRACOLoader.js";
+import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
+import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 // 创建一个3维度场景
 const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xbfe3dd);
 // 给3维度场景添加物体
 /**
  * 第一步：定义物体形状 -- 几何体Geometry : https://threejs.org/docs/index.html?q=geometry
@@ -55,16 +59,32 @@ const cube = new THREE.Mesh(geometry, material);
 //创建stats对象
 const stats = new Stats();
 
+// 创建webGL渲染器 对象
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setPixelRatio( window.devicePixelRatio );
 //加载模型
+const dracoLoader = new DRACOLoader();
+dracoLoader.setDecoderPath("/");
+const pmremGenerator = new THREE.PMREMGenerator(renderer);
+scene.environment = pmremGenerator.fromScene(
+  new RoomEnvironment(),
+  0.04
+).texture;
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.target.set(0, 0.5, 0);
+controls.update();
+controls.enablePan = false;
+controls.enableDamping = true;
+
 // 创建GLTF加载器对象
 const loader = new GLTFLoader();
+loader.setDRACOLoader(dracoLoader);
 loader.load(
-
-  "https://github.com/mrdoob/three.js/blob/master/examples/models/gltf/LittlestTokyo.glb",
+  "/LittlestTokyo.glb",
   function (gltf) {
     const model = gltf.scene;
-    model.position.set(200, 200, 200);
-    model.scale.set(0.01, 0.01, 0.01);
+    model.position.set(1, 1, 0);
+    model.scale.set(0.5, 0.5, 0.5);
     scene.add(model);
 
     animate();
@@ -79,8 +99,6 @@ loader.load(
  * 创建webGL渲染器 对象
  */
 
-// 创建webGL渲染器 对象
-const renderer = new THREE.WebGLRenderer();
 // 定义threejs输出画布的尺寸(单位:像素px)
 
 renderer.setSize(width, height); //设置three.js渲染区域的尺寸(像素px)
