@@ -134,7 +134,7 @@ export let menuList = [
         enKey: "componentLib",
         path: "componentLib",
         name: "componentLib",
-        icon: "icon-cangku",
+        iconfont: "icon-cangku",
         children: [
           {
             key: "4.2.1",
