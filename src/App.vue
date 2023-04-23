@@ -48,4 +48,23 @@ h1 {
   border-left-color: var(--ant-primary-color) !important;
   border-top-color: var(--ant-primary-color) !important;
 }
+
+/*滚动条的宽度*/
+.ant-layout-content::-webkit-scrollbar {
+  width: 4px;
+}
+
+/*滚动条里面小方块*/
+.ant-layout-content::-webkit-scrollbar-thumb {
+  border-radius: 2px;
+  box-shadow: inset 0 0 5px var(--ant-primary-color);
+  background: var(--ant-primary-color);
+}
+
+/*滚动条里面轨道*/
+.ant-layout-content::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  border-radius: 0;
+  background: rgba(0, 0, 0, 0.1);
+}
 </style>
