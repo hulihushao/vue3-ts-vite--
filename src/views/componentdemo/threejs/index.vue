@@ -2,6 +2,8 @@
 import { ref, onMounted } from "vue";
 // 引入three.js
 //import * as THREE from "three";//已在index.html引入cdn
+// 引入gltf模型加载库GLTFLoader.js
+import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 // 创建一个3维度场景
 const scene = new THREE.Scene();
 // 给3维度场景添加物体
@@ -32,8 +34,8 @@ scene.add(mesh);
  */
 
 // 定义相机输出画布的尺寸(单位:像素px)
-const width = window.innerWidth/1.3; //宽度
-const height = window.innerHeight/2; //高度
+const width = window.innerWidth / 1.3; //宽度
+const height = window.innerHeight / 2; //高度
 // 30:视场角度, width / height:Canvas画布宽高比, 1:近裁截面, 3000：远裁截面
 
 // 实例化一个透视投影相机对象
@@ -47,7 +49,31 @@ camera.lookAt(0, 0, 0); //坐标原点
 // camera.lookAt(mesh.position); //指向网格模型mesh
 
 const cube = new THREE.Mesh(geometry, material);
-scene.add(cube);
+//scene.add(cube);
+
+//性能监听
+//创建stats对象
+const stats = new Stats();
+
+//加载模型
+// 创建GLTF加载器对象
+const loader = new GLTFLoader();
+loader.load(
+
+  "https://github.com/mrdoob/three.js/blob/master/examples/models/gltf/LittlestTokyo.glb",
+  function (gltf) {
+    const model = gltf.scene;
+    model.position.set(200, 200, 200);
+    model.scale.set(0.01, 0.01, 0.01);
+    scene.add(model);
+
+    animate();
+  },
+  undefined,
+  function (e) {
+    console.error(e);
+  }
+);
 
 /**
  * 创建webGL渲染器 对象
@@ -64,7 +90,7 @@ function animate() {
 
   cube.rotation.x += 0.01;
   cube.rotation.y += 0.01;
-
+  stats.update();
   renderer.render(scene, camera);
 }
 
@@ -72,6 +98,7 @@ animate();
 onMounted(() => {
   // 把渲染结果canvas画布，也就是照片提案加到网页中
   document.getElementById("webgl").appendChild(renderer.domElement);
+  document.getElementById("webgl-stats").appendChild(stats.dom);
   // onresize 事件会在窗口被调整大小时发生
   window.onresize = function () {
     // 重置渲染器输出画布canvas尺寸
@@ -87,13 +114,24 @@ onMounted(() => {
 </script>
 
 <template>
-  <div id="webgl"></div>
+  <div id="webgl-con">
+    <div id="webgl"></div>
+    <div id="webgl-stats"></div>
+  </div>
 </template>
 
 <style scoped lang="less">
-#webgl {
+#webgl-con {
+  position: relative;
   width: 100%;
   height: 100%;
-  overflow:auto;
+  #webgl {
+    overflow: auto;
+  }
+  #webgl-stats {
+    position: relative;
+    :deep(div) {
+    }
+  }
 }
 </style>
