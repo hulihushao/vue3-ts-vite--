@@ -8,7 +8,10 @@ let icons = defineProps({
     type:String,
     default:"icon-weizhizhuangtai"
   },
-  color: Boolean,
+  color:{
+    type:Boolean,
+    default:false
+  },
 });
 </script>
 

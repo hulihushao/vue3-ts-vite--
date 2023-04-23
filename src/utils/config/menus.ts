@@ -143,7 +143,7 @@ export let menuList = [
             component: `@/views/study/componentLib/VePlus.vue`,
             path: "veplus",
             name: "veplus",
-            iconfont: "",
+            iconfont: undefined,
           },
         ],
       },
