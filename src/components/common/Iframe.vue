@@ -8,6 +8,10 @@ let iframeOption = defineProps({
     required: true,
     type: String,
   },
+  showTip:{
+    type:Boolean,
+    default:true
+  }
 });
 let iframe = ref(null);
 let spinning = ref(true);
@@ -22,7 +26,7 @@ let loaded = () => {
 <template>
   <Loading :spinning="spinning">
     <template #tip><span>加载中...</span></template>
-    <span
+    <span v-if="iframeOption.showTip"
       ><span :style="{color:themeObj.setColor}">Tip:部分浏览器不支持嵌套登录，请</span><a
         :href="iframeOption.src"
         target="_blank"

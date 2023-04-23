@@ -1,5 +1,5 @@
 import {menus} from "@/types/menus"
-const allModules=import.meta.glob('@/views/*/*.vue')
+const allModules=import.meta.glob('@/views/**/*.vue')
 const allPages=import.meta.glob('@/views/*.vue')
 
 export function getRouters(menus:menus[]){
