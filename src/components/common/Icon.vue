@@ -4,7 +4,10 @@ let icons = defineProps({
   icon: {
     type: String,
   },
-  iconfont: String,
+  iconfont: {
+    type:String,
+    default:"icon-weizhizhuangtai"
+  },
   color: Boolean,
 });
 </script>

@@ -134,7 +134,7 @@ export let menuList = [
         enKey: "componentLib",
         path: "componentLib",
         name: "componentLib",
-        icon: "ReadOutlined",
+        icon: "icon-cangku",
         children: [
           {
             key: "4.2.1",
@@ -143,7 +143,7 @@ export let menuList = [
             component: `@/views/study/componentLib/VePlus.vue`,
             path: "veplus",
             name: "veplus",
-            iconfont: "icon-youdaoyunbiji",
+            iconfont: "",
           },
         ],
       },
