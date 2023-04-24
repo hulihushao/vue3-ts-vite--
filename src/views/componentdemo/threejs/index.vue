@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 // 引入three.js
-import * as THREE from "three";//已在index.html引入cdn
+import * as THREE from "three"; //已在index.html引入cdn
 // 引入gltf模型加载库GLTFLoader.js
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { DRACOLoader } from "three/addons/loaders/DRACOLoader.js";
@@ -61,8 +61,9 @@ const stats = new Stats();
 
 // 创建webGL渲染器 对象
 const renderer = new THREE.WebGLRenderer({ antialias: true });
-renderer.setPixelRatio( window.devicePixelRatio );
+renderer.setPixelRatio(window.devicePixelRatio);
 //加载模型
+const clock = new THREE.Clock();
 const dracoLoader = new DRACOLoader();
 dracoLoader.setDecoderPath("/");
 const pmremGenerator = new THREE.PMREMGenerator(renderer);
@@ -77,6 +78,7 @@ controls.enablePan = false;
 controls.enableDamping = true;
 
 // 创建GLTF加载器对象
+let mixer;
 const loader = new GLTFLoader();
 loader.setDRACOLoader(dracoLoader);
 loader.load(
@@ -86,7 +88,8 @@ loader.load(
     model.position.set(1, 1, 0);
     model.scale.set(0.5, 0.5, 0.5);
     scene.add(model);
-
+    mixer = new THREE.AnimationMixer(model);
+    mixer.clipAction(gltf.animations[0]).play();
     animate();
   },
   undefined,
@@ -108,11 +111,15 @@ function animate() {
 
   cube.rotation.x += 0.01;
   cube.rotation.y += 0.01;
+  const delta = clock.getDelta();
+
+  mixer.update(delta);
+  controls.update();
   stats.update();
   renderer.render(scene, camera);
 }
 
-animate();
+
 onMounted(() => {
   // 把渲染结果canvas画布，也就是照片提案加到网页中
   document.getElementById("webgl").appendChild(renderer.domElement);

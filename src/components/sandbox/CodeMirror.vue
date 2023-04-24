@@ -43,7 +43,7 @@ const handleReady = (payload) => {
   <codemirror
     v-model="code"
     placeholder="loading..."
-    :style="{ width: '100%', minHeight: '300px', maxHeight: '100%;' }"
+    :style="{ width: '100%', minHeight: '300px', maxHeight: '65vh;' }"
     :autofocus="false"
     :indent-with-tab="true"
     :tabSize="2"
