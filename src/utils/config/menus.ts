@@ -4,7 +4,7 @@ export let menuList = [
     key: "1",
     title: "首页",
     enKey: "home",
-    component: `@/views/home/Welcome.vue`,
+    component: `@/views/home/Home.vue`,
     path: "home",
     name: "home",
     icon: "HomeOutlined",

@@ -35,6 +35,11 @@ export default defineConfig(({ mode }) => {
           ws: true, //websocket代理设置
           rewrite: (path) => path.replace(/^\/ws/, ""),
         },
+        "/queryip": {
+          target: "http://pv.sohu.com/cityjson?ie=utf-8", 
+          changeOrigin: true, //允许跨域设置
+          rewrite: (path) => path.replace(/^\/queryip/, ""),
+        },
       },
     },
   };
