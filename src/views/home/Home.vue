@@ -52,11 +52,16 @@ axios.post("https://localhost:5173/queryip").then((res) => {
   .header {
     border: 1px solid #ccc;
     border-radius: 5px;
+    border-image: -webkit-linear-gradient(to bottom, red,yellow) 30 30;
+     border-image: -moz-linear-gradient(to bottom,red,yellow) 30 30;
+      border-image: linear-gradient(to bottom,red,yellow) 30 30;
+            clip-path: inset(0 round 3px);//裁剪
     width: 100%;
     height: auto;
     display: flex;
     justify-content: space-between;
     overflow: auto;
+    
     .con {
       width: 60%;
       padding: 10px;
