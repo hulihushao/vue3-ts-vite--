@@ -30,10 +30,13 @@ axios.post("https://localhost:5173/queryip").then((res) => {
         </p>
       </div>
       <div class="img">
-                <img src="/static/imgs/dashboard.png" />
+        <img src="/static/imgs/dashboard.png" />
       </div>
     </div>
-    <div class="quickly"></div>
+    <div class="quickly">
+      <div class="left">快捷方式</div>
+      <div class="right">汇总</div>
+    </div>
     <main class="content"></main>
   </div>
 </template>
@@ -53,7 +56,9 @@ axios.post("https://localhost:5173/queryip").then((res) => {
     height: auto;
     display: flex;
     justify-content: space-between;
+    overflow: auto;
     .con {
+      width: 60%;
       padding: 10px;
       .title {
         font-size: 18px;
@@ -75,13 +80,12 @@ axios.post("https://localhost:5173/queryip").then((res) => {
       //background: url("/static/imgs/dashboard.png") center/cover no-repeat;
       height: 145px;
       width: 260px;
-      overflow:hidden;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      img{
-        width:100%;
-        
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      img {
+        width: 100%;
       }
     }
   }
@@ -92,6 +96,10 @@ axios.post("https://localhost:5173/queryip").then((res) => {
     display: flex;
     margin: 10px 0px;
     justify-content: space-between;
+    div {
+      border: 1px solid red;
+      width: 49%;
+    }
   }
   .content {
     border: 1px solid red;
