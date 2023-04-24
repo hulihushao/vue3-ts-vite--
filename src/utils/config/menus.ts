@@ -138,11 +138,20 @@ export let menuList = [
         children: [
           {
             key: "4.2.1",
-            title: "ve-plus",
+            title: "ve-plus-vue3",
             enKey: "veplus",
             component: `@/views/study/componentLib/VePlus.vue`,
             path: "veplus",
             name: "veplus",
+            iconfont: undefined,
+          },
+          {
+            key: "4.2.2",
+            title: "Element UI",
+            enKey: "elementui",
+            component: `@/views/study/componentLib/ElementUI.vue`,
+            path: "elementui",
+            name: "elementui",
             iconfont: undefined,
           },
         ],

@@ -16,7 +16,7 @@ let iframeOption = defineProps({
 let iframe = ref(null);
 let spinning = ref(true);
 onMounted(() => {
-  //console.log(iframe.value.contentWindow, 222);
+  console.log(iframe.value, 222);
 });
 let loaded = () => {
   spinning.value = false;
