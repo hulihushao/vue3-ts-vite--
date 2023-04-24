@@ -132,7 +132,6 @@ export let menuList = [
         key: "4.2",
         title: "组件库",
         enKey: "UIComponentLib",
-        path: "UIComponentLib",
         name: "UIComponentLib",
         iconfont: "icon-cangku",
         children: [

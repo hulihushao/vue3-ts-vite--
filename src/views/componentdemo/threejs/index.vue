@@ -24,7 +24,7 @@ const material = new THREE.MeshBasicMaterial({
   color: 0xff0000, // 红色材质
 });
 /**
-// 创建要给网格模型，用来表示生活中的物体
+
 const mesh = new THREE.Mesh(geometry, material);
 
 //设置网格模型在三维空间中的位置坐标，默认是坐标原点
@@ -51,7 +51,7 @@ camera.position.set(200, 200, 200);
 // 相机的视线，观察目标点坐标 相机观察目标指向Threejs 3D空间中某个位置
 camera.lookAt(0, 0, 0); //坐标原点
 // camera.lookAt(mesh.position); //指向网格模型mesh
-
+// 创建要给网格模型，用来表示生活中的物体
 const cube = new THREE.Mesh(geometry, material);
 //scene.add(cube);
 
