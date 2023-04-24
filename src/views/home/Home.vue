@@ -29,7 +29,9 @@ axios.post("https://localhost:5173/queryip").then((res) => {
           >
         </p>
       </div>
-      <div class="img"></div>
+      <div class="img">
+                <img src="/static/imgs/dashboard.png" />
+      </div>
     </div>
     <div class="quickly"></div>
     <main class="content"></main>
@@ -70,9 +72,17 @@ axios.post("https://localhost:5173/queryip").then((res) => {
       }
     }
     .img {
-      background: url("/static/imgs/dashboard.png") center/cover no-repeat;
+      //background: url("/static/imgs/dashboard.png") center/cover no-repeat;
       height: 150px;
       width: 260px;
+      overflow:hidden;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      img{
+        width:100%;
+        
+      }
     }
   }
   .quickly {
