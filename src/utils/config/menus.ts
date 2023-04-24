@@ -152,7 +152,7 @@ export let menuList = [
             component: `@/views/study/componentLib/ElementUI.vue`,
             path: "elementui",
             name: "elementui",
-            iconfont: undefined,
+            iconfont: "icon-suyuan",
           },
         ],
       },
