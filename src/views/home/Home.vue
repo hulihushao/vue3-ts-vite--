@@ -27,6 +27,7 @@ axios.post("https://localhost:5173/queryip").then((res) => {
           <a href="" target="_blank"
             >https://github.com/hulihushao/vue3-ts-vite--</a
           >
+          {{ip}}
         </p>
       </div>
       <div class="img">
