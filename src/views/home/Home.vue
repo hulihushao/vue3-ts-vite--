@@ -58,7 +58,7 @@ axios.post("https://localhost:5173/queryip").then((res) => {
       }
     }
     .git{
-      padding:10px 0;
+      padding-top:10px;
     }
   }
   .quickly {
