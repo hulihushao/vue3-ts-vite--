@@ -73,7 +73,7 @@ axios.post("https://localhost:5173/queryip").then((res) => {
     }
     .img {
       //background: url("/static/imgs/dashboard.png") center/cover no-repeat;
-      height: 150px;
+      height: 145px;
       width: 260px;
       overflow:hidden;
       display:flex;
