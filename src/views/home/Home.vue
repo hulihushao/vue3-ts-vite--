@@ -53,6 +53,7 @@ GetWeather.getIP().then((res) => {
             </div>
             <span class="name">首页</span>
           </div>
+          <div style="width:24%;" v-for="item in 8 - quicks.length" :key="item"></div>
         </div>
       </div>
       <div class="right">汇总</div>
