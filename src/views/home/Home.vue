@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import useTheme from "@/store/theme";
 import { GetWeather } from "@/api/api";
-
+import {bgColors,colors,quicks} from "@/utils/config/quicklys"
 let themeObj = useTheme();
 let ip = ref("");
 
@@ -10,33 +10,6 @@ GetWeather.getIP().then((res) => {
   ip.value = res.data;
 });
 
-let quicks = ref([
-  {
-    name: "首页",
-    icon: "HomeOutlined",
-    path: "home",
-  },
-  {
-    name: "首页",
-    icon: "HomeOutlined",
-    path: "home",
-  },
-  {
-    name: "首页",
-    icon: "HomeOutlined",
-    path: "home",
-  },
-  {
-    name: "首页",
-    icon: "HomeOutlined",
-    path: "home",
-  },
-  {
-  name:"首页",
-  icon:"HomeOutlined",
-  path:"home"
-}
-]);
 </script>
 
 <template>
@@ -49,7 +22,7 @@ let quicks = ref([
           <span>多云 温度：12摄氏度 风向：北 风力：≤3级 空气湿度：76</span>
         </p>
         <p class="count">
-          <Icon style="color:#1890ff" icon="UserOutlined" />
+          <Icon style="color: #1890ff" icon="UserOutlined" />
           <span class="users">用户数 1245</span>
         </p>
         <p class="git">
@@ -68,8 +41,8 @@ let quicks = ref([
       <div class="left">
         <p class="title">快捷方式</p>
         <div class="items-con">
-          <div class="item" v-for="item in quicks" :key="item.name">
-            <div class="icon-con">
+          <div class="item" v-for="(item,index) in quicks" :key="item.name">
+            <div class="icon-con" :style="{background:bgColors[index],color:colors[index]}">
               <Icon :icon="item.icon" :iconfont="item.iconfont" />
             </div>
             <span class="name">首页</span>
@@ -154,26 +127,25 @@ let quicks = ref([
         padding: 5px;
         display: flex;
         justify-content: space-between;
-        flex-wrap:wrap;
+        flex-wrap: wrap;
         .item {
           width: 24%;
-          margin-top:5px;
+          margin-top: 5px;
           display: flex;
           justify-content: center;
           align-items: center;
           flex-direction: column;
-          .icon-con{
-            border:1px solid red;
-            border-radius:5px;
-            width:100%;
-            height:50px;
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            font-size:25px;
+          .icon-con {
+            border-radius: 5px;
+            width: 100%;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 25px;
           }
-          .name{
-            margin-top:5px;
+          .name {
+            margin-top: 5px;
           }
         }
       }
