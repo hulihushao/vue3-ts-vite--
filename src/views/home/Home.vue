@@ -121,7 +121,7 @@ GetWeather.getIP().then((res) => {
     justify-content: space-between;
     .left,
     .right {
-      border: 1px solid red;
+      border: 1px solid #ccc;
       width: 49%;
     }
     .left {
@@ -142,7 +142,6 @@ GetWeather.getIP().then((res) => {
           align-items: center;
           flex-direction: column;
           &:hover .icon-con{
-            background-color:transparent;
             border:1px solid var(--ant-primary-color);
             transform:scale(1.1);
             box-shadow: 0 0 10px rgba(0, 255, 0, .5); 
