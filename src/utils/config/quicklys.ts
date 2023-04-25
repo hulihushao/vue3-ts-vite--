@@ -1,4 +1,4 @@
-export let bgColors=[
+export let bgColors = [
   "#FFE1D3",
   "#D2ECFF",
   "#E8D8F9",
@@ -6,18 +6,24 @@ export let bgColors=[
   "#FFDAEC",
   "#CEF4F2",
   "#DDA0DD",
-  
-]
-export let colors=[
+  "#87CEFA",
+];
+export let colors = [
   "#FF9C6E",
   "#69C0FF",
   "#B37FEB",
   "#FFD666",
   "#FF85C0",
   "#79E1DB",
-  "#FF00FF"
-]
+  "#FF00FF",
+  "#00BFFF"
+];
 export let quicks = [
+  {
+    name: "首页",
+    icon: "HomeOutlined",
+    path: "home",
+  },
   {
     name: "首页",
     icon: "HomeOutlined",
