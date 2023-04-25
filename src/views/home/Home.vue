@@ -164,6 +164,7 @@ let quicks = ref([
           flex-direction: column;
           .icon-con{
             border:1px solid red;
+            border-radius:5px;
             width:100%;
             height:50px;
             display:flex;
