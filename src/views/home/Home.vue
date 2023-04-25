@@ -113,7 +113,6 @@ GetWeather.getIP().then((res) => {
     }
   }
   .quickly {
-    border: 1px solid red;
     width: 100%;
     height: auto;
     display: flex;
