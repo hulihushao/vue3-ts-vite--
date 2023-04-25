@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import useTheme from "@/store/theme";
-import axios from "axios";
+import {GetWeather} from "@/api/api"
+
 let themeObj = useTheme();
 let ip = ref("");
-axios.post("https://localhost:5173/queryip").then((res) => {
-  ip.value = res.data;
-});
+
+GetWeather.getIP().then(res=>{
+  ip.value=res.data
+})
 </script>
 
 <template>
@@ -27,7 +29,7 @@ axios.post("https://localhost:5173/queryip").then((res) => {
           <a href="" target="_blank"
             >https://github.com/hulihushao/vue3-ts-vite--</a
           >
-          {{ip}}
+          {{ ip }}
         </p>
       </div>
       <div class="img">
@@ -53,16 +55,16 @@ axios.post("https://localhost:5173/queryip").then((res) => {
   .header {
     border: 1px solid #ccc;
     border-radius: 5px;
-    border-image: -webkit-linear-gradient(to bottom, red,yellow) 30 30;
-     border-image: -moz-linear-gradient(to bottom,red,yellow) 30 30;
-      border-image: linear-gradient(to bottom,red,yellow) 30 30;
-            clip-path: inset(0 round 3px);//裁剪
+    border-image: -webkit-linear-gradient(to bottom, red, yellow) 30 30;
+    border-image: -moz-linear-gradient(to bottom, red, yellow) 30 30;
+    border-image: linear-gradient(to bottom, red, yellow) 30 30;
+    clip-path: inset(0 round 3px); //裁剪
     width: 100%;
     height: auto;
     display: flex;
     justify-content: space-between;
     overflow: auto;
-    
+
     .con {
       width: 60%;
       padding: 10px;

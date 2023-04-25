@@ -3,26 +3,29 @@ import type {
   AxiosInstance,
   AxiosRequestConfig,
   AxiosResponse,
-  AxiosError
+  AxiosError,
 } from "axios";
 const instance: AxiosInstance = axios.create({
   baseURL: import.meta.env.VITE_BASE_URL as string,
   timeout: 10000,
+  headers: {
+    "Content-Type": "application/x-www-form-urlencoded",
+  },
 });
 //console.log(import.meta.env)
 // http request 拦截器
 instance.interceptors.request.use(
-  (config:AxiosRequestConfig) => {
+  (config: AxiosRequestConfig) => {
     // 配置请求头
     config.headers = {
-      // 'Content-Type':'application/x-www-form-urlencoded',   // 传参方式表单
-      "Content-Type": "application/json;charset=UTF-8", // 传参方式json
-      Authorization: ``, // 设置Authorization
+       'Content-Type':'application/x-www-form-urlencoded',   // 传参方式表单
+      //"Content-Type": "application/json;charset=UTF-8", // 传参方式json
+      //Authorization: ``, // 设置Authorization
       // 'token': token.value // 或者设置token
     };
     return config;
   },
-  (error:AxiosError) => {
+  (error: AxiosError) => {
     return Promise.reject(error);
   }
 );
@@ -51,9 +54,13 @@ instance.interceptors.response.use(
 );
 
 // 封装 get post 请求
-export default function request(url: string, params:object = {}, type = "POST") {
+export default function request(
+  url: string,
+  params: object = {},
+  type = "POST"
+) {
   return new Promise((resolve, reject) => {
-    let promise:any
+    let promise: any;
     if (type.toUpperCase() === "GET") {
       promise = instance({ url, params });
     } else if (type.toUpperCase() === "POST") {
@@ -65,10 +72,10 @@ export default function request(url: string, params:object = {}, type = "POST") 
     }
 
     promise
-      .then((res:AxiosResponse) => {
+      .then((res: AxiosResponse) => {
         resolve(res);
       })
-      .catch((err:AxiosError) => {
+      .catch((err: AxiosError) => {
         reject(err);
       });
   });

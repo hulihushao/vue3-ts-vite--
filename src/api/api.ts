@@ -9,3 +9,8 @@ export class Component {
     return request(url, params, "get");
   }
 }
+export class GetWeather{
+  static getIP(params:object|undefined){
+    return request("/queryip",params,"get")
+  }
+}
