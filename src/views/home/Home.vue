@@ -55,7 +55,6 @@ GetWeather.getIP().then((res) => {
           </div>
         </div>
       </div>
-      0
       <div class="right">汇总</div>
     </div>
     <main class="content"></main>

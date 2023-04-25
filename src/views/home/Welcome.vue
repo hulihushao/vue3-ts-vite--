@@ -7,7 +7,6 @@ let themeObj = useTheme();
 
 <template>
   <div id="welcome">
-    <a-time-picker />
     <p>
       <Icon iconfont="icon-dingzhikaifa-zhihuiguanlixitong" />
     </p>
