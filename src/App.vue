@@ -11,6 +11,7 @@ dayjs.locale(zhCN.locale);
 
 const loading = useLoading();
 const theme = useTheme();
+document.body.style.background=theme.isDark?"#000":"#fff"
 //设置全局主题色
 useSetTheme(theme.color);
 useSetLanguage(theme.isZHCN);
