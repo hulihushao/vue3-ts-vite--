@@ -141,6 +141,14 @@ GetWeather.getIP().then((res) => {
           justify-content: center;
           align-items: center;
           flex-direction: column;
+          &:hover .icon-con{
+            background-color:transparent;
+            border:1px solid var(--ant-primary-color);
+            transform:scale(1.1);
+            box-shadow: 0 0 10px rgba(0, 255, 0, .5); 
+            
+            
+          }
           .icon-con {
             border-radius: 5px;
             width: 100%;
@@ -149,6 +157,7 @@ GetWeather.getIP().then((res) => {
             justify-content: center;
             align-items: center;
             font-size: 25px;
+                       transition:all .3s;
           }
           .name {
             margin-top: 5px;
