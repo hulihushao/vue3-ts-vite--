@@ -18,17 +18,16 @@ export function oppositeColor(a: string, ilighten: number): string {
   }
   return "#" + b.join("");
 }
-function hexToRgb(hex) {
-  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-  return result
-    ? {
-        r: parseInt(result[1], 16),
-        g: parseInt(result[2], 16),
-        b: parseInt(result[3], 16),
-      }
-    : null;
-}
-export function getLightenDarkenColor(col, amt) {
-  var result = hexToRgb(col);
-  return `rgba(${result.r + amt},${result.g + amt},${result.b + amt})`;
+export function getLightenDarkenColor(color:string, range:number) {
+  let newColor = "#";
+  range=-125
+  for (let i = 0; i < 3; i++) {
+    const hxStr = color.substr(i * 2 + 1, 2);
+    let val = parseInt(hxStr, 16);
+    val += range;
+    if (val < 0) val = 0;
+    else if (val > 255) val = 255;
+    newColor += val.toString(16).padStart(2, "0");
+  }
+  return newColor;
 }
