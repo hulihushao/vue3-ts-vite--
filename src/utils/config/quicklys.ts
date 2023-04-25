@@ -5,8 +5,8 @@ export let bgColors = [
   "#FFF3D1",
   "#FFDAEC",
   "#CEF4F2",
-  "#DDA0DD",
-  "#87CEFA",
+  "#D8BFD8",
+  "#ADD8E6",
 ];
 export let colors = [
   "#FF9C6E",
