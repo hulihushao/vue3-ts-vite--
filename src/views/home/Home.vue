@@ -2,14 +2,14 @@
 import { ref } from "vue";
 import useTheme from "@/store/theme";
 import { GetWeather } from "@/api/api";
-import {bgColors,colors,quicks} from "@/utils/config/quicklys"
+import { bgColors, colors, quicks } from "@/utils/config/quicklys";
+import { getLightenDarkenColor } from "@/utils/utils";
 let themeObj = useTheme();
 let ip = ref("");
 
 GetWeather.getIP().then((res) => {
   ip.value = res.data;
 });
-
 </script>
 
 <template>
@@ -41,14 +41,21 @@ GetWeather.getIP().then((res) => {
       <div class="left">
         <p class="title">快捷方式</p>
         <div class="items-con">
-          <div class="item" v-for="(item,index) in quicks" :key="item.name">
-            <div class="icon-con" :style="{background:bgColors[index],color:colors[index]}">
+          <div class="item" v-for="(item, index) in quicks" :key="item.name">
+            <div
+              class="icon-con"
+              :style="{
+                background: bgColors[index],
+                color: getLightenDarkenColor(bgColors[index], -110),
+              }"
+            >
               <Icon :icon="item.icon" :iconfont="item.iconfont" />
             </div>
             <span class="name">首页</span>
           </div>
         </div>
       </div>
+      0
       <div class="right">汇总</div>
     </div>
     <main class="content"></main>

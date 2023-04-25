@@ -1,6 +1,6 @@
 // 计算反色, ilighten - 减弱对比度(-1 ~ -15)
 // 示例: oppositeColor("#000000", -4); 返回: #bbbbbb
-export function oppositeColor(a: string, ilighten: number):string {
+export function oppositeColor(a: string, ilighten: number): string {
   a = a.replace("#", "");
   //var max16 = 15;
   let max16: number = Math.floor(15 + (ilighten || 0));
@@ -17,4 +17,18 @@ export function oppositeColor(a: string, ilighten: number):string {
     b.push(c10.toString(16)); // to 16进制
   }
   return "#" + b.join("");
+}
+function hexToRgb(hex) {
+  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  return result
+    ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16),
+      }
+    : null;
+}
+export function getLightenDarkenColor(col, amt) {
+  var result = hexToRgb(col);
+  return `rgba(${result.r + amt},${result.g + amt},${result.b + amt})`;
 }
