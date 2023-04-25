@@ -1,14 +1,42 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import useTheme from "@/store/theme";
-import {GetWeather} from "@/api/api"
+import { GetWeather } from "@/api/api";
 
 let themeObj = useTheme();
 let ip = ref("");
 
-GetWeather.getIP().then(res=>{
-  ip.value=res.data
-})
+GetWeather.getIP().then((res) => {
+  ip.value = res.data;
+});
+
+let quicks = ref([
+  {
+    name: "首页",
+    icon: "HomeOutlined",
+    path: "home",
+  },
+  {
+    name: "首页",
+    icon: "HomeOutlined",
+    path: "home",
+  },
+  {
+    name: "首页",
+    icon: "HomeOutlined",
+    path: "home",
+  },
+  {
+    name: "首页",
+    icon: "HomeOutlined",
+    path: "home",
+  },
+  {
+  name:"首页",
+  icon:"HomeOutlined",
+  path:"home"
+}
+]);
 </script>
 
 <template>
@@ -21,7 +49,7 @@ GetWeather.getIP().then(res=>{
           <span>多云 温度：12摄氏度 风向：北 风力：≤3级 空气湿度：76</span>
         </p>
         <p class="count">
-          <Icon icon="UserOutlined" />
+          <Icon style="color:#1890ff" icon="UserOutlined" />
           <span class="users">用户数 1245</span>
         </p>
         <p class="git">
@@ -37,7 +65,17 @@ GetWeather.getIP().then(res=>{
       </div>
     </div>
     <div class="quickly">
-      <div class="left">快捷方式</div>
+      <div class="left">
+        <p class="title">快捷方式</p>
+        <div class="items-con">
+          <div class="item" v-for="item in quicks" :key="item.name">
+            <div class="icon-con">
+              <Icon :icon="item.icon" :iconfont="item.iconfont" />
+            </div>
+            <span class="name">首页</span>
+          </div>
+        </div>
+      </div>
       <div class="right">汇总</div>
     </div>
     <main class="content"></main>
@@ -47,7 +85,6 @@ GetWeather.getIP().then(res=>{
 <style scoped lang="less">
 #home {
   color: v-bind("themeObj.setColor");
-
   p {
     padding: 0;
     margin: 0;
@@ -64,7 +101,6 @@ GetWeather.getIP().then(res=>{
     display: flex;
     justify-content: space-between;
     overflow: auto;
-
     .con {
       width: 60%;
       padding: 10px;
@@ -100,13 +136,46 @@ GetWeather.getIP().then(res=>{
   .quickly {
     border: 1px solid red;
     width: 100%;
-    height: 120px;
+    height: auto;
     display: flex;
     margin: 10px 0px;
     justify-content: space-between;
-    div {
+    .left,
+    .right {
       border: 1px solid red;
       width: 49%;
+    }
+    .left {
+      padding: 10px;
+      .title {
+        font-size: 16px;
+      }
+      .items-con {
+        padding: 5px;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap:wrap;
+        .item {
+          width: 24%;
+          margin-top:5px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          .icon-con{
+            border:1px solid red;
+            width:100%;
+            height:50px;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            font-size:25px;
+          }
+          .name{
+            margin-top:5px;
+          }
+        }
+      }
     }
   }
   .content {
