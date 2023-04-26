@@ -8,7 +8,7 @@ export let menuList = [
     path: "home",
     name: "home",
     icon: "HomeOutlined",
-    quickly:true,
+    quickly: true,
     meta: {
       isAuth: true,
     },
@@ -35,7 +35,7 @@ export let menuList = [
             component: "@/views/componentdemo/Threejs.vue",
             path: "threejs",
             name: "threejs",
-            quickly:true,
+            quickly: true,
           },
           {
             key: "2.1.2",
@@ -46,6 +46,7 @@ export let menuList = [
             component: "@/views/componentdemo/WebSocket.vue",
             path: "webSocket",
             name: "webSocket",
+            quickly: true,
           },
           {
             key: "2.1.2",
@@ -108,6 +109,7 @@ export let menuList = [
             component: "@/views/system/ChatRoom.vue",
             path: "chatroom",
             name: "chatroom",
+            quickly: true,
           },
         ],
       },
@@ -154,6 +156,7 @@ export let menuList = [
             path: "elementui",
             name: "elementui",
             iconfont: "icon-suyuan",
+            quickly: true,
           },
         ],
       },
