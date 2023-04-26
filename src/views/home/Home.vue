@@ -158,12 +158,12 @@ let handleQuick = (quick: menus) => {
       .items-con{
         padding:5px;
         display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
       }
     }
     .left {
       .items-con {
-        justify-content: space-between;
-        flex-wrap: wrap;
         .item {
           width: 24%;
           margin-top: 5px;
