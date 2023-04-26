@@ -147,6 +147,7 @@ let handleQuick = (quick: menus) => {
     justify-content: space-between;
     .left,
     .right {
+      overflow:auto;
       border: 1px solid var(--ant-primary-color);
       width: 49%;
       border-radius: 5px;
@@ -154,11 +155,13 @@ let handleQuick = (quick: menus) => {
       .title {
         font-size: 16px;
       }
+      .items-con{
+        padding:5px;
+        display: flex;
+      }
     }
     .left {
       .items-con {
-        padding: 5px;
-        display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
         .item {
