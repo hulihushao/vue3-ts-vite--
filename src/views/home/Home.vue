@@ -53,7 +53,11 @@ GetWeather.getIP().then((res) => {
             </div>
             <span class="name">首页</span>
           </div>
-          <div style="width:24%;" v-for="item in 8 - quicks.length" :key="item"></div>
+          <div
+            style="width: 24%"
+            v-for="item in 8 - quicks.length"
+            :key="item"
+          ></div>
         </div>
       </div>
       <div class="right">汇总</div>
@@ -121,11 +125,12 @@ GetWeather.getIP().then((res) => {
     justify-content: space-between;
     .left,
     .right {
-      border: 1px solid #ccc;
+      border: 1px solid var(--ant-primary-color);
       width: 49%;
+      border-radius: 5px;
+      padding: 10px;
     }
     .left {
-      padding: 10px;
       .title {
         font-size: 16px;
       }
@@ -141,12 +146,10 @@ GetWeather.getIP().then((res) => {
           justify-content: center;
           align-items: center;
           flex-direction: column;
-          &:hover .icon-con{
-            border:1px solid var(--ant-primary-color);
-            transform:scale(1.1);
-            box-shadow: 0 0 10px rgba(0, 255, 0, .5); 
-            
-            
+          &:hover .icon-con {
+            border: 1px solid var(--ant-primary-color);
+            transform: scale(1.1);
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
           }
           .icon-con {
             border-radius: 5px;
@@ -156,8 +159,8 @@ GetWeather.getIP().then((res) => {
             justify-content: center;
             align-items: center;
             font-size: 25px;
-                       transition:all .3s;
-          }
+            transition:all .3s;
+                  }
           .name {
             margin-top: 5px;
           }
