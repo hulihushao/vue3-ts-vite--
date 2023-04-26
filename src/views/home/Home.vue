@@ -69,7 +69,7 @@ let handleQuick = (quick: menus) => {
           </div>
           <div
             style="width: 24%"
-            v-for="item in 8 - quicks.length"
+            v-for="item in 8 % quicks.length"
             :key="item"
           ></div>
         </div>
