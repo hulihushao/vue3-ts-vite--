@@ -1,3 +1,8 @@
+import {useAllMenus} from "@/composables/useGetRoute"
+let allMenus=useAllMenus()
+
+let a=allMenus.filter(item=>item.quickly)
+console.log(a)
 export let bgColors = [
   "#FFE1D3",
   "#D2ECFF",
@@ -18,45 +23,4 @@ export let colors = [
   "#FF00FF",
   "#00BFFF"
 ];
-export let quicks = [
-  {
-    name: "首页",
-    icon: "HomeOutlined",
-    path: "home",
-  },
-  {
-    name: "首页",
-    icon: "HomeOutlined",
-    path: "home",
-  },
-  {
-    name: "首页",
-    icon: "HomeOutlined",
-    path: "home",
-  },
-  {
-    name: "首页",
-    icon: "HomeOutlined",
-    path: "home",
-  },
-  {
-    name: "首页",
-    icon: "HomeOutlined",
-    path: "home",
-  },
-  {
-    name: "首页",
-    icon: "HomeOutlined",
-    path: "home",
-  },
-  {
-    name: "首页",
-    icon: "HomeOutlined",
-    path: "home",
-  },
-  {
-    name: "首页",
-    icon: "HomeOutlined",
-    path: "home",
-  },
-]
+export let quicks =a

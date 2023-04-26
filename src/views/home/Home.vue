@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import {useRouter} from "vue-router"
 import useTheme from "@/store/theme";
 import { GetWeather } from "@/api/api";
 import { bgColors, colors, quicks } from "@/utils/config/quicklys";
@@ -9,13 +10,14 @@ import {useMenuClick} from "@/composables/useMenuClick"
 let themeObj = useTheme();
 let ip = ref("");
 
-GetWeather.getIP().then((res) => {
+GetWeather.getIP({}).then((res) => {
   ip.value = res.data;
 });
 
 //点击快捷方式
+let router=useRouter()
 let handleQuick=(quick:menus)=>{
-  useMenuClick(quick)
+  useMenuClick(quick,router)
 }
 </script>
 
@@ -58,7 +60,7 @@ let handleQuick=(quick:menus)=>{
             >
               <Icon :icon="item.icon" :iconfont="item.iconfont" />
             </div>
-            <span class="name">首页</span>
+            <span class="name">{{item.title}}</span>
           </div>
           <div
             style="width: 24%"

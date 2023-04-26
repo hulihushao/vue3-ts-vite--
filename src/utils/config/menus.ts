@@ -8,6 +8,7 @@ export let menuList = [
     path: "home",
     name: "home",
     icon: "HomeOutlined",
+    quickly:true,
     meta: {
       isAuth: true,
     },
@@ -34,6 +35,7 @@ export let menuList = [
             component: "@/views/componentdemo/Threejs.vue",
             path: "threejs",
             name: "threejs",
+            quickly:true,
           },
           {
             key: "2.1.2",
