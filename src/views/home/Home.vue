@@ -4,19 +4,26 @@ import useTheme from "@/store/theme";
 import { GetWeather } from "@/api/api";
 import { bgColors, colors, quicks } from "@/utils/config/quicklys";
 import { getLightenDarkenColor } from "@/utils/utils";
+import {menus} from "@/types/menus"
+import {useMenuClick} from "@/composables/useMenuClick"
 let themeObj = useTheme();
 let ip = ref("");
 
 GetWeather.getIP().then((res) => {
   ip.value = res.data;
 });
+
+//点击快捷方式
+let handleQuick=(quick:menus)=>{
+  useMenuClick(quick)
+}
 </script>
 
 <template>
   <div id="home">
     <div class="header">
       <div class="con">
-        <p class="title">早安，{{ "admin" }}，没好的一天从工作开始！</p>
+        <p class="title">早上坏，{{ "admin" }}，没好的一天从工作开始！</p>
         <p class="weather">
           <span>山东省-烟台市 天气：</span>
           <span>多云 温度：12摄氏度 风向：北 风力：≤3级 空气湿度：76</span>
@@ -41,7 +48,7 @@ GetWeather.getIP().then((res) => {
       <div class="left">
         <p class="title">快捷方式</p>
         <div class="items-con">
-          <div class="item" v-for="(item, index) in quicks" :key="item.name">
+          <div class="item" @click="handleQuick(item)" v-for="(item, index) in quicks" :key="item.name">
             <div
               class="icon-con"
               :style="{
@@ -60,7 +67,7 @@ GetWeather.getIP().then((res) => {
           ></div>
         </div>
       </div>
-      <div class="right">汇总</div>
+      <div class="right">概览</div>
     </div>
     <main class="content"></main>
   </div>
