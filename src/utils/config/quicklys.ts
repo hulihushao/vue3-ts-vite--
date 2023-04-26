@@ -24,4 +24,22 @@ export let colors = [
   "#00BFFF"
 ];
 //快捷方式，最多支持8个
-export let quicks =a
+export let quicks =a.splice(0,8)
+
+//概览数据
+export let overviews=[
+  {
+    name:"组件demo",
+    counter:6,
+  },
+  {
+
+    name:"系统",
+    counter:4,
+  },
+  {
+
+    name:"组件库",
+    counter:6,
+  }
+]

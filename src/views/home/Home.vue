@@ -3,7 +3,7 @@ import { ref } from "vue";
 import { useRouter } from "vue-router";
 import useTheme from "@/store/theme";
 import { GetWeather } from "@/api/api";
-import { bgColors, colors, quicks } from "@/utils/config/quicklys";
+import { bgColors, colors, quicks, overviews } from "@/utils/config/quicklys";
 import { getLightenDarkenColor } from "@/utils/utils";
 import { menus } from "@/types/menus";
 import { useMenuClick } from "@/composables/useMenuClick";
@@ -77,9 +77,9 @@ let handleQuick = (quick: menus) => {
       <div class="right">
         <p class="title">概览</p>
         <div class="items-con">
-          <div class="item">
-            <p class="name">组件</p>
-            <p class="counter">5</p>
+          <div class="item" v-for="item in overviews" :key="item.name">
+            <p class="name">{{ item.name }}</p>
+            <p class="counter">{{ item.counter }}</p>
           </div>
         </div>
       </div>
@@ -147,7 +147,7 @@ let handleQuick = (quick: menus) => {
     justify-content: space-between;
     .left,
     .right {
-      overflow:auto;
+      overflow: auto;
       border: 1px solid var(--ant-primary-color);
       width: 49%;
       border-radius: 5px;
@@ -155,18 +155,20 @@ let handleQuick = (quick: menus) => {
       .title {
         font-size: 16px;
       }
-      .items-con{
-        padding:5px;
+      .items-con {
+        padding: 5px;
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
+        .item {
+          margin-top: 5px;
+        }
       }
     }
     .left {
       .items-con {
         .item {
           width: 24%;
-          margin-top: 5px;
           display: flex;
           justify-content: center;
           align-items: center;
@@ -196,9 +198,21 @@ let handleQuick = (quick: menus) => {
         }
       }
     }
-    .right{
-      .items-con{
-        
+    .right {
+      .items-con {
+        .item {
+          width: 32.5%;
+          border: 1px solid red;
+          padding: 10px;
+          .counter {
+            font-size: 28px;
+            font-weight: 500;
+            color: #00cc66;
+            border: 1px solid red;
+            line-height: 28px;
+            margin-top: 10px;
+          }
+        }
       }
     }
   }
