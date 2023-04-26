@@ -23,4 +23,5 @@ export let colors = [
   "#FF00FF",
   "#00BFFF"
 ];
+//快捷方式，最多支持8个
 export let quicks =a

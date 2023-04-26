@@ -58,7 +58,7 @@ let handleQuick=(quick:menus)=>{
                 color: getLightenDarkenColor(bgColors[index], -110),
               }"
             >
-              <Icon :icon="item.icon" :iconfont="item.iconfont" />
+              <Icon class="icon" :icon="item.icon" :iconfont="item.iconfont" />
             </div>
             <span class="name">{{item.title}}</span>
           </div>
@@ -167,8 +167,10 @@ let handleQuick=(quick:menus)=>{
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 25px;
             transition: all 0.3s;
+            .icon{
+              font-size:25px;
+            }
           }
           .name {
             margin-top: 5px;
