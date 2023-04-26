@@ -245,6 +245,7 @@ onBeforeUnmount(() => {
             :options="selectObj"
             @change="selectChange"
           ></a-select>
+          <br/>
           <span style="color: #ccc; font-size: 12px; margin-left: 10px"
             >注:URL和上传只会生效一个</span
           >
