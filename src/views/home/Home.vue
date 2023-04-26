@@ -182,7 +182,7 @@ let handleQuick = (quick: menus) => {
             cursor: pointer;
           }
           .icon-con {
-            border-radius: 5px;
+            border-radius: 3px;
             width: 100%;
             height: 50px;
             display: flex;
