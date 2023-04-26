@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import {useRouter} from "vue-router"
+import { useRouter } from "vue-router";
 import useTheme from "@/store/theme";
 import { GetWeather } from "@/api/api";
 import { bgColors, colors, quicks } from "@/utils/config/quicklys";
 import { getLightenDarkenColor } from "@/utils/utils";
-import {menus} from "@/types/menus"
-import {useMenuClick} from "@/composables/useMenuClick"
+import { menus } from "@/types/menus";
+import { useMenuClick } from "@/composables/useMenuClick";
 let themeObj = useTheme();
 let ip = ref("");
 
@@ -15,10 +15,10 @@ GetWeather.getIP({}).then((res) => {
 });
 
 //点击快捷方式
-let router=useRouter()
-let handleQuick=(quick:menus)=>{
-  useMenuClick(quick,router)
-}
+let router = useRouter();
+let handleQuick = (quick: menus) => {
+  useMenuClick(quick, router);
+};
 </script>
 
 <template>
@@ -50,7 +50,12 @@ let handleQuick=(quick:menus)=>{
       <div class="left">
         <p class="title">快捷方式</p>
         <div class="items-con">
-          <div class="item" @click="handleQuick(item)" v-for="(item, index) in quicks" :key="item.name">
+          <div
+            class="item"
+            @click="handleQuick(item)"
+            v-for="(item, index) in quicks"
+            :key="item.name"
+          >
             <div
               class="icon-con"
               :style="{
@@ -60,7 +65,7 @@ let handleQuick=(quick:menus)=>{
             >
               <Icon class="icon" :icon="item.icon" :iconfont="item.iconfont" />
             </div>
-            <span class="name">{{item.title}}</span>
+            <span class="name">{{ item.title }}</span>
           </div>
           <div
             style="width: 24%"
@@ -168,8 +173,10 @@ let handleQuick=(quick:menus)=>{
             justify-content: center;
             align-items: center;
             transition: all 0.3s;
-            .icon{
-              font-size:25px;
+            .icon {
+              font-size: 25px;
+              display: flex;
+              align-items: center;
             }
           }
           .name {
