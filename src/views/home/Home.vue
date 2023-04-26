@@ -159,8 +159,8 @@ GetWeather.getIP().then((res) => {
             justify-content: center;
             align-items: center;
             font-size: 25px;
-            transition:all .3s;
-                  }
+            transition: all 0.3s;
+          }
           .name {
             margin-top: 5px;
           }
