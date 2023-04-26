@@ -178,6 +178,9 @@ let handleQuick = (quick: menus) => {
             transform: scale(1.1);
             box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
           }
+          &:hover{
+            cursor: pointer;
+          }
           .icon-con {
             border-radius: 5px;
             width: 100%;

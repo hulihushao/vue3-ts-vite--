@@ -28,7 +28,7 @@ export function useAllMenus():menus[] {
         }
       }
     }
-    return {};
+    return null;
   }
 //获取所有子菜单
   let get = (list:menus[]) => {

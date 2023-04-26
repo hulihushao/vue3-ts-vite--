@@ -16,6 +16,7 @@ collapsed.collapsed = !themeObj.isUnfoldMenusSider;
     :trigger="null"
     collapsible
     :theme="themeObj.themeChecked ? 'dark' : 'light'"
+    :style="{ overflow: 'auto'}"
   >
     <div class="logo">
       <i
