@@ -74,7 +74,15 @@ let handleQuick = (quick: menus) => {
           ></div>
         </div>
       </div>
-      <div class="right">概览</div>
+      <div class="right">
+        <p class="title">概览</p>
+        <div class="items-con">
+          <div class="item">
+            <p class="name">组件</p>
+            <p class="counter">5</p>
+          </div>
+        </div>
+      </div>
     </div>
     <main class="content"></main>
   </div>
@@ -133,7 +141,7 @@ let handleQuick = (quick: menus) => {
   }
   .quickly {
     width: 100%;
-    height: auto;
+    height: 222px;
     display: flex;
     margin: 10px 0px;
     justify-content: space-between;
@@ -143,11 +151,11 @@ let handleQuick = (quick: menus) => {
       width: 49%;
       border-radius: 5px;
       padding: 10px;
-    }
-    .left {
       .title {
         font-size: 16px;
       }
+    }
+    .left {
       .items-con {
         padding: 5px;
         display: flex;
@@ -183,6 +191,11 @@ let handleQuick = (quick: menus) => {
             margin-top: 5px;
           }
         }
+      }
+    }
+    .right{
+      .items-con{
+        
       }
     }
   }
