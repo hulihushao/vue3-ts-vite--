@@ -214,6 +214,7 @@ let handleQuick = (quick: menus) => {
           width: 32%;
           padding: 10px;
           background:#f8f8f8;
+          border-radius:3px;
           .name{
             color:#333;
           }
