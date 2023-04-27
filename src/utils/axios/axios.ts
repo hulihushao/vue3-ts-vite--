@@ -17,12 +17,21 @@ const instance: AxiosInstance = axios.create({
 instance.interceptors.request.use(
   (config: AxiosRequestConfig) => {
     // 配置请求头
+    if(config.params.token){
     config.headers = {
        'Content-Type':'application/x-www-form-urlencoded',   // 传参方式表单
       //"Content-Type": "application/json;charset=UTF-8", // 传参方式json
-      //Authorization: ``, // 设置Authorization
+      Authorization: `token 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 `, // 设置Authorization
       // 'token': token.value // 或者设置token
     };
+    }else{
+    config.headers = {
+       'Content-Type':'application/x-www-form-urlencoded',   // 传参方式表单
+      //"Content-Type": "application/json;charset=UTF-8", // 传参方式json
+      //Authorization: ` `, // 设置Authorization
+      // 'token': token.value // 或者设置token
+    };
+    }
     return config;
   },
   (error: AxiosError) => {
@@ -57,7 +66,7 @@ instance.interceptors.response.use(
 export default function request(
   url: string,
   params: object = {},
-  type = "POST"
+  type = "POST",
 ) {
   return new Promise((resolve, reject) => {
     let promise: any;

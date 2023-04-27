@@ -16,6 +16,6 @@ export class GetWeather{
 }
 export class Github{
   static getCommits(){
-    return request("https://api.github.com/repos/hulihushao/vue3-ts-vite--/commits?per_page=10&sha=main",{},"get")
+    return request("https://api.github.com/repos/hulihushao/vue3-ts-vite--/commits?per_page=10&sha=main",{token:true},"get")
   }
 }
