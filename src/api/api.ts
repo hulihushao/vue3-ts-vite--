@@ -21,7 +21,8 @@ export class Github {
       {},
       "get",
       {
-        Authorization: `token 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 `, // 设置Authorization
+        //解除githubAPI请求次数限制为5000，有效期一个月
+       // Authorization: `token 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`
       }
     );
   }
