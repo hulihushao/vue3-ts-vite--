@@ -17,19 +17,15 @@ const instance: AxiosInstance = axios.create({
 instance.interceptors.request.use(
   (config: AxiosRequestConfig) => {
     // 配置请求头
-    if (config.params.token) {
-      config.headers = {
-        "Content-Type": "application/x-www-form-urlencoded", // 传参方式表单
-        ...config.headers,
-      };
-    } else {
-      config.headers = {
-        "Content-Type": "application/x-www-form-urlencoded", // 传参方式表单
-        //"Content-Type": "application/json;charset=UTF-8", // 传参方式json
-        //Authorization: ` `, // 设置Authorization
-        // 'token': token.value // 或者设置token
-      };
-    }
+
+    config.headers = {
+      "Content-Type": "application/x-www-form-urlencoded", // 传参方式表单
+      //"Content-Type": "application/json;charset=UTF-8", // 传参方式json
+      //Authorization: ` `, // 设置Authorization
+      // 'token': token.value // 或者设置token
+      ...config.headers,
+    };
+    console.log(config);
     return config;
   },
   (error: AxiosError) => {
