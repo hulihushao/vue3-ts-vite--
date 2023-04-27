@@ -67,6 +67,7 @@ let handleQuick = (quick: menus) => {
             </div>
             <span class="name">{{ item.title }}</span>
           </div>
+          <!--4*Math.ceil(quicks.length/4)-quicks.length,此公式没有最多8个的限制-->
           <div
             style="width: 24%"
             v-for="item in 8 % quicks.length"
@@ -205,13 +206,15 @@ let handleQuick = (quick: menus) => {
       .items-con {
         .item {
           width: 32.5%;
-          border: 1px solid red;
           padding: 10px;
+          background:#eee;
+          .nane{
+            color:#333;
+          }
           .counter {
             font-size: 28px;
             font-weight: 500;
             color: #00cc66;
-            border: 1px solid red;
             line-height: 28px;
             margin-top: 10px;
           }
