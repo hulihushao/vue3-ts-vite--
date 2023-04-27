@@ -84,6 +84,9 @@ let handleQuick = (quick: menus) => {
           </div>
         </div>
       </div>
+      <div class="center">
+        
+      </div>
     </div>
     <main class="content"></main>
   </div>
@@ -148,10 +151,10 @@ let handleQuick = (quick: menus) => {
     margin: 10px 0px;
     justify-content: space-between;
     .left,
-    .right {
+    .right,.center {
       overflow: auto;
       border: 1px solid var(--ant-primary-color);
-      width: 49%;
+      width: 32.5%;
       border-radius: 5px;
       padding: 10px;
       backdrop-filter: blur(10px);
@@ -181,7 +184,7 @@ let handleQuick = (quick: menus) => {
             transform: scale(1.1);
             box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
           }
-          &:hover{
+          &:hover {
             cursor: pointer;
           }
           .icon-con {
@@ -205,18 +208,18 @@ let handleQuick = (quick: menus) => {
       }
     }
     .right {
-      .wei{
-        font-size:12px;
-        color:#999;
+      .wei {
+        font-size: 12px;
+        color: #999;
       }
       .items-con {
         .item {
-          width: 32%;
+          width: 49%;
           padding: 10px;
-          background:#f8f8f8;
-          border-radius:3px;
-          .name{
-            color:#333;
+          background: #f8f8f8;
+          border-radius: 3px;
+          .name {
+            color: #333;
           }
           .counter {
             font-size: 28px;
