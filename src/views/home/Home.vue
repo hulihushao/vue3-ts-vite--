@@ -3,6 +3,7 @@ import { ref } from "vue";
 import { useRouter } from "vue-router";
 import useTheme from "@/store/theme";
 import { GetWeather } from "@/api/api";
+import axios from "axios"
 import { bgColors, colors, quicks, overviews } from "@/utils/config/quicklys";
 import { getLightenDarkenColor } from "@/utils/utils";
 import { menus } from "@/types/menus";
@@ -29,23 +30,32 @@ const columns = [
     },
 ];
 
-const data = [
+const data = ref([
   {
     key: "1",
     name: "IP",
     content: sessionStorage.getItem("ip"),
   },
   {
+
     key: "2",
+    name: "登录地",
+    content: sessionStorage.getItem("area"),
+  },
+  {
+    key: "3",
     name: "浏览器",
     content: GetCurrentBrowser(),
   },
   {
-    key: "3",
+    key: "4",
     name: "操作系统",
     content: GetOs(),
   },
-];
+]);
+axios.get("https://api.ipify.org/?format=json").then(res=>{
+  data.value[0].content=res.data.ip
+})
 </script>
 
 <template>
@@ -115,6 +125,7 @@ const data = [
         <p class="title">系统信息</p>
         <div class="items-con">
           <a-table style="width:100%"
+          size="small"
             :pagination="false"
             :columns="columns"
             :data-source="data"
