@@ -8,12 +8,9 @@ import { getLightenDarkenColor } from "@/utils/utils";
 import { menus } from "@/types/menus";
 import { useMenuClick } from "@/composables/useMenuClick";
 import {GetOs,GetCurrentBrowser} from "@/utils/deviceType"
+
 let themeObj = useTheme();
 let ip = ref("");
-
-GetWeather.getIP({}).then((res) => {
-  ip.value = res.data;
-});
 
 //点击快捷方式
 let router = useRouter();
@@ -36,7 +33,7 @@ const data = [
   {
     key: "1",
     name: "IP",
-    content: "￥",
+    content: sessionStorage.getItem("ip"),
   },
   {
     key: "2",

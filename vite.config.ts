@@ -37,7 +37,7 @@ export default defineConfig(({ mode }) => {
         },
         "/queryip": {
           //target: "http://pv.sohu.com/cityjson?ie=utf-8", 
-          target:"http://whois.pconline.com.cn/ipJson.jsp?callback=testJson&ip=112.224.164.221",
+          target:"http://whois.pconline.com.cn/ipJson.jsp?callback=testJson",
           changeOrigin: true, //允许跨域设置
           rewrite: (path) => path.replace(/^\/queryip/, ""),
         },
