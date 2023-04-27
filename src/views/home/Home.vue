@@ -7,6 +7,7 @@ import { bgColors, colors, quicks, overviews } from "@/utils/config/quicklys";
 import { getLightenDarkenColor } from "@/utils/utils";
 import { menus } from "@/types/menus";
 import { useMenuClick } from "@/composables/useMenuClick";
+import {GetOs,GetCurrentBrowser} from "@/utils/deviceType"
 let themeObj = useTheme();
 let ip = ref("");
 
@@ -19,6 +20,35 @@ let router = useRouter();
 let handleQuick = (quick: menus) => {
   useMenuClick(quick, router);
 };
+
+const columns = [
+  {
+    dataIndex: "name",
+    width:"38%"
+  },
+  {
+    dataIndex: "content",
+
+    },
+];
+
+const data = [
+  {
+    key: "1",
+    name: "IP",
+    content: "￥",
+  },
+  {
+    key: "2",
+    name: "浏览器",
+    content: GetCurrentBrowser(),
+  },
+  {
+    key: "3",
+    name: "操作系统",
+    content: GetOs(),
+  },
+];
 </script>
 
 <template>
@@ -85,7 +115,22 @@ let handleQuick = (quick: menus) => {
         </div>
       </div>
       <div class="center">
-        
+        <p class="title">系统信息</p>
+        <div class="items-con">
+          <a-table style="width:100%"
+            :pagination="false"
+            :columns="columns"
+            :data-source="data"
+            bordered
+            :showHeader="false"
+          >
+            <template #bodyCell="{ column, text }">
+              <template v-if="column.dataIndex === 'name'">
+                <span>{{ text }}</span>
+              </template>
+            </template>
+          </a-table>
+        </div>
       </div>
     </div>
     <main class="content"></main>
@@ -151,7 +196,8 @@ let handleQuick = (quick: menus) => {
     margin: 10px 0px;
     justify-content: space-between;
     .left,
-    .right,.center {
+    .right,
+    .center {
       overflow: auto;
       border: 1px solid var(--ant-primary-color);
       width: 32.5%;
@@ -231,7 +277,12 @@ let handleQuick = (quick: menus) => {
         }
       }
     }
-  }
+    .center{
+      .items-con{
+        padding-bottom:5px;
+      }
+    }
+    }
   .content {
     border: 1px solid red;
     height: 200px;
