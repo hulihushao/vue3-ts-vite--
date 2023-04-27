@@ -76,7 +76,7 @@ let handleQuick = (quick: menus) => {
         </div>
       </div>
       <div class="right">
-        <p class="title">概览</p>
+        <p class="title">概览 <span class="wei">(单位:个)</span></p>
         <div class="items-con">
           <div class="item" v-for="item in overviews" :key="item.name">
             <p class="name">{{ item.name }}</p>
@@ -108,6 +108,7 @@ let handleQuick = (quick: menus) => {
     display: flex;
     justify-content: space-between;
     overflow: auto;
+    backdrop-filter: blur(10px);
     .con {
       width: 60%;
       padding: 10px;
@@ -153,6 +154,7 @@ let handleQuick = (quick: menus) => {
       width: 49%;
       border-radius: 5px;
       padding: 10px;
+      backdrop-filter: blur(10px);
       .title {
         font-size: 16px;
       }
@@ -203,12 +205,16 @@ let handleQuick = (quick: menus) => {
       }
     }
     .right {
+      .wei{
+        font-size:12px;
+        color:#999;
+      }
       .items-con {
         .item {
-          width: 32.5%;
+          width: 32%;
           padding: 10px;
-          background:#eee;
-          .nane{
+          background:#f8f8f8;
+          .name{
             color:#333;
           }
           .counter {
@@ -216,7 +222,7 @@ let handleQuick = (quick: menus) => {
             font-weight: 500;
             color: #00cc66;
             line-height: 28px;
-            margin-top: 10px;
+            margin-top: 5px;
           }
         }
       }
