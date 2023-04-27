@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import useTheme from "@/store/theme";
-import { GetWeather } from "@/api/api";
+import { GetWeather ,Github} from "@/api/api";
 import axios from "axios"
 import { bgColors, colors, quicks, overviews } from "@/utils/config/quicklys";
 import { getLightenDarkenColor } from "@/utils/utils";
@@ -53,8 +53,24 @@ const data = ref([
     content: GetOs(),
   },
 ]);
+
 axios.get("https://api.ipify.org/?format=json").then(res=>{
   data.value[0].content=res.data.ip
+})
+//获取github提交记录
+let commits=ref<object[]>()
+Github.getCommits().then(res=>{
+  let commit:object[]=[]
+  res.data.forEach((item,index:number)=>{
+    commit.push({
+      date:item.commit.committer.date,
+      committer:item.commit.committer.name,
+      message:item.commit.message,
+      id:index
+    })
+  })
+  commits.value=commit
+  console.log(commits.value)
 })
 </script>
 

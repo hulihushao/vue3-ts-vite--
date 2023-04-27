@@ -14,3 +14,8 @@ export class GetWeather{
     return request("/queryip",params,"get")
   }
 }
+export class Github{
+  static getCommits(){
+    return request("https://api.github.com/repos/hulihushao/vue3-ts-vite--/commits?per_page=10&sha=main",{},"get")
+  }
+}
