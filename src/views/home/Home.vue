@@ -57,6 +57,15 @@ const data = ref([
 axios.get("https://api.ipify.org/?format=json").then(res=>{
   data.value[0].content=res.data.ip
 })
+//获取天气
+let addr=ref("")
+let weatherInfo=ref("")
+let weatherTip=ref("")
+GetWeather.weather().then(res=>{
+  addr.value=res.data.city
+  weatherInfo.value=`${res.data.info.type} 温度：${res.data.info.low} ～${res.data.info.high} 风向：${res.data.info.fengxiang} 风力：${res.data.info.fengli}`
+  weatherTip.value=res.data.info.tip
+})
 //获取github提交记录
 let commits=ref<object[]>()
 Github.getCommits().then(res=>{
@@ -80,8 +89,10 @@ Github.getCommits().then(res=>{
       <div class="con">
         <p class="title">早上坏，{{ "admin" }}，没好的一天从工作开始！</p>
         <p class="weather">
-          <span>山东省-烟台市 天气：</span>
-          <span>多云 温度：12摄氏度 风向：北 风力：≤3级 空气湿度：76</span>
+          <span>{{addr}} 天气：</span>
+          <span>{{weatherInfo}}</span>
+          <br/>
+          <span>Tip：{{weatherTip}}</span>
         </p>
         <p class="count">
           <Icon style="color: #1890ff" icon="UserOutlined" />
@@ -202,8 +213,8 @@ Github.getCommits().then(res=>{
     }
     .img {
       //background: url("/static/imgs/dashboard.png") center/cover no-repeat;
-      height: 145px;
-      width: 260px;
+      height: 165px;
+      width: 270px;
       overflow: hidden;
       display: flex;
       align-items: center;

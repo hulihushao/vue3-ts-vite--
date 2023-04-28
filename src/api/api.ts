@@ -10,8 +10,8 @@ export class Component {
   }
 }
 export class GetWeather {
-  static getIP(params: object | undefined) {
-    return request("/queryip", params, "get");
+  static weather(params: object={}) {
+    return request("https://api.vvhan.com/api/weather", params, "get");
   }
 }
 export class Github {
