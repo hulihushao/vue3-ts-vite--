@@ -12,7 +12,7 @@ import store from "@/store";
 import "animate.css";
 
 //自定义拖拽
-import Directives from "@/directives/dragable";
+import {drag} from "@/directives/drag";
 
 import Icon from "@/components/common/Icon.vue";
 import Loading from "@/components/common/Loading.vue";
@@ -23,6 +23,8 @@ import * as antIcons from "@ant-design/icons-vue";
 import i18n from "./language/index";
 
 const app = createApp(App);
+app.directive('drag',drag)
+
 //注册全局图标组件
 app.component("Icon", Icon);
 //注册全局加载组件
@@ -36,5 +38,5 @@ Object.keys(antIcons).forEach((key) => {
 // 添加到全局
 app.config.globalProperties.$antIcons = antIcons;
 
-app.use(store).use(i18n).use(Directives)
+app.use(store).use(i18n)
 app.use(router).use(Antd).mount("#app");

@@ -53,6 +53,9 @@ let openDrawer = () => {
   z-index:999;
   right: 10px;
   top: 300px;
+  &:hover{
+    cursor: pointer;
+  }
 }
 :deep(.ant-layout),
 :deep(.custom-dark-layout),

@@ -118,7 +118,7 @@ class Drap {
   // }
 }
 export const drag = {
-  mounted(el, binding) {
+  mounted(el:HTMLDivElement, binding:object) {
     new Drap(el, binding.value || {});
   },
 };
