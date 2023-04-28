@@ -93,7 +93,7 @@ export function GetOs() {
   if (isMac) return "Mac";
   var isUnix = navigator.platform.toLowerCase() === "x11" && !isWin && !isMac;
   if (isUnix) return "Unix";
-  var isLinux = String(navigator.platform.toLowerCase()).indexOf("linux") > -1;
+  var isLinux = String(navigator.platform).indexOf("linux") > -1;
   if (isLinux) return "Linux";
   if (isWin) {
     var isWin2K =
