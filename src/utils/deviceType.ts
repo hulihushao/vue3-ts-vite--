@@ -50,7 +50,7 @@ export function GetCurrentBrowser() {
   return browserType;
 }
 
-function _mime(option, value) {
+function _mime(option:st, value) {
   var mimeTypes = navigator.mimeTypes;
   for (var mt in mimeTypes) {
     if (mimeTypes[mt][option] === value) {
