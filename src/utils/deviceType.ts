@@ -97,7 +97,8 @@ export function GetOs() {
       sUserAgent.indexOf("windows 7") > -1;
     if (isWin7) return "Win7";
   }
-  console.log(sUserAgent)
+  alert(sUserAgent)
+  console.log(navigator)
   if (sUserAgent.indexOf("android") > -1) return "Android";
   if (sUserAgent.indexOf("iphone") > -1) return "iPhone";
   if (sUserAgent.indexOf("symbianos") > -1) return "SymbianOS";

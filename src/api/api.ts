@@ -5,7 +5,7 @@ export class Login {
   }
 }
 export class Component {
-  static getComponent(url: string, params: object | null | undefined) {
+  static getComponent(url: string, params: object={}) {
     return request(url, params, "get");
   }
 }

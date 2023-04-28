@@ -25,7 +25,6 @@ instance.interceptors.request.use(
       // 'token': token.value // 或者设置token
       ...config.headers,
     };
-    console.log(config);
     return config;
   },
   (error: AxiosError) => {
