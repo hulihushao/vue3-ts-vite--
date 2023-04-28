@@ -84,16 +84,16 @@ function getVer(type: string, sys: string) {
 // get os
 export function GetOs() {
   let isWin =
-    navigator.platform === "win32" || navigator.platform === "windows";
+    navigator.platform.toLowerCase() === "win32" || navigator.platform === "windows";
   let isMac =
-    navigator.platform === "mac68k" ||
-    navigator.platform === "macppc" ||
-    navigator.platform === "macintosh" ||
-    navigator.platform === "macintel";
+    navigator.platform.toLowerCase() === "mac68k" ||
+    navigator.platform.toLowerCase() === "macppc" ||
+    navigator.platform.toLowerCase() === "macintosh" ||
+    navigator.platform.toLowerCase() === "macintel";
   if (isMac) return "Mac";
-  var isUnix = navigator.platform === "x11" && !isWin && !isMac;
+  var isUnix = navigator.platform.toLowerCase() === "x11" && !isWin && !isMac;
   if (isUnix) return "Unix";
-  var isLinux = String(navigator.platform).indexOf("linux") > -1;
+  var isLinux = String(navigator.platform.toLowerCase()).indexOf("linux") > -1;
   if (isLinux) return "Linux";
   if (isWin) {
     var isWin2K =

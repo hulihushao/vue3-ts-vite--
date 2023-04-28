@@ -361,7 +361,7 @@ Github.getCommits().then((res) => {
         padding: 5px;
         .msg {
           font-size: 15px;
-          font-weight: 500;
+          font-weight: 550;
           }
       }
     }

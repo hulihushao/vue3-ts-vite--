@@ -51,12 +51,12 @@ h1 {
 }
 
 /*滚动条的宽度*/
-.ant-layout-content::-webkit-scrollbar {
+.ant-layout-content::-webkit-scrollbar ,::-webkit-scrollbar {
   width: 4px;
 }
 
 /*滚动条里面小方块*/
-.ant-layout-content::-webkit-scrollbar-thumb {
+.ant-layout-content::-webkit-scrollbar-thumb ,::-webkit-scrollbar-thumb {
   border-radius: 2px;
   box-shadow: inset 0 0 5px var(--ant-primary-color);
   background: var(--ant-primary-color);
