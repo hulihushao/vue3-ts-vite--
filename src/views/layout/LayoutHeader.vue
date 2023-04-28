@@ -14,6 +14,7 @@ let users=ref(null)
 defineExpose({
   users
 })
+defineEmits(["pointerenter","pointerleave"])
 </script>
 <template>
   <a-layout-header class="header-con" :style="{background:themeObj.isDark?'':'#fff'}">

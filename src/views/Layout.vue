@@ -27,7 +27,7 @@ let openDrawer = () => {
         <Icon @click="openDrawer" :color="true" iconfont="icon-shezhi" />
       </span>
       <header>
-        <Header ref="header" />
+        <Header  ref="header" />
       </header>
       <Content />
       <footer>
@@ -37,7 +37,7 @@ let openDrawer = () => {
   </a-layout>
 </template>
 
-<style scoped>
+<style scoped lang="less">
 .layout {
   background: url() center/cover no-repeat !important;
 }

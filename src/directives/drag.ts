@@ -35,6 +35,13 @@ class Drap {
       this.onMouseDown(e);
       this.el.setCapture && this.el.setCapture(); //全局捕获
     };
+    
+    this.el.ontouchstart=(e)=>{
+      console.log(document)
+      this.onMouseDown({clientX:e.targetTouches[0].clientX,
+      clientY:e.targetTouches[0].clientY
+      })
+    }
   }
 
   //样式设置
@@ -58,6 +65,11 @@ class Drap {
     this.y = e.clientY - this.el.offsetTop;
     document.onmousemove = (e) => this.onMouseMove(e);
     document.onmouseup = (e) => this.onMouseUp(e);
+    
+        document.ontouchmove = (e) => this.onMouseMove({clientX:e.targetTouches[0].clientX,
+      clientY:e.targetTouches[0].clientY
+      });
+    document.ontouchend = (e) =>this.onMouseUp(e);
   }
   //移动move
   onMouseMove(e: MouseEvent) {
@@ -95,6 +107,10 @@ class Drap {
   onMouseUp(e: MouseEvent) {
     document.onmousemove = null;
     document.onmouseup = null;
+
+    document.ontouchmove = null;
+    document.ontouchend = null;
+    
     this.setEleStyle({
       cursor: "pointer",
     });
