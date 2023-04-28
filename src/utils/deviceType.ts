@@ -16,41 +16,41 @@ export function GetCurrentBrowser() {
   let ua = navigator.userAgent.toLocaleLowerCase();
   let browserType = null;
   if (ua.match(/msie/) != null || ua.match(/trident/) != null) {
-    browserType = "IE"+ getVer("browser", "ie");
+    browserType = "IE" + getVer("browser", "ie");
   } else if (ua.match(/firefox/) != null) {
-    browserType = "firefox"+ getVer("browser", "firefox");
+    browserType = "firefox" + getVer("browser", "firefox");
   } else if (ua.match(/ucbrowser/) != null) {
-    browserType = "UC"+ getVer("browser", "uc");
+    browserType = "UC" + getVer("browser", "uc");
   } else if (ua.match(/opera/) != null || ua.match(/opr/) != null) {
-    browserType = "opera"+ getVer("browser", "opera");
+    browserType = "opera" + getVer("browser", "opera");
   } else if (ua.match(/bidubrowser/) != null) {
-    browserType = "baidu"+ getVer("browser", "baidu");
+    browserType = "baidu" + getVer("browser", "baidu");
   } else if (ua.match(/metasr/) != null) {
-    browserType = "sougou"+ getVer("browser", "sougou");
+    browserType = "sougou" + getVer("browser", "sougou");
   } else if (
     ua.match(/tencenttraveler/) != null ||
     ua.match(/qqbrowse/) != null
   ) {
-    browserType = "QQ"+ getVer("browser", "qq");;
+    browserType = "QQ" + getVer("browser", "qq");
   } else if (ua.match(/maxthon/) != null) {
-    browserType = "maxthon"+ getVer("browser", "maxthon");
+    browserType = "maxthon" + getVer("browser", "maxthon");
   } else if (ua.match(/chrome/) != null) {
     var is360 = _mime("type", "application/vnd.chromium.remoting-viewer");
     if (is360) {
-      browserType = "360"+ getVer("browser", "360");
+      browserType = "360" + getVer("browser", "360");
     } else {
       console.log();
       browserType = "Chrome" + getVer("browser", "chrome");
     }
   } else if (ua.match(/safari/) != null) {
-    browserType = "Safari"+ getVer("browser", "safari");
+    browserType = "Safari" + getVer("browser", "safari");
   } else {
     browserType = "others";
   }
   return browserType;
 }
 
-function _mime(option:st, value) {
+function _mime(option: string, value: string) {
   var mimeTypes = navigator.mimeTypes;
   for (var mt in mimeTypes) {
     if (mimeTypes[mt][option] === value) {
@@ -64,15 +64,21 @@ function _mime(option:st, value) {
 let sUserAgent = navigator.userAgent.toLocaleLowerCase();
 function getVer(type: string, sys: string) {
   if (type == "browser") {
-    return "/"+sUserAgent
-      .split(" ")
+    return (
+      "/" +
+      sUserAgent
+        .split(" ")
+        .filter((item) => item.includes(sys))[0]
+        .split("/")[1]
+    );
+  } else if (type == "system") {
+    return sUserAgent
+      .split(";")
       .filter((item) => item.includes(sys))[0]
-      .split("/")[1];
+      .split(" ")[2];
+  } else {
+    return "";
   }
-  return sUserAgent
-    .split(";")
-    .filter((item) => item.includes(sys))[0]
-    .split(" ")[2];
 }
 
 // get os
