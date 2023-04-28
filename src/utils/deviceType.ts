@@ -3,7 +3,6 @@ export default function isMobile() {
     /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
       navigator.userAgent
     );
-
   if (isMobile) {
     console.log("设备为移动端");
     return true;
@@ -40,7 +39,8 @@ export function GetCurrentBrowser() {
     if (is360) {
       browserType = "360";
     } else {
-      browserType = "Chrome";
+      console.log()
+      browserType = "Chrome/"+ua.split(" ").filter(item=>item.includes("chrome"))[0].split("/")[1];
     }
   } else if (ua.match(/safari/) != null) {
     browserType = "Safari";
@@ -97,14 +97,16 @@ export function GetOs() {
       sUserAgent.indexOf("windows 7") > -1;
     if (isWin7) return "Win7";
   }
-  alert(sUserAgent)
+
   console.log(navigator)
+    if (sUserAgent.indexOf("harmonyos") > -1) return "HarmonyOS";
   if (sUserAgent.indexOf("android") > -1) return "Android";
   if (sUserAgent.indexOf("iphone") > -1) return "iPhone";
   if (sUserAgent.indexOf("symbianos") > -1) return "SymbianOS";
   if (sUserAgent.indexOf("windows phone") > -1) return "Windows Phone";
   if (sUserAgent.indexOf("ipad") > -1) return "iPad";
   if (sUserAgent.indexOf("ipod") > -1) return "iPod";
+    if (sUserAgent.indexOf("windows") > -1) return "Android Windows";
   return "others";
 }
 
