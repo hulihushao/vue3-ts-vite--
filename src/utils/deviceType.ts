@@ -16,34 +16,34 @@ export function GetCurrentBrowser() {
   let ua = navigator.userAgent.toLocaleLowerCase();
   let browserType = null;
   if (ua.match(/msie/) != null || ua.match(/trident/) != null) {
-    browserType = "IE";
+    browserType = "IE"+ getVer("browser", "ie");
   } else if (ua.match(/firefox/) != null) {
-    browserType = "firefox";
+    browserType = "firefox"+ getVer("browser", "firefox");
   } else if (ua.match(/ucbrowser/) != null) {
-    browserType = "UC";
+    browserType = "UC"+ getVer("browser", "uc");
   } else if (ua.match(/opera/) != null || ua.match(/opr/) != null) {
-    browserType = "opera";
+    browserType = "opera"+ getVer("browser", "opera");
   } else if (ua.match(/bidubrowser/) != null) {
-    browserType = "baidu";
+    browserType = "baidu"+ getVer("browser", "baidu");
   } else if (ua.match(/metasr/) != null) {
-    browserType = "sougou";
+    browserType = "sougou"+ getVer("browser", "sougou");
   } else if (
     ua.match(/tencenttraveler/) != null ||
     ua.match(/qqbrowse/) != null
   ) {
-    browserType = "QQ";
+    browserType = "QQ"+ getVer("browser", "qq");;
   } else if (ua.match(/maxthon/) != null) {
-    browserType = "maxthon";
+    browserType = "maxthon"+ getVer("browser", "maxthon");
   } else if (ua.match(/chrome/) != null) {
     var is360 = _mime("type", "application/vnd.chromium.remoting-viewer");
     if (is360) {
-      browserType = "360";
+      browserType = "360"+ getVer("browser", "360");
     } else {
-      console.log()
-      browserType = "Chrome/"+ua.split(" ").filter(item=>item.includes("chrome"))[0].split("/")[1];
+      console.log();
+      browserType = "Chrome" + getVer("browser", "chrome");
     }
   } else if (ua.match(/safari/) != null) {
-    browserType = "Safari";
+    browserType = "Safari"+ getVer("browser", "safari");
   } else {
     browserType = "others";
   }
@@ -60,9 +60,23 @@ function _mime(option, value) {
   return false;
 }
 
+//获取版本号
+let sUserAgent = navigator.userAgent.toLocaleLowerCase();
+function getVer(type: string, sys: string) {
+  if (type == "browser") {
+    return "/"+sUserAgent
+      .split(" ")
+      .filter((item) => item.includes(sys))[0]
+      .split("/")[1];
+  }
+  return sUserAgent
+    .split(";")
+    .filter((item) => item.includes(sys))[0]
+    .split(" ")[2];
+}
+
 // get os
 export function GetOs() {
-  let sUserAgent = navigator.userAgent.toLocaleLowerCase();
   let isWin =
     navigator.platform === "win32" || navigator.platform === "windows";
   let isMac =
@@ -102,17 +116,17 @@ export function GetOs() {
     if (isWin10) return "Win10";
   }
 
-  console.log(navigator)
-    if (sUserAgent.indexOf("harmonyos") > -1) return "HarmonyOS";
+  console.log(navigator);
+  if (sUserAgent.indexOf("harmonyos") > -1) return "HarmonyOS";
   if (sUserAgent.indexOf("android") > -1) {
-    console.log(sUserAgent.split(";").filter(item=>item.includes("android"))[0].split(" ")[2])
-    return "Android "+sUserAgent.split(";").filter(item=>item.includes("android"))[0].split(" ")[2];}
+    return "Android " + getVer("system", "android");
+  }
   if (sUserAgent.indexOf("iphone") > -1) return "iPhone";
   if (sUserAgent.indexOf("symbianos") > -1) return "SymbianOS";
   if (sUserAgent.indexOf("windows phone") > -1) return "Windows Phone";
   if (sUserAgent.indexOf("ipad") > -1) return "iPad";
   if (sUserAgent.indexOf("ipod") > -1) return "iPod";
-    if (sUserAgent.indexOf("windows") > -1) return "Android Windows";
+  if (sUserAgent.indexOf("windows") > -1) return "Android Windows";
   return "others";
 }
 
