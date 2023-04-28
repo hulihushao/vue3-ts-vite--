@@ -1,7 +1,13 @@
 // 拖拽的指令
 class Drap {
-  static zIndex = 1;
-  constructor(el, option = {}) {
+  static zIndex:number|string = 1;
+  el: HTMLElement;
+  x: number;
+  y: number;
+  option: {};
+  timeOutEvent: number;
+  ele: null;
+  constructor(el:HTMLElement, option = {}) {
     this.el = el;
     this.x = 0;
     this.y = 0;
@@ -32,13 +38,13 @@ class Drap {
   }
 
   //样式设置
-  setEleStyle(option) {
+  setEleStyle(option: { [x: string]: any; zIndex?: number; position?: string; cursor?: string; }) {
     for (const key in option) {
       this.el.style[key] = option[key];
     }
   }
   //按下ele
-  onMouseDown(e) {
+  onMouseDown(e: MouseEvent) {
     let zIndex = getComputedStyle(this.el).getPropertyValue("z-index");
     zIndex = isNaN(zIndex) ? 1 : zIndex;
     Drap.zIndex =
@@ -54,7 +60,7 @@ class Drap {
     document.onmouseup = (e) => this.onMouseUp(e);
   }
   //移动move
-  onMouseMove(e) {
+  onMouseMove(e: MouseEvent) {
     let X = e.clientX - this.x;
     let Y = e.clientY - this.y;
     //此处使用注释处的代码，此处代码操作DOM块会移出屏幕
@@ -86,7 +92,7 @@ class Drap {
     this.el.style.top = Y + "px";
   }
   //释放
-  onMouseUp(e) {
+  onMouseUp(e: MouseEvent) {
     document.onmousemove = null;
     document.onmouseup = null;
     this.setEleStyle({
@@ -118,7 +124,7 @@ class Drap {
   // }
 }
 export const drag = {
-  mounted(el:HTMLDivElement, binding:object) {
+  mounted(el:HTMLElement, binding: { value: any; }) {
     new Drap(el, binding.value || {});
   },
 };
