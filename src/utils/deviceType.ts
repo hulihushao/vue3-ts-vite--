@@ -122,7 +122,7 @@ export function GetOs() {
     if (isWin10) return "Win10";
   }
 
-  console.log(navigator);
+  //console.log(navigator);
   if (sUserAgent.indexOf("harmonyos") > -1) return "HarmonyOS";
   if (sUserAgent.indexOf("android") > -1) {
     return "Android " + getVer("system", "android");

@@ -2,14 +2,14 @@
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import useTheme from "@/store/theme";
-import { GetWeather ,Github} from "@/api/api";
-import axios from "axios"
+import { GetWeather, Github } from "@/api/api";
+import axios from "axios";
 import { bgColors, colors, quicks, overviews } from "@/utils/config/quicklys";
 import { getLightenDarkenColor } from "@/utils/utils";
 import { menus } from "@/types/menus";
 import { useMenuClick } from "@/composables/useMenuClick";
-import {GetOs,GetCurrentBrowser} from "@/utils/deviceType"
-
+import { GetOs, GetCurrentBrowser } from "@/utils/deviceType";
+import { formatDate } from 'xijs';
 let themeObj = useTheme();
 let ip = ref("");
 
@@ -22,12 +22,11 @@ let handleQuick = (quick: menus) => {
 const columns = [
   {
     dataIndex: "name",
-    width:"38%"
+    width: "38%",
   },
   {
     dataIndex: "content",
-
-    },
+  },
 ];
 
 const data = ref([
@@ -37,7 +36,6 @@ const data = ref([
     content: sessionStorage.getItem("ip"),
   },
   {
-
     key: "2",
     name: "登录地",
     content: sessionStorage.getItem("area"),
@@ -54,33 +52,34 @@ const data = ref([
   },
 ]);
 
-axios.get("https://api.ipify.org/?format=json").then(res=>{
-  data.value[0].content=res.data.ip
-})
+axios.get("https://api.ipify.org/?format=json").then((res) => {
+  data.value[0].content = res.data.ip;
+});
 //获取天气
-let addr=ref("")
-let weatherInfo=ref("")
-let weatherTip=ref("")
-GetWeather.weather().then(res=>{
-  addr.value=res.data.city
-  weatherInfo.value=`${res.data.info.type} 温度：${res.data.info.low} ～${res.data.info.high} 风向：${res.data.info.fengxiang} 风力：${res.data.info.fengli}`
-  weatherTip.value=res.data.info.tip
-})
+let addr = ref("");
+let weatherInfo = ref("");
+let weatherTip = ref("");
+GetWeather.weather().then((res) => {
+  addr.value = res.data.city;
+  weatherInfo.value = `${res.data.info.type} 温度：${res.data.info.low} ～${res.data.info.high} 风向：${res.data.info.fengxiang} 风力：${res.data.info.fengli}`;
+  weatherTip.value = res.data.info.tip;
+});
 //获取github提交记录
-let commits=ref<object[]>()
-Github.getCommits().then(res=>{
-  let commit:object[]=[]
-  res.data.forEach((item,index:number)=>{
+
+let commits = ref<object[]>();
+Github.getCommits().then((res) => {
+  let commit: object[] = [];
+  res.data.forEach((item, index: number) => {
     commit.push({
-      date:item.commit.committer.date,
-      committer:item.commit.committer.name,
-      message:item.commit.message,
-      id:index
-    })
-  })
-  commits.value=commit
-  console.log(commits.value)
-})
+      date:formatDate(new Date(item.commit.committer.date).getTime()),
+      committer: item.commit.committer.name,
+      message: item.commit.message,
+      id: index,
+    });
+  });
+  commits.value = commit;
+  console.log(commits.value,new Date("2023-04-28T05:35:21Z").getDate());
+});
 </script>
 
 <template>
@@ -89,10 +88,10 @@ Github.getCommits().then(res=>{
       <div class="con">
         <p class="title">早上坏，{{ "admin" }}，没好的一天从工作开始！</p>
         <p class="weather">
-          <span>{{addr}} 天气：</span>
-          <span>{{weatherInfo}}</span>
-          <br/>
-          <span>Tip：{{weatherTip}}</span>
+          <span>{{ addr }} 天气：</span>
+          <span>{{ weatherInfo }}</span>
+          <br />
+          <span>Tip：{{ weatherTip }}</span>
         </p>
         <p class="count">
           <Icon style="color: #1890ff" icon="UserOutlined" />
@@ -151,8 +150,9 @@ Github.getCommits().then(res=>{
       <div class="center">
         <p class="title">系统信息</p>
         <div class="items-con">
-          <a-table style="width:100%"
-          size="small"
+          <a-table
+            style="width: 100%"
+            size="small"
             :pagination="false"
             :columns="columns"
             :data-source="data"
@@ -168,7 +168,23 @@ Github.getCommits().then(res=>{
         </div>
       </div>
     </div>
-    <main class="content"></main>
+    <main class="content">
+      <div class="left"></div>
+      <div class="right">
+        <span class="title">更新日志</span>
+        <div class="commit-con">
+          <a-timeline>
+            <a-timeline-item v-for="item in commits" :key="item.id">
+              <p class="msg">{{ item.message }}</p>
+              <p>
+                <span>{{ item.committer }} </span>
+                <span style="margin-left:5px"> {{ item.date }}</span>
+              </p>
+            </a-timeline-item>
+          </a-timeline>
+        </div>
+      </div>
+    </main>
   </div>
 </template>
 
@@ -312,16 +328,43 @@ Github.getCommits().then(res=>{
         }
       }
     }
-    .center{
-      .items-con{
-        padding-bottom:5px;
+    .center {
+      .items-con {
+        padding-bottom: 5px;
       }
     }
-    }
+  }
   .content {
-    border: 1px solid red;
-    height: 200px;
+    height: auto;
     width: 100%;
+    display: flex;
+    justify-content: space-between;
+    .left,
+    .right {
+      max-height: 500px;
+    overflow: auto;
+      border-radius: 5px;
+    }
+
+    .left {
+      width: 66.25%;
+      border: 1px solid red;
+    }
+    .right {
+      width: 32.5%;
+      padding: 10px;
+      border: 1px solid red;
+      .title {
+        font-size: 16px;
+      }
+      .commit-con {
+        padding: 5px;
+        .msg {
+          font-size: 15px;
+          font-weight: 500;
+          }
+      }
+    }
   }
 }
 </style>
