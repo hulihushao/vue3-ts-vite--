@@ -28,6 +28,7 @@ export default defineConfig(({ mode }) => {
       },
     },
     server: {
+      open:true,
       proxy: {
         "/ws": {
           target: "ws://121.40.165.18:8800", //这里是后台ws访问地址
