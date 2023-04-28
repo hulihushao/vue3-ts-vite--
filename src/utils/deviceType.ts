@@ -96,11 +96,17 @@ export function GetOs() {
       sUserAgent.indexOf("windows nt 6.1") > -1 ||
       sUserAgent.indexOf("windows 7") > -1;
     if (isWin7) return "Win7";
+    var isWin10 =
+      sUserAgent.indexOf("windows nt 10.0") > -1 ||
+      sUserAgent.indexOf("windows 10") > -1;
+    if (isWin10) return "Win10";
   }
 
   console.log(navigator)
     if (sUserAgent.indexOf("harmonyos") > -1) return "HarmonyOS";
-  if (sUserAgent.indexOf("android") > -1) return "Android";
+  if (sUserAgent.indexOf("android") > -1) {
+    console.log(sUserAgent.split(";").filter(item=>item.includes("android"))[0].split(" ")[2])
+    return "Android "+sUserAgent.split(";").filter(item=>item.includes("android"))[0].split(" ")[2];}
   if (sUserAgent.indexOf("iphone") > -1) return "iPhone";
   if (sUserAgent.indexOf("symbianos") > -1) return "SymbianOS";
   if (sUserAgent.indexOf("windows phone") > -1) return "Windows Phone";
