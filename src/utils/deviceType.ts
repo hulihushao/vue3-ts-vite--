@@ -84,7 +84,7 @@ function getVer(type: string, sys: string) {
 // get os
 export function GetOs() {
   let isWin =
-    navigator.platform.toLowerCase() === "win32" || navigator.platform === "windows";
+    navigator.platform.toLowerCase() === "win32" || navigator.platform.toLowerCase() === "windows";
   let isMac =
     navigator.platform.toLowerCase() === "mac68k" ||
     navigator.platform.toLowerCase() === "macppc" ||
