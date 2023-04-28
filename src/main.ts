@@ -23,8 +23,8 @@ import * as antIcons from "@ant-design/icons-vue";
 import i18n from "./language/index";
 
 const app = createApp(App);
-app.directive('drag',drag)
 
+app.directive('drag',drag)
 //注册全局图标组件
 app.component("Icon", Icon);
 //注册全局加载组件
