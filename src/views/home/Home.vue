@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref,onMounted } from "vue";
+import { ref, onMounted, watchEffect } from "vue";
 import { useRouter } from "vue-router";
 import useTheme from "@/store/theme";
 import { GetWeather, Github } from "@/api/api";
@@ -10,15 +10,28 @@ import { menus } from "@/types/menus";
 import { useMenuClick } from "@/composables/useMenuClick";
 import { GetOs, GetCurrentBrowser } from "@/utils/deviceType";
 import { formatDate } from "xijs";
-import * as echarts from "echarts"
-import {echartsInit} from "@/utils/echarts"
+import * as echarts from "echarts";
+import { echartsInit } from "@/utils/echarts";
 
 let themeObj = useTheme();
 
-onMounted(()=>{
-  echartsInit(echarts,themeObj)
-})
+//设置文字颜色
+let echart;
+let chartOpt;
+let unwatch;
+onMounted(() => {
+  let opt = echartsInit(echarts, themeObj);
+  echart = opt.myChart;
+  chartOpt = opt.option;
 
+  unwatch = watchEffect(() => {
+    chartOpt.title.textStyle.color = themeObj.setColor;
+        chartOpt.xAxis.axisLabel.color = themeObj.setColor;
+    console.log(chartOpt)
+    echart.setOption(chartOpt)
+  });
+  console.log(opt);
+});
 let ip = ref("");
 
 //点击快捷方式
@@ -41,12 +54,12 @@ const data = ref([
   {
     key: "1",
     name: "IP",
-    content: sessionStorage.getItem("ip")||"未知",
+    content: sessionStorage.getItem("ip") || "未知",
   },
   {
     key: "2",
     name: "登录地",
-    content: sessionStorage.getItem("area")||"未知",
+    content: sessionStorage.getItem("area") || "未知",
   },
   {
     key: "3",
@@ -89,7 +102,6 @@ Github.getCommits().then((res) => {
   commits.value = commit;
   console.log(commits.value, new Date("2023-04-28T05:35:21Z").getDate());
 });
-
 </script>
 
 <template>
@@ -366,19 +378,19 @@ Github.getCommits().then((res) => {
     }
     .left {
       width: 66.25%;
-      height:500px;
+      height: 500px;
       border: 1px solid red;
-      position:relative;
-      #echarts-container{
-        width:99%;
-        height:490px;
-        position:absolute;
-        left:0;
-        right:0;
-        top:0;
-        bottom:0;
-        margin:auto;
-        border:1px solid skyblue;
+      position: relative;
+      #echarts-container {
+        width: 99%;
+        height: 490px;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        border: 1px solid skyblue;
       }
     }
     .right {

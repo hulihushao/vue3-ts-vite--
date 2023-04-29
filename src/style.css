@@ -13,7 +13,7 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
   
-  --transition:color .3s;
+  --transition:color,background .3s;
 }
 #app{
   width:100%;

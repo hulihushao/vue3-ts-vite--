@@ -24,6 +24,9 @@ export function echartsInit(echarts, themeObj) {
       textStyle: {
         color: themeObj.setColor,
       },
+      subtextStyle:{
+        color:"#888"
+      }
     },
     xAxis: {
       data: dataAxis,
@@ -35,7 +38,7 @@ export function echartsInit(echarts, themeObj) {
     yAxis: {
       axisLine: { show: false },
       axisTick: { show: false },
-      axisLabel: { color: "#999" },
+      axisLabel: { color: "#888" },
     },
     grid:[{
       show: false,
@@ -89,4 +92,5 @@ export function echartsInit(echarts, themeObj) {
   }
 
   window.addEventListener("resize", myChart.resize);
+  return {myChart,option}
 }
