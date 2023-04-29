@@ -152,7 +152,7 @@ onBeforeUnmount(() => {
 #webgl-con {
   position: relative;
   width: 100%;
-  height: rrrrrrrtrteett一r…wetttettwe100%;
+  height: 100%;
   #webgl {
     overflow: auto;
   }
