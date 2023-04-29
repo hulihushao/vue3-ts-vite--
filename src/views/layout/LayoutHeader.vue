@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, inject } from "vue";
 import TabsView from "@/components/tabs/TabsView.vue";
 import { MenuUnfoldOutlined, MenuFoldOutlined } from "@ant-design/icons-vue";
 import useLayout from "@/store/layout";
@@ -9,15 +9,19 @@ import useTheme from "@/store/theme";
 import TopMenu from "@/components/menu/TopMenu.vue";
 let themeObj = useTheme();
 let collapsed = useLayout();
-let users=ref(null)
+let users = ref(null);
 
+const refresh = inject("reload");
 defineExpose({
-  users
-})
-defineEmits(["pointerenter","pointerleave"])
+  users,
+});
+defineEmits(["pointerenter", "pointerleave"]);
 </script>
 <template>
-  <a-layout-header class="header-con" :style="{background:themeObj.isDark?'':'#fff'}">
+  <a-layout-header
+    class="header-con"
+    :style="{ background: themeObj.isDark ? '' : '#fff' }"
+  >
     <span class="header-menu">
       <menu-unfold-outlined
         v-if="collapsed.collapsed && !themeObj.isTopMenu"
@@ -33,6 +37,13 @@ defineEmits(["pointerenter","pointerleave"])
       <TopMenu v-if="themeObj.isTopMenu" />
     </span>
     <span class="tool-con">
+      <span
+        @click="refresh"
+        style="padding:  0 5px;  color:  var(--ant-primary-color)"
+      >
+        <Icon icon="ReloadOutlined"  />
+      </span>
+
       <Headers.Search />
       <Headers.Fullscreen />
       <Headers.Github />
@@ -40,7 +51,7 @@ defineEmits(["pointerenter","pointerleave"])
       <Headers.User ref="users" />
     </span>
   </a-layout-header>
-  <tabs-view  v-show="themeObj.isShowTabs"/>
+  <tabs-view v-show="themeObj.isShowTabs" />
 </template>
 
 <style scoped lang="less">
@@ -57,8 +68,8 @@ defineEmits(["pointerenter","pointerleave"])
     padding: 20px;
     display: flex;
     align-items: center;
-    overflow-x:auto;
-    overflow-y:hidden;;
+    overflow-x: auto;
+    overflow-y: hidden;
   }
 }
 .header-menu {

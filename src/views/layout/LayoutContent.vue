@@ -1,5 +1,5 @@
 <script setup lang="ts">
-
+const props=defineProps(["isRouterAlive"])
 </script>
 
 <template>
@@ -10,10 +10,10 @@
       background: '#fff',
       minHeight: '280px',
       'overflow-y': 'auto',
-      'overflow-x':'hidden'
+      'overflow-x': 'hidden',
     }"
   >
-    <router-view class="view" v-slot="{ Component }">
+    <router-view v-if="props.isRouterAlive" class="view" v-slot="{ Component }">
       <transition
         mode="out-in"
         appear

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
+import { ref, nextTick, provide } from "vue";
 import Aside from "@/views/layout/LayoutSider.vue";
 import Header from "@/views/layout/LayoutHeader.vue";
 import Content from "@/views/layout/LayoutContent.vue";
@@ -12,6 +12,17 @@ let openDrawer = () => {
   console.log(header.value);
   header.value.users.setting()
 };
+
+// 局部组件刷新
+const isRouterAlive = ref(true);
+const reload = () => {
+  isRouterAlive.value = false;
+  nextTick(() => {
+    isRouterAlive.value = true;
+  });
+};
+provide("reload", reload);
+
 </script>
 
 <template>
@@ -29,7 +40,7 @@ let openDrawer = () => {
       <header>
         <Header  ref="header" />
       </header>
-      <Content />
+      <Content :isRouterAlive="isRouterAlive"/>
       <footer>
         <Footer />
       </footer>
