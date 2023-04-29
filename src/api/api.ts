@@ -1,4 +1,5 @@
 import request from "@/utils/axios/axios";
+let git_token=import.meta.env.VITE_GITHUB_TOKEN
 export class Login {
   static login(data: object) {
     return request("", data, "post");
@@ -22,7 +23,7 @@ export class Github {
       "get",
       {
         //解除githubAPI请求次数限制为5000，有效期一个月
-        Authorization: `token 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`
+        Authorization: `token ${git_token}`
       }
     );
   }
