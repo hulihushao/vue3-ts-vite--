@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref,onMounted } from "vue";
 import { useRouter } from "vue-router";
 import useTheme from "@/store/theme";
 import { GetWeather, Github } from "@/api/api";
@@ -10,7 +10,15 @@ import { menus } from "@/types/menus";
 import { useMenuClick } from "@/composables/useMenuClick";
 import { GetOs, GetCurrentBrowser } from "@/utils/deviceType";
 import { formatDate } from "xijs";
+import * as echarts from "echarts"
+import {echartsInit} from "@/utils/echarts"
+
 let themeObj = useTheme();
+
+onMounted(()=>{
+  echartsInit(echarts,themeObj)
+})
+
 let ip = ref("");
 
 //点击快捷方式
@@ -81,6 +89,7 @@ Github.getCommits().then((res) => {
   commits.value = commit;
   console.log(commits.value, new Date("2023-04-28T05:35:21Z").getDate());
 });
+
 </script>
 
 <template>
@@ -170,7 +179,9 @@ Github.getCommits().then((res) => {
       </div>
     </div>
     <main class="content">
-      <div class="left"></div>
+      <div class="left">
+        <div id="echarts-container"></div>
+      </div>
       <div class="right">
         <span class="title">更新日志</span>
         <div class="commit-con">
@@ -356,6 +367,18 @@ Github.getCommits().then((res) => {
     .left {
       width: 66.25%;
       border: 1px solid red;
+      position:relative;
+      #echarts-container{
+        width:99%;
+        height:490px;
+        position:absolute;
+        left:0;
+        right:0;
+        top:0;
+        bottom:0;
+        margin:auto;
+        border:1px solid skyblue;
+      }
     }
     .right {
       width: 32.5%;
