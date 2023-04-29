@@ -9,7 +9,7 @@ import { getLightenDarkenColor } from "@/utils/utils";
 import { menus } from "@/types/menus";
 import { useMenuClick } from "@/composables/useMenuClick";
 import { GetOs, GetCurrentBrowser } from "@/utils/deviceType";
-import { formatDate } from 'xijs';
+import { formatDate } from "xijs";
 let themeObj = useTheme();
 let ip = ref("");
 
@@ -71,14 +71,15 @@ Github.getCommits().then((res) => {
   let commit: object[] = [];
   res.data.forEach((item, index: number) => {
     commit.push({
-      date:formatDate(new Date(item.commit.committer.date).getTime()),
+      avatar: item.committer.avatar_url,
+      date: formatDate(new Date(item.commit.committer.date).getTime()),
       committer: item.commit.committer.name,
       message: item.commit.message,
       id: index,
     });
   });
   commits.value = commit;
-  console.log(commits.value,new Date("2023-04-28T05:35:21Z").getDate());
+  console.log(commits.value, new Date("2023-04-28T05:35:21Z").getDate());
 });
 </script>
 
@@ -176,9 +177,12 @@ Github.getCommits().then((res) => {
           <a-timeline>
             <a-timeline-item v-for="item in commits" :key="item.id">
               <p class="msg">{{ item.message }}</p>
-              <p>
-                <span>{{ item.committer }} </span>
-                <span style="margin-left:5px"> {{ item.date }}</span>
+              <p class="committer">
+                <span class="avatar-con">
+                  <a-avatar size="small" :src="item.avatar"> </a-avatar>
+                </span>
+                <span class="name">{{ item.committer }} </span>
+                <span> {{ item.date }}</span>
               </p>
             </a-timeline-item>
           </a-timeline>
@@ -342,10 +346,9 @@ Github.getCommits().then((res) => {
     .left,
     .right {
       max-height: 500px;
-    overflow: auto;
+      overflow: auto;
       border-radius: 5px;
     }
-
     .left {
       width: 66.25%;
       border: 1px solid red;
@@ -359,10 +362,21 @@ Github.getCommits().then((res) => {
       }
       .commit-con {
         padding: 5px;
+        margin-top: 5px;
+        .committer {
+          display: flex;
+          align-items: center;
+          .avatar-con {
+            
+          }
+          .name{
+            margin:0 5px;
+          }
+        }
         .msg {
           font-size: 15px;
           font-weight: 550;
-          }
+        }
       }
     }
   }
