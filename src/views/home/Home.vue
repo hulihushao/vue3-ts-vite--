@@ -179,7 +179,11 @@ Github.getCommits().then((res) => {
               <p class="msg">{{ item.message }}</p>
               <p class="committer">
                 <span class="avatar-con">
-                  <a-avatar size="small" :src="item.avatar"> </a-avatar>
+                  <a-avatar size="small" :src="item.avatar">
+                    <template #icon>
+                      <Icon icon="UserOutlined" />
+                    </template>
+                  </a-avatar>
                 </span>
                 <span class="name">{{ item.committer }} </span>
                 <span> {{ item.date }}</span>
@@ -367,10 +371,9 @@ Github.getCommits().then((res) => {
           display: flex;
           align-items: center;
           .avatar-con {
-            
           }
-          .name{
-            margin:0 5px;
+          .name {
+            margin: 0 5px;
           }
         }
         .msg {
