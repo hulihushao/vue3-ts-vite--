@@ -41,12 +41,12 @@ const data = ref([
   {
     key: "1",
     name: "IP",
-    content: sessionStorage.getItem("ip"),
+    content: sessionStorage.getItem("ip")||"未知",
   },
   {
     key: "2",
     name: "登录地",
-    content: sessionStorage.getItem("area"),
+    content: sessionStorage.getItem("area")||"未知",
   },
   {
     key: "3",
