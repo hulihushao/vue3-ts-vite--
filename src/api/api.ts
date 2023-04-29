@@ -22,7 +22,7 @@ export class Github {
       "get",
       {
         //解除githubAPI请求次数限制为5000，有效期一个月
-        Authorization: `token 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`
+        Authorization: `token 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`
       }
     );
   }
