@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
+import { ref, onMounted, onBeforeUnmount, nextTick } from "vue";
 // 引入three.js
 import * as THREE from "three"; //已在index.html引入cdn
 // 引入gltf模型加载库GLTFLoader.js
@@ -106,24 +106,24 @@ loader.load(
 
 renderer.setSize(width, height); //设置three.js渲染区域的尺寸(像素px)
 renderer.render(scene, camera); //执行渲染操作
+let animateId = ref("");
 function animate() {
-  requestAnimationFrame(animate);
+  animateId.value = requestAnimationFrame(animate);
 
   cube.rotation.x += 0.01;
   cube.rotation.y += 0.01;
   const delta = clock.getDelta();
-
   mixer.update(delta);
   controls.update();
   stats.update();
   renderer.render(scene, camera);
 }
-
-
+//
 onMounted(() => {
   // 把渲染结果canvas画布，也就是照片提案加到网页中
   document.getElementById("webgl").appendChild(renderer.domElement);
   document.getElementById("webgl-stats").appendChild(stats.dom);
+
   // onresize 事件会在窗口被调整大小时发生
   window.onresize = function () {
     // 重置渲染器输出画布canvas尺寸
@@ -135,6 +135,9 @@ onMounted(() => {
     // 如果相机的一些属性发生了变化，需要执行updateProjectionMatrix ()方法更新相机的投影矩阵
     camera.updateProjectionMatrix();
   };
+});
+onBeforeUnmount(() => {
+  cancelAnimationFrame(animateId.value);
 });
 </script>
 
@@ -149,7 +152,7 @@ onMounted(() => {
 #webgl-con {
   position: relative;
   width: 100%;
-  height: 100%;
+  height: rrrrrrrtrteett一r…wetttettwe100%;
   #webgl {
     overflow: auto;
   }
