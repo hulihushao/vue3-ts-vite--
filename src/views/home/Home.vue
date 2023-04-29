@@ -366,6 +366,7 @@ Github.getCommits().then((res) => {
     }
     .left {
       width: 66.25%;
+      height:500px;
       border: 1px solid red;
       position:relative;
       #echarts-container{
