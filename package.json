@@ -1,5 +1,6 @@
 {
   "name": "workspace",
+  "homepage": "https://hulihushao.github.io/vue3-ts-vite--",
   "private": true,
   "version": "0.0.0",
   "type": "module",
