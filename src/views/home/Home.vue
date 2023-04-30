@@ -43,6 +43,7 @@ onMounted(() => {
   });
   resizeObserver.value.observe(document.getElementById("echarts-container"));
 });
+
 let ip = ref("");
 
 //点击快捷方式
