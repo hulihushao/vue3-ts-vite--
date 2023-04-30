@@ -43,9 +43,9 @@ export function echartsInit(echarts, themeObj) {
     grid:[{
       show: false,
       z: 0,
-      left: "5%",
+      left: "7%",
       top: "10%",
-      right: "5%",
+      right: "3%",
       bottom: "10%",
       containLabel: false,
       backgroundColor: "rgba(0,0,0,0)",

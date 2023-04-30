@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, watchEffect } from "vue";
+import { ref, onMounted,onBeforeUnmount, watchEffect,nextTick } from "vue";
 import { useRouter } from "vue-router";
 import useTheme from "@/store/theme";
 import { GetWeather, Github } from "@/api/api";
@@ -16,9 +16,13 @@ import { echartsInit } from "@/utils/echarts";
 let themeObj = useTheme();
 
 //设置文字颜色
-let echart;
-let chartOpt;
+let echart:object;
+let chartOpt:{
+  echart:object,
+  option:object
+};
 let unwatch;
+let resizeObserver = ref(null);
 onMounted(() => {
   let opt = echartsInit(echarts, themeObj);
   echart = opt.myChart;
@@ -26,11 +30,18 @@ onMounted(() => {
 
   unwatch = watchEffect(() => {
     chartOpt.title.textStyle.color = themeObj.setColor;
-        chartOpt.xAxis.axisLabel.color = themeObj.setColor;
-    console.log(chartOpt)
-    echart.setOption(chartOpt)
+    chartOpt.xAxis.axisLabel.color = themeObj.setColor;
+    console.log(chartOpt);
+    echart.setOption(chartOpt);
   });
   console.log(opt);
+
+  resizeObserver.value = new ResizeObserver((entries) => {
+    nextTick(() => {
+      echart.resize()
+    });
+  });
+  resizeObserver.value.observe(document.getElementById("echarts-container"));
 });
 let ip = ref("");
 
@@ -102,6 +113,10 @@ Github.getCommits().then((res) => {
   commits.value = commit;
   console.log(commits.value, new Date("2023-04-28T05:35:21Z").getDate());
 });
+
+onBeforeUnmount(()=>{
+  resizeObserver.value.disconnect();
+})
 </script>
 
 <template>
