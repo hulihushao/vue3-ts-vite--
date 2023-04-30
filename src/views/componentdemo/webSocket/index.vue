@@ -3,7 +3,7 @@ import { ref } from "vue";
 let textarea = ref<string>("");
 let inputValue = ref("Q");
 let link = ref("");
-let socket = null;
+let socket:any = null;
 //WebSocket
 let resetLink = () => {
   link.value = "正在重置...";

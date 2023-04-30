@@ -78,7 +78,7 @@ export function echartsInit(echarts, themeObj) {
     ],
   }; // Enable data zoom when user click bar.
   const zoomSize = 6;
-  myChart.on("click", function (params) {
+  myChart.on("click", function (params:any) {
     console.log(dataAxis[Math.max(params.dataIndex - zoomSize / 2, 0)]);
     myChart.dispatchAction({
       type: "dataZoom",

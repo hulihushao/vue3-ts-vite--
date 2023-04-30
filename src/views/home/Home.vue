@@ -12,14 +12,14 @@ import { GetOs, GetCurrentBrowser } from "@/utils/deviceType";
 import { formatDate } from "xijs";
 import * as echarts from "echarts";
 import { echartsInit } from "@/utils/echarts";
-
+import {ECOption} from "@/types/echart"
 let themeObj = useTheme();
 
 //设置文字颜色
 let echart:object;
 let chartOpt:{
   echart:object,
-  option:object
+  option:ECOption
 };
 let unwatch;
 let resizeObserver = ref(null);

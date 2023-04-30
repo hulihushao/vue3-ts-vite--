@@ -5,6 +5,8 @@
     "module": "ESNext",
     "moduleResolution": "Node",
     "strict": true,
+    "declaration":true,
+    "declarationDir":"./src/types",
     "jsx": "preserve",
     "resolveJsonModule": true,
     "isolatedModules": true,
