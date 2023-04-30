@@ -27,7 +27,7 @@ onMounted(() => {
   let opt = echartsInit(echarts, themeObj);
   echart = opt.myChart;
   chartOpt = opt.option;
-
+//设置文字颜色
   unwatch = watchEffect(() => {
     chartOpt.title.textStyle.color = themeObj.setColor;
     chartOpt.xAxis.axisLabel.color = themeObj.setColor;
