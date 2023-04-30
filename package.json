@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "volar-preview-vite --host",
-    "build": "vue-tsc && vite build",
+    "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview"
   },
   "dependencies": {

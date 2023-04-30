@@ -1,4 +1,4 @@
-export function echartsInit(echarts, themeObj) {
+export function echartsInit(echarts:any, themeObj:{setColor:string}) {
   var dom = document.getElementById("echarts-container");
   var myChart = echarts.init(dom, null, {
     renderer: "canvas",

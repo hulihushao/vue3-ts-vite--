@@ -1,7 +1,7 @@
 export let actions=[
     {
         title:"关闭全部",
-        click:(cbk)=>{
+        click:(cbk:Function)=>{
            if(typeof cbk=="function") cbk()
         }
     }

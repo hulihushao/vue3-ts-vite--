@@ -11,5 +11,6 @@ export interface menus{
   openKeys?:string[],
   preList?:string[],
   meta?:object,
-  children?:object[]
+  children?:object[],
+  quickly?:boolean,
 }

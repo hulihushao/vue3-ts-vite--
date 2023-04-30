@@ -12,15 +12,16 @@ export function oppositeColor(a: string, ilighten: number): string {
 
   for (var i = 0; i < a.length; i++) {
     c16 = parseInt(a.charAt(i), 16); // to 16进制
-    c10 = parseInt(max16 - c16, 10); // 10进制计算
+    let n:any = max16 - c16;
+    c10 = parseInt(n as string, 10); // 10进制计算
     if (c10 < 0) c10 = Math.abs(c10);
     b.push(c10.toString(16)); // to 16进制
   }
   return "#" + b.join("");
 }
-export function getLightenDarkenColor(color:string, range:number) {
+export function getLightenDarkenColor(color: string, range: number) {
   let newColor = "#";
-  range=-125
+  range = -125;
   for (let i = 0; i < 3; i++) {
     const hxStr = color.substr(i * 2 + 1, 2);
     let val = parseInt(hxStr, 16);
