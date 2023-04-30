@@ -35,7 +35,7 @@ onMounted(() => {
     echart.setOption(chartOpt);
   });
   console.log(opt);
-
+//监听dom尺寸变化
   resizeObserver.value = new ResizeObserver((entries) => {
     nextTick(() => {
       echart.resize()
