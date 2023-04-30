@@ -14,8 +14,11 @@ const instance: AxiosInstance = axios.create({
 });
 //console.log(import.meta.env)
 // http request 拦截器
+interface RequestConfig extends AxiosRequestConfig {
+  headers: any;
+}
 instance.interceptors.request.use(
-  (config: AxiosRequestConfig) => {
+  (config:RequestConfig) => {
     // 配置请求头
 
     config.headers = {
