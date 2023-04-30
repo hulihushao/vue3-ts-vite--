@@ -9,7 +9,7 @@ import { getRouters } from "@/utils/routers";
 import { menuList } from "@/utils/config/menus";
 import NProgress from "nprogress";
 import "nprogress/nprogress.css"; //引入样式
-
+import {menus} from "@/types/menus"
 //全局进度条的配置
 NProgress.configure({
   easing: "ease", // 动画方式
@@ -19,8 +19,9 @@ NProgress.configure({
   minimum: 0.3, // 初始化时的最小百分比
 });
 
-let routerList = getRouters(menuList);
-const routes: Array<RouteRecordRaw> = [
+let routerList = getRouters(menuList as menus[]);
+
+const routes = [
   {
     path: "/",
     redirect: "/index",
@@ -70,7 +71,7 @@ router.beforeEach((to, from, next) => {
   } else {
     NProgress.start();
   }
-  
+
   if (to.meta.isAuth) {
     let user = localStorage.getItem("userInfo");
     if (!user) {

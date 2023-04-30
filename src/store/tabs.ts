@@ -1,7 +1,6 @@
 import { defineStore } from "pinia";
 
 const useTabsData = defineStore("tabsdata",{
-  id:  "tabsdata",
   state: () => {
     return {
       tabs: [
@@ -19,7 +18,7 @@ const useTabsData = defineStore("tabsdata",{
   },
   actions: {
     setActiveKey(value: string | number) {
-      this.activeKey = value;
+      this.activeKey = value as string;
     },
   },
   persist: {
