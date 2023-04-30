@@ -50,7 +50,7 @@ let router = useRouter();
 let handleQuick = (quick: menus) => {
   useMenuClick(quick, router);
 };
-
+//系统信息
 const columns = [
   {
     dataIndex: "name",
