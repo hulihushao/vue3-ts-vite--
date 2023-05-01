@@ -84,6 +84,7 @@ router.beforeEach((to, from, next) => {
     next();
   }
 });
+//后置守卫
 router.afterEach((to, from) => {
   //设置message提示
   if (from.fullPath.includes("login"))
