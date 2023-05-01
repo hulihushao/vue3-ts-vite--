@@ -53,7 +53,7 @@ let handleQuick = (quick: menus) => {
 const columns = [
   {
     dataIndex: "name",
-    width: "36%",
+    width: "37%",
   },
   {
     dataIndex: "content",
