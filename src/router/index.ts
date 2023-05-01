@@ -72,7 +72,7 @@ router.beforeEach((to, from, next) => {
   } else {
     NProgress.start();
   }
-//
+//登录
   if (to.meta.isAuth) {
     let user = localStorage.getItem("userInfo");
     if (!user) {
