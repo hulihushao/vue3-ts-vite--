@@ -96,4 +96,5 @@ router.afterEach((to, from) => {
   loading.value = false;
   NProgress.done();
 });
+
 export default router;
