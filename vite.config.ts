@@ -11,7 +11,7 @@ const getViteEnv = (mode: string, target: string) => {
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   return {
-    base: "/",
+    base: "https://hulihushao.github.io/vue3-ts-vite--/",
     plugins: [
       vue(),
       createHtmlPlugin({
@@ -47,6 +47,7 @@ export default defineConfig(({ mode }) => {
     },
     build: {
       outDir: 'dist', // 指定输出路径
+      assetsDir:"/",
       cssCodeSplit: true, // 启用 CSS 代码拆分
       sourcemap: false, // 构建后是否生成 source map 文件
       chunkSizeWarningLimit: 1500,
