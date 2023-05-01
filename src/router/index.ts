@@ -2,6 +2,7 @@ import {
   createRouter,
   createWebHistory,
   createWebHashHistory,
+  RouterOptions
 } from "vue-router";
 import { message } from "ant-design-vue";
 import type { RouteRecordRaw } from "vue-router";
@@ -56,7 +57,7 @@ console.log(routes, 111);
 const router = createRouter({
   history: createWebHistory(),
   //history:createWebHashHistory(),
-  routes,
+  routes:routes as Array<RouteRecordRaw>,
 });
 
 import useLoading from "@/store/loading";
