@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted,onBeforeUnmount, watchEffect,nextTick } from "vue";
+import { ref, onMounted, onBeforeUnmount, watchEffect, nextTick } from "vue";
 import { useRouter } from "vue-router";
 import useTheme from "@/store/theme";
 import { GetWeather, Github } from "@/api/api";
@@ -12,14 +12,14 @@ import { GetOs, GetCurrentBrowser } from "@/utils/deviceType";
 import { formatDate } from "xijs";
 import * as echarts from "echarts";
 import { echartsInit } from "@/utils/echarts";
-import {ECOption} from "@/types/echart"
+import { ECOption } from "@/types/echart";
 let themeObj = useTheme();
 
 //设置文字颜色
-let echart:object;
-let chartOpt:{
-  echart:object,
-  option:ECOption
+let echart: object;
+let chartOpt: {
+  echart: object;
+  option: ECOption;
 };
 let unwatch;
 let resizeObserver = ref(null);
@@ -27,7 +27,7 @@ onMounted(() => {
   let opt = echartsInit(echarts, themeObj);
   echart = opt.myChart;
   chartOpt = opt.option;
-//设置文字颜色
+  //设置文字颜色
   unwatch = watchEffect(() => {
     chartOpt.title.textStyle.color = themeObj.setColor;
     chartOpt.xAxis.axisLabel.color = themeObj.setColor;
@@ -35,10 +35,10 @@ onMounted(() => {
     echart.setOption(chartOpt);
   });
   console.log(opt);
-//监听dom尺寸变化
+  //监听dom尺寸变化
   resizeObserver.value = new ResizeObserver((entries) => {
     nextTick(() => {
-      echart.resize()
+      echart.resize();
     });
   });
   resizeObserver.value.observe(document.getElementById("echarts-container"));
@@ -56,7 +56,7 @@ let handleQuick = (quick: menus) => {
 const columns = [
   {
     dataIndex: "name",
-    width: "38%",
+    width: "36%",
   },
   {
     dataIndex: "content",
@@ -87,7 +87,12 @@ const data = ref([
 ]);
 
 axios.get("https://api.ipify.org/?format=json").then((res) => {
-  data.value[0].content = res.data.ip;
+  if (data.value[0].content != res.data.ip) {
+    data.value[0].content += "/" + res.data.ip;
+    data.value[0].name+="（local/vpn）"
+  } else {
+    data.value[0].content = res.data.ip;
+  }
 });
 //获取天气
 let addr = ref("");
@@ -116,9 +121,9 @@ Github.getCommits().then((res) => {
   console.log(commits.value, new Date("2023-04-28T05:35:21Z").getDate());
 });
 
-onBeforeUnmount(()=>{
+onBeforeUnmount(() => {
   resizeObserver.value.disconnect();
-})
+});
 </script>
 
 <template>
