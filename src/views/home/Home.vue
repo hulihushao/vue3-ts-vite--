@@ -13,11 +13,12 @@ import { formatDate } from "xijs";
 import * as echarts from "echarts";
 import { echartsInit } from "@/utils/echarts";
 import { ECOption } from "@/types/echart";
+import type { EChartsOption } from 'echarts';
 let themeObj = useTheme();
 
 //设置文字颜色
-let echart: object;
-let chartOpt: any
+let echart:echarts.ECharts;
+let chartOpt:EChartsOption
 let unwatch:any;
 let resizeObserver:any = ref(null);
 onMounted(() => {
