@@ -55,7 +55,7 @@ const routes = [
 ];
 console.log(routes, 111);
 const router = createRouter({
-  history: createWebHistory("/vue3-ts-vite--"),
+  history: createWebHistory("/"),
   //history:createWebHashHistory(),
   routes:routes as Array<RouteRecordRaw>,
 });
