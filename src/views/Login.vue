@@ -139,7 +139,7 @@ let login = async () => {
   position: relative;
   height: 100%;
   width: 100%;
-  background: url(http://pic1.win4000.com/wallpaper/4/53a8d3ed6a95e.jpg)//url("http://pic1.win4000.com/wallpaper/2/51397470cbba5.jpg")
+  background: url(/static/imgs/login.jpg)//url("http://pic1.win4000.com/wallpaper/2/51397470cbba5.jpg")
     center/cover no-repeat;
   display: flex;
   justify-content: center;
