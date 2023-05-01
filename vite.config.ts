@@ -49,12 +49,14 @@ export default defineConfig(({ mode }) => {
       outDir: 'dist', // 指定输出路径
       cssCodeSplit: true, // 启用 CSS 代码拆分
       sourcemap: false, // 构建后是否生成 source map 文件
+      chunkSizeWarningLimit: 1500,
       terserOptions: {
         compress: {
           drop_console: false,
           drop_debugger: true,
         },
       },
+      /**
       rollupOptions: {
         output: {
           chunkFileNames: "static/js/[name]-[hash].js",
@@ -71,7 +73,7 @@ export default defineConfig(({ mode }) => {
             }
           },
         },
-      },
+      }, */
     },
   };
 });
