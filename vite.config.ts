@@ -11,7 +11,7 @@ const getViteEnv = (mode: string, target: string) => {
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   return {
-    base: "/vue3-ts-vite--/",
+    base: "/",
     plugins: [
       vue(),
       createHtmlPlugin({
