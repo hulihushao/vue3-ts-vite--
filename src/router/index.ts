@@ -62,7 +62,7 @@ const router = createRouter({
 
 import useLoading from "@/store/loading";
 import { storeToRefs } from "pinia";
-
+//
 router.beforeEach((to, from, next) => {
   if (!to.fullPath.includes("/index")) {
     let load = useLoading();
