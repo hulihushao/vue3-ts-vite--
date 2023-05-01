@@ -24,7 +24,7 @@ let resizeObserver:any = ref(null);
 onMounted(() => {
   let opt = echartsInit(echarts, themeObj);
   echart = opt.myChart;
-  chartOpt = opt.option as  ECOption;
+  chartOpt = opt.option;
   //设置文字颜色
   unwatch = watchEffect(() => {
     chartOpt.title.textStyle.color = themeObj.setColor;
