@@ -59,7 +59,6 @@ const columns = [
     dataIndex: "content",
   },
 ];
-
 const data = ref([
   {
     key: "1",
