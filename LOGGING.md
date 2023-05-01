@@ -7,3 +7,4 @@
 6. .env.local文件任何情况下都会加载，用于保存github token
 7. 打包时去除vue-tsc --noEmit && ，避免ts报错
 8. 打包时路由使用hash路由，否则会打不开页面，vite.config.ts中的base为./
+9. history路由时这样配置createWebHistory("/vue3-ts-vite--")，同时base为"/vue3-ts-vite--/",但此时刷新页面会404
