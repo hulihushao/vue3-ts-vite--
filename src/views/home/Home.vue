@@ -17,16 +17,13 @@ let themeObj = useTheme();
 
 //设置文字颜色
 let echart: object;
-let chartOpt: {
-  echart: object;
-  option: ECOption;
-};
-let unwatch;
-let resizeObserver = ref(null);
+let chartOpt: any
+let unwatch:any;
+let resizeObserver:any = ref(null);
 onMounted(() => {
   let opt = echartsInit(echarts, themeObj);
   echart = opt.myChart;
-  chartOpt = opt.option;
+  chartOpt = opt.option as  ECOption;
   //设置文字颜色
   unwatch = watchEffect(() => {
     chartOpt.title.textStyle.color = themeObj.setColor;

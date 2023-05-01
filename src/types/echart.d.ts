@@ -15,10 +15,6 @@ import {
 type ECOption = ComposeOption<
   | BarSeriesOption
   | LineSeriesOption
-  | TitleComponentOption
-  | TooltipComponentOption
-  | GridComponentOption
-  | DatasetComponentOption
 >;
 // 4.将这个类型暴露出去
 export { ECOption };
