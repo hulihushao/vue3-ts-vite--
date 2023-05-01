@@ -2,7 +2,6 @@ import {
   createRouter,
   createWebHistory,
   createWebHashHistory,
-  RouterOptions
 } from "vue-router";
 import { message } from "ant-design-vue";
 import type { RouteRecordRaw } from "vue-router";
