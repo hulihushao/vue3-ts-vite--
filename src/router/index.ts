@@ -27,6 +27,17 @@ const routes = [
     redirect: "/index",
   },
   {
+    path: "/login",
+    name: "login",
+    component: () => import("@/views/Login.vue"),
+  },
+  // 所有不存在的路由都走404
+  {
+    path: "/:pathMatch(.*)*",
+    name: "NotFound",
+    component: () => import("../views/404.vue"),
+  },
+  {
     path: "/index",
     name: "index",
     redirect: "index/home",
@@ -40,17 +51,7 @@ const routes = [
       },
     ],
   },
-  {
-    path: "/login",
-    name: "login",
-    component: () => import("@/views/Login.vue"),
-  },
-  // 所有不存在的路由都走404
-  {
-    path: "/:pathMatch(.*)*",
-    name: "NotFound",
-    component: () => import("../views/404.vue"),
-  },
+  
 ];
 console.log(routes, 111);
 const router = createRouter({
