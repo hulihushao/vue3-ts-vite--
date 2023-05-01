@@ -11,7 +11,7 @@ const getViteEnv = (mode: string, target: string) => {
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   return {
-    base: "./",
+    base: "/",
     plugins: [
       vue(),
       createHtmlPlugin({
@@ -51,7 +51,7 @@ export default defineConfig(({ mode }) => {
       sourcemap: false, // 构建后是否生成 source map 文件
       terserOptions: {
         compress: {
-          drop_console: true,
+          drop_console: false,
           drop_debugger: true,
         },
       },
