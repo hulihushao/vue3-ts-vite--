@@ -175,7 +175,6 @@ onBeforeUnmount(() => {
           <a href="" target="_blank"
             >https://github.com/hulihushao/vue3-ts-vite--</a
           >
-          {{ ip }}
         </p>
       </div>
       <div class="img">
@@ -292,6 +291,7 @@ onBeforeUnmount(() => {
     justify-content: space-between;
     overflow: auto;
     backdrop-filter: blur(10px);
+    align-items:center;
     .con {
       width: 60%;
       padding: 10px;
