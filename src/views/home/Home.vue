@@ -8,7 +8,7 @@ import { bgColors, colors, quicks, overviews } from "@/utils/config/quicklys";
 import { getLightenDarkenColor } from "@/utils/utils";
 import { menus } from "@/types/menus";
 import { useMenuClick } from "@/composables/useMenuClick";
-import { GetOs, GetCurrentBrowser } from "@/utils/deviceType";
+import isMobile, { GetOs, GetCurrentBrowser } from "@/utils/deviceType";
 import { formatDate } from "xijs";
 import * as echarts from "echarts";
 import { echartsInit } from "@/utils/echarts";
@@ -151,7 +151,7 @@ onBeforeUnmount(() => {
       </div>
     </div>
     <div class="quickly">
-      <div class="left">
+      <div class="left" :style="{width:isMobile()?'100%':''}">
         <p class="title">快捷方式</p>
         <div class="items-con">
           <div
@@ -179,7 +179,7 @@ onBeforeUnmount(() => {
           ></div>
         </div>
       </div>
-      <div class="right">
+      <div class="right" :style="{width:isMobile()?'100%':''}">
         <p class="title">概览 <span class="wei">(单位:个)</span></p>
         <div class="items-con">
           <div class="item" v-for="item in overviews" :key="item.name">
@@ -188,7 +188,7 @@ onBeforeUnmount(() => {
           </div>
         </div>
       </div>
-      <div class="center">
+      <div class="center" :style="{width:isMobile()?'100%':''}">
         <p class="title">系统信息</p>
         <div class="items-con">
           <a-table
@@ -210,10 +210,10 @@ onBeforeUnmount(() => {
       </div>
     </div>
     <main class="content">
-      <div class="left">
+      <div class="left" :style="{width:isMobile()?'100%':''}">
         <div id="echarts-container"></div>
       </div>
-      <div class="right">
+      <div class="right" :style="{width:isMobile()?'100%':''}">
         <span class="title">更新日志</span>
         <div class="commit-con">
           <a-timeline>
@@ -292,10 +292,11 @@ onBeforeUnmount(() => {
   }
   .quickly {
     width: 100%;
-    height: 222px;
+    height: auto;//222px;
     display: flex;
     margin: 10px 0px;
     justify-content: space-between;
+    flex-wrap:wrap;
     .left,
     .right,
     .center {
@@ -389,6 +390,7 @@ onBeforeUnmount(() => {
     width: 100%;
     display: flex;
     justify-content: space-between;
+    flex-wrap:wrap;
     .left,
     .right {
       max-height: 500px;
