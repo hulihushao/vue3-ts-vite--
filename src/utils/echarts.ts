@@ -1,10 +1,6 @@
 export function echartsInit(echarts:any, themeObj:{setColor:string}) {
   var dom = document.getElementById("echarts-container");
-  var myChart = echarts.init(dom, null, {
-    renderer: "canvas",
-    useDirtyRect: false,
-  });
-  var app = {};
+  var myChart = echarts.init(dom);
   var option;
   // prettier-ignore
   let dataAxis = ['点', '击', '柱', '子', '或', '者', '两', '指', '在', '触', '屏', '上', '滑', '动', '能', '够', '自', '动', '缩', '放']; // prettier-ignore
@@ -18,6 +14,9 @@ export function echartsInit(echarts:any, themeObj:{setColor:string}) {
     dataShadow.push(yMax);
   }
   option = {
+    animation: true,
+    animationEasing: "cubicInOut",
+    animationDuration:1000 ,
     title: {
       text: "特性示例：渐变色 阴影 点击缩放",
       subtext: "图表示例",
@@ -88,7 +87,7 @@ export function echartsInit(echarts:any, themeObj:{setColor:string}) {
     });
   });
   if (option && typeof option === "object") {
-    myChart.setOption(option);
+//      myChart.setOption(option);
   }
 
   window.addEventListener("resize", myChart.resize);

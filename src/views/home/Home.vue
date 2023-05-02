@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount, watchEffect, nextTick } from "vue";
+import { ref, onMounted, onBeforeUnmount,watch, watchEffect, nextTick } from "vue";
 import { useRouter } from "vue-router";
 import useTheme from "@/store/theme";
 import { GetWeather, Github } from "@/api/api";
@@ -13,33 +13,40 @@ import { formatDate } from "xijs";
 import * as echarts from "echarts";
 import { echartsInit } from "@/utils/echarts";
 import { ECOption } from "@/types/echart";
-import type { EChartsOption } from 'echarts';
+import type { EChartsOption } from "echarts";
 let themeObj = useTheme();
 
 //设置文字颜色
-let echart:echarts.ECharts;
-let chartOpt:EChartsOption
-let unwatch:any;
-let resizeObserver:any = ref(null);
+let echart: echarts.ECharts;
+let chartOpt: EChartsOption|any;
+let unwatch: any;
+let resizeObserver: any = ref(null);
 onMounted(() => {
-  let opt = echartsInit(echarts, themeObj);
-  echart = opt.myChart;
-  chartOpt = opt.option;
-  //设置文字颜色
-  unwatch = watchEffect(() => {
-    chartOpt.title.textStyle.color = themeObj.setColor;
-    chartOpt.xAxis.axisLabel.color = themeObj.setColor;
-    console.log(chartOpt);
-    echart.setOption(chartOpt);
-  });
-  console.log(opt);
-  //监听dom尺寸变化
-  resizeObserver.value = new ResizeObserver((entries) => {
-    nextTick(() => {
-      echart.resize();
+
+    let opt = echartsInit(echarts, themeObj);
+    echart = opt.myChart;
+    chartOpt = opt.option;
+      setTimeout(() => {
+        echart.setOption(chartOpt);
+      },500)
+    //设置文字颜色
+    unwatch = watch(()=>themeObj.setColor,() => {
+      chartOpt.title.textStyle.color = themeObj.setColor;
+      chartOpt.xAxis.axisLabel.color = themeObj.setColor;
+      console.log(chartOpt);
+      echart.setOption(chartOpt);
+    }, {
+        flush: 'post'
     });
-  });
-  resizeObserver.value.observe(document.getElementById("echarts-container"));
+    console.log(opt);
+    //监听dom尺寸变化
+    resizeObserver.value = new ResizeObserver((entries) => {
+      nextTick(() => {
+        echart.resize();
+      });
+    });
+    resizeObserver.value.observe(document.getElementById("echarts-container"));
+
 });
 
 let ip = ref("");
@@ -86,7 +93,7 @@ const data = ref([
 axios.get("https://api.ipify.org/?format=json").then((res) => {
   if (data.value[0].content != res.data.ip) {
     data.value[0].content += "/" + res.data.ip;
-    data.value[0].name+="（local/vpn）"
+    data.value[0].name += "（local/vpn）";
   } else {
     data.value[0].content = res.data.ip;
   }
@@ -120,6 +127,7 @@ Github.getCommits().then((res) => {
 
 onBeforeUnmount(() => {
   resizeObserver.value.disconnect();
+  unwatch()
 });
 </script>
 
@@ -151,7 +159,7 @@ onBeforeUnmount(() => {
       </div>
     </div>
     <div class="quickly">
-      <div class="left" :style="{width:isMobile()?'100%':''}">
+      <div class="left" :style="{ width: isMobile() ? '100%' : '' }">
         <p class="title">快捷方式</p>
         <div class="items-con">
           <div
@@ -179,7 +187,7 @@ onBeforeUnmount(() => {
           ></div>
         </div>
       </div>
-      <div class="right" :style="{width:isMobile()?'100%':''}">
+      <div class="right" :style="{ width: isMobile() ? '100%' : '' }">
         <p class="title">概览 <span class="wei">(单位:个)</span></p>
         <div class="items-con">
           <div class="item" v-for="item in overviews" :key="item.name">
@@ -188,7 +196,7 @@ onBeforeUnmount(() => {
           </div>
         </div>
       </div>
-      <div class="center" :style="{width:isMobile()?'100%':''}">
+      <div class="center" :style="{ width: isMobile() ? '100%' : '' }">
         <p class="title">系统信息</p>
         <div class="items-con">
           <a-table
@@ -210,10 +218,10 @@ onBeforeUnmount(() => {
       </div>
     </div>
     <main class="content">
-      <div class="left" :style="{width:isMobile()?'100%':''}">
+      <div class="left" :style="{ width: isMobile() ? '100%' : '' }">
         <div id="echarts-container"></div>
       </div>
-      <div class="right" :style="{width:isMobile()?'100%':''}">
+      <div class="right" :style="{ width: isMobile() ? '100%' : '' }">
         <span class="title">更新日志</span>
         <div class="commit-con">
           <a-timeline>
@@ -292,11 +300,11 @@ onBeforeUnmount(() => {
   }
   .quickly {
     width: 100%;
-    height: auto;//222px;
+    height: auto; //222px;
     display: flex;
     margin: 10px 0px;
     justify-content: space-between;
-    flex-wrap:wrap;
+    flex-wrap: wrap;
     .left,
     .right,
     .center {
@@ -390,7 +398,7 @@ onBeforeUnmount(() => {
     width: 100%;
     display: flex;
     justify-content: space-between;
-    flex-wrap:wrap;
+    flex-wrap: wrap;
     .left,
     .right {
       max-height: 500px;
