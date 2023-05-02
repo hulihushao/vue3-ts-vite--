@@ -1,5 +1,12 @@
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount,watch, watchEffect, nextTick } from "vue";
+import {
+  ref,
+  onMounted,
+  onBeforeUnmount,
+  watch,
+  watchEffect,
+  nextTick,
+} from "vue";
 import { useRouter } from "vue-router";
 import useTheme from "@/store/theme";
 import { GetWeather, Github } from "@/api/api";
@@ -12,41 +19,45 @@ import isMobile, { GetOs, GetCurrentBrowser } from "@/utils/deviceType";
 import { formatDate } from "xijs";
 import * as echarts from "echarts";
 import { echartsInit } from "@/utils/echarts";
-import { ECOption } from "@/types/echart";
+//import { ECOption } from "@/types/echart";
 import type { EChartsOption } from "echarts";
+import { commitsType } from "@/types/home";
+
 let themeObj = useTheme();
 
 //设置文字颜色
 let echart: echarts.ECharts;
-let chartOpt: EChartsOption|any;
+let chartOpt: EChartsOption | any;
 let unwatch: any;
 let resizeObserver: any = ref(null);
 onMounted(() => {
-
-    let opt = echartsInit(echarts, themeObj);
-    echart = opt.myChart;
-    chartOpt = opt.option;
-      setTimeout(() => {
-        echart.setOption(chartOpt);
-      },500)
-    //设置文字颜色
-    unwatch = watch(()=>themeObj.setColor,() => {
+  let opt = echartsInit(echarts, themeObj);
+  echart = opt.myChart;
+  chartOpt = opt.option;
+  setTimeout(() => {
+    echart.setOption(chartOpt);
+  }, 500);
+  //设置文字颜色
+  unwatch = watch(
+    () => themeObj.setColor,
+    () => {
       chartOpt.title.textStyle.color = themeObj.setColor;
       chartOpt.xAxis.axisLabel.color = themeObj.setColor;
       console.log(chartOpt);
       echart.setOption(chartOpt);
-    }, {
-        flush: 'post'
+    },
+    {
+      flush: "post",
+    }
+  );
+  console.log(opt);
+  //监听dom尺寸变化
+  resizeObserver.value = new ResizeObserver(() => {
+    nextTick(() => {
+      echart.resize();
     });
-    console.log(opt);
-    //监听dom尺寸变化
-    resizeObserver.value = new ResizeObserver((entries) => {
-      nextTick(() => {
-        echart.resize();
-      });
-    });
-    resizeObserver.value.observe(document.getElementById("echarts-container"));
-
+  });
+  resizeObserver.value.observe(document.getElementById("echarts-container"));
 });
 
 let ip = ref("");
@@ -65,6 +76,7 @@ const columns = [
   },
   {
     dataIndex: "content",
+    width: "50%",
   },
 ];
 const data = ref([
@@ -89,30 +101,42 @@ const data = ref([
     content: GetOs(),
   },
 ]);
-
+//获取IP
 axios.get("https://api.ipify.org/?format=json").then((res) => {
   if (data.value[0].content != res.data.ip) {
-    data.value[0].content += "/" + res.data.ip;
-    data.value[0].name += "（local/vpn）";
+    if (data.value[0].content != "未知") {
+      data.value[0].content += "/" + res.data.ip;
+      data.value[0].name += "（local/vpn）";
+    } else {
+      data.value[0].content = res.data.ip;
+    }
   } else {
     data.value[0].content = res.data.ip;
   }
 });
+//获取地址
+axios.get("https://api.vvhan.com/api/getIpInfo").then((res) => {
+  let data = res.data.info;
+  if (data.value[1].content != "未知") {
+    data.value[1].content = data.prov + data.city;
+  }
+});
+
 //获取天气
 let addr = ref("");
 let weatherInfo = ref("");
 let weatherTip = ref("");
-GetWeather.weather().then((res) => {
+GetWeather.weather().then((res: any) => {
   addr.value = res.data.city;
   weatherInfo.value = `${res.data.info.type} 温度：${res.data.info.low} ～${res.data.info.high} 风向：${res.data.info.fengxiang} 风力：${res.data.info.fengli}`;
   weatherTip.value = res.data.info.tip;
 });
 //获取github提交记录
 
-let commits = ref<object[]>();
-Github.getCommits().then((res) => {
-  let commit: object[] = [];
-  res.data.forEach((item, index: number) => {
+let commits = ref();
+Github.getCommits().then((res: any) => {
+  let commit: Array<commitsType> = [];
+  res.data.forEach((item: any, index: number) => {
     commit.push({
       avatar: item.committer.avatar_url,
       date: formatDate(new Date(item.commit.committer.date).getTime()),
@@ -127,7 +151,7 @@ Github.getCommits().then((res) => {
 
 onBeforeUnmount(() => {
   resizeObserver.value.disconnect();
-  unwatch()
+  unwatch();
 });
 </script>
 
@@ -210,7 +234,9 @@ onBeforeUnmount(() => {
           >
             <template #bodyCell="{ column, text }">
               <template v-if="column.dataIndex === 'name'">
-                <span>{{ text }}</span>
+                <span style="display: inline-block; word-break: break-all">{{
+                  text
+                }}</span>
               </template>
             </template>
           </a-table>
@@ -311,6 +337,7 @@ onBeforeUnmount(() => {
       overflow: auto;
       border: 1px solid var(--ant-primary-color);
       width: 32.5%;
+      height: 222px;
       border-radius: 5px;
       padding: 10px;
       backdrop-filter: blur(10px);
