@@ -15,7 +15,7 @@ export default function isMobile() {
 export function GetCurrentBrowser() {
   let ua = navigator.userAgent.toLocaleLowerCase();
   let browserType = null;
-alert(ua)
+
   if (ua.match(/msie/) != null || ua.match(/trident/) != null) {
     browserType = "IE" + getVer("browser", "ie");
   } else if (ua.match(/edge/) != null) {
@@ -35,6 +35,8 @@ alert(ua)
     ua.match(/qqbrowser/) != null
   ) {
     browserType = "QQ" + getVer("browser", "qq");
+  } else if (ua.match(/micromessenger/) != null) {
+    browserType = "Weixin" + getVer("browser", "micromessenger");
   } else if (ua.match(/maxthon/) != null) {
     browserType = "Maxthon" + getVer("browser", "maxthon");
   } else if (ua.match(/safari/) != null && ua.indexOf("chrome") == -1) {
