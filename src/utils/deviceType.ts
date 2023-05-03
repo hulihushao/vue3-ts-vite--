@@ -15,6 +15,7 @@ export default function isMobile() {
 export function GetCurrentBrowser() {
   let ua = navigator.userAgent.toLocaleLowerCase();
   let browserType = null;
+  alert(ua)
   if (ua.match(/msie/) != null || ua.match(/trident/) != null) {
     browserType = "IE" + getVer("browser", "ie");
   } else if (ua.match(/firefox/) != null) {
