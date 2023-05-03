@@ -1,11 +1,5 @@
 <script setup lang="ts">
-import {
-  ref,
-  onMounted,
-  onBeforeUnmount,
-  watch,
-  nextTick,
-} from "vue";
+import { ref, onMounted, onBeforeUnmount, watch, nextTick } from "vue";
 import { useRouter } from "vue-router";
 import useTheme from "@/store/theme";
 import { GetWeather, Github } from "@/api/api";
@@ -294,7 +288,8 @@ onBeforeUnmount(() => {
     justify-content: space-between;
     overflow: auto;
     backdrop-filter: blur(10px);
-    align-items:center;
+    align-items: center;
+    transition: all 0.5s;
     .con {
       width: 60%;
       padding: 10px;

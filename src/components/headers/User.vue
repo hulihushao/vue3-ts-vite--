@@ -70,7 +70,7 @@ defineExpose({
 <template>
   <div>
     <a-dropdown placement="bottom" overlayClassName="dropDownmenus">
-      <span style="height: 50px; display: flex; align-items: center">
+      <span style="height: 50px; display: flex; align-items: center;cursor:pointer;">
         <a-avatar
           @click.prevent
           src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
