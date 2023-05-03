@@ -15,26 +15,30 @@ export default function isMobile() {
 export function GetCurrentBrowser() {
   let ua = navigator.userAgent.toLocaleLowerCase();
   let browserType = null;
-  alert(ua)
+
   if (ua.match(/msie/) != null || ua.match(/trident/) != null) {
     browserType = "IE" + getVer("browser", "ie");
+  } else if (ua.match(/edge/) != null) {
+    browserType = "Edge" + getVer("browser", "edge");
   } else if (ua.match(/firefox/) != null) {
     browserType = "firefox" + getVer("browser", "firefox");
   } else if (ua.match(/ucbrowser/) != null) {
     browserType = "UC" + getVer("browser", "uc");
   } else if (ua.match(/opera/) != null || ua.match(/opr/) != null) {
-    browserType = "opera" + getVer("browser", "opera");
+    browserType = "Opera" + getVer("browser", "opera");
   } else if (ua.match(/bidubrowser/) != null) {
-    browserType = "baidu" + getVer("browser", "baidu");
+    browserType = "Baidu" + getVer("browser", "baidu");
   } else if (ua.match(/metasr/) != null) {
-    browserType = "sougou" + getVer("browser", "sougou");
+    browserType = "Sougou" + getVer("browser", "sougou");
   } else if (
     ua.match(/tencenttraveler/) != null ||
-    ua.match(/qqbrowse/) != null
+    ua.match(/qqbrowser/) != null
   ) {
     browserType = "QQ" + getVer("browser", "qq");
   } else if (ua.match(/maxthon/) != null) {
-    browserType = "maxthon" + getVer("browser", "maxthon");
+    browserType = "Maxthon" + getVer("browser", "maxthon");
+  } else if (ua.match(/safari/) != null && ua.indexOf("chrome") == -1) {
+    browserType = "Safari" + getVer("browser", "safari");
   } else if (ua.match(/chrome/) != null) {
     var is360 = _mime("type", "application/vnd.chromium.remoting-viewer");
     if (is360) {
@@ -43,16 +47,14 @@ export function GetCurrentBrowser() {
       console.log();
       browserType = "Chrome" + getVer("browser", "chrome");
     }
-  } else if (ua.match(/safari/) != null) {
-    browserType = "Safari" + getVer("browser", "safari");
   } else {
-    browserType = "others";
+    browserType = "Others";
   }
   return browserType;
 }
 
 function _mime(option: string, value: string) {
-  var mimeTypes:any = navigator.mimeTypes;
+  var mimeTypes: any = navigator.mimeTypes;
   for (var mt in mimeTypes) {
     if (mimeTypes[mt][option] === value) {
       return true;
@@ -65,6 +67,12 @@ function _mime(option: string, value: string) {
 let sUserAgent = navigator.userAgent.toLocaleLowerCase();
 function getVer(type: string, sys: string) {
   if (type == "browser") {
+    if (sys == "ie") {
+      return sUserAgent
+        .split(" ")
+        .filter((item) => item.includes("msie"))[0]
+        .split(" ");
+    }
     return (
       "/" +
       sUserAgent
@@ -85,7 +93,8 @@ function getVer(type: string, sys: string) {
 // get os
 export function GetOs() {
   let isWin =
-    navigator.platform.toLowerCase() === "win32" || navigator.platform.toLowerCase() === "windows";
+    navigator.platform.toLowerCase() === "win32" ||
+    navigator.platform.toLowerCase() === "windows";
   let isMac =
     navigator.platform.toLowerCase() === "mac68k" ||
     navigator.platform.toLowerCase() === "macppc" ||
