@@ -41,11 +41,12 @@ export function GetCurrentBrowser() {
     browserType = "Safari" + getVer("browser", "safari");
   } else if (ua.match(/chrome/) != null) {
     var is360 = _mime("type", "application/vnd.chromium.remoting-viewer");
-    if (is360) {
-      browserType = "360" + getVer("browser", "360");
-    } else {
-      console.log();
+    if (is360 && is360ByUserActivationProperty()) {
+      browserType = "360浏览器";
+    } else if (ua.indexOf("Safari") > -1 && ua.indexOf("Edge") == -1) {
       browserType = "Chrome" + getVer("browser", "chrome");
+    } else {
+      browserType = "Others";
     }
   } else {
     browserType = "Others";
@@ -62,7 +63,16 @@ function _mime(option: string, value: string) {
   }
   return false;
 }
-
+//根据userActivation属性来判断360极速
+function is360ByUserActivationProperty() {
+  //debugger;
+  let navigator = window.navigator as any;
+  if (navigator.userActivation) {
+    return false; //chrome
+  } else {
+    return true; //360极速
+  }
+}
 //获取版本号
 let sUserAgent = navigator.userAgent.toLocaleLowerCase();
 function getVer(type: string, sys: string) {
