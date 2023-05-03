@@ -275,7 +275,7 @@ onBeforeUnmount(() => {
     padding: 0;
     margin: 0;
   }
-  .header {
+  .header {    
     border: 1px solid #ccc;
     border-radius: 5px;
     border-image: -webkit-linear-gradient(to bottom, red, yellow) 30 30;
@@ -289,7 +289,7 @@ onBeforeUnmount(() => {
     overflow: auto;
     backdrop-filter: blur(10px);
     align-items: center;
-    transition: all 0.5s;
+    transition: all 5s;
     .con {
       width: 60%;
       padding: 10px;
