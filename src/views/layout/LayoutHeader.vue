@@ -34,7 +34,7 @@ defineEmits(["pointerenter", "pointerleave"]);
         class="trigger"
         @click="() => (collapsed.collapsed = !collapsed.collapsed)"
       />
-      <TopMenu v-if="themeObj.isTopMenu" :theme="themeObj.themeChecked ? 'dark' : 'light'"/>
+      <TopMenu v-if="themeObj.isTopMenu"  :theme="themeObj.themeChecked&&themeObj.isDark ? 'dark' : 'light'"/>
     </span>
     <span class="tool-con">
       <span
