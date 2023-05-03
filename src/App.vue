@@ -11,7 +11,7 @@ dayjs.locale(zhCN.locale);
 
 const loading = useLoading();
 const theme = useTheme();
-document.body.style.background=theme.isDark?"#000":"#fff"
+document.body.style.background = theme.isDark ? "#000" : "#fff";
 //设置全局主题色
 useSetTheme(theme.color);
 useSetLanguage(theme.isZHCN);
@@ -51,12 +51,14 @@ h1 {
 }
 
 /*滚动条的宽度*/
-.ant-layout-content::-webkit-scrollbar ,::-webkit-scrollbar {
+.ant-layout-content::-webkit-scrollbar,
+::-webkit-scrollbar {
   width: 4px;
 }
 
 /*滚动条里面小方块*/
-.ant-layout-content::-webkit-scrollbar-thumb ,::-webkit-scrollbar-thumb {
+.ant-layout-content::-webkit-scrollbar-thumb,
+::-webkit-scrollbar-thumb {
   border-radius: 2px;
   box-shadow: inset 0 0 5px var(--ant-primary-color);
   background: var(--ant-primary-color);

@@ -11,7 +11,11 @@ export function useSetTheme(color: string) {
 
 //设置语言
 import { useI18n } from "vue-i18n";
-export function useSetLanguage(isZh: boolean, locale: {value:string}) {
+interface local{
+  value:string,
+  [propNames: string]:any
+}
+export function useSetLanguage(isZh: boolean, locale?:local) {
   if (locale) {
     locale.value = isZh ? "zh" : "en";
     return;
