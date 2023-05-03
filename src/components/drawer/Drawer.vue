@@ -20,7 +20,7 @@ let setThemeStyle = (value: boolean) => {
 
 let showSketch = ref(false);
 //实时更新颜色
-let updateColor = (e: object) => {
+let updateColor = (e: any) => {
   console.log(e);
   bgColor.value = `rgba(${e.rgba.r},${e.rgba.g},${e.rgba.b},${e.rgba.a})`;
   themeObj.color = bgColor.value;
@@ -28,7 +28,7 @@ let updateColor = (e: object) => {
   useSetTheme(bgColor.value);
 };
 //确定按钮更新颜色
-function changSketchButton(item) {
+function changSketchButton(item:any) {
   showSketch.value = false;
   console.log(item);
   if (item.isOk) {
@@ -59,8 +59,8 @@ let closeDrawer = () => {
   emits("setVisible");
 };
 let colorPreview = ref(null);
-let colorSelect = ref(null);
-let onClickCbk = (event) => {
+let colorSelect = ref();
+let onClickCbk = (event:Event) => {
   const targetElement = event.target; // 获取当前被点击的元素
   const myDiv = colorSelect.value.$el;
   let colorPreviewDiv = colorPreview.value;
