@@ -15,7 +15,7 @@ export default function isMobile() {
 export function GetCurrentBrowser() {
   let ua = navigator.userAgent.toLocaleLowerCase();
   let browserType = null;
-
+alert(ua)
   if (ua.match(/msie/) != null || ua.match(/trident/) != null) {
     browserType = "IE" + getVer("browser", "ie");
   } else if (ua.match(/edge/) != null) {
@@ -39,6 +39,8 @@ export function GetCurrentBrowser() {
     browserType = "Maxthon" + getVer("browser", "maxthon");
   } else if (ua.match(/safari/) != null && ua.indexOf("chrome") == -1) {
     browserType = "Safari" + getVer("browser", "safari");
+  } else if (ua.match(/huawei/) != null) {
+    browserType = "Huawei" + getVer("browser", "huawei");
   } else if (ua.match(/chrome/) != null) {
     var is360 = _mime("type", "application/vnd.chromium.remoting-viewer");
     if (is360 && is360ByUserActivationProperty()) {
