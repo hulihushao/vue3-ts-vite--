@@ -4,7 +4,6 @@ import {
   onMounted,
   onBeforeUnmount,
   watch,
-  watchEffect,
   nextTick,
 } from "vue";
 import { useRouter } from "vue-router";
@@ -76,7 +75,6 @@ const columns = [
   },
   {
     dataIndex: "content",
-    width: "50%",
   },
 ];
 const data = ref([
@@ -233,6 +231,11 @@ onBeforeUnmount(() => {
           >
             <template #bodyCell="{ column, text }">
               <template v-if="column.dataIndex === 'name'">
+                <span style="display: inline-block; word-break: break-all">{{
+                  text
+                }}</span>
+              </template>
+              <template v-if="column.dataIndex === 'content'">
                 <span style="display: inline-block; word-break: break-all">{{
                   text
                 }}</span>
