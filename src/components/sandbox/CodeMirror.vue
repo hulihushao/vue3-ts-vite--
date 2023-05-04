@@ -24,7 +24,7 @@ let loadData = async () => {
   let src = props.src.replace("@", "/src");
   component.value=allModules[src]
   //console.log(component)
-  let res:any = await Component.getComponent(src + "?raw");
+  let res:any = await Component.getComponent('https://github.com/hulihushao/vue3-ts-vite--/tree/main'+src + "?raw");
   code.value = res.data.replace("export default ", "");
   code.value = JSON.parse(code.value);
 };

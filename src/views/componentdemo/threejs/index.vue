@@ -145,7 +145,7 @@ onBeforeUnmount(() => {
 <template>
   <div id="webgl-con">
     <div id="webgl"></div>
-    <div id="webgl-stats"></div>
+    <div id="webgl-stats" v-drag></div>
   </div>
 </template>
 
