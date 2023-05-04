@@ -1,13 +1,13 @@
 // 拖拽的指令
 class Drap {
-  static zIndex:number|string = 1;
-  el: HTMLElement;
+  static zIndex: number = 1;
+  el: any;
   x: number;
   y: number;
   option: {};
   timeOutEvent: number;
-  ele: null;
-  constructor(el:HTMLElement, option = {}) {
+  ele: HTMLElement | null;
+  constructor(el: HTMLElement, option = {}) {
     this.el = el;
     this.x = 0;
     this.y = 0;
@@ -31,28 +31,29 @@ class Drap {
     // 		this.el.setCapture && this.el.setCapture() //全局捕获
     // 	}
     // }
-    this.el.onmousedown = (e) => {
+    this.el.onmousedown = (e:MouseEvent) => {
       this.onMouseDown(e);
       this.el.setCapture && this.el.setCapture(); //全局捕获
     };
-    
-    this.el.ontouchstart=(e)=>{
+
+    this.el.ontouchstart = (e:TouchEvent) => {
       console.log(document)
-      this.onMouseDown({clientX:e.targetTouches[0].clientX,
-      clientY:e.targetTouches[0].clientY
-      })
+      this.onMouseDown({
+        clientX: e.targetTouches[0].clientX,
+        clientY: e.targetTouches[0].clientY
+      } as any)
     }
   }
 
   //样式设置
   setEleStyle(option: { [x: string]: any; zIndex?: number; position?: string; cursor?: string; }) {
     for (const key in option) {
-      this.el.style[key] = option[key];
+      this.el.style[key as any] = option[key];
     }
   }
   //按下ele
   onMouseDown(e: MouseEvent) {
-    let zIndex = getComputedStyle(this.el).getPropertyValue("z-index");
+    let zIndex: any = getComputedStyle(this.el).getPropertyValue("z-index");
     zIndex = isNaN(zIndex) ? 1 : zIndex;
     Drap.zIndex =
       Drap.zIndex > zIndex ? Number(Drap.zIndex) + 1 : Number(zIndex) + 1;
@@ -65,11 +66,12 @@ class Drap {
     this.y = e.clientY - this.el.offsetTop;
     document.onmousemove = (e) => this.onMouseMove(e);
     document.onmouseup = (e) => this.onMouseUp(e);
-    
-        document.ontouchmove = (e) => this.onMouseMove({clientX:e.targetTouches[0].clientX,
-      clientY:e.targetTouches[0].clientY
-      });
-    document.ontouchend = (e) =>this.onMouseUp(e);
+
+    document.ontouchmove = (e) => this.onMouseMove({
+      clientX: e.targetTouches[0].clientX,
+      clientY: e.targetTouches[0].clientY
+    } as any);
+    document.ontouchend = (e:TouchEvent) => this.onMouseUp(e);
   }
   //移动move
   onMouseMove(e: MouseEvent) {
@@ -104,13 +106,13 @@ class Drap {
     this.el.style.top = Y + "px";
   }
   //释放
-  onMouseUp(e: MouseEvent) {
+  onMouseUp(e: MouseEvent|TouchEvent) {
     document.onmousemove = null;
     document.onmouseup = null;
 
     document.ontouchmove = null;
     document.ontouchend = null;
-    
+
     this.setEleStyle({
       cursor: "pointer",
     });
@@ -140,7 +142,7 @@ class Drap {
   // }
 }
 export const drag = {
-  mounted(el:HTMLElement, binding: { value: any; }) {
-    new Drap(el, binding.value || {});
+  mounted(el: HTMLElement, binding: { value: any; }) {
+    new Drap(el as HTMLElement, binding.value || {});
   },
 };
