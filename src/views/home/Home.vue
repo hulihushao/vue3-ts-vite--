@@ -178,7 +178,7 @@ onBeforeUnmount(() => {
         </p>
         <p class="git">
           <span>Github仓库地址：</span>
-          <a href="" target="_blank"
+          <a href="https://github.com/hulihushao/vue3-ts-vite--" target="_blank"
             >https://github.com/hulihushao/vue3-ts-vite--</a
           >
         </p>
