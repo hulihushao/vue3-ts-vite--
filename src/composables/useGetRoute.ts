@@ -6,6 +6,7 @@ interface preObj{
 }
 export function useGetRoute() {
   let path = location.pathname;
+  if(path=="/")path=location.hash.replace("#","")
   return path;
 }
 export function useAllMenus():menus[] {

@@ -50,7 +50,7 @@ let popStateHandle = () => {
   let currentMenu = allMenus.filter(
     (item: menus) => path.split("/").indexOf(item.path) > -1
   );
-
+//console.log(currentMenu,1111,path,)
   if (currentMenu.length) {
     selectKeys.value = [currentMenu[0].key];
     openKeys.value = currentMenu[0].openKeys;
