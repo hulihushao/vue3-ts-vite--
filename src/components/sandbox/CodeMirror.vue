@@ -24,7 +24,7 @@ let loadData = async () => {
   let src = props.src.replace("@", "/src");
   component.value=allModules[src]
   //console.log(component)
-  let res:any = await Component.getComponent('https://github.com/hulihushao/vue3-ts-vite--/tree/main'+src + "?raw");
+  let res:any = await Component.getComponent('https://raw.githubusercontent.com/hulihushao/vue3-ts-vite--/main'+src + "?raw")
   code.value = res.data.replace("export default ", "");
   code.value = JSON.parse(code.value);
 };
@@ -39,7 +39,7 @@ const handleReady = (payload:any) => {
 </script>
 
 <template>
-  <code-preview :code="code" :component="component"/>
+  <code-preview :code="code" :component="component" />
   <codemirror
     v-model="code"
     placeholder="loading..."
