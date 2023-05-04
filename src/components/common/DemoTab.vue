@@ -7,7 +7,7 @@ let activeKey = ref("1");
   <div class="card-container">
     <a-tabs v-model:activeKey="activeKey" type="card">
       <a-tab-pane key="1" tab="demo">
-        <slot v-if="activeKey==1" name="demo" />
+        <slot v-if="activeKey=='1'" name="demo" />
       </a-tab-pane>
       <a-tab-pane key="2" tab="code">
         <slot name="code" />

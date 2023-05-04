@@ -131,15 +131,14 @@ let languageChange = (value: boolean) => {
 };
 onMounted(() => {
   //监听点击位置以关闭颜色选择器
-  document
-    .querySelector(".custom_class")
-    .removeEventListener("click", onClickCbk);
-  document.querySelector(".custom_class").addEventListener("click", onClickCbk);
+  let div=document.querySelector(".custom_class") as HTMLElement
+  div.removeEventListener("click", onClickCbk);
+  div.addEventListener("click", onClickCbk);
 });
 onBeforeUnmount(() => {
-  document
-    .querySelector(".custom_class")
-    .removeEventListener("click", onClickCbk);
+  let div=document
+    .querySelector(".custom_class") as HTMLElement
+    div.removeEventListener("click", onClickCbk);
 });
 </script>
 

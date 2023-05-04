@@ -1,5 +1,5 @@
 // 进入全屏模式
-function requestFullScreen(element) {
+function requestFullScreen(element:HTMLElement|any) {
   if (element.requestFullscreen) {
     element.requestFullscreen();
   } else if (element.webkitRequestFullscreen) {
@@ -15,12 +15,12 @@ function requestFullScreen(element) {
 function exitFullScreen() {
   if (document.exitFullscreen) {
     document.exitFullscreen();
-  } else if (document.webkitExitFullscreen) {
-    document.webkitExitFullscreen();
-  } else if (document.mozCancelFullScreen) {
-    document.mozCancelFullScreen();
-  } else if (document.msExitFullscreen) {
-    document.msExitFullscreen();
+  } else if ((document as any).webkitExitFullscreen) {
+    (document as any).webkitExitFullscreen();
+  } else if ((document as any).mozCancelFullScreen) {
+    (document as any).mozCancelFullScreen();
+  } else if ((document as any).msExitFullscreen) {
+    (document as any).msExitFullscreen();
   }
 }
 export default{requestFullScreen,exitFullScreen}

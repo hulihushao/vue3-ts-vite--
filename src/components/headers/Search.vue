@@ -3,7 +3,7 @@ import { ref } from "vue";
 import SearchIcon from "./search/SearchIcon.vue";
 import TheSearch from "./search/TheSearch.vue";
 
-let theSearch = ref(null);
+let theSearch = ref();
 let isShowInput = ref(false);
 let handleShowInput = (isShow: boolean) => {
   if (!isShow){

@@ -12,7 +12,7 @@ export function useGetRoute() {
 export function useAllMenus():menus[] {
   let allMenus:menus[] = [];
   //获取指定子菜单的所有父级
-  function getParentMenus(menuArray:menus[], menuName:string, parents:string[] = [], openKeys:string[] = []):object {
+  function getParentMenus(menuArray:menus[], menuName:string, parents:string[] = [], openKeys:string[] = []):object|null {
     for (let i = 0; i < menuArray.length; i++) {
       const menu = menuArray[i];
       if (menu.key === menuName) {
@@ -22,7 +22,7 @@ export function useAllMenus():menus[] {
           menu.children as menus[],
           menuName,
           [...parents,menu.title],
-          [...openKeys,menu.key]
+          [...openKeys as string[],menu.key as string]
         );
         if (result) {
           return result;
@@ -35,7 +35,7 @@ export function useAllMenus():menus[] {
   let get = (list:menus[]) => {
     list.forEach((item:menus) => {
       if (!item.children) {
-        let pre:preObj = getParentMenus(menuList as menus[], item.key as string);
+        let pre = getParentMenus(menuList as menus[], item.key as string) as preObj;
         allMenus.push({
           ...item,
           openKeys: pre.openKeys,

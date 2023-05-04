@@ -1,6 +1,6 @@
 export interface menus{
   title:string,
-  enKey:string,
+  enKey?:string,
   name?:string,
   key:string|number,
   path:string,
@@ -8,8 +8,8 @@ export interface menus{
   iconfont?:string,
   closable?:boolean,
   component?,
-  openKeys?:string[],
-  preList?:string[],
+  openKeys?:Array<string|undefined>,
+  preList?:Array<string|undefined>,
   meta?:object,
   children?:object[],
   quickly?:boolean,

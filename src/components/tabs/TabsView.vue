@@ -6,6 +6,8 @@ import useLayout from "@/store/layout";
 import { menus } from "@/types/menus";
 import { actions as tabActions } from "@/utils/config/tabActions";
 import Breadcrumb from "@/components/tabs/Breadcrumb.vue";
+import { Action } from "@/types/tabs-view";
+
 const router = useRouter();
 const tabsData = useTabsData();
 let layout = useLayout();
@@ -13,7 +15,7 @@ let layout = useLayout();
 //点击tab页
 let paneClick = (pane: string | number) => {
   let one = tabsData.tabs.filter((item: menus) => item.key == pane);
-  layout.selectKeys = [pane];
+  layout.selectKeys = [pane as string];
   console.log(one,pane, 111111);
   router.push({ path: one[0].path });
 };
@@ -44,7 +46,7 @@ let closeAll = () => {
   tabsData.$reset();
   layout.resetSelectKeys();
 };
-let clickBtn = (item) => {
+let clickBtn = (item:Action) => {
   item.click(() => {
     closeAll();
   });

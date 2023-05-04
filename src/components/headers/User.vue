@@ -30,12 +30,12 @@ let setVisible = () => {
 //事件集合
 const clicks = {
   //用户中心
-  personCenter(user: action) {
+  personCenter:(user: action) =>{
     let find = tabsData.tabs.filter((item) => item.key == user.id);
     if (!find.length) {
       tabsData.tabs.push({
         title: userCenter.title,
-        key: user.id,
+        key: user.id as string,
         icon: userCenter.icon,
         closable: true,
         path: userCenter.path,
@@ -49,18 +49,19 @@ const clicks = {
     layout.selectKeys = [];
   },
   //系统设置
-  setting() {
+  setting:()=> {
     drawerVisibleIf.value = true;
     drawerVisible.value = true;
   },
   //退出
-  logOut() {
+  logOut:()=> {
     router.push({ path: "/login" });
   },
 };
 
-let onMenuClick: MenuProps["onClick"] = (item: action) => {
-  clicks[item.click](item);
+let onMenuClick = (item: action) => {
+  let click=item.click
+  clicks[click as keyof typeof clicks](item);
 };
 
 defineExpose({

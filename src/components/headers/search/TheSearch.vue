@@ -7,7 +7,7 @@ import {useMenuClick} from "@/composables/useMenuClick"
 let searchValue = ref("");
 let allMenus = useAllMenus();
 const router=useRouter()
-let searchResult = ref(null);
+let searchResult = ref();
 let onSearch = () => {
   searchResult = computed(() =>
     allMenus.filter((item:menus) => item.title.includes(searchValue.value)&& searchValue.value)
