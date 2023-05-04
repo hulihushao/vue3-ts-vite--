@@ -15,7 +15,7 @@ let props = defineProps<{
 let allModules=useModules()
 
 const code = ref("");
-const component=ref(null)
+const component=ref()
 
 //获取vue文件内容
 //先用Url+"?raw"将其内容转为字符串
@@ -24,7 +24,7 @@ let loadData = async () => {
   let src = props.src.replace("@", "/src");
   component.value=allModules[src]
   //console.log(component)
-  let res = await Component.getComponent(src + "?raw");
+  let res:any = await Component.getComponent(src + "?raw");
   code.value = res.data.replace("export default ", "");
   code.value = JSON.parse(code.value);
 };
@@ -32,7 +32,7 @@ loadData();
 const extensions = [vue(), basicSetup, oneDark];
 let log = console.log;
 const view = shallowRef();
-const handleReady = (payload) => {
+const handleReady = (payload:any) => {
   view.value = payload.view;
 
 };

@@ -7,6 +7,7 @@ import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { DRACOLoader } from "three/addons/loaders/DRACOLoader.js";
 import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+import Stats from 'three/addons/libs/stats.module.js';
 // 创建一个3维度场景
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0xbfe3dd);
@@ -78,12 +79,12 @@ controls.enablePan = false;
 controls.enableDamping = true;
 
 // 创建GLTF加载器对象
-let mixer;
+let mixer:any;
 const loader = new GLTFLoader();
 loader.setDRACOLoader(dracoLoader);
 loader.load(
   "/LittlestTokyo.glb",
-  function (gltf) {
+  function (gltf:any) {
     const model = gltf.scene;
     model.position.set(1, 1, 0);
     model.scale.set(0.5, 0.5, 0.5);
@@ -93,7 +94,7 @@ loader.load(
     animate();
   },
   undefined,
-  function (e) {
+  function (e:any) {
     console.error(e);
   }
 );
@@ -106,7 +107,7 @@ loader.load(
 
 renderer.setSize(width, height); //设置three.js渲染区域的尺寸(像素px)
 renderer.render(scene, camera); //执行渲染操作
-let animateId = ref("");
+let animateId = ref();
 function animate() {
   animateId.value = requestAnimationFrame(animate);
 
@@ -121,8 +122,8 @@ function animate() {
 //
 onMounted(() => {
   // 把渲染结果canvas画布，也就是照片提案加到网页中
-  document.getElementById("webgl").appendChild(renderer.domElement);
-  document.getElementById("webgl-stats").appendChild(stats.dom);
+  (document.getElementById("webgl") as HTMLElement).appendChild(renderer.domElement);
+  (document.getElementById("webgl-stats") as HTMLElement).appendChild(stats.dom);
 
   // onresize 事件会在窗口被调整大小时发生
   window.onresize = function () {
@@ -158,8 +159,6 @@ onBeforeUnmount(() => {
   }
   #webgl-stats {
     position: relative;
-    :deep(div) {
-    }
   }
 }
 </style>

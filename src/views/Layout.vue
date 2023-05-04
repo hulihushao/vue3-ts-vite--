@@ -6,7 +6,7 @@ import Content from "@/views/layout/LayoutContent.vue";
 import Footer from "@/views/layout/LayoutFooter.vue";
 import useTheme from "@/store/theme";
 let themeObj = useTheme();
-let header = ref(null);
+let header = ref();
 //打开抽屉
 let openDrawer = () => {
   console.log(header.value);

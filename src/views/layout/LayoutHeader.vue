@@ -11,7 +11,8 @@ let themeObj = useTheme();
 let collapsed = useLayout();
 let users = ref(null);
 
-const refresh = inject("reload");
+const refresh=ref()
+refresh.value = inject("reload");
 defineExpose({
   users,
 });
@@ -37,8 +38,7 @@ defineEmits(["pointerenter", "pointerleave"]);
       <TopMenu v-if="themeObj.isTopMenu"  :theme="themeObj.themeChecked&&themeObj.isDark ? 'dark' : 'light'"/>
     </span>
     <span class="tool-con">
-      <span
-        @click="refresh"
+      <span @click="refresh"
         style="padding:  0 5px;  color:  var(--ant-primary-color)"
       >
         <Icon icon="ReloadOutlined"  />

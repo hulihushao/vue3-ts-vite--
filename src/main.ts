@@ -33,7 +33,7 @@ app.component("Loading", Loading);
 //使用：<component :is="$antIcons[pane.icon]" />
 // 注册组件
 Object.keys(antIcons).forEach((key) => {
-  app.component(key, antIcons[key]);
+  app.component(key, antIcons[key as keyof typeof antIcons]);
 });
 // 添加到全局
 app.config.globalProperties.$antIcons = antIcons;

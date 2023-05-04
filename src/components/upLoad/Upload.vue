@@ -2,15 +2,15 @@
 import { message } from "ant-design-vue";
 import { ref } from "vue";
 import type { UploadChangeParam, UploadProps } from "ant-design-vue";
-function getBase64(img: File|Blob, callback: (base64Url: string) => void) {
-    const reader = new FileReader();
-      reader.addEventListener('load', () => callback(reader.result as string));
-        reader.readAsDataURL(img);
-        
+function getBase64(img: File | Blob, callback: (base64Url: string) => void) {
+  const reader = new FileReader();
+  reader.addEventListener('load', () => callback(reader.result as string));
+  reader.readAsDataURL(img);
+
 }
 
-let emits=defineEmits<{
-  (e:"saveImg",base64Url:string):void
+let emits = defineEmits<{
+  (e: "saveImg", base64Url: string): void
 }>()
 const fileList = ref([]);
 const loading = ref<boolean>(false);
@@ -20,7 +20,7 @@ const handleChange = (info: UploadChangeParam) => {
   return
   if (info.file.status === "uploading") {
     loading.value = true;
-    getBase64(info.file.originFileObj, (base64Url: string) => {
+    getBase64(info.file.originFileObj as File, (base64Url: string) => {
       imageUrl.value = base64Url;
       loading.value = false;
     });
@@ -28,7 +28,7 @@ const handleChange = (info: UploadChangeParam) => {
   }
   if (info.file.status === "done") {
     // Get this url from response in real world.
-    getBase64(info.file.originFileObj, (base64Url: string) => {
+    getBase64(info.file.originFileObj as File, (base64Url: string) => {
       imageUrl.value = base64Url;
       loading.value = false;
     });
@@ -39,7 +39,7 @@ const handleChange = (info: UploadChangeParam) => {
   }
 };
 
-const beforeUpload = (file: UploadProps["fileList"][number]) => {
+const beforeUpload = (file: File): boolean => {
   const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
   if (!isJpgOrPng) {
     message.error("仅支持上传静态图片!");
@@ -48,15 +48,15 @@ const beforeUpload = (file: UploadProps["fileList"][number]) => {
   if (!isLt2M) {
     message.error("上传图片不能大于5M");
   }
-  if(isJpgOrPng && isLt2M){
-    console.log(file)
+  if (isJpgOrPng && isLt2M) {
+    console.log(file);
     getBase64(file, (base64Url: string) => {
       imageUrl.value = base64Url;
       loading.value = false;
 
-      emits("saveImg",base64Url)
+      emits("saveImg", base64Url);
     });
-    
+
   }
   return isJpgOrPng && isLt2M;
 };
@@ -64,17 +64,9 @@ const beforeUpload = (file: UploadProps["fileList"][number]) => {
 </script>
 
 <template>
-  <a-upload
-    v-model:file-list="fileList"
-    name="avatar"
-    list-type="picture-card"
-    accept="image/apng,image/bmp,image/gif,image/jpeg,image/pjpeg,image/png"
-    class="avatar-uploader"
-    :show-upload-list="false"
-    action=""
-    :before-upload="beforeUpload"
-    @change="handleChange"
-  >
+  <a-upload v-model:file-list="fileList" name="avatar" list-type="picture-card"
+    accept="image/apng,image/bmp,image/gif,image/jpeg,image/pjpeg,image/png" class="avatar-uploader"
+    :show-upload-list="false" action="" :before-upload="beforeUpload" @change="handleChange">
     <img class="imgPreview" v-if="imageUrl" :src="imageUrl" alt="avatar" />
     <div v-else>
       <Icon icon="LoadingOutlined" v-if="loading" />
@@ -88,19 +80,24 @@ const beforeUpload = (file: UploadProps["fileList"][number]) => {
 .avatar-uploader {
   .imgPreview {
     width: 100%;
-    max-height:100%;
+    max-height: 100%;
   }
 }
-.avatar-uploader > .ant-upload,.avatar-uploader > .custom-dark-upload {
+
+.avatar-uploader>.ant-upload,
+.avatar-uploader>.custom-dark-upload {
   width: 128px;
   height: 128px;
 }
-.ant-upload-select-picture-card i ,.custom-dark-upload-select-picture-card i {
+
+.ant-upload-select-picture-card i,
+.custom-dark-upload-select-picture-card i {
   font-size: 32px;
   color: #999;
 }
 
-.ant-upload-select-picture-card .ant-upload-text,.custom-dark-upload-select-picture-card .custom-dark-upload-text {
+.ant-upload-select-picture-card .ant-upload-text,
+.custom-dark-upload-select-picture-card .custom-dark-upload-text {
   margin-top: 8px;
   color: #666;
 }
