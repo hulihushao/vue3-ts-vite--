@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount, watch, nextTick } from "vue";
+import VTypical from "vue-typical";
+
 import { useRouter } from "vue-router";
 import useTheme from "@/store/theme";
 import { GetWeather, Github } from "@/api/api";
@@ -141,6 +143,7 @@ Github.getCommits().then((res: any) => {
   console.log(commits.value, new Date("2023-04-28T05:35:21Z").getDate());
 });
 
+let blink=ref("blink")
 onBeforeUnmount(() => {
   resizeObserver.value.disconnect();
   unwatch();
@@ -151,7 +154,18 @@ onBeforeUnmount(() => {
   <div id="home">
     <div class="header">
       <div class="con">
+        <v-typical
+          class="title"
+          :class="blink"
+          :steps="[
+            1000,'早上坏，admin，没好的一天从工作开始！',1000,()=>{blink=``}
+          ]"
+          :loop="Infinity"
+          :wrapper="'p'"
+        ></v-typical>
+        <!--
         <p class="title">早上坏，{{ "admin" }}，没好的一天从工作开始！</p>
+        -->
         <p class="weather">
           <span>{{ addr }} 天气：</span>
           <span>{{ weatherInfo }}</span>
@@ -269,13 +283,23 @@ onBeforeUnmount(() => {
 </template>
 
 <style scoped lang="less">
+.blink::after {
+  content: "|";
+  animation: blink 1s infinite step-start;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
 #home {
   color: v-bind("themeObj.setColor");
   p {
     padding: 0;
     margin: 0;
   }
-  .header {    
+  .header {
     border: 1px solid #ccc;
     border-radius: 5px;
     border-image: -webkit-linear-gradient(to bottom, red, yellow) 30 30;
