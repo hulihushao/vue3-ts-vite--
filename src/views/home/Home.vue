@@ -160,7 +160,7 @@ onBeforeUnmount(() => {
           :steps="[
             1000,'早上坏，admin，没好的一天从工作开始！',1000,()=>{blink=``}
           ]"
-          :loop="Infinity"
+          :loop="1"
           :wrapper="'p'"
         ></v-typical>
         <!--
