@@ -43,7 +43,7 @@ const menuClick = (item: menus) => {
 //根据url设置菜单选中
 let path: string = useGetRoute();
 let tabsData = useTabsData();
-let openKeys = ref([""]);
+let openKeys = ref();
 
 let popStateHandle = () => {
   path = useGetRoute();
@@ -52,7 +52,7 @@ let popStateHandle = () => {
   );
 //console.log(currentMenu,1111,path,)
   if (currentMenu.length) {
-    selectKeys.value = [currentMenu[0].key];
+    selectKeys.value = [currentMenu[0].key as string];
     openKeys.value = currentMenu[0].openKeys;
     tabsData.setActiveKey(selectKeys.value[0]);
   } else {
@@ -72,7 +72,7 @@ onUnmounted(() => {
 if (themeObj.isMenuOpen) {
   openKeys.value = [];
   allMenus.forEach((item: menus) => {
-    openKeys.value.push(...item.openKeys);
+    openKeys.value.push(...item.openKeys as string[]);
   });
 }
 </script>

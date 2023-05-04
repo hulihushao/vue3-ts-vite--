@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import SubMenu from "@/components/menu/MenuItem.vue"
+import {menus} from "@/types/menus"
 const{ menuInfo} = defineProps({
   menuInfo: {
     type: Object,
@@ -7,7 +8,7 @@ const{ menuInfo} = defineProps({
   },
 });
 const emits=defineEmits(["menuItemClick"])
-let menuItemClick=(item)=>{
+let menuItemClick=(item:menus)=>{
   emits("menuItemClick",item)
 }
 </script>

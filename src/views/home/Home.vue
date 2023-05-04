@@ -484,8 +484,6 @@ onBeforeUnmount(() => {
         .committer {
           display: flex;
           align-items: center;
-          .avatar-con {
-          }
           .name {
             margin: 0 5px;
           }
