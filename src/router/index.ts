@@ -47,7 +47,7 @@ const routes = [
       {
         path: "personCenter",
         name: "personCenter",
-        component: () => import("@/views/404.vue"),
+        component: () => import("@/views/user-center/index.vue"),
       },
     ],
   },
