@@ -1,10 +1,9 @@
 <script lang="ts" setup>
 import { ref, reactive } from "vue";
-import useTheme from "@/store/theme"
-import isMobile from "@/utils/deviceType"
+import useTheme from "@/store/theme";
+import isMobile from "@/utils/deviceType";
 
-
-const themeObj=useTheme()
+const themeObj = useTheme();
 const formData = reactive({
   url: "https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",
   mail: "shuxiangxuebiancheng@test.com",
@@ -23,8 +22,8 @@ const formData = reactive({
     <!-- 标头 -->
     <div class="settingsStyleTitle">基本设置</div>
     <!-- 用户内容 -->
-    <div class="avatar" :style="{display: isMobile()?'':'flex'}">
-      <div class="userImageStyle" :style="{margin: isMobile()?'auto':''}">
+    <div class="avatar" :style="{ display: isMobile() ? '' : 'flex' }">
+      <div class="userImageStyle" :style="{ margin: isMobile() ? 'auto' : '' }">
         <div class="userImageSpan">用户头像</div>
         <div style="height: 160px; margin-bottom: 12px">
           <a-image
@@ -34,11 +33,20 @@ const formData = reactive({
           ></a-image>
         </div>
         <a-upload action="" style="line-height: 34px; height: 34px">
-          <a-button icon="el-icon-upload2" plain>更换头像</a-button>
+          <a-button
+            ><template #icon>
+              <Icon icon="CloudUploadOutlined" /> </template
+            >更换头像</a-button
+          >
         </a-upload>
       </div>
       <!-- 用户设置表单 -->
-      <a-form :style="{margin: isMobile()?'auto':''}" class="userSettingForm" :model="formData" label-width="80px">
+      <a-form
+        :style="{ margin: isMobile() ? 'auto' : '' }"
+        class="userSettingForm"
+        :model="formData"
+        label-width="80px"
+      >
         <a-form-item label="邮箱">
           <a-input v-model:value="formData.mail"></a-input>
         </a-form-item>
@@ -80,7 +88,11 @@ const formData = reactive({
           <a-input v-model:value="formData.phoneNum"></a-input>
         </a-form-item>
         <a-form-item>
-          <a-button icon="el-icon-check">提交</a-button>
+          <a-button>
+            <template #icon>
+                    <Icon icon='CheckOutlined' />
+                        </template>
+            提交</a-button>
         </a-form-item>
       </a-form>
     </div>
@@ -118,9 +130,9 @@ export default {
 </script>
 <style lang="less" scoped>
 #user-center {
-  color: v-bind('themeObj.setColor');
-  .avatar{
-    justify-content:space-between;
+  color: v-bind("themeObj.setColor");
+  .avatar {
+    justify-content: space-between;
   }
 }
 .settingsStyleTitle {

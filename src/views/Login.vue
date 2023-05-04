@@ -4,6 +4,8 @@ import { useRouter } from "vue-router";
 import type { FormInstance } from "ant-design-vue";
 import { message } from "ant-design-vue";
 import useTheme from "@/store/theme";
+import useLayout from "@/store/layout";
+import useTabsData from "@/store/tabs";
 
 let themeObj = useTheme();
 const router = useRouter();
@@ -21,7 +23,7 @@ const formState = reactive<FormState>({
   password: "admin",
   remember: true,
 });
-const formRef = ref<FormInstance>();
+const formRef = ref();
 
 const rules = reactive({
   username: [
@@ -48,6 +50,8 @@ const disabled = computed(() => {
   return !(formState.username && formState.password);
 });
 //登录
+const tabsData: any = useTabsData();
+const layout = useLayout();
 let login = async () => {
   try {
     const values = await formRef.value.validateFields();
@@ -59,7 +63,10 @@ let login = async () => {
       duration: 0,
     });
     console.log("Success111:", values);
-
+    //初始化选中状态
+    layout.resetSelectKeys();
+    tabsData.$reset();
+    
     router.push({ path: "/index" });
   } catch (errorInfo) {
     console.log("Failed:", errorInfo);
@@ -139,7 +146,8 @@ let login = async () => {
   position: relative;
   height: 100%;
   width: 100%;
-  background: url(/static/imgs/login.jpg)//url("http://pic1.win4000.com/wallpaper/2/51397470cbba5.jpg")
+  background: url(/static/imgs/login.jpg)
+    //url("http://pic1.win4000.com/wallpaper/2/51397470cbba5.jpg")
     center/cover no-repeat;
   display: flex;
   justify-content: center;
@@ -156,7 +164,7 @@ let login = async () => {
       line-height: 50px;
       margin: 0;
       font-family: NSimSun;
-      color:v-bind('themeObj.setColor');
+      color: v-bind("themeObj.setColor");
     }
     .form-con {
       padding: 20px;
@@ -170,16 +178,16 @@ let login = async () => {
 }
 </style>
 <style>
-.login-dark{
+.login-dark {
   --bgColor: rgba(31, 31, 31, 0.5);
 }
-.login-light{
-    --bgColor: rgba(255, 255, 255, 0.5);
+.login-light {
+  --bgColor: rgba(255, 255, 255, 0.5);
 }
 #login .ant-input-affix-wrapper,
-.ant-input,
+#login .ant-input,
 #login .custom-dark-input-affix-wrapper,
-.custom-dark-input {
+#login .custom-dark-input {
   background-color: rgba(255, 255, 255, 0) !important;
 }
 </style>
