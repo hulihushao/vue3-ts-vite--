@@ -3,11 +3,11 @@ import { ref, onMounted, onBeforeUnmount, nextTick } from "vue";
 // 引入three.js
 import * as THREE from "three"; //已在index.html引入cdn
 // 引入gltf模型加载库GLTFLoader.js
-import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
-import { DRACOLoader } from "three/addons/loaders/DRACOLoader.js";
-import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
-import { OrbitControls } from "three/addons/controls/OrbitControls.js";
-import Stats from 'three/addons/libs/stats.module.js';
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader.js";
+import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment.js";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+import Stats from 'three/examples/jsm/libs/stats.module.js';
 // 创建一个3维度场景
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0xbfe3dd);
