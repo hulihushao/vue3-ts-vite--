@@ -47,7 +47,7 @@ export function GetCurrentBrowser() {
     var is360 = _mime("type", "application/vnd.chromium.remoting-viewer");
     if (is360 && is360ByUserActivationProperty()) {
       browserType = "360浏览器";
-    } else if (ua.indexOf("Safari") > -1 && ua.indexOf("Edge") == -1) {
+    } else if (ua.indexOf("safari") > -1 && ua.indexOf("edge") == -1) {
       browserType = "Chrome" + getVer("browser", "chrome");
     } else {
       browserType = "Others";
@@ -157,7 +157,7 @@ export function GetOs() {
   if (sUserAgent.indexOf("ipad") > -1) return "iPad";
   if (sUserAgent.indexOf("ipod") > -1) return "iPod";
   if (sUserAgent.indexOf("windows") > -1) return "Android Windows";
-  return "others";
+  return "Others";
 }
 
 // getAddress
