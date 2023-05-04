@@ -6,6 +6,7 @@ import type { MenuProps } from "ant-design-vue";
 import useTabsData from "@/store/tabs";
 import useLayout from "@/store/layout";
 import Drawer from "../drawer/Drawer.vue";
+import {userCenter} from "@/utils/config/other-menu"
 interface action {
   id: number | string;
   title: string;
@@ -33,11 +34,11 @@ const clicks = {
     let find = tabsData.tabs.filter((item) => item.key == user.id);
     if (!find.length) {
       tabsData.tabs.push({
-        title: user.title,
+        title: userCenter.title,
         key: user.id,
-        icon: "UserOutlined",
+        icon: userCenter.icon,
         closable: true,
-        path: "personCenter",
+        path: userCenter.path,
         openKeys: [],
         preList: [],
         iconfont: "",

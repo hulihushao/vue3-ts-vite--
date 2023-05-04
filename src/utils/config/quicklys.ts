@@ -1,7 +1,10 @@
 import { useAllMenus } from "@/composables/useGetRoute";
+import {userCenter} from "./other-menu"
+
 let allMenus = useAllMenus();
 
 let a = allMenus.filter((item) => item.quickly);
+let b=userCenter
 console.log(a);
 export let bgColors = [
   "#FFE1D3",
@@ -24,7 +27,7 @@ export let colors = [
   "#00BFFF",
 ];
 //快捷方式，最多支持8个
-export let quicks = a.splice(0, 8);
+export let quicks = [...a.splice(0, 7),b];
 
 //概览数据
 export let overviews = [
