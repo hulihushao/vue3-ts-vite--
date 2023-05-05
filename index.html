@@ -24,6 +24,11 @@
       };
     </script>
     <script src="http://whois.pconline.com.cn/ipJson.jsp?callback=testJson"></script>
+    <!--引入devtool工具eruda以及初始化-->
+    <script src="node_modules/eruda/eruda.js"></script>
+    <script src="node_modules/eruda-code/eruda-code.js"></script>
+    <script src="node_modules/eruda-timing/eruda-timing.js"></script>
+    <script>eruda.init();eruda.add(erudaCode);eruda.add(erudaTiming);</script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%-VITE_DOC_TITLE%></title>
     <style type="text/css">

@@ -47,9 +47,14 @@ onMounted(() => {
   );
   console.log(opt);
   //监听dom尺寸变化
-  resizeObserver.value = new ResizeObserver(() => {
-    nextTick(() => {
-      echart.resize();
+  resizeObserver.value = new ResizeObserver((entries) => {
+    window.requestAnimationFrame(() => {
+      if (!Array.isArray(entries) || !entries.length) {
+        return;
+      }
+      nextTick(() => {
+        echart.resize();
+      });
     });
   });
   resizeObserver.value.observe(document.getElementById("echarts-container"));
@@ -143,7 +148,7 @@ Github.getCommits().then((res: any) => {
   console.log(commits.value, new Date("2023-04-28T05:35:21Z").getDate());
 });
 
-let blink=ref("blink")
+let blink = ref("blink");
 onBeforeUnmount(() => {
   resizeObserver.value.disconnect();
   unwatch();
@@ -158,7 +163,12 @@ onBeforeUnmount(() => {
           class="title"
           :class="blink"
           :steps="[
-            1000,'早上坏，admin，没好的一天从工作开始！',1000,()=>{blink=``}
+            1000,
+            '早上坏，admin，没好的一天从工作开始！',
+            1000,
+            () => {
+              blink = ``;
+            },
           ]"
           :loop="1"
           :wrapper="'p'"
