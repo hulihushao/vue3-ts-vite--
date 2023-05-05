@@ -50,6 +50,7 @@ export default defineConfig(({ mode }) => {
       cssCodeSplit: true, // 启用 CSS 代码拆分
       sourcemap: false, // 构建后是否生成 source map 文件
       chunkSizeWarningLimit: 1500,
+      minify: 'terser',
       terserOptions: {
         compress: {
           drop_console: true,
