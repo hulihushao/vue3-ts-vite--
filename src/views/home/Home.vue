@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount, watch, nextTick } from "vue";
 import VTypical from "vue-typical";
-
 import { useRouter } from "vue-router";
 import useTheme from "@/store/theme";
 import { GetWeather, Github } from "@/api/api";
@@ -26,6 +25,7 @@ let chartOpt: EChartsOption | any;
 let unwatch: any;
 let resizeObserver: any = ref(null);
 onMounted(() => {
+  
   let opt = echartsInit(echarts, themeObj);
   echart = opt.myChart;
   chartOpt = opt.option;
