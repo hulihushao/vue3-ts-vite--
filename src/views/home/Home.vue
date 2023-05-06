@@ -185,6 +185,9 @@ onBeforeUnmount(() => {
         <p class="count">
           <Icon style="color: #1890ff" icon="UserOutlined" />
           <span class="users">用户数 1245</span>
+          <span id="busuanzi_container_site_pv"
+            >本站总访问量<span id="busuanzi_value_site_pv"></span>次</span
+          >
         </p>
         <p class="git">
           <span>Github仓库地址：</span>
