@@ -15,6 +15,9 @@ export class Component {
   static getComponent(url: string, params: object = {}) {
     return request(url, params, "get");
   }
+  static getMd(url:string){
+    return request(url, {}, "get");
+  }
 }
 export class GetWeather {
   static weather(params: object = {}) {

@@ -3,7 +3,7 @@ import { ref, onMounted, onBeforeUnmount, watch, nextTick } from "vue";
 import VTypical from "vue-typical";
 import { useRouter } from "vue-router";
 import useTheme from "@/store/theme";
-import { GetWeather, Github } from "@/api/api";
+import { GetWeather, Github ,Component} from "@/api/api";
 import axios from "axios";
 import { bgColors, colors, quicks, overviews } from "@/utils/config/quicklys";
 import { getLightenDarkenColor } from "@/utils/utils";
@@ -121,6 +121,12 @@ axios.get("https://api.vvhan.com/api/getIpInfo").then((res) => {
   }
 });
 
+let md=ref("")
+Component.getMd("static/vue3.md").then(res=>{
+  console.log(res.data)
+  md.value=res.data
+})
+
 //获取天气
 let addr = ref("");
 let weatherInfo = ref("");
@@ -157,7 +163,7 @@ onBeforeUnmount(() => {
 
 <template>
   <div id="home">
-    <v-md-preview :text="'text'"></v-md-preview>
+    <v-md-preview style="background:#fff" :text="md"></v-md-preview>
     <div class="header">
       <div class="con">
         <v-typical
