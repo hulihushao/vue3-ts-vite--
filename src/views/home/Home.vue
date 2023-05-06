@@ -60,8 +60,6 @@ onMounted(() => {
   resizeObserver.value.observe(document.getElementById("echarts-container"));
 });
 
-let ip = ref("");
-
 //点击快捷方式
 let router = useRouter();
 let handleQuick = (quick: menus) => {
@@ -122,7 +120,7 @@ axios.get("https://api.vvhan.com/api/getIpInfo").then((res) => {
 });
 
 let md=ref("")
-Component.getMd("static/md/vue3ts.md").then(res=>{
+Component.getMd("static/md/vue3ts.md").then((res:any)=>{
   console.log(res.data)
   md.value=res.data
 })
