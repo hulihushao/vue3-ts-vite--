@@ -157,6 +157,7 @@ onBeforeUnmount(() => {
 
 <template>
   <div id="home">
+    <v-md-preview :text="'text'"></v-md-preview>
     <div class="header">
       <div class="con">
         <v-typical
