@@ -34,9 +34,9 @@ import hljs from "highlight.js";
 VMdPreview.use(githubTheme, {
   Hljs: hljs,
 });
-window.pv=`<script defer data-api="https://busuanzi.9420.ltd/api" src="https://busuanzi.9420.ltd/js"></script>`
-const app = createApp(App);
 
+const app = createApp(App);
+//注册拖拽指令
 app.directive("drag", drag);
 //注册全局图标组件
 app.component("Icon", Icon);
