@@ -22,7 +22,6 @@ let site_pv = ref<number | string | null | undefined>(
   document.querySelector("#busuanzi_site_pv")?.innerHTML
 );
 let site_uv = ref<number | string | null | undefined>(document.querySelector("#busuanzi_site_uv")?.innerHTML);
-site_uv.value = site_uv.value ? site_uv.value : 1;
 
 //设置文字颜色
 let echart: echarts.ECharts;
@@ -30,6 +29,7 @@ let chartOpt: EChartsOption | any;
 let unwatch: any;
 let resizeObserver: any = ref(null);
 onMounted(async () => {
+  site_uv.value = site_uv.value ? site_uv.value : 1;
   //let script = await import("busuanzi.pure.js");
   let opt = echartsInit(echarts, themeObj);
   echart = opt.myChart;
