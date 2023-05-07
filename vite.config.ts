@@ -2,7 +2,6 @@ import { defineConfig, loadEnv } from "vite";
 import vue from "@vitejs/plugin-vue";
 import path from "path";
 import { createHtmlPlugin } from "vite-plugin-html";
-
 //这个配置 为了在html中使用 环境变量
 const getViteEnv = (mode: string, target: string) => {
   return loadEnv(mode, process.cwd())[target];
@@ -11,7 +10,7 @@ const getViteEnv = (mode: string, target: string) => {
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   return {
-    base:"./",
+    base: "./",
     plugins: [
       vue(),
       createHtmlPlugin({
@@ -46,11 +45,11 @@ export default defineConfig(({ mode }) => {
       },
     },
     build: {
-      outDir: 'dist', // 指定输出路径
+      outDir: "dist", // 指定输出路径
       cssCodeSplit: true, // 启用 CSS 代码拆分
       sourcemap: false, // 构建后是否生成 source map 文件
       chunkSizeWarningLimit: 1500,
-      minify: 'terser',
+      minify: "terser",
       terserOptions: {
         compress: {
           drop_console: true,

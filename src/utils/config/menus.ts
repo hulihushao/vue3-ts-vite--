@@ -160,6 +160,16 @@ export let menuList = [
           },
         ],
       },
+      {
+        key: "4.3",
+        title: "md文档",
+        enKey: "Md",
+        name: "Md",
+        iconfont: "icon-cangku",
+        component: `@/views/study/Md.vue`,
+        path:"md",
+        quickly:true
+      },
     ],
   },
   {

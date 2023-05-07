@@ -3,7 +3,7 @@ import { ref, onMounted, onBeforeUnmount, watch, nextTick } from "vue";
 import VTypical from "vue-typical";
 import { useRouter } from "vue-router";
 import useTheme from "@/store/theme";
-import { GetWeather, Github, Component } from "@/api/api";
+import { GetWeather, Github } from "@/api/api";
 import axios from "axios";
 import { bgColors, colors, quicks, overviews } from "@/utils/config/quicklys";
 import { getLightenDarkenColor } from "@/utils/utils";
@@ -21,8 +21,8 @@ let themeObj = useTheme();
 let site_pv = ref<number | string | null | undefined>(
   document.querySelector("#busuanzi_site_pv")?.innerHTML
 );
-site_pv.value = site_pv.value ? site_pv.value : 1;
-let site_uv = ref(document.querySelector("#busuanzi_site_uv")?.innerHTML);
+let site_uv = ref<number | string | null | undefined>(document.querySelector("#busuanzi_site_uv")?.innerHTML);
+site_uv.value = site_uv.value ? site_uv.value : 1;
 
 //设置文字颜色
 let echart: echarts.ECharts;
@@ -124,12 +124,6 @@ axios.get("https://api.vvhan.com/api/getIpInfo").then((res) => {
   }
 });
 
-let md = ref("");
-Component.getMd("static/md/vue3ts.md").then((res: any) => {
-  console.log(res.data);
-  md.value = res.data;
-});
-
 //获取天气
 let addr = ref("");
 let weatherInfo = ref("");
@@ -166,10 +160,6 @@ onBeforeUnmount(() => {
 
 <template>
   <div id="home">
-    <v-md-preview
-      :style="{ background: 'var(--bgColor)', border: '1px solid #999' }"
-      :text="md"
-    ></v-md-preview>
     <div class="header">
       <div class="con">
         <v-typical
@@ -202,7 +192,7 @@ onBeforeUnmount(() => {
             {{ site_uv }}人</span
           >
           <span class="watch">
-                      <Icon style="color: #1890ff" iconfont="icon-fangwenliang" />
+            <Icon style="color: #1890ff" iconfont="icon-fangwenliang" />
             总访问量 <span id="busuanzi_site_pv">{{ site_pv }}</span> 次
           </span>
         </p>
