@@ -3,7 +3,7 @@ import { ref, onMounted, onBeforeUnmount, watch, nextTick } from "vue";
 import VTypical from "vue-typical";
 import { useRouter } from "vue-router";
 import useTheme from "@/store/theme";
-import { GetWeather, Github ,Component} from "@/api/api";
+import { GetWeather, Github, Component } from "@/api/api";
 import axios from "axios";
 import { bgColors, colors, quicks, overviews } from "@/utils/config/quicklys";
 import { getLightenDarkenColor } from "@/utils/utils";
@@ -18,14 +18,15 @@ import type { EChartsOption } from "echarts";
 import { commitsType } from "@/types/home";
 
 let themeObj = useTheme();
+let site_pv=ref(document.querySelector("#busuanzi_site_pv")?.innerHTML)
 
 //设置文字颜色
 let echart: echarts.ECharts;
 let chartOpt: EChartsOption | any;
 let unwatch: any;
 let resizeObserver: any = ref(null);
-onMounted(() => {
-  
+onMounted(async () => {
+  //let script = await import("busuanzi.pure.js");
   let opt = echartsInit(echarts, themeObj);
   echart = opt.myChart;
   chartOpt = opt.option;
@@ -119,11 +120,11 @@ axios.get("https://api.vvhan.com/api/getIpInfo").then((res) => {
   }
 });
 
-let md=ref("")
-Component.getMd("static/md/vue3ts.md").then((res:any)=>{
-  console.log(res.data)
-  md.value=res.data
-})
+let md = ref("");
+Component.getMd("static/md/vue3ts.md").then((res: any) => {
+  console.log(res.data);
+  md.value = res.data;
+});
 
 //获取天气
 let addr = ref("");
@@ -161,7 +162,10 @@ onBeforeUnmount(() => {
 
 <template>
   <div id="home">
-    <v-md-preview style="background:#fff" :text="md"></v-md-preview>
+    <v-md-preview
+      :style="{ background: 'var(--bgColor)', border: '1px solid #999' }"
+      :text="md"
+    ></v-md-preview>
     <div class="header">
       <div class="con">
         <v-typical
@@ -190,9 +194,8 @@ onBeforeUnmount(() => {
         <p class="count">
           <Icon style="color: #1890ff" icon="UserOutlined" />
           <span class="users">用户数 1245</span>
-          <span id="busuanzi_container_site_pv"
-            >本站总访问量<span id="busuanzi_value_site_pv"></span>次</span
-          >
+
+          本站总访问量 <span id="busuanzi_site_pv">{{site_pv}}</span> 次
         </p>
         <p class="git">
           <span>Github仓库地址：</span>

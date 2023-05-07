@@ -34,7 +34,7 @@ import hljs from "highlight.js";
 VMdPreview.use(githubTheme, {
   Hljs: hljs,
 });
-
+window.pv=`<script defer data-api="https://busuanzi.9420.ltd/api" src="https://busuanzi.9420.ltd/js"></script>`
 const app = createApp(App);
 
 app.directive("drag", drag);
