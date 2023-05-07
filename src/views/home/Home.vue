@@ -19,6 +19,7 @@ import { commitsType } from "@/types/home";
 
 let themeObj = useTheme();
 let site_pv=ref(document.querySelector("#busuanzi_site_pv")?.innerHTML)
+let site_uv=ref(document.querySelector("#busuanzi_site_uv")?.innerHTML)
 
 //设置文字颜色
 let echart: echarts.ECharts;
@@ -193,7 +194,7 @@ onBeforeUnmount(() => {
         </p>
         <p class="count">
           <Icon style="color: #1890ff" icon="UserOutlined" />
-          <span class="users">用户数 1245</span>
+          <span class="users">用户数 {{site_uv}}</span>
 
           本站总访问量 <span id="busuanzi_site_pv">{{site_pv}}</span> 次
         </p>
