@@ -20,6 +20,28 @@ import { commitsType } from "@/types/home";
 let themeObj = useTheme();
 let site_pv = ref<number | string | null | undefined>();
 let site_uv = ref<number | string | null | undefined>();
+let MutationObserver =
+  window.MutationObserver ||
+  (window as any).WebKitMutationObserver ||
+  (window as any).MozMutationObserver;
+//创建观察者对象
+let observer = new MutationObserver(function (mutations) {
+  mutations.forEach(function (mutation) {
+    console.log(mutation);
+
+    site_pv.value = document.querySelector("#busuanzi_site_pv")?.innerHTML;
+    site_uv.value = document.querySelector("#busuanzi_site_uv")?.innerHTML;
+    site_uv.value = site_uv.value ? site_uv.value : 1;
+  });
+});
+//配置观察者选项
+let config = {
+  attributes: true, //检测属性变动
+  childList: true, //检测子节点变动
+  characterData: true, //节点内容或节点文本的变动。
+};
+// 传入目标节点和观察选项
+observer.observe(document.querySelector("#busuanzi_site_pv") as any, config);
 //设置文字颜色
 let echart: echarts.ECharts;
 let chartOpt: EChartsOption | any;
@@ -153,6 +175,7 @@ Github.getCommits().then((res: any) => {
 let blink = ref("blink");
 onBeforeUnmount(() => {
   resizeObserver.value.disconnect();
+  observer.disconnect();
   unwatch();
 });
 </script>
