@@ -18,17 +18,16 @@ import type { EChartsOption } from "echarts";
 import { commitsType } from "@/types/home";
 
 let themeObj = useTheme();
-let site_pv = ref<number | string | null | undefined>(
-  document.querySelector("#busuanzi_site_pv")?.innerHTML
-);
-let site_uv = ref<number | string | null | undefined>(document.querySelector("#busuanzi_site_uv")?.innerHTML);
-
+let site_pv = ref<number | string | null | undefined>();
+let site_uv = ref<number | string | null | undefined>();
 //设置文字颜色
 let echart: echarts.ECharts;
 let chartOpt: EChartsOption | any;
 let unwatch: any;
 let resizeObserver: any = ref(null);
 onMounted(async () => {
+  site_pv.value = document.querySelector("#busuanzi_site_pv")?.innerHTML;
+  site_uv.value = document.querySelector("#busuanzi_site_uv")?.innerHTML;
   site_uv.value = site_uv.value ? site_uv.value : 1;
   //let script = await import("busuanzi.pure.js");
   let opt = echartsInit(echarts, themeObj);
@@ -345,7 +344,8 @@ onBeforeUnmount(() => {
         padding: 10px 0;
       }
       .count {
-        .users,.watch {
+        .users,
+        .watch {
           margin-left: 10px;
         }
       }
