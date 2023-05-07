@@ -192,7 +192,7 @@ onBeforeUnmount(() => {
           >
           <span class="watch">
             <Icon style="color: #1890ff" iconfont="icon-fangwenliang" />
-            总访问量 <span id="busuanzi_site_pv">{{ site_pv }}</span> 次
+            总访问量 <span id="site_pv">{{ site_pv }}</span> 次
           </span>
         </p>
         <p class="git">
