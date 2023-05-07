@@ -9,24 +9,6 @@
     <!--通过 Referrer 检测是否来自规定域名，来进行防盗链。如果没有设置referrer，那就可以直接绕过防盗链机制，直接使用或盗取。-->
     <meta name="referrer" content="no-referrer" />
     <link rel="icon" type="image/svg+xml" href="/logo.svg" />
-    <link
-      rel="stylesheet"
-      href="//at.alicdn.com/t/c/font_3977805_vvr3t9nv2z.css"
-    />
-    <script src="//at.alicdn.com/t/c/font_3977805_vvr3t9nv2z.js"></script>
-    <script type="text/javascript">
-      window.testJson = (json) => {
-        sessionStorage.setItem("ip", json.ip);
-        sessionStorage.setItem("area", json.addr);
-        console.log(josn);
-      };
-    </script>
-    <script src="http://whois.pconline.com.cn/ipJson.jsp?callback=testJson"></script>
-    <!--引入devtool工具eruda以及初始化-->
-    <script src="node_modules/eruda/eruda.js"></script>
-    <script src="node_modules/eruda-code/eruda-code.js"></script>
-    <script src="node_modules/eruda-timing/eruda-timing.js"></script>
-    <script>eruda.init();eruda.add(erudaCode);eruda.add(erudaTiming);</script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%-VITE_DOC_TITLE%></title>
     <style type="text/css">
@@ -40,7 +22,25 @@
       100%{transform:translate(85px,0)}
     }
     </style>
-        <script async data-api="https://busuanzi.9420.ltd/api" src="https://busuanzi.9420.ltd/js"></script> 
+    <link
+      rel="stylesheet"
+      href="//at.alicdn.com/t/c/font_3977805_01apz1ruotr9.css"
+    />
+    <script src="//at.alicdn.com/t/c/font_3977805_01apz1ruotr9.js"></script>
+    <script type="text/javascript">
+      window.testJson = (json) => {
+        sessionStorage.setItem("ip", json.ip);
+        sessionStorage.setItem("area", json.addr);
+        console.log(josn);
+      };
+    </script>
+    <script src="http://whois.pconline.com.cn/ipJson.jsp?callback=testJson"></script>
+    <!--引入devtool工具eruda以及初始化-->
+    <script src="node_modules/eruda/eruda.js"></script>
+    <script src="node_modules/eruda-code/eruda-code.js"></script>
+    <script src="node_modules/eruda-timing/eruda-timing.js"></script>
+    <script>eruda.init();eruda.add(erudaCode);eruda.add(erudaTiming);</script>
+    <script async data-api="https://busuanzi.9420.ltd/api" src="https://busuanzi.9420.ltd/js"></script> 
   </head>
   <body>
     <div id="app"></div>

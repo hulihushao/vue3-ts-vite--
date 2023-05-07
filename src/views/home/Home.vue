@@ -18,8 +18,11 @@ import type { EChartsOption } from "echarts";
 import { commitsType } from "@/types/home";
 
 let themeObj = useTheme();
-let site_pv=ref(document.querySelector("#busuanzi_site_pv")?.innerHTML)
-let site_uv=ref(document.querySelector("#busuanzi_site_uv")?.innerHTML)
+let site_pv = ref<number | string | null | undefined>(
+  document.querySelector("#busuanzi_site_pv")?.innerHTML
+);
+site_pv.value = site_pv.value ? site_pv.value : 1;
+let site_uv = ref(document.querySelector("#busuanzi_site_uv")?.innerHTML);
 
 //设置文字颜色
 let echart: echarts.ECharts;
@@ -193,10 +196,15 @@ onBeforeUnmount(() => {
           <span>Tip：{{ weatherTip }}</span>
         </p>
         <p class="count">
-          <Icon style="color: #1890ff" icon="UserOutlined" />
-          <span class="users">用户数 {{site_uv}}</span>
-
-          本站总访问量 <span id="busuanzi_site_pv">{{site_pv}}</span> 次
+          <span class="users">
+            <Icon style="color: #1890ff" iconfont="icon-icon" />
+            总用户数
+            {{ site_uv }}人</span
+          >
+          <span class="watch">
+                      <Icon style="color: #1890ff" iconfont="icon-fangwenliang" />
+            总访问量 <span id="busuanzi_site_pv">{{ site_pv }}</span> 次
+          </span>
         </p>
         <p class="git">
           <span>Github仓库地址：</span>
@@ -347,7 +355,7 @@ onBeforeUnmount(() => {
         padding: 10px 0;
       }
       .count {
-        .users {
+        .users,.watch {
           margin-left: 10px;
         }
       }
