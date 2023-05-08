@@ -16,7 +16,6 @@ import { echartsInit } from "@/utils/echarts";
 //import { ECOption } from "@/types/echart";
 import type { EChartsOption } from "echarts";
 import { commitsType } from "@/types/home";
-import { Box2 } from "three";
 
 let themeObj = useTheme();
 let site_pv = ref<number | string | null | undefined>();
