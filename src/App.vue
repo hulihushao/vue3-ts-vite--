@@ -70,9 +70,16 @@ useSetLanguage(theme.isZHCN);
 }
 </style>
 <style>
-h1 {
-  text-align: center;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: v-bind("theme.setColor") !important;
+}
+.demo-con h1 {
+  text-align: center;
 }
 /**顶部进度条样式 */
 #nprogress .bar {

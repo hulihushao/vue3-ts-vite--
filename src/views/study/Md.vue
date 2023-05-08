@@ -3,6 +3,9 @@ import { ref } from "vue";
 import { Component } from "@/api/api";
 import SearchTree from "@/components/tree/SearchTree.vue"
 import type {List_tree} from "@/types/md"
+import useTheme from "@/store/theme"
+
+let themeObj=useTheme()
 
 let list_tree = ref<Array<List_tree>>([]);
 Component.getMd("static/md/index.json").then((res: any) => {
@@ -17,11 +20,17 @@ Component.getMd("static/md/index.json").then((res: any) => {
   list_tree.value=data
 });
 
-let md = ref("");
-Component.getMd("static/md/vue3ts.md").then((res: any) => {
+let md = ref("### 暂无数据");
+let loadMd=(select:string)=>{
+Component.getMd("static/md/"+select+".md").then((res: any) => {
   console.log(res.data);
   md.value = res.data;
-});
+});  
+}
+
+let handleSelect=(selected:List_tree[])=>{
+  loadMd(selected[0].title)
+}
 </script>
 
 <template>
@@ -29,12 +38,12 @@ Component.getMd("static/md/vue3ts.md").then((res: any) => {
     <div class="list-tree">
       目录
       <div>
-        <search-tree :data="list_tree" />
+        <search-tree :data="list_tree" @select="handleSelect"/>
       </div>
     </div>
     <div class="markdown">
       <v-md-preview
-        :style="{ background: 'var(--bgColor)', border: '1px solid #999' }"
+        :style="{color:themeObj.setColor, background: 'var(--bgColor)', border: '1px solid #999',height:'100%' }"
         :text="md"
       ></v-md-preview>
     </div>
@@ -45,6 +54,7 @@ Component.getMd("static/md/vue3ts.md").then((res: any) => {
 #markdown-con {
   height: 100%;
   border: 1px solid red;
+  color:v-bind('themeObj.setColor') !important;
   display: flex;
   .list-tree,
   .markdown {
@@ -58,6 +68,7 @@ Component.getMd("static/md/vue3ts.md").then((res: any) => {
   }
   .markdown {
     width: 100%;
+    
   }
 }
 </style>

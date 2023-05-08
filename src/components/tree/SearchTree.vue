@@ -6,12 +6,24 @@ let props = defineProps<{
   data: List_tree[];
 }>();
 
-defineEmits(["pointerenter", "pointerleave"]);
+let emits = defineEmits(["pointerenter", "pointerleave", "select"]);
 let searchValue = ref("");
 let list_tree = computed(() => {
-  return props.data.filter((item:List_tree) => item.title.includes(searchValue.value));
+  return props.data.filter((item: List_tree) =>
+    item.title.includes(searchValue.value)
+  );
 });
-console.log(list_tree)
+console.log(list_tree);
+
+let selectedKeys = ref();
+let handleSelect = (selected: string | number[]) => {
+  console.log(selected);
+  if (selected.length) selectedKeys.value = selected;
+  let getone = props.data.filter(
+    (item: List_tree) => item.key == selectedKeys.value[0]
+  );
+  emits("select", getone);
+};
 </script>
 
 <template>
@@ -20,16 +32,32 @@ console.log(list_tree)
     style="margin-bottom: 8px"
     placeholder="Search"
   />
-  <a-tree blockNode :tree-data="list_tree">
+  <a-tree
+  class="searchtree"
+    blockNode
+    :tree-data="list_tree"
+    :selectedKeys="selectedKeys"
+    @select="handleSelect"
+  >
     <template #title="{ title }">
-      <span v-if="title.indexOf(searchValue) > -1">
-        {{ title.substr(0, title.indexOf(searchValue)) }}
-        <span style="color: #f50">{{ searchValue }}</span>
-        {{ title.substr(title.indexOf(searchValue) + searchValue.length) }}
+      <span style="paddingLeft: 10px">
+        <span v-if="title.indexOf(searchValue) > -1">
+          {{ title.substr(0, title.indexOf(searchValue)) }}
+          <span style="color: #f50">{{ searchValue }}</span>
+          {{ title.substr(title.indexOf(searchValue) + searchValue.length) }}
+        </span>
+        <span v-else>{{ title }}</span>
       </span>
-      <span v-else>{{ title }}</span>
     </template>
   </a-tree>
 </template>
 
-<style scoped></style>
+<style>
+.searchtree .ant-tree-switcher{
+  display:none;
+  width:0 !important;
+}
+.searchtree .ant-tree-list {
+  height: 24px;
+}
+</style>
