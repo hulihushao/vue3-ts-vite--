@@ -53,11 +53,11 @@ let handleSelect = (selected: string | number[]) => {
 </template>
 
 <style>
-.searchtree .ant-tree-switcher{
+.searchtree .ant-tree-switcher,.searchtree .custom-dark-tree-switcher{
   display:none;
   width:0 !important;
 }
-.searchtree .ant-tree-list {
+.searchtree .ant-tree-list,.searchtree .custom-dark-tree-list {
   height: 24px;
 }
 </style>
