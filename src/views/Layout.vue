@@ -4,7 +4,9 @@ import Aside from "@/views/layout/LayoutSider.vue";
 import Header from "@/views/layout/LayoutHeader.vue";
 import Content from "@/views/layout/LayoutContent.vue";
 import Footer from "@/views/layout/LayoutFooter.vue";
+import Notice from "@/components/common/Notice.vue"
 import useTheme from "@/store/theme";
+
 let themeObj = useTheme();
 let header = ref();
 //打开抽屉
@@ -30,7 +32,7 @@ provide("reload", reload);
     class="layout"
     :id="themeObj.isDark ? 'layout-dark' : 'layout-light'"
     :style="{ backgroundImage: `url(${themeObj.bgImg}) !important` }"
-    style="height: 100% !important"
+    style="height: 100% !important;"
   >
     <Aside />
     <a-layout>
@@ -40,6 +42,7 @@ provide("reload", reload);
       <header>
         <Header  ref="header" />
       </header>
+            <Notice style="position:absolute;top:130px;"/>
       <Content :isRouterAlive="isRouterAlive"/>
       <footer>
         <Footer />
