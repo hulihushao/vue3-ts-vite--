@@ -75,7 +75,7 @@ defineExpose({
       <span style="height: 50px; display: flex; align-items: center;cursor:pointer;">
         <a-avatar
           @click.prevent
-          src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
+          src="https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg"
           style="background-color: #87d068"
         >
           <template #icon>

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref } from "vue";
+import { ref,onBeforeUnmount } from "vue";
 
 const time = ref("");
 const date = ref("");
@@ -33,6 +33,10 @@ function zeroPadding(num:number, digit:number) {
   }
   return (zero + num).slice(-digit);
 }
+
+onBeforeUnmount(()=>{
+  clearInterval(timerID)
+})
 </script>
 
 <template>
