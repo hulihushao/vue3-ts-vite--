@@ -7,7 +7,7 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader.js";
 import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment.js";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
-import Stats from 'three/examples/jsm/libs/stats.module.js';
+import Stats from "three/examples/jsm/libs/stats.module.js";
 // 创建一个3维度场景
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0xbfe3dd);
@@ -59,7 +59,9 @@ const cube = new THREE.Mesh(geometry, material);
 //性能监听
 //创建stats对象
 const stats = new Stats();
-
+stats.dom.style.position = "absolute";
+stats.dom.style.left = "0px";
+stats.dom.style.top = "0px";
 // 创建webGL渲染器 对象
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setPixelRatio(window.devicePixelRatio);
@@ -79,12 +81,12 @@ controls.enablePan = false;
 controls.enableDamping = true;
 
 // 创建GLTF加载器对象
-let mixer:any;
+let mixer: any;
 const loader = new GLTFLoader();
 loader.setDRACOLoader(dracoLoader);
 loader.load(
   "/LittlestTokyo.glb",
-  function (gltf:any) {
+  function (gltf: any) {
     const model = gltf.scene;
     model.position.set(1, 1, 0);
     model.scale.set(0.5, 0.5, 0.5);
@@ -94,7 +96,7 @@ loader.load(
     animate();
   },
   undefined,
-  function (e:any) {
+  function (e: any) {
     console.error(e);
   }
 );
@@ -122,8 +124,12 @@ function animate() {
 //
 onMounted(() => {
   // 把渲染结果canvas画布，也就是照片提案加到网页中
-  (document.getElementById("webgl") as HTMLElement).appendChild(renderer.domElement);
-  (document.getElementById("webgl-stats") as HTMLElement).appendChild(stats.dom);
+  (document.getElementById("webgl") as HTMLElement).appendChild(
+    renderer.domElement
+  );
+  (document.getElementById("webgl-stats") as HTMLElement).appendChild(
+    stats.dom
+  );
 
   // onresize 事件会在窗口被调整大小时发生
   window.onresize = function () {
@@ -158,7 +164,11 @@ onBeforeUnmount(() => {
     overflow: auto;
   }
   #webgl-stats {
-    position: relative;
+    width: 100px;
+    height: 50px;
+    position: absolute !important;
+    top:0;
+    z-index: 999;
   }
 }
 </style>
