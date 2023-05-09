@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
+import { ref, onMounted,onBeforeUnmount } from "vue";
 let msgBox = ref();
 let scrollMsg = ref();
 let msg = ref("仅测试通知公告栏");
@@ -32,11 +32,15 @@ onMounted(() => {
   console.log();
   handleScrollMsg();
 });
+
+onBeforeUnmount(()=>{
+  clearInterval(timer)
+})
 </script>
 
 <template>
   <div id="notice" v-if="msg">
-    <Icon iconfont="icon-a-gonggaotongzhi" :color="true"/>
+    <Icon iconfont="icon-a-gonggaotongzhi" :color="true" />
     <div class="msg-box" ref="msgBox">
       <span class="msg" ref="scrollMsg">{{ msg }}</span>
     </div>
@@ -47,17 +51,17 @@ onMounted(() => {
 #notice {
   width: 100%;
   height: 23px;
-  border:1px solid #faad14;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-      background: #FFFBE7;
+  border: 1px solid #faad14;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fffbe7;
   .msg-box {
     width: 80%;
     height: 100%;
     overflow: hidden;
     position: relative;
-margin-left:5px;
+    margin-left: 5px;
     .msg {
       position: absolute;
       line-height: 23px;
