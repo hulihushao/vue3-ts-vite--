@@ -20,9 +20,9 @@ const useTheme = defineStore("theme", {
     //根据主题设置字体颜色
     setColor: (state) =>{
       if(state.isDark){
-        return '#fff'
+        return '#ffffff'
       }else{
-        return '#000'
+        return '#000000'
       }
     }
   },

@@ -32,7 +32,7 @@ let handleSelect = (selected: string | number[]) => {
     style="margin-bottom: 8px"
     placeholder="Search"
   />
-  <a-tree
+  <a-tree v-if="list_tree.length"
     class="searchtree"
     blockNode
     :tree-data="list_tree"

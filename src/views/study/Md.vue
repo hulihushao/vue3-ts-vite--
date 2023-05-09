@@ -4,6 +4,7 @@ import { Component } from "@/api/api";
 import SearchTree from "@/components/tree/SearchTree.vue";
 import type { List_tree } from "@/types/md";
 import useTheme from "@/store/theme";
+import { getLightenDarkenColor,oppositeColor } from "@/utils/utils";
 
 let themeObj = useTheme();
 let loading = ref(false);
@@ -29,16 +30,21 @@ let loadMd = (select: string) => {
     loading.value = false;
   });
 };
-
+//选中加载md文件
 let handleSelect = (selected: List_tree[]) => {
   loadMd(selected[0].title);
 };
+
+//览预的里h1,h2边框的颜框色
+let border_bottom_color=ref('')
+border_bottom_color.value=oppositeColor(themeObj.setColor,-5)
+
 </script>
 
 <template>
   <div id="markdown-con">
     <div class="list-tree">
-      
+      <h2>目录</h2>
       <div class="tree-con">
         <search-tree :data="list_tree" @select="handleSelect" />
       </div>
@@ -78,13 +84,18 @@ let handleSelect = (selected: List_tree[]) => {
     border: 1px solid #aaa;
     padding: 5px;
     .tree-con{
-      height:100%;
+      height:calc(100% - 44px);
       overflow-y:auto;
       overflow-x:hidden;
     }
   }
   .markdown {
     width: 100%;
+
   }
 }
 </style>
+<style>
+    h1,h2{
+    border-bottom-color:v-bind(border_bottom_color) !important;      
+    }</style>
