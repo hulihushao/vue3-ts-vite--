@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ref, onMounted,onBeforeUnmount } from "vue";
+import { ref, onMounted, onBeforeUnmount } from "vue";
+
 let msgBox = ref();
 let scrollMsg = ref();
 let msg = ref("仅测试通知公告栏");
@@ -33,9 +34,9 @@ onMounted(() => {
   handleScrollMsg();
 });
 
-onBeforeUnmount(()=>{
-  clearInterval(timer)
-})
+onBeforeUnmount(() => {
+  clearInterval(timer);
+});
 </script>
 
 <template>
@@ -67,6 +68,7 @@ onBeforeUnmount(()=>{
       line-height: 23px;
       font-size: 14px;
       white-space: nowrap;
+      transition: all 0s;
     }
   }
 }

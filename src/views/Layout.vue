@@ -1,12 +1,24 @@
 <script setup lang="ts">
-import { ref, nextTick, provide } from "vue";
+import { ref,watch, nextTick, provide,onBeforeUnmount } from "vue";
 import Aside from "@/views/layout/LayoutSider.vue";
 import Header from "@/views/layout/LayoutHeader.vue";
 import Content from "@/views/layout/LayoutContent.vue";
 import Footer from "@/views/layout/LayoutFooter.vue";
 import Notice from "@/components/common/Notice.vue"
 import useTheme from "@/store/theme";
+import { useGetRoute } from "@/composables/useGetRoute";
+import { useRouter } from "vue-router";
 
+let router = useRouter();
+let isShowNotice = ref(true);
+let unwatch = watch(
+  () => router.currentRoute.value.path,
+  (toPath) => {
+    let path = useGetRoute();
+    isShowNotice.value = path.includes("home");
+  },
+  { immediate: true, deep: true }
+);
 let themeObj = useTheme();
 let header = ref();
 //打开抽屉
@@ -25,6 +37,9 @@ const reload = () => {
 };
 provide("reload", reload);
 
+onBeforeUnmount(()=>{
+    unwatch()
+})
 </script>
 
 <template>
@@ -42,7 +57,7 @@ provide("reload", reload);
       <header>
         <Header  ref="header" />
       </header>
-            <Notice style="position:absolute;top:130px;"/>
+            <Notice v-if="isShowNotice" style="position:absolute;top:130px;"/>
       <Content :isRouterAlive="isRouterAlive"/>
       <footer>
         <Footer />
