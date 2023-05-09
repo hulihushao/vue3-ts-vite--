@@ -20,7 +20,7 @@ Component.getMd("static/md/index.json").then((res: any) => {
   list_tree.value = data;
 });
 
-let md = ref("### 暂无数据");
+let md = ref("### <center>暂无数据</center>");
 let loadMd = (select: string) => {
   loading.value = true;
   Component.getMd("static/md/" + select + ".md").then((res: any) => {
@@ -38,8 +38,8 @@ let handleSelect = (selected: List_tree[]) => {
 <template>
   <div id="markdown-con">
     <div class="list-tree">
-      目录
-      <div>
+      
+      <div class="tree-con">
         <search-tree :data="list_tree" @select="handleSelect" />
       </div>
     </div>
@@ -66,7 +66,6 @@ let handleSelect = (selected: List_tree[]) => {
 <style scoped lang="less">
 #markdown-con {
   height: 100%;
-  border: 1px solid red;
   color: v-bind("themeObj.setColor") !important;
   display: flex;
   .list-tree,
@@ -76,8 +75,13 @@ let handleSelect = (selected: List_tree[]) => {
   }
   .list-tree {
     width: 30%;
-    border: 1px solid red;
-    padding: 10px;
+    border: 1px solid #aaa;
+    padding: 5px;
+    .tree-con{
+      height:100%;
+      overflow-y:auto;
+      overflow-x:hidden;
+    }
   }
   .markdown {
     width: 100%;
