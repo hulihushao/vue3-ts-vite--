@@ -33,14 +33,14 @@ let handleSelect = (selected: string | number[]) => {
     placeholder="Search"
   />
   <a-tree
-  class="searchtree"
+    class="searchtree"
     blockNode
     :tree-data="list_tree"
     :selectedKeys="selectedKeys"
     @select="handleSelect"
   >
     <template #title="{ title }">
-      <span style="paddingLeft: 10px">
+      <span style="paddingleft: 10px">
         <span v-if="title.indexOf(searchValue) > -1">
           {{ title.substr(0, title.indexOf(searchValue)) }}
           <span style="color: #f50">{{ searchValue }}</span>
@@ -53,11 +53,12 @@ let handleSelect = (selected: string | number[]) => {
 </template>
 
 <style>
-.searchtree .ant-tree-switcher,.searchtree .custom-dark-tree-switcher{
-  display:none;
-  width:0 !important;
+.searchtree .ant-tree-switcher,
+.searchtree .custom-dark-tree-switcher {
+  width: 0 !important;
 }
-.searchtree .ant-tree-list,.searchtree .custom-dark-tree-list {
-  height: 24px;
+.searchtree .ant-tree-list,
+.searchtree .custom-dark-tree-list {
+  padding-top: 4px;
 }
 </style>
