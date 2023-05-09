@@ -167,7 +167,7 @@ onBeforeUnmount(() => {
             icon="CheckOutlined"
           />
           <img
-            src="http://static.yudao.iocoder.cn/static/img/dark.16937467.svg"
+            src="@/assets/dark.svg"
           />
         </div>
         <div :class="$style.theme_style_item" @click="setThemeStyle(false)">
@@ -177,7 +177,7 @@ onBeforeUnmount(() => {
             icon="CheckOutlined"
           />
           <img
-            src="http://static.yudao.iocoder.cn/static/img/light.c2aad012.svg"
+            src="@/assets/light.svg"
           />
         </div>
       </div>

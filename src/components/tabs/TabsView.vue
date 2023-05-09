@@ -11,14 +11,18 @@ import { Action } from "@/types/tabs-view";
 const router = useRouter();
 const tabsData = useTabsData();
 let layout = useLayout();
-
+let tabs=ref()
 //点击tab页
 let paneClick = (pane: string | number) => {
+  console.log(tabs)
   let one = tabsData.tabs.filter((item: menus) => item.key == pane);
   layout.selectKeys = [pane as string];
   console.log(one,pane, 111111);
   router.push({ path: one[0].path });
 };
+let paneChange=(active:string)=>{
+//  paneClick(active)
+}
 //关闭tab的方法
 const remove = (targetKey: string) => {
   let index = tabsData.tabs.findIndex((item: menus) => item.key == targetKey);
@@ -56,11 +60,13 @@ let clickBtn = (item:Action) => {
 <template>
   <div id="tabs">
     <a-tabs
+    ref="tabs"
       style="background: #fff"
       v-model:activeKey="tabsData.activeKey"
       hide-add
       type="editable-card"
       @tabClick="paneClick"
+      @change="paneChange"
       @edit="onEdit"
     >
       <!--tab标签页-->
