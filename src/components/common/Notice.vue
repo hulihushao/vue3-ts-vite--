@@ -68,7 +68,7 @@ onBeforeUnmount(() => {
       line-height: 23px;
       font-size: 14px;
       white-space: nowrap;
-      transition: all 0s;
+      transition: all 0.0001s;
     }
   }
 }
