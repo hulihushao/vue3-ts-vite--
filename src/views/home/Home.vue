@@ -91,7 +91,7 @@ let layout = useLayout();
 let router = useRouter();
 let handleQuick = (quick: menus) => {
   useMenuClick(quick, router);
-  layout.selectKeys = [quick.key];
+  layout.selectKeys = [quick.key as string];
 };
 
 //系统信息
