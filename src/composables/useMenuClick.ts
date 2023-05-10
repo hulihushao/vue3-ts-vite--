@@ -1,9 +1,11 @@
 import useTabsData from "@/store/tabs";
 import { menus } from "@/types/menus";
 import {useAllMenus } from "@/composables/useGetRoute";
+import {userCenter} from "./other-menu"
 
 let tabsData = useTabsData();
 let allMenus = useAllMenus();
+allMenus=[...allMenus,userCenter]
 //菜单点击
 export const useMenuClick = (item: menus,router:any) => {
   //console.log(openKeys.value)
