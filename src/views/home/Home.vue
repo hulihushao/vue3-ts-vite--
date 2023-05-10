@@ -16,6 +16,7 @@ import { echartsInit } from "@/utils/echarts";
 //import { ECOption } from "@/types/echart";
 import type { EChartsOption } from "echarts";
 import { commitsType } from "@/types/home";
+import useLayout from "@/store/layout";
 
 let themeObj = useTheme();
 let site_pv = ref<number | string | null | undefined>();
@@ -86,9 +87,11 @@ onMounted(async () => {
 });
 
 //点击快捷方式
+let layout = useLayout();
 let router = useRouter();
 let handleQuick = (quick: menus) => {
   useMenuClick(quick, router);
+  layout.selectKeys = [quick.key];
 };
 
 //系统信息
