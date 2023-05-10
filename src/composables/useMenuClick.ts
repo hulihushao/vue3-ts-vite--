@@ -1,7 +1,7 @@
 import useTabsData from "@/store/tabs";
 import { menus } from "@/types/menus";
 import {useAllMenus } from "@/composables/useGetRoute";
-import {userCenter} from "./other-menu"
+import {userCenter} from "@/urils/config/other-menu"
 
 let tabsData = useTabsData();
 let allMenus = useAllMenus();
