@@ -118,10 +118,10 @@ let login = async () => {
           <a-form-item>
             <a-form-item name="remember" no-style>
               <a-checkbox v-model:checked="formState.remember"
-                >Remember me</a-checkbox
+                >记住我</a-checkbox
               >
             </a-form-item>
-            <a class="login-form-forgot" href="">Forgot password</a>
+            <a class="login-form-forgot" href="">忘记密码？</a>
           </a-form-item>
         </a-form>
       </div>
@@ -173,6 +173,9 @@ let login = async () => {
     .login-btn {
       width: 50%;
       margin: 15px auto;
+    }
+    .login-form-forgot{
+      float: right;
     }
   }
 }

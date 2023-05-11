@@ -56,6 +56,7 @@ const clicks = {
   //退出
   logOut:()=> {
     router.push({ path: "/login" });
+    localStorage.removeItem("userInfo")
   },
 };
 
