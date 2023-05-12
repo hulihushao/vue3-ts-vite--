@@ -10,7 +10,10 @@ import { useGetRoute } from "@/composables/useGetRoute";
 import { useRouter } from "vue-router";
 
 let router = useRouter();
-let isShowNotice = ref(true);
+let isShowNotice = ref(false);
+setTimeout(()=>{
+  isShowNotice.value=true
+},1500)
 let unwatch = watch(
   () => router.currentRoute.value.path,
   (toPath) => {

@@ -3,7 +3,7 @@ import { ref, onMounted, onBeforeUnmount } from "vue";
 
 let msgBox = ref();
 let scrollMsg = ref();
-let msg = ref("仅测试通知公告栏");
+let msg = ref("系统持续完善中...");
 let timer: any;
 //横向播放通知公告
 function handleScrollMsg() {

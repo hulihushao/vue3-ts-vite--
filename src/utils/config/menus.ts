@@ -8,7 +8,6 @@ export let menuList = [
     path: "home",
     name: "home",
     icon: "HomeOutlined",
-    quickly: true,
     meta: {
       isAuth: true,
     },
