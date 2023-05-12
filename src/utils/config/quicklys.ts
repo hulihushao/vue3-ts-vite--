@@ -30,17 +30,21 @@ export let colors = [
 export let quicks:Array<menus> = [...a.splice(0, 7),b];
 
 //概览数据
+let demos=import.meta.glob('@/views/componentdemo/*/index.vue')
+let systems=import.meta.glob('@/views/system/*.vue')
+let uis=import.meta.glob('@/views/study/uiComponentLib/*.vue')
+//console.log(demos,systems,uis)
 export let overviews = [
   {
     name: "组件demo",
-    counter: 6,
+    counter: Object.keys(demos).length,
   },
   {
     name: "系统",
-    counter: 4,
+    counter: Object.keys(systems).length,
   },
   {
     name: "组件库",
-    counter: 6,
+    counter: Object.keys(uis).length,
   },
 ];
