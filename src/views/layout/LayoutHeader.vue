@@ -41,7 +41,7 @@ defineEmits(["pointerenter", "pointerleave"]);
       <span @click="refresh"
         style="padding:  0 5px;  color:  var(--ant-primary-color)"
       >
-        <Icon icon="ReloadOutlined"  />
+        <Icon icon="ReloadOutlined"  style="cursor: pointer;"/>
       </span>
 
       <Headers.Search />
