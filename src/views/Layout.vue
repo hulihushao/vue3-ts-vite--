@@ -1,24 +1,22 @@
 <script setup lang="ts">
-import { ref,watch, nextTick, provide,onBeforeUnmount } from "vue";
+import { ref, onMounted, watch, nextTick, provide, onBeforeUnmount } from "vue";
 import Aside from "@/views/layout/LayoutSider.vue";
 import Header from "@/views/layout/LayoutHeader.vue";
 import Content from "@/views/layout/LayoutContent.vue";
 import Footer from "@/views/layout/LayoutFooter.vue";
-import Notice from "@/components/common/Notice.vue"
+import Notice from "@/components/common/Notice.vue";
 import useTheme from "@/store/theme";
 import { useGetRoute } from "@/composables/useGetRoute";
 import { useRouter } from "vue-router";
 
 let router = useRouter();
 let isShowNotice = ref(false);
-setTimeout(()=>{
-  isShowNotice.value=true
-},1500)
+let isHome=ref(false)
 let unwatch = watch(
   () => router.currentRoute.value.path,
   (toPath) => {
     let path = useGetRoute();
-    isShowNotice.value = path.includes("home");
+    isHome.value = path.includes("home");
   },
   { immediate: true, deep: true }
 );
@@ -27,7 +25,7 @@ let header = ref();
 //打开抽屉
 let openDrawer = () => {
   console.log(header.value);
-  header.value.users.setting()
+  header.value.users.setting();
 };
 
 // 局部组件刷新
@@ -40,9 +38,14 @@ const reload = () => {
 };
 provide("reload", reload);
 
-onBeforeUnmount(()=>{
-    unwatch()
-})
+onMounted(() => {
+  setTimeout(() => {
+    isShowNotice.value = true;
+  }, 1000);
+});
+onBeforeUnmount(() => {
+  unwatch();
+});
 </script>
 
 <template>
@@ -50,7 +53,7 @@ onBeforeUnmount(()=>{
     class="layout"
     :id="themeObj.isDark ? 'layout-dark' : 'layout-light'"
     :style="{ backgroundImage: `url(${themeObj.bgImg}) !important` }"
-    style="height: 100% !important;"
+    style="height: 100% !important"
   >
     <Aside />
     <a-layout>
@@ -58,10 +61,14 @@ onBeforeUnmount(()=>{
         <Icon @click="openDrawer" :color="true" iconfont="icon-shezhi" />
       </span>
       <header>
-        <Header  ref="header" />
+        <Header ref="header" />
       </header>
-            <Notice v-if="isShowNotice" style="position:absolute;top:125px;"/>
-      <Content :isRouterAlive="isRouterAlive"/>
+      <Notice
+        v-if="isShowNotice&&isHome"
+        :show="isShowNotice"
+        style="position: absolute; top: 125px"
+      />
+      <Content :isRouterAlive="isRouterAlive" />
       <footer>
         <Footer />
       </footer>
@@ -82,10 +89,10 @@ onBeforeUnmount(()=>{
 .setting {
   font-size: 25px;
   position: absolute;
-  z-index:999;
+  z-index: 999;
   right: 10px;
   top: 300px;
-  &:hover{
+  &:hover {
     cursor: pointer;
   }
 }

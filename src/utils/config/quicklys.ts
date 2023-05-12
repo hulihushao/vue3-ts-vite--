@@ -27,7 +27,7 @@ export let colors = [
   "#00BFFF",
 ];
 //快捷方式，最多支持8个
-export let quicks:Array<menus> = [...a.splice(0, 7),b];
+export let quicks:Array<menus> = [b,...a.splice(0, 7)];
 
 //概览数据
 let demos=import.meta.glob('@/views/componentdemo/*/index.vue')

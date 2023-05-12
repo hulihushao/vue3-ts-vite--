@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount } from "vue";
 
+const props=defineProps<{
+  show:boolean
+}>()
 let msgBox = ref();
 let scrollMsg = ref();
 let msg = ref("系统持续完善中...");
@@ -40,7 +43,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div id="notice" v-if="msg">
+  <div id="notice" v-if="props.show">
     <Icon iconfont="icon-a-gonggaotongzhi" :color="true" />
     <div class="msg-box" ref="msgBox">
       <span class="msg" ref="scrollMsg">{{ msg }}</span>
