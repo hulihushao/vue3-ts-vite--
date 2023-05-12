@@ -64,6 +64,7 @@ let clickBtn = (item:Action) => {
       style="background: #fff"
       v-model:activeKey="tabsData.activeKey"
       hide-add
+      size="small"
       type="editable-card"
       @tabClick="paneClick"
       @change="paneChange"
@@ -85,7 +86,7 @@ let clickBtn = (item:Action) => {
             />
           </span>
         </template>
-        <Breadcrumb :list="pane" />
+        <Breadcrumb :list="pane"/>
       </a-tab-pane>
 
       <!--右侧按钮-->
@@ -123,11 +124,11 @@ let clickBtn = (item:Action) => {
 #tabs {
   .ant-tabs,.custom-dark-tabs {
     padding: 2px 5px 2px 2px;
-    height: 65px;
+    height: 60px;
     border-bottom: 1px solid #eee;
   }
   .ant-tabs-card .ant-tabs-content,  .custom-dark-tabs-card .custom-dark-tabs-content {
-    height: 120px;
+
     margin-top: -16px;
   }
   .ant-tabs-tab-btn,  .custom-dark-tabs-tab-btn {

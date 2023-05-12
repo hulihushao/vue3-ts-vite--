@@ -60,7 +60,7 @@ onBeforeUnmount(()=>{
       <header>
         <Header  ref="header" />
       </header>
-            <Notice v-if="isShowNotice" style="position:absolute;top:130px;"/>
+            <Notice v-if="isShowNotice" style="position:absolute;top:125px;"/>
       <Content :isRouterAlive="isRouterAlive"/>
       <footer>
         <Footer />
