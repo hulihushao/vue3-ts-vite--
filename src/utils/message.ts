@@ -27,7 +27,7 @@ const createElementVNode = (content: string | { content: string },hide:any) => {
   return container;
 };
 // 由于 message 有多种状态，这里需要额外处理
-const dtMessage = {};
+const dtMessage = {"error":{}, "success":{}, "info":{}, "warning":{}, "warn":{}};
 // 给 dtMessage 循环赋值不同类型的 message函数
 ["error", "success", "info", "warning", "warn"].forEach((type) => {
   dtMessage[type] = (
