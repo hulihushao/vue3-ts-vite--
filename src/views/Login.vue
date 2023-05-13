@@ -6,7 +6,7 @@ import { message } from "ant-design-vue";
 import useTheme from "@/store/theme";
 import useLayout from "@/store/layout";
 import useTabsData from "@/store/tabs";
-
+import dtMessage from "@/utils/message"
 let themeObj = useTheme();
 const router = useRouter();
 let loading = ref<boolean>(false);
@@ -54,7 +54,12 @@ const tabsData: any = useTabsData();
 const layout = useLayout();
 let login = async () => {
   try {
+   // 表单校验
     const values = await formRef.value.validateFields();
+    if(values.username!="admin"||values.password!="admin"){
+      dtMessage.error("用户名或密码错误")
+      throw new Error("用户名或者密码错误")
+    }
     loading.value = true;
     localStorage.setItem("userInfo", JSON.stringify(values));
     message.loading({
