@@ -31,10 +31,10 @@ const createElementVNode = (
   return container;
 };
 // 由于 message 有多种状态，这里需要额外处理
-const dtMessage = { error: null, success: null, info: null, warning: null, warn: null };
+const dtMessage:any = { error: null, success: null, info: null, warning: null, warn: null };
 // 给 dtMessage 循环赋值不同类型的 message函数
 ["error", "success", "info", "warning", "warn"].forEach((type) => {
-  dtMessage[type as any] = (
+  dtMessage[type as keyof typeof dtMessage] = (
     content: string | { content: string },
     duration: number,
     onClose: () => void
@@ -42,14 +42,14 @@ const dtMessage = { error: null, success: null, info: null, warning: null, warn:
     let hide: any;
     // 处理 message[type](config) 参数为对象类型
     if (typeof content === "object") {
-      hide = message[type as any]({
+      hide = message[type as keyof typeof message]({
         ...content,
         content: () => createElementVNode(content?.content, hide),
-      });
+      } as any);
       return hide;
     }
-    hide = message[type as any](
-      () => createElementVNode(content, hide),
+    hide = message[type as keyof typeof message](
+      (() => createElementVNode(content, hide)) as any,
       duration,
       onClose
     );
