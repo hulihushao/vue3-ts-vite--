@@ -7,18 +7,22 @@ import { CloseOutlined } from "@ant-design/icons-vue";
 	h: 是content自带的参数，表示createElement
     	content：文本内容
         */
-const createElementVNode = (content: string | { content: string },hide:any) => {
+const createElementVNode = (
+  content: string | { content: string },
+  hide: any
+) => {
   // 定义文本内容及样式（这里的样式延用的官方的）
-  const innerText = h(
-    "span",
-    { style: { fontSize: "14px" } },
-    content
-  );
+  const innerText = h("span", { style: { fontSize: "14px" } }, content);
   // 自定义关闭图标
   const innerIcon = h(CloseOutlined, {
-    style: { marginLeft: "10px",marginRight:'0', cursor: "pointer",fontSize:'14px' },
+    style: {
+      marginLeft: "10px",
+      marginRight: "0",
+      cursor: "pointer",
+      fontSize: "14px",
+    },
     attrs: { type: "close" },
-    onClick: () =>hide(),
+    onClick: () => hide(),
   });
   console.log(innerIcon, innerText);
   // 合到一个 VNode 节点中
@@ -27,7 +31,7 @@ const createElementVNode = (content: string | { content: string },hide:any) => {
   return container;
 };
 // 由于 message 有多种状态，这里需要额外处理
-const dtMessage = {"error":{}, "success":{}, "info":{}, "warning":{}, "warn":{}};
+const dtMessage = { error: {}, success: {}, info: {}, warning: {}, warn: {} };
 // 给 dtMessage 循环赋值不同类型的 message函数
 ["error", "success", "info", "warning", "warn"].forEach((type) => {
   dtMessage[type] = (
@@ -40,11 +44,15 @@ const dtMessage = {"error":{}, "success":{}, "info":{}, "warning":{}, "warn":{}}
     if (typeof content === "object") {
       hide = message[type]({
         ...content,
-        content: () => createElementVNode(content?.content,hide),
+        content: () => createElementVNode(content?.content, hide),
       });
       return hide;
     }
-    hide = message[type](() => createElementVNode(content,hide), duration, onClose);
+    hide = message[type](
+      () => createElementVNode(content, hide),
+      duration,
+      onClose
+    );
     return hide;
   };
 });
