@@ -73,13 +73,14 @@ border_bottom_color.value = oppositeColor(themeObj.setColor, -5);
   height: 100%;
   color: v-bind("themeObj.setColor") !important;
   display: flex;
+  justify-content:space-between;
   .list-tree,
   .markdown {
     height: 100%;
     overflow: auto;
   }
   .list-tree {
-    width: 30%;
+    width: 29%;
     border: 1px solid #aaa;
     padding: 5px;
     .tree-con {
@@ -89,7 +90,7 @@ border_bottom_color.value = oppositeColor(themeObj.setColor, -5);
     }
   }
   .markdown {
-    width: 100%;
+    width: 69%;
     :deep(h2),
     :deep(h1) {
       border-bottom-color: v-bind(border_bottom_color) !important;
