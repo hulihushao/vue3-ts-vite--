@@ -149,8 +149,8 @@ axios.get("https://api.vvhan.com/api/getIpInfo").then((res) => {
 
 //获取天气
 let addr = ref("");
-let weatherInfo = ref("");
-let weatherTip = ref("");
+let weatherInfo = ref("暂无天气数据！");
+let weatherTip = ref("暂无提示信息！");
 GetWeather.weather().then((res: any) => {
   addr.value = res.data.city;
   weatherInfo.value = `${res.data.info.type} 温度：${res.data.info.low} ～${res.data.info.high} 风向：${res.data.info.fengxiang} 风力：${res.data.info.fengli}`;
@@ -207,7 +207,7 @@ onBeforeUnmount(() => {
           <span>{{ addr }} 天气：</span>
           <span>{{ weatherInfo }}</span>
           <br />
-          <span>Tip：{{ weatherTip }}</span>
+          <span>tips：{{ weatherTip }}</span>
         </p>
         <p class="count">
           <span class="users">

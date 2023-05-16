@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import useFullScreen from "@/store/fullScreen";
-import fullscreen from "@/composables/useFullScreen";
+import fullscreen from "@/utils/full-screen";
 let isFull = useFullScreen();
 //设置全屏显示
 let setFull = () => {
