@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, toRefs, onMounted, onBeforeUnmount } from "vue";
+import { ref, reactive, toRefs, onMounted, onBeforeUnmount } from "vue";
 import { useSetTheme, useSetLanguage } from "@/composables/useSetTheme";
 import "vue3-colorpicker/style.css";
 import type { SelectProps } from "ant-design-vue";
@@ -8,7 +8,7 @@ import Upload from "@/components/upLoad/Upload.vue";
 import TheSysLayout from "@/components/drawer/TheSysLayout.vue";
 import useTheme from "@/store/theme";
 import { useI18n } from "vue-i18n";
-
+import { message } from "ant-design-vue";
 let themeObj = useTheme();
 let colors = ref(themeObj.color);
 let bgColor = ref(themeObj.color);
@@ -28,7 +28,7 @@ let updateColor = (e: any) => {
   useSetTheme(bgColor.value);
 };
 //确定按钮更新颜色
-function changSketchButton(item:any) {
+function changSketchButton(item: any) {
   showSketch.value = false;
   console.log(item);
   if (item.isOk) {
@@ -60,7 +60,7 @@ let closeDrawer = () => {
 };
 let colorPreview = ref(null);
 let colorSelect = ref();
-let onClickCbk = (event:Event) => {
+let onClickCbk = (event: Event) => {
   const targetElement = event.target; // 获取当前被点击的元素
   const myDiv = colorSelect.value.$el;
   let colorPreviewDiv = colorPreview.value;
@@ -103,21 +103,34 @@ let saveImgBase64 = (base64Url: string) => {
   console.log(base64Url);
   imgBase64.value = base64Url;
 };
+//按钮加载状态
+const btnLoading = reactive({
+  saveLoading: false,
+  resetLoading: false,
+});
 //保存设置
 let saveSetting = () => {
+  btnLoading.saveLoading = true;
   if (showWhich.value) {
     if (urlValue.value) themeObj.bgImg = urlValue.value;
   } else {
     if (imgBase64.value) themeObj.bgImg = imgBase64.value;
   }
+  setTimeout(() => {
+    message.success("设置成功！");
+    btnLoading.saveLoading = false;
+  }, 1000);
 };
 //重置设置
 let resetSetting = () => {
+  btnLoading.resetLoading = true;
   themeObj.$reset();
   bgColor.value = themeObj.color;
   colors.value = themeObj.color;
   //设置主题色
   useSetTheme(bgColor.value);
+  message.success("重置成功！");
+  btnLoading.resetLoading = false;
 };
 
 //主题改变时事件
@@ -125,20 +138,19 @@ let themeChange = () => {
   useSetTheme(bgColor.value);
 };
 //语言选择
-  const { locale } = useI18n();
+const { locale } = useI18n();
 let languageChange = (value: boolean) => {
-  useSetLanguage(value,locale);
+  useSetLanguage(value, locale);
 };
 onMounted(() => {
   //监听点击位置以关闭颜色选择器
-  let div=document.querySelector(".custom_class") as HTMLElement
+  let div = document.querySelector(".custom_class") as HTMLElement;
   div.removeEventListener("click", onClickCbk);
   div.addEventListener("click", onClickCbk);
 });
 onBeforeUnmount(() => {
-  let div=document
-    .querySelector(".custom_class") as HTMLElement
-    div.removeEventListener("click", onClickCbk);
+  let div = document.querySelector(".custom_class") as HTMLElement;
+  div.removeEventListener("click", onClickCbk);
 });
 </script>
 
@@ -166,9 +178,7 @@ onBeforeUnmount(() => {
             :class="$style.icon_"
             icon="CheckOutlined"
           />
-          <img
-            src="@/assets/dark.svg"
-          />
+          <img src="@/assets/dark.svg" />
         </div>
         <div :class="$style.theme_style_item" @click="setThemeStyle(false)">
           <Icon
@@ -176,9 +186,7 @@ onBeforeUnmount(() => {
             :class="$style.icon_"
             icon="CheckOutlined"
           />
-          <img
-            src="@/assets/light.svg"
-          />
+          <img src="@/assets/light.svg" />
         </div>
       </div>
       <div :class="$style.buju_item">
@@ -244,7 +252,7 @@ onBeforeUnmount(() => {
             :options="selectObj"
             @change="selectChange"
           ></a-select>
-          <br/>
+          <br />
           <span style="color: #ccc; font-size: 12px; margin-left: 10px"
             >注:URL和上传只会生效一个</span
           >
@@ -268,11 +276,11 @@ onBeforeUnmount(() => {
     </div>
     <a-divider />
     <div :class="$style.btn_con">
-      <a-button @click="saveSetting">
+      <a-button :loading="btnLoading.saveLoading" @click="saveSetting">
         <template #icon><Icon icon="SaveOutlined" /></template>
         保存设置
       </a-button>
-      <a-button @click="resetSetting">
+      <a-button :loading="btnLoading.resetLoading" @click="resetSetting">
         <template #icon><Icon icon="SyncOutlined" /></template>
         重置设置
       </a-button>
