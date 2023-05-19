@@ -86,6 +86,10 @@ onMounted(() => {
     },
   });
 });
+onBeforeUnmount(() => {
+  viewer && viewer.destroy();
+  viewer = null;
+});
 </script>
 <template>
   <div id="cesium-con">
@@ -95,7 +99,7 @@ onMounted(() => {
 
 <style scoped lang="less">
 #cesium-con {
-  height:50vh;
+  height: 50vh;
   border: 1px solid red;
   #cesium {
     height: 100%;
