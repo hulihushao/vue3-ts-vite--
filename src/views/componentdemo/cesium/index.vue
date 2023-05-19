@@ -5,9 +5,9 @@ import "cesium/Build/Cesium/Widgets/widgets.css";
 
 Cesium.Ion.defaultAccessToken =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIyZDI3OWU4MC1kYWIyLTQwODAtYjI4Yi02OGQxMjI3ZGYxNTIiLCJpZCI6MTM5NjE5LCJpYXQiOjE2ODQzOTY2NDZ9.C-gPfQrkW_maMsY0MpnFpxEfRAITCMJJkgBTOOLaCGc";
-let viewer: any = null;
+let viewer: any = ref()
 onMounted(() => {
-  viewer = new Cesium.Viewer("cesium", {
+  viewer.value = new Cesium.Viewer("cesium", {
     imageryProvider:
       /** new Cesium.ArcGisMapServerImageryProvider({
       url: "https://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineStreetPurplishBlue/MapServer",
@@ -57,16 +57,16 @@ onMounted(() => {
     fullscreenButton: true,
     terrainProvider: Cesium.createWorldTerrain(),
   });
-  viewer.scene.globe.depthTestAgainstTerrain = false; //开启地形深度检测 解决鼠标指针和点不重合
-  viewer.cesiumWidget.screenSpaceEventHandler.removeInputAction(
+  viewer.value.scene.globe.depthTestAgainstTerrain = false; //开启地形深度检测 解决鼠标指针和点不重合
+  viewer.value.cesiumWidget.screenSpaceEventHandler.removeInputAction(
     Cesium.ScreenSpaceEventType.LEFT_DOUBLE_CLICK
   );
   // 去除logo
-  viewer.cesiumWidget.creditContainer.style.display = "none";
+  viewer.value.cesiumWidget.creditContainer.style.display = "none";
   // 使用ViewportQuad创建一个显示图片的区域
   var viewportQuad = new Cesium.ViewportQuad();
   viewportQuad.rectangle = new Cesium.BoundingRectangle(3, 3, 30, 30);
-  viewer.scene.primitives.add(viewportQuad);
+  viewer.value.scene.primitives.add(viewportQuad);
 
   viewportQuad.material = new Cesium.Material({
     fabric: {
@@ -77,12 +77,12 @@ onMounted(() => {
       },
     },
   });
-  const buildingTileset = viewer.scene.primitives.add(
+  viewer.value.scene.primitives.add(
     Cesium.createOsmBuildings()
   );
   setTimeout(() => {
     // Fly the camera to San Francisco at the given longitude, latitude, and height.
-    viewer.camera.flyTo({
+    viewer.value.camera.flyTo({
       destination: Cesium.Cartesian3.fromDegrees(-122.4175, 37.655, 400),
       orientation: {
         heading: Cesium.Math.toRadians(0.0),
@@ -92,8 +92,8 @@ onMounted(() => {
   }, 1000);
 });
 onBeforeUnmount(() => {
-  viewer && viewer.destroy();
-  viewer = null;
+  viewer.value && viewer.value.destroy();
+  viewer.value = null;
 });
 </script>
 <template>
