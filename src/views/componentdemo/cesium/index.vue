@@ -57,6 +57,10 @@ onMounted(() => {
     fullscreenButton: true,
     terrainProvider: Cesium.createWorldTerrain(),
   });
+  viewer.scene.globe.depthTestAgainstTerrain = false; //开启地形深度检测 解决鼠标指针和点不重合
+  viewer.cesiumWidget.screenSpaceEventHandler.removeInputAction(
+    Cesium.ScreenSpaceEventType.LEFT_DOUBLE_CLICK
+  );
   // 去除logo
   viewer.cesiumWidget.creditContainer.style.display = "none";
   // 使用ViewportQuad创建一个显示图片的区域
@@ -76,15 +80,16 @@ onMounted(() => {
   const buildingTileset = viewer.scene.primitives.add(
     Cesium.createOsmBuildings()
   );
-
-  // Fly the camera to San Francisco at the given longitude, latitude, and height.
-  viewer.camera.flyTo({
-    destination: Cesium.Cartesian3.fromDegrees(-122.4175, 37.655, 400),
-    orientation: {
-      heading: Cesium.Math.toRadians(0.0),
-      pitch: Cesium.Math.toRadians(-15.0),
-    },
-  });
+  setTimeout(() => {
+    // Fly the camera to San Francisco at the given longitude, latitude, and height.
+    viewer.camera.flyTo({
+      destination: Cesium.Cartesian3.fromDegrees(-122.4175, 37.655, 400),
+      orientation: {
+        heading: Cesium.Math.toRadians(0.0),
+        pitch: Cesium.Math.toRadians(-15.0),
+      },
+    });
+  }, 1000);
 });
 onBeforeUnmount(() => {
   viewer && viewer.destroy();
@@ -99,7 +104,7 @@ onBeforeUnmount(() => {
 
 <style scoped lang="less">
 #cesium-con {
-  height: 50vh;
+  height: 55vh;
   border: 1px solid red;
   #cesium {
     height: 100%;
