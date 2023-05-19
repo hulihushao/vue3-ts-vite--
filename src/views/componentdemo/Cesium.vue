@@ -5,7 +5,7 @@ import Cesium from "@/views/componentdemo/cesium/index.vue";
 <template>
   <demo-container
     title="Cesium Demo"
-    src="@/views/componentdemo/ceaium/index.vue"
+    src="@/views/componentdemo/cesium/index.vue"
   >
     <Cesium />
   </demo-container>
