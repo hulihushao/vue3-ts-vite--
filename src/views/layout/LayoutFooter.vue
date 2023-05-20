@@ -5,7 +5,7 @@ doc_title.value=import.meta.env.VITE_DOC_TITLE
 </script>
 
 <template>
-  <a-layout-footer style="text-align: center;height:65px;display:flex;align-items:center;">
+  <a-layout-footer style="text-align: center;height:65px;display:flex;align-items:center;justify-content:center">
     {{$t('footer.content',{doc_title})}}
   </a-layout-footer>
 </template>

@@ -46,19 +46,19 @@ useSetLanguage(theme.isZHCN);
           xlink:href="#hans-wave"
           x="50"
           y="0"
-          :fill="theme.isDark ? 'rgba(8,8,8,.5)' : 'rgba(224,233,239,.5)'"
+          :fill="theme.isDark ? 'rgba(105,105,105,.5)' : 'rgba(224,233,239,.5)'"
         />
         <use
           xlink:href="#hans-wave"
           x="50"
           y="3"
-          :fill="theme.isDark ? 'rgba(8,8,8,.5)' : 'rgba(224,233,239,.5)'"
+          :fill="theme.isDark ? 'rgba(105,105,105,.5)' : 'rgba(224,233,239,.5)'"
         />
         <use
           xlink:href="#hans-wave"
           x="50"
           y="6"
-          :fill="theme.isDark ? 'rgba(8,8,8,.5)' : 'rgba(224,233,239,.5)'"
+          :fill="theme.isDark ? 'rgba(105,105,105,.5)' : 'rgba(224,233,239,.5)'"
         />
       </g>
     </svg>
