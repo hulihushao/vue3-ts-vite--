@@ -11,7 +11,7 @@ import { useRouter } from "vue-router";
 
 let router = useRouter();
 let isShowNotice = ref(false);
-let isHome=ref(false)
+let isHome = ref(false);
 let unwatch = watch(
   () => router.currentRoute.value.path,
   (toPath) => {
@@ -64,12 +64,12 @@ onBeforeUnmount(() => {
         <Header ref="header" />
       </header>
       <Notice
-        v-if="isShowNotice&&isHome"
+        v-if="isShowNotice && isHome"
         :show="isShowNotice"
         style="position: absolute; top: 125px"
       />
       <Content :isRouterAlive="isRouterAlive" />
-      <footer>
+      <footer style="text-align: center">
         <Footer />
       </footer>
     </a-layout>

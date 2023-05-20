@@ -83,13 +83,13 @@ onMounted(() => {
   setTimeout(() => {
     // Fly the camera to San Francisco at the given longitude, latitude, and height.
     viewer.value.camera.flyTo({
-      destination: Cesium.Cartesian3.fromDegrees(-122.4175, 37.655, 400),
+      destination: Cesium.Cartesian3.fromDegrees(	-122.40476, 37.78207, 700),
       orientation: {
-        heading: Cesium.Math.toRadians(0.0),
+        heading: Cesium.Math.toRadians(-30.0),
         pitch: Cesium.Math.toRadians(-15.0),
       },
     });
-  }, 1000);
+  }, 4000);
 });
 onBeforeUnmount(() => {
   viewer.value && viewer.value.destroy();

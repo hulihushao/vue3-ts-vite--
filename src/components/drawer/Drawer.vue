@@ -158,6 +158,7 @@ onBeforeUnmount(() => {
   <a-drawer
     destroyOnClose
     forceRender
+    width="300"
     v-model:visible="visible"
     :class="$style.custom_class"
     class="custom_class"
