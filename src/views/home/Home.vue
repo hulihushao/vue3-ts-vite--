@@ -142,7 +142,7 @@ axios.get("https://api.ipify.org/?format=json").then((res) => {
 //获取地址
 axios.get("https://api.vvhan.com/api/getIpInfo").then((res) => {
   let datas = res.data.info;
-  if (data.value[1].content != "未知") {
+  if (data.value[1].content == "未知") {
     data.value[1].content = datas.prov + datas.city;
   }
 });
