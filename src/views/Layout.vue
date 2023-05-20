@@ -69,7 +69,7 @@ onBeforeUnmount(() => {
         style="position: absolute; top: 125px"
       />
       <Content :isRouterAlive="isRouterAlive" />
-      <footer style="text-align: center">
+      <footer >
         <Footer />
       </footer>
     </a-layout>
