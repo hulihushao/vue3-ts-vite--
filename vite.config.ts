@@ -2,6 +2,7 @@ import { defineConfig, loadEnv } from "vite";
 import vue from "@vitejs/plugin-vue";
 import path from "path";
 import { createHtmlPlugin } from "vite-plugin-html";
+import cesium from "vite-plugin-cesium";
 //这个配置 为了在html中使用 环境变量
 const getViteEnv = (mode: string, target: string) => {
   return loadEnv(mode, process.cwd())[target];
@@ -13,6 +14,9 @@ export default defineConfig(({ mode }) => {
     base: "./",
     plugins: [
       vue(),
+      cesium({
+        rebuildCesium: true,
+      }),
       createHtmlPlugin({
         inject: {
           data: {
