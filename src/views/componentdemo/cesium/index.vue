@@ -5,7 +5,7 @@ import "cesium/Build/Cesium/Widgets/widgets.css";
 
 Cesium.Ion.defaultAccessToken =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIyZDI3OWU4MC1kYWIyLTQwODAtYjI4Yi02OGQxMjI3ZGYxNTIiLCJpZCI6MTM5NjE5LCJpYXQiOjE2ODQzOTY2NDZ9.C-gPfQrkW_maMsY0MpnFpxEfRAITCMJJkgBTOOLaCGc";
-let viewer: any = ref()
+let viewer: any = ref();
 onMounted(() => {
   viewer.value = new Cesium.Viewer("cesium", {
     imageryProvider:
@@ -46,6 +46,7 @@ onMounted(() => {
         ],
         maximumLevel: 50,
       }),
+
     baseLayerPicker: false,
     selectionIndicator: false,
     animation: false,
@@ -57,6 +58,15 @@ onMounted(() => {
     fullscreenButton: true,
     terrainProvider: Cesium.createWorldTerrain(),
   });
+  viewer.value.imageryLayers.addImageryProvider(
+    new Cesium.WebMapTileServiceImageryProvider({
+      url: "https://t0.tianditu.gov.cn/cva_c/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=cva&STYLE=default&TILEMATRIXSET=c&FORMAT=tiles&TILEMATRIX={TileMatrix}&TILEROW={TileRow}&TILECOL={TileCol}&tk=27c199d949d448c75e9a241e996d65da",
+      layer: "tdtAnnoLayer",
+      style: "default",
+      format: "image/jpeg",
+      tileMatrixSetID: "GoogleMapsCompatible",
+    })
+  );
   viewer.value.scene.globe.depthTestAgainstTerrain = false; //开启地形深度检测 解决鼠标指针和点不重合
   viewer.value.cesiumWidget.screenSpaceEventHandler.removeInputAction(
     Cesium.ScreenSpaceEventType.LEFT_DOUBLE_CLICK
@@ -77,13 +87,11 @@ onMounted(() => {
       },
     },
   });
-  viewer.value.scene.primitives.add(
-    Cesium.createOsmBuildings()
-  );
+  viewer.value.scene.primitives.add(Cesium.createOsmBuildings());
   setTimeout(() => {
     // Fly the camera to San Francisco at the given longitude, latitude, and height.
     viewer.value.camera.flyTo({
-      destination: Cesium.Cartesian3.fromDegrees(	-122.40476, 37.78207, 700),
+      destination: Cesium.Cartesian3.fromDegrees(-122.40476, 37.78207, 700),
       orientation: {
         heading: Cesium.Math.toRadians(-30.0),
         pitch: Cesium.Math.toRadians(-15.0),
