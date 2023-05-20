@@ -19,7 +19,7 @@ onMounted(() => {
           "&style=default&format=tiles&tk=27c199d949d448c75e9a241e996d65da",
         layer: "tdtImg_c",
         style: "default",
-        format: "tiles",
+        format: "image/jpeg",
         tileMatrixSetID: "c",
         subdomains: ["t0", "t1", "t2", "t3", "t4", "t5", "t6", "t7"],
         tilingScheme: new Cesium.GeographicTilingScheme(),
@@ -44,7 +44,6 @@ onMounted(() => {
           "18",
           "19",
         ],
-        maximumLevel: 50,
       }),
 
     baseLayerPicker: false,
