@@ -133,6 +133,7 @@ axios.get("https://api.ipify.org/?format=json").then((res) => {
       data.value[0].content += "/" + res.data.ip;
       data.value[0].name += "（local/vpn）";
     } else {
+      data.value[0].name += "（vpn）";
       data.value[0].content = res.data.ip;
     }
   } else {

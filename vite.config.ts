@@ -22,6 +22,7 @@ export default defineConfig(({ mode }) => {
           data: {
             //将环境变量 VITE_APP_TITLE 赋值给 title 方便 html页面使用 title 获取系统标题
             title: getViteEnv(mode, "VITE_DOC_TITLE"),
+            CESIUM_BASE_URL:getViteEnv(mode, "VITE_CESIUM_BASE_URL"),
           },
         },
       }),
