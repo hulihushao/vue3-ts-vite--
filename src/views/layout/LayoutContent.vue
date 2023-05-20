@@ -5,7 +5,7 @@ const props=defineProps(["isRouterAlive"])
 <template>
   <a-layout-content
     :style="{
-      margin: '22px 16px',
+      margin: '22px 16px 0',
       padding: '5px',
       background: '#fff',
       minHeight: '280px',
