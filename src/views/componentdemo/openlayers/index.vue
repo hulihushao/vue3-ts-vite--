@@ -3,12 +3,16 @@ import { ref, onMounted } from "vue";
 import "ol/ol.css";
 import * as ol from "ol";
 import olLayerTile from "ol/layer/Tile";
-import type { Options } from "ol/layer/BaseTile";
+import type{ Options } from "ol/layer/BaseTile";
 import olSourceXYZ from "ol/source/XYZ";
 console.log(ol);
 
-const map = ref();
-t t let inidom: HTMLDivElement) => {
+const map = ref();
+interface olLayerTileConfig extends Options<olSourceXYZ>{
+
+   title?: string;
+}
+let initMap=(dom: HTMLDivElement) => {
   let layers = [
     new olLayerTile({
       title: "天地图矢量图层",
@@ -22,7 +26,7 @@ t t let inidom: HTMLDivElement) => {
         crossOrigin: "anonymous",
       }),
       isBaseLayer: true,
-    }),
+    } as olLayerTileConfig),
     new olLayerTile({
       title: "天地图矢量注记图层",
       zIndex: 1,
@@ -34,7 +38,7 @@ t t let inidom: HTMLDivElement) => {
         crossOrigin: "anonymous",
       }),
       isBaseLayer: true,
-    }),
+    } as olLayerTileConfig),
   ];
   map.value = new ol.Map({
     layers: layers,
@@ -70,4 +74,4 @@ onMounted(() => {
 }
 
 
-</style></style></style>
+</style>
