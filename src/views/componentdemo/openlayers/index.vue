@@ -3,14 +3,12 @@ import { ref, onMounted } from "vue";
 import "ol/ol.css";
 import * as ol from "ol";
 import olLayerTile from "ol/layer/Tile";
+import type { Options } from "ol/layer/BaseTile";
 import olSourceXYZ from "ol/source/XYZ";
 console.log(ol);
 
-const map = ref();
-interface olLayerTileConfig extends AxiosRequestConfig {
-  headers: any;
-}
-let initMap = (dom: HTMLDivElement) => {
+const map = ref();
+t t let inidom: HTMLDivElement) => {
   let layers = [
     new olLayerTile({
       title: "天地图矢量图层",
@@ -70,4 +68,6 @@ onMounted(() => {
     height: 100%;
   }
 }
-</style>
+
+
+</style></style></style>
