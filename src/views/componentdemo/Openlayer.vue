@@ -4,7 +4,7 @@ import DemoContainer from "@/views/componentdemo/index.vue";
 </script>
 
 <template>
-  <demo-container title="Threejs Demo" src="@/views/componentdemo/threejs/index.vue">
+  <demo-container title="Openlayers Demo" src="@/views/componentdemo/openlayers/index.vue">
     <Openlayer />
   </demo-container>
 </template>
