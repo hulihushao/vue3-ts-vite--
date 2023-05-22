@@ -1,16 +1,11 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 import "ol/ol.css";
-import type{ Options } from "ol/layer/BaseTile";
+import type {olLayerTileConfig} from "@/utils/ol"
 import ol from "@/utils/ol"
-
 console.log(ol);
 
 const map = ref();
-interface olLayerTileConfig extends Options<ol.source.XYZ>{
-
-   title?: string;
-}
 let initMap=(dom: HTMLDivElement) => {
   let layers = [
     new ol.layer.Tile({
