@@ -23,6 +23,7 @@ let props=defineProps<{
 
 <style scoped lang="less">
 .demo-con {
+  width:100%;
   height: 100%;
 }
 </style>

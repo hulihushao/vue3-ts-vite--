@@ -59,10 +59,11 @@ onMounted(() => {
 
 <style scoped lang="less">
 #map-con {
-  border: 1px solid red;
+
   width: 100%;
-  height: 55vh;
+  height: 100%;
   #map {
+    width:100%;
     height: 100%;
   }
 }
