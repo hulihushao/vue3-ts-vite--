@@ -1,23 +1,22 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 import "ol/ol.css";
-import * as ol from "ol";
-import olLayerTile from "ol/layer/Tile";
 import type{ Options } from "ol/layer/BaseTile";
-import olSourceXYZ from "ol/source/XYZ";
+import ol from "@/utils/ol"
+
 console.log(ol);
 
 const map = ref();
-interface olLayerTileConfig extends Options<olSourceXYZ>{
+interface olLayerTileConfig extends Options<ol.source.XYZ>{
 
    title?: string;
 }
 let initMap=(dom: HTMLDivElement) => {
   let layers = [
-    new olLayerTile({
+    new ol.layer.Tile({
       title: "天地图矢量图层",
       zIndex: 1,
-      source: new olSourceXYZ({
+      source: new ol.source.XYZ({
         url:
           "https://t{0-6}.tianditu.gov.cn/DataServer?T=vec_w&x={x}&y={y}&l={z}&tk=" /* TiandituKey */ +
           "27c199d949d448c75e9a241e996d65da", //TiandituKey为天地图密钥,
@@ -27,10 +26,10 @@ let initMap=(dom: HTMLDivElement) => {
       }),
       isBaseLayer: true,
     } as olLayerTileConfig),
-    new olLayerTile({
+    new ol.layer.Tile({
       title: "天地图矢量注记图层",
       zIndex: 1,
-      source: new olSourceXYZ({
+      source: new ol.source.XYZ({
         url:
           "https://t{0-6}.tianditu.gov.cn/DataServer?T=cva_w&x={x}&y={y}&l={z}&tk=" /* TiandituKey */ +
           "27c199d949d448c75e9a241e996d65da", //TiandituKey为天地图密钥
