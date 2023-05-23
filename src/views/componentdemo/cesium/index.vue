@@ -112,7 +112,7 @@ onBeforeUnmount(() => {
 
 <style scoped lang="less">
 #cesium-con {
-  height: 55vh;
+  height: 100%;
   border: 1px solid red;
   #cesium {
     height: 100%;
