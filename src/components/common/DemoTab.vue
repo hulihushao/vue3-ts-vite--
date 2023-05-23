@@ -22,7 +22,7 @@ let activeKey = ref("1");
   height: calc(100% - 29px);
   :deep(.ant-tabs-card),
   :deep(.custom-dark-tabs-card),
-  :deep(.custom-dark-tabs-content) {
+  :deep(.custom-dark-tabs-content),  :deep(.ant-tabs-content) {
     height: 100% !important;
   }
 }
