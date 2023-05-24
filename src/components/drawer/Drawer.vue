@@ -233,13 +233,13 @@ onBeforeUnmount(() => {
         </div>
         <div></div>
         <span v-if="false" style="border: 1px solid red; position: relative">
-          <color-picker
+          <!--<color-picker
             v-model:pureColor="pureColor"
             format="rgb"
             useType="both"
             pickerType="chrome"
             v-model:gradientColor="gradientColor"
-          />
+          />-->
         </span>
       </div>
       <div :class="$style.bgImg_con">
