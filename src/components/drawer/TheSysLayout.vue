@@ -58,7 +58,7 @@ let themeObj = useTheme();
 #buju {
   padding: 5px 10px;
   .buju-item {
-      width:80%;
+      width:85%;
       padding:5px 0;
     display: flex;
     justify-content: space-between;
