@@ -43,19 +43,28 @@ onMounted(() => {
           "17",
           "18",
           "19",
-          "20"
+          "20",
         ],
       }),
 
     baseLayerPicker: false,
     selectionIndicator: false,
-    animation: false,
+    animation: true,
+    //开启动画自动播放
+    shouldAnimate: true,
+    clockViewModel: new Cesium.ClockViewModel(
+      new Cesium.Clock({
+        multiplier: 250, // 地球自转速度
+      })
+    ),
     geocoder: false,
     timeline: false,
     sceneModePicker: false,
     navigationHelpButton: false,
-    infoBox: true,
+    infoBox: false,
     fullscreenButton: true,
+    //全屏时渲染的HTML元素
+    fullscreenElement: document.querySelector("#cesium") as any,
     terrainProvider: Cesium.createWorldTerrain(),
   });
   viewer.value.imageryLayers.addImageryProvider(
@@ -67,6 +76,8 @@ onMounted(() => {
       tileMatrixSetID: "GoogleMapsCompatible",
     })
   );
+  // 光照效果
+  viewer.value.scene.globe.enableLighting = true; // 开启光照
   viewer.value.scene.globe.depthTestAgainstTerrain = false; //开启地形深度检测 解决鼠标指针和点不重合
   viewer.value.cesiumWidget.screenSpaceEventHandler.removeInputAction(
     Cesium.ScreenSpaceEventType.LEFT_DOUBLE_CLICK
