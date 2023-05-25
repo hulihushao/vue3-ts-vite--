@@ -17,8 +17,8 @@ const props=defineProps(["isRouterAlive"])
       <transition
         mode="out-in"
         appear
-        enter-active-class="animate__animated animate__bounceInRight"
-        leave-active-class="animate__animated animate__fadeOutLeft"
+        enter-active-class="animate__animated animate__bounceInRight animate__fast"
+        leave-active-class="animate__animated animate__fadeOutLeft animate__fast"
       >
         <component style="" :is="Component" />
       </transition>
