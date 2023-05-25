@@ -60,6 +60,7 @@ onBeforeUnmount(() => {
   align-items: center;
   justify-content: center;
   background: #fffbe7;
+  z-index: 99;
   .msg-box {
     width: 80%;
     height: 100%;

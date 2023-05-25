@@ -26,7 +26,6 @@ let loadData = async () => {
   //console.log(component)
   let res:any = await Component.getComponent(src + "?raw")
   code.value = res.data.replace("export default ", "");
-  code.value = JSON.parse(code.value);
 };
 loadData();
 const extensions = [vue(), basicSetup, oneDark];
