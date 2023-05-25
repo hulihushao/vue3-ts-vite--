@@ -3,8 +3,8 @@ import { ref, onMounted, onBeforeUnmount } from "vue";
 import * as Cesium from "cesium";
 import "cesium/Build/Cesium/Widgets/widgets.css";
 
-Cesium.Ion.defaultAccessToken =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIyZDI3OWU4MC1kYWIyLTQwODAtYjI4Yi02OGQxMjI3ZGYxNTIiLCJpZCI6MTM5NjE5LCJpYXQiOjE2ODQzOTY2NDZ9.C-gPfQrkW_maMsY0MpnFpxEfRAITCMJJkgBTOOLaCGc";
+// Cesium.Ion.defaultAccessToken =
+//   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIyZDI3OWU4MC1kYWIyLTQwODAtYjI4Yi02OGQxMjI3ZGYxNTIiLCJpZCI6MTM5NjE5LCJpYXQiOjE2ODQzOTY2NDZ9.C-gPfQrkW_maMsY0MpnFpxEfRAITCMJJkgBTOOLaCGc";
 let viewer: any = ref();
 onMounted(() => {
   viewer.value = new Cesium.Viewer("cesium", {
@@ -108,7 +108,7 @@ onMounted(() => {
         pitch: Cesium.Math.toRadians(-15.0),
       },
     });
-  }, 4000);
+  }, 3000);
 });
 onBeforeUnmount(() => {
   viewer.value && viewer.value.destroy();
