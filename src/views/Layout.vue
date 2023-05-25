@@ -135,6 +135,7 @@ onBeforeUnmount(() => {
   --bgColor: rgba(255, 255, 255, 0.5);
 }
 .setting {
+  width: 26px;
   font-size: 25px;
   position: absolute;
   z-index: 999;

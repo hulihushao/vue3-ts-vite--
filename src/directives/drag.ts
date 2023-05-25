@@ -32,7 +32,7 @@ class Drap {
     // 		this.el.setCapture && this.el.setCapture() //全局捕获
     // 	}
     // }
-    if (isMobile()) {
+    if (!isMobile()) {
       this.el.onmousedown = (e: MouseEvent) => {
         this.onMouseDown(e);
         this.el.setCapture && this.el.setCapture(); //全局捕获
@@ -64,15 +64,15 @@ class Drap {
     let zIndex: any = getComputedStyle(this.el).getPropertyValue("z-index");
     zIndex = isNaN(zIndex) ? 1 : zIndex;
     Drap.zIndex =
-      Drap.zIndex > zIndex ? Number(Drap.zIndex) + 1 : Number(zIndex) + 1;
+      Drap.zIndex > zIndex ? Number(Drap.zIndex)  : Number(zIndex) ;
     this.setEleStyle({
       zIndex: Drap.zIndex,
-      position: "fixed",
+      position: "absolute",
       cursor: "move",
     });
     this.x = e.clientX - this.el.offsetLeft;
     this.y = e.clientY - this.el.offsetTop;
-    if (isMobile()) {
+    if (!isMobile()) {
       document.onmousemove = (e) => this.onMouseMove(e);
       document.onmouseup = (e) => this.onMouseUp(e);
     } else {
