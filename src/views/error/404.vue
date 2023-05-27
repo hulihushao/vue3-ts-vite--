@@ -13,7 +13,7 @@ let handleError=()=>{
     sub-title="Sorry, the page you visited does not exist."
   >
     <template #extra>
-      <a-button type="primary" @click='handleError'>Back Home</a-button>
+      <a-button type="primary" @click='handleError'>返回首页</a-button>
     </template>
   </a-result>
 </template>

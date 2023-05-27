@@ -8,7 +8,7 @@ const useTheme = defineStore("theme", {
       isZHCN:true,
       color: "#1890ff",
       bgImg:
-        "https://img-blog.csdnimg.cn/8050d3a2340141a69cf586c08ea7b77b.jpg",
+        "/static/imgs/bg.jpg",
       isTopMenu: isMobile(),
       isShowTabs: true,
       isShowTime: true,
