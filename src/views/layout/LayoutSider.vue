@@ -15,6 +15,7 @@ collapsed.collapsed = !themeObj.isUnfoldMenusSider;
     :collapsed="collapsed.collapsed"
     :trigger="null"
     collapsible
+    collapsedWidth="60"
     :theme="themeObj.themeChecked ? 'dark' : 'light'"
     :style="{ overflow: 'auto'}"
   >
