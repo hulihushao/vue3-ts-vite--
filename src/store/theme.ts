@@ -5,10 +5,9 @@ const useTheme = defineStore("theme", {
     return {
       themeChecked: true,
       isDark: false,
-      isZHCN:true,
+      isZHCN: true,
       color: "#1890ff",
-      bgImg:
-        "static/imgs/bg.jpg",
+      bgImg: "/static/imgs/bg.jpg", //https://img-blog.csdnimg.cn/8050d3a2340141a69cf586c08ea7b77b.jpg
       isTopMenu: isMobile(),
       isShowTabs: true,
       isShowTime: true,
@@ -18,13 +17,13 @@ const useTheme = defineStore("theme", {
   },
   getters: {
     //根据主题设置字体颜色
-    setColor: (state) =>{
-      if(state.isDark){
-        return '#ffffff'
-      }else{
-        return '#000000'
+    setColor: (state) => {
+      if (state.isDark) {
+        return "#ffffff";
+      } else {
+        return "#000000";
       }
-    }
+    },
   },
   persist: {
     enabled: true,

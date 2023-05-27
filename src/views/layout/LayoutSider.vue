@@ -41,7 +41,7 @@ collapsed.collapsed = !themeObj.isUnfoldMenusSider;
   justify-content: space-between;
   align-items: center;
   background: rgba(255, 255, 255, 0);
-  margin: 16px 25px;
+  margin: 16px 12px;
   .iconfont {
     color: #409eff;
     font-size: 32px;
