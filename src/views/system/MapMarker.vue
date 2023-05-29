@@ -3,7 +3,7 @@ import Iframe from "@/components/common/Iframe.vue";
 </script>
 
 <template>
-  <Iframe src="https://bx9gbq-8080.preview.csb.app/#/map" />
+  <Iframe src="https://hulihushao.github.io/mapmarker/#" />
 </template>
 
 <style scoped></style>

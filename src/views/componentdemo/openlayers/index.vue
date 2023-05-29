@@ -37,9 +37,9 @@ let initMap=(dom: HTMLDivElement) => {
   map.value = new ol.Map({
     layers: layers,
     view: new ol.View({
-      center: [114.064839, 22.548857], // 中心位置
-      zoom: 10, // 缩放登级
-      maxZoom: 18,
+      center: [114.1693611, 22.3193039], // 中心位置
+      zoom: 17, // 缩放登级
+      maxZoom: 19,
       projection: "EPSG:4326", // 使用坐标系
     }),
     target: dom,
