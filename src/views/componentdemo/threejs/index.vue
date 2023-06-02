@@ -68,7 +68,7 @@ renderer.setPixelRatio(window.devicePixelRatio);
 //加载模型
 const clock = new THREE.Clock();
 const dracoLoader = new DRACOLoader();
-dracoLoader.setDecoderPath("/");
+dracoLoader.setDecoderPath("/static/libs/threejs/three/examples/jsm/libs/draco/");
 const pmremGenerator = new THREE.PMREMGenerator(renderer);
 scene.environment = pmremGenerator.fromScene(
   new RoomEnvironment(),
@@ -85,7 +85,7 @@ let mixer: any;
 const loader = new GLTFLoader();
 loader.setDRACOLoader(dracoLoader);
 loader.load(
-  "/LittlestTokyo.glb",
+  "/static/LittlestTokyo.glb",
   function (gltf: any) {
     const model = gltf.scene;
     model.position.set(1, 1, 0);
