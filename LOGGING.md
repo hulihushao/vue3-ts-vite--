@@ -8,4 +8,4 @@
 7. 打包时去除vue-tsc --noEmit && ，避免ts报错
 8. 打包时路由使用hash路由，否则会打不开页面，vite.config.ts中的base为./
 9. history路由时这样配置createWebHistory("/vue3-ts-vite--")，同时base为"/vue3-ts-vite--/",但此时刷新页面会404,所以暂时使用哈希路由
-10. 
+10. 更新
