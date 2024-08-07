@@ -85,7 +85,7 @@ let mixer: any;
 const loader = new GLTFLoader();
 loader.setDRACOLoader(dracoLoader);
 loader.load(
-  "/static/LittlestTokyo.glb",
+  "./static/LittlestTokyo.glb",
   function (gltf: any) {
     const model = gltf.scene;
     model.position.set(1, 1, 0);
